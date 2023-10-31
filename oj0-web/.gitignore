@@ -1,0 +1,7 @@
+.DS_Store
+.nuxt
+*.local
+dist
+node_modules
+.idea/
+*.log
