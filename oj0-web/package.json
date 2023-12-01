@@ -11,15 +11,25 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "devDependencies": {
-    "@antfu/eslint-config": "2.1.2",
-    "@nuxt/devtools": "latest",
-    "@nuxt/test-utils": "^3.8.1",
-    "eslint": "^8.54.0",
-    "nuxt": "^3.8.2",
-    "unocss": "^0.57.7",
-    "vitest": "^0.34.6",
-    "vue": "^3.3.9",
+  "dependencies": {
+    "@iconify/json": "^2.2.141",
+    "@pinia/nuxt": "^0.5.1",
+    "@unocss/nuxt": "^0.57.3",
+    "@vueuse/core": "^10.6.0",
+    "@vueuse/nuxt": "^10.6.0",
+    "pinia": "^2.1.7",
+    "unocss": "^0.57.3",
     "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^1.1.0",
+    "@arco-design/web-vue": "^2.53.2",
+    "@nuxt/devtools": "latest",
+    "eslint": "^8.53.0",
+    "nuxt": "^3.8.1",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vitest": "^0.34.6",
+    "vue": "^3.3.8"
   }
 }
