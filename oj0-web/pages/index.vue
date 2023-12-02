@@ -18,10 +18,6 @@ const name = computed(() => {
       <button btn-base @click="currentIdx++">
         Change
       </button>
-
-      <a-button type="primary">
-        哈哈哈
-      </a-button>
     </div>
   </div>
 </template>
