@@ -1,5 +1,7 @@
 <template>
-  <div>
-    1
-  </div>
+  <button
+    text-lg icon-btn
+    i="carbon-sun dark:carbon-asleep"
+    @click="toggleDark"
+  />
 </template>

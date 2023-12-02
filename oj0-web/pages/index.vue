@@ -14,7 +14,7 @@ const name = computed(() => {
 </script>
 
 <template>
-  <div flex-center w-full h-1000px font-bold>
+  <div flex-center w-full h-full font-bold>
     <div flex justify-between px-30px w-800px>
       <div text-4rem>
         Hi@{{ name }} <span text-primary-active>1111</span>

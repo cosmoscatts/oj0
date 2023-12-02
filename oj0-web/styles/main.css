@@ -59,12 +59,6 @@ html {
   --at-apply: bg-base text-base;
 }
 
-footer {
-  a {
-    --at-apply: 'hover:underline';
-  }
-}
-
 .squircle {
   clip-path: url(#avatar-mask);
 }
