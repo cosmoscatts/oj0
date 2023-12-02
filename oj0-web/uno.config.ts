@@ -1,5 +1,3 @@
-import process from 'node:process'
-import type { Variant } from 'unocss'
 import {
   defineConfig,
   presetAttributify,
@@ -10,8 +8,6 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-
-import { variantParentMatcher } from '@unocss/preset-mini/utils'
 
 export default defineConfig({
   shortcuts: [
@@ -61,9 +57,9 @@ export default defineConfig({
       'text-link-rounded': 'focus:outline-none focus:ring-(2 primary inset) hover:bg-active rounded md:rounded-full px2 mx--2',
 
       // utils
-      'flex-center': 'items-center justify-center',
-      'flex-v-center': 'items-center',
-      'flex-h-center': 'justify-center',
+      'flex-center': 'flex items-center justify-center',
+      'flex-y-center': 'flex items-center',
+      'flex-x-center': 'flex justify-center',
       'bg-hover-overflow': 'relative z-0 transition-colors duration-250 after-content-empty after:(absolute inset--4px bg-transparent rounded-full z--1 transition-colors duration-250) hover:after:(bg-active)',
 
       'timeline-title-style': 'text-primary text-lg font-bold',
@@ -105,35 +101,14 @@ export default defineConfig({
         DEFAULT: 'var(--c-danger)',
         active: 'var(--c-danger-active)',
       },
+      success: {
+        DEFAULT: 'var(--c-success)',
+      },
+      warning: {
+        DEFAULT: 'var(--c-warning)',
+      },
     },
   },
-  variants: [
-    ...(process.env.TAURI_PLATFORM
-      ? <Variant<any>[]>[(matcher) => {
-        if (!matcher.startsWith('native:'))
-          return
-        return {
-          matcher: matcher.slice(7),
-          layer: 'native',
-        }
-      }]
-      : []),
-    ...(process.env.TAURI_PLATFORM !== 'macos'
-      ? <Variant<any>[]>[
-        (matcher) => {
-          if (!matcher.startsWith('native-mac:'))
-            return
-          return {
-            matcher: matcher.slice(11),
-            layer: 'native-mac',
-          }
-        },
-      ]
-      : []
-    ),
-    variantParentMatcher('fullscreen', '@media (display-mode: fullscreen)'),
-    variantParentMatcher('coarse-pointer', '@media (pointer: coarse)'),
-  ],
   rules: [
     // scrollbar-hide
     [/^scrollbar-hide$/, (_, { constructCSS }) => {

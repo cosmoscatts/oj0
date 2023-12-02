@@ -1,0 +1,124 @@
+:root, :root::selection {
+  --c-border: #eee;
+  --c-border-dark: #dccfcf;
+  --c-border-code: #ddd;
+  --c-danger: #FF3C1B;
+  --c-danger-active: #B50900;
+
+  --rgb-bg-base: 250, 250, 250;
+
+  --c-bg-base: rgb(var(--rgb-bg-base));
+
+  --c-bg-active: #f2f2f2;
+  --c-bg-card: #00000006;
+  --c-bg-code: #00000006;
+  --c-bg-selection: #8885;
+  --c-bg-dm: #f1e8e6;
+
+  --c-text-base: #232323;
+  --c-text-code: #63470c;
+  --c-text-secondary: #686868;
+  --c-text-secondary-light: #919191;
+
+  --c-bg-btn-disabled: #a1a1a1;
+  --c-text-btn-disabled: #fff;
+  --c-text-btn-disabled-deeper: #a1a1a1;
+
+  --c-success: #67C23A;
+  --c-warning: #E6A23C;
+  --c-error: #F56C6C;
+
+  --oj-primary-1: 255, 248, 232;
+  --oj-primary-2: 245, 225, 187;
+  --oj-primary-3: 235, 202, 145;
+  --oj-primary-4: 224, 177, 105;
+  --oj-primary-5: 214, 151, 69;
+  --oj-primary-6: 204, 125, 36;
+  --oj-primary-7: 172, 97, 23;
+  --oj-primary-8: 140, 72, 12;
+  --oj-primary-9: 108, 50, 5;
+  --oj-primary-10: 77, 31, 0;
+
+  --oj-warning-1: 255, 250, 232;
+  --oj-warning-2: 250, 235, 195;
+  --oj-warning-3: 245, 219, 159;
+  --oj-warning-4: 240, 202, 125;
+  --oj-warning-5: 135, 182, 92;
+  --oj-warning-6: 230, 162, 60;
+  --oj-warning-7: 192, 125, 37;
+  --oj-warning-8: 152, 91, 20;
+  --oj-warning-9: 115, 61, 7;
+  --oj-warning-10: 77, 36, 0;
+
+  --oj-danger-1: 255, 239, 232;
+  --oj-danger-2: 255, 209, 191;
+  --oj-danger-3: 255, 176, 150;
+  --oj-danger-4: 255, 141, 109;
+  --oj-danger-5: 255, 102, 68;
+  --oj-danger-6: 255, 60, 27;
+  --oj-danger-7: 210, 39, 17;
+  --oj-danger-8: 166, 22, 9;
+  --oj-danger-9: 121, 9, 3;
+  --oj-danger-10: 77, 1, 0;
+
+  --oj-error-1: 255, 236, 232;
+  --oj-error-2: 253, 213, 206;
+  --oj-error-3: 251, 188, 181;
+  --oj-error-4: 249, 163, 156;
+  --oj-error-5: 247, 136, 132;
+  --oj-error-6: 245, 108, 108;
+  --oj-error-7: 203, 67, 72;
+  --oj-error-8: 161, 35, 44;
+  --oj-error-9: 119, 13, 24;
+  --oj-error-10: 77, 0, 10;
+
+  --oj-success-1: 244, 255, 232;
+  --oj-success-2: 215, 243, 191;
+  --oj-success-3: 187, 231, 153;
+  --oj-success-4: 159, 218, 119;
+  --oj-success-5: 131, 206, 87;
+  --oj-success-6: 103, 194, 58;
+  --oj-success-7: 75, 165, 37;
+  --oj-success-8: 51, 135, 20;
+  --oj-success-9: 31, 106, 8;
+  --oj-success-10: 15, 77, 0;
+}
+
+.dark {
+  --c-primary: var(--c-dark-primary);
+  --c-primary-active: var(--c-dark-primary-active);
+  --c-primary-light: var(--c-dark-primary-light);
+  --c-primary-fade: var(--c-dark-primary-fade);
+  --c-danger: #FF2810;
+  --c-danger-active: #E02F00;
+
+  --c-border: #222;
+  --c-border-code: #333;
+  --c-border-dark: #545251;
+
+  --rgb-bg-base: 17, 17, 17;
+
+  --c-bg-active: #191919;
+  --c-bg-card: #ffffff06;
+  --c-bg-code: #ffffff06;
+  --c-bg-dm: #0a2f35;
+
+  --c-text-base: #f3f3f3;
+  --c-text-code: #ecd88e;
+  --c-text-secondary: #888;
+  --c-text-secondary-light: #686868;
+
+  --c-bg-btn-disabled: #2a2a2a;
+  --c-text-btn-disabled: #919191;
+
+  --oj-danger-1: 255, 238, 232;
+  --oj-danger-2: 255, 204, 189;
+  --oj-danger-3: 255, 168, 146;
+  --oj-danger-4: 255, 128, 102;
+  --oj-danger-5: 255, 85, 59;
+  --oj-danger-6: 255, 40, 16;
+  --oj-danger-7: 210, 23, 10;
+  --oj-danger-8: 166, 11, 5;
+  --oj-danger-9: 121, 2, 2;
+  --oj-danger-10: 77, 0, 3;
+}

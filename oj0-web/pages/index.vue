@@ -14,15 +14,26 @@ const name = computed(() => {
 </script>
 
 <template>
-  <div flex="~ center" h-screen w-screen font-bold>
+  <div flex-center w-full h-1000px font-bold>
     <div flex justify-between px-30px w-800px>
-      <div text-red text-4rem>
-        Hi@{{ name }}
+      <div text-4rem>
+        Hi@{{ name }} <span text-primary-active>1111</span>
       </div>
 
-      <button btn-base @click="currentIdx++">
-        Change
-      </button>
+      <div>
+        <a-button type="primary" @click="currentIdx++">
+          Change
+        </a-button>
+        <a-button type="primary" status="success" @click="currentIdx++">
+          Change
+        </a-button>
+        <a-button type="primary" status="warning" @click="currentIdx++">
+          Change
+        </a-button>
+        <a-button type="primary" status="danger" @click="currentIdx++">
+          Change
+        </a-button>
+      </div>
     </div>
   </div>
 </template>

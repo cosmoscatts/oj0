@@ -11,6 +11,10 @@ export default defineNuxtConfig({
   ],
   css: [
     '@unocss/reset/tailwind.css',
+    '~/styles/default-theme.css',
+    '~/styles/vars.css',
+    '~/styles/transition.css',
+    '~/styles/scrollbars.css',
     '~/styles/main.css',
   ],
   router: {
@@ -19,4 +23,13 @@ export default defineNuxtConfig({
       scrollBehaviorType: 'smooth',
     },
   },
+  imports: {
+    dirs: ['~/composables/**'],
+  },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
 })

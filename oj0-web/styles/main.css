@@ -1,3 +1,71 @@
-#app, html, body {
-  
+html {
+  font-size: var(--font-size, 15px);
+  width: 100%;
+  width: 100vw;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+@font-face {
+  font-display: swap;
+  font-family: 'Homemade Apple';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/homemade-apple-v18.ttf) format('truetype');
+}
+
+::-moz-selection {
+  background: var(--c-bg-selection);
+}
+
+::selection {
+  background: var(--c-bg-selection);
+}
+
+.skeleton-loading-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(190, 190, 190, 0.2) 25%,
+    rgba(129, 129, 129, 0.24) 37%,
+    rgba(190, 190, 190, 0.2) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}
+
+html,
+body,
+#__nuxt {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html {
+  --at-apply: bg-base text-base;
+}
+
+footer {
+  a {
+    --at-apply: 'hover:underline';
+  }
+}
+
+.squircle {
+  clip-path: url(#avatar-mask);
+}
+
