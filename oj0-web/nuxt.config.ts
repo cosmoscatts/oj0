@@ -1,5 +1,10 @@
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  vue: {
+    defineModel: true,
+    propsDestructure: true
+  },
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
