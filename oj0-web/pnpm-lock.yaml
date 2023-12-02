@@ -13,7 +13,7 @@ dependencies:
     version: 0.5.1(typescript@5.3.2)(vue@3.3.9)
   '@unocss/nuxt':
     specifier: ^0.57.7
-    version: 0.57.7(postcss@8.4.31)(vite@4.5.0)(webpack@5.89.0)
+    version: 0.57.7(postcss@8.4.31)(vite@5.0.4)(webpack@5.89.0)
   '@unocss/reset':
     specifier: ^0.57.7
     version: 0.57.7
@@ -40,33 +40,36 @@ dependencies:
     version: 2.1.7(typescript@5.3.2)(vue@3.3.9)
   unocss:
     specifier: ^0.57.7
-    version: 0.57.7(@unocss/webpack@0.57.7)(postcss@8.4.31)(vite@4.5.0)
+    version: 0.57.7(@unocss/webpack@0.57.7)(postcss@8.4.31)(vite@5.0.4)
   vue-router:
     specifier: ^4.2.5
     version: registry.npmmirror.com/vue-router@4.2.5(vue@3.3.9)
 
 devDependencies:
   '@antfu/eslint-config':
-    specifier: ^2.1.2
-    version: 2.1.2(eslint@8.55.0)(typescript@5.3.2)(vitest@0.34.6)
+    specifier: ^2.1.1
+    version: 2.1.2(@unocss/eslint-plugin@0.57.7)(eslint@8.55.0)(typescript@5.3.2)(vitest@0.34.6)
   '@arco-design/web-vue':
     specifier: ^2.53.3
     version: 2.53.3(vue@3.3.9)
   '@nuxt/devtools':
     specifier: latest
-    version: registry.npmmirror.com/@nuxt/devtools@1.0.4(nuxt@3.8.2)(vite@4.5.0)
+    version: registry.npmmirror.com/@nuxt/devtools@1.0.4(nuxt@3.8.2)(vite@5.0.4)
+  '@unocss/eslint-plugin':
+    specifier: ^0.57.7
+    version: 0.57.7(eslint@8.55.0)(typescript@5.3.2)
   eslint:
-    specifier: ^8.55.0
+    specifier: ^8.52.0
     version: 8.55.0
   nuxt:
     specifier: ^3.8.2
-    version: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@4.5.0)
+    version: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@5.0.4)
   typescript:
     specifier: ^5.3.2
     version: 5.3.2
   vite:
-    specifier: ^4.5.0
-    version: 4.5.0(@types/node@20.10.1)
+    specifier: ^5.0.4
+    version: 5.0.4(@types/node@20.10.1)
   vitest:
     specifier: ^0.34.6
     version: registry.npmmirror.com/vitest@0.34.6
@@ -87,7 +90,7 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.20
 
-  /@antfu/eslint-config@2.1.2(eslint@8.55.0)(typescript@5.3.2)(vitest@0.34.6):
+  /@antfu/eslint-config@2.1.2(@unocss/eslint-plugin@0.57.7)(eslint@8.55.0)(typescript@5.3.2)(vitest@0.34.6):
     resolution: {integrity: sha512-eOkXtRcj3pAqkdbqNYEBUgFKTcDYYwAAAnGEs+DTTcJJJReIlrPx4WJIE02whOsi+5oKcJ7EK/swS6PcdcCIog==, tarball: https://registry.npmmirror.com/@antfu/eslint-config/-/eslint-config-2.1.2.tgz}
     hasBin: true
     peerDependencies:
@@ -114,6 +117,7 @@ packages:
       '@stylistic/eslint-plugin': 1.4.1(eslint@8.55.0)(typescript@5.3.2)
       '@typescript-eslint/eslint-plugin': 6.13.1(@typescript-eslint/parser@6.13.1)(eslint@8.55.0)(typescript@5.3.2)
       '@typescript-eslint/parser': 6.13.1(eslint@8.55.0)(typescript@5.3.2)
+      '@unocss/eslint-plugin': 0.57.7(eslint@8.55.0)(typescript@5.3.2)
       eslint: 8.55.0
       eslint-config-flat-gitignore: 0.1.2
       eslint-plugin-antfu: 1.0.11(eslint@8.55.0)
@@ -1148,7 +1152,7 @@ packages:
   /@nuxt/devalue@2.0.2:
     resolution: {integrity: sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==, tarball: https://registry.npmmirror.com/@nuxt/devalue/-/devalue-2.0.2.tgz}
 
-  /@nuxt/devtools-kit@1.0.4(nuxt@3.8.2)(vite@4.5.0):
+  /@nuxt/devtools-kit@1.0.4(nuxt@3.8.2)(vite@5.0.4):
     resolution: {integrity: sha512-AXNeI1dBilNryCmwuTd3lU7CrPBhzUJ5ntTFiXw9MmFwe5QT3NOxDFOv0gX7z1DFnmBEmx5mPKWysCwh7htEnQ==, tarball: https://registry.npmmirror.com/@nuxt/devtools-kit/-/devtools-kit-1.0.4.tgz}
     peerDependencies:
       nuxt: ^3.8.1
@@ -1157,8 +1161,8 @@ packages:
       '@nuxt/kit': 3.8.2
       '@nuxt/schema': 3.8.2
       execa: 7.2.0
-      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@4.5.0)
-      vite: 4.5.0(@types/node@20.10.1)
+      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@5.0.4)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -1178,7 +1182,7 @@ packages:
       rc9: 2.1.1
       semver: 7.5.4
 
-  /@nuxt/devtools@1.0.4(nuxt@3.8.2)(vite@4.5.0):
+  /@nuxt/devtools@1.0.4(nuxt@3.8.2)(vite@5.0.4):
     resolution: {integrity: sha512-G1Oo9+TaOYzePIXpNX+Zzalw/rJyIZKZpZmXfzolPlOJSA1i0JKzZX6Z7iQHdqPwNJ8t+HnVaF4PghPIpo1kwg==, tarball: https://registry.npmmirror.com/@nuxt/devtools/-/devtools-1.0.4.tgz}
     hasBin: true
     peerDependencies:
@@ -1186,7 +1190,7 @@ packages:
       vite: '*'
     dependencies:
       '@antfu/utils': 0.7.6
-      '@nuxt/devtools-kit': 1.0.4(nuxt@3.8.2)(vite@4.5.0)
+      '@nuxt/devtools-kit': 1.0.4(nuxt@3.8.2)(vite@5.0.4)
       '@nuxt/devtools-wizard': 1.0.4
       '@nuxt/kit': 3.8.2
       birpc: 0.2.14
@@ -1205,7 +1209,7 @@ packages:
       local-pkg: 0.5.0
       magicast: 0.3.2
       nitropack: 2.8.1
-      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@4.5.0)
+      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@5.0.4)
       nypm: 0.3.3
       ofetch: 1.3.3
       ohash: 1.1.3
@@ -1219,9 +1223,9 @@ packages:
       simple-git: 3.21.0
       sirv: 2.0.3
       unimport: 3.6.0(rollup@4.6.1)
-      vite: 4.5.0(@types/node@20.10.1)
-      vite-plugin-inspect: 0.7.42(@nuxt/kit@3.8.2)(vite@4.5.0)
-      vite-plugin-vue-inspector: 4.0.0(vite@4.5.0)
+      vite: 5.0.4(@types/node@20.10.1)
+      vite-plugin-inspect: 0.7.42(@nuxt/kit@3.8.2)(vite@5.0.4)
+      vite-plugin-vue-inspector: 4.0.0(vite@5.0.4)
       which: 3.0.1
       ws: 8.14.2
     transitivePeerDependencies:
@@ -1353,7 +1357,7 @@ packages:
       strip-literal: 1.3.0
       ufo: 1.3.2
       unplugin: 1.5.1
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 4.5.0
       vite-node: 0.33.0
       vite-plugin-checker: 0.6.2(eslint@8.55.0)(typescript@5.3.2)(vite@4.5.0)
       vue: 3.3.9(typescript@5.3.2)
@@ -1528,6 +1532,18 @@ packages:
     engines: {node: '>=14'}
     requiresBuild: true
     optional: true
+
+  /@pkgr/utils@2.4.2:
+    resolution: {integrity: sha512-POgTXhjrTfbTV63DiFXav4lBHiICLKKwDeaKn9Nphwj7WH6m0hMMCaJkMyRWjgtPFyRKRVoMXXjczsTQRDEhYw==, tarball: https://registry.npmmirror.com/@pkgr/utils/-/utils-2.4.2.tgz}
+    engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+    dependencies:
+      cross-spawn: 7.0.3
+      fast-glob: 3.3.2
+      is-glob: 4.0.3
+      open: 9.1.0
+      picocolors: 1.0.0
+      tslib: 2.6.2
+    dev: true
 
   /@polka/url@1.0.0-next.23:
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==, tarball: https://registry.npmmirror.com/@polka/url/-/url-1.0.0-next.23.tgz}
@@ -2078,7 +2094,7 @@ packages:
       unhead: 1.8.8
       vue: 3.3.9(typescript@5.3.2)
 
-  /@unocss/astro@0.57.7(vite@4.5.0):
+  /@unocss/astro@0.57.7(vite@5.0.4):
     resolution: {integrity: sha512-X4KSBdrAADdtS4x7xz02b016xpRDt9mD/d/oq23HyZAZ+sZc4oZs8el9MLSUJgu2okdWzAE62lRRV/oc4HWI1A==, tarball: https://registry.npmmirror.com/@unocss/astro/-/astro-0.57.7.tgz}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0
@@ -2088,8 +2104,8 @@ packages:
     dependencies:
       '@unocss/core': 0.57.7
       '@unocss/reset': 0.57.7
-      '@unocss/vite': 0.57.7(vite@4.5.0)
-      vite: 4.5.0(@types/node@20.10.1)
+      '@unocss/vite': 0.57.7(vite@5.0.4)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - rollup
     dev: false
@@ -2122,11 +2138,24 @@ packages:
     dependencies:
       '@unocss/core': 0.57.7
       unconfig: 0.3.11
-    dev: false
 
   /@unocss/core@0.57.7:
     resolution: {integrity: sha512-1d36M0CV3yC80J0pqOa5rH1BX6g2iZdtKmIb3oSBN4AWnMCSrrJEPBrUikyMq2TEQTrYWJIVDzv5A9hBUat3TA==, tarball: https://registry.npmmirror.com/@unocss/core/-/core-0.57.7.tgz}
-    dev: false
+
+  /@unocss/eslint-plugin@0.57.7(eslint@8.55.0)(typescript@5.3.2):
+    resolution: {integrity: sha512-nwj7UJF7wCfPVl5B7cUB0xrSk6yuVMdMgABnsy4N5xBlds8cclrUO+boaTB9qzh8Lg9nfJVLB3+cW3po2SJoew==, tarball: https://registry.npmmirror.com/@unocss/eslint-plugin/-/eslint-plugin-0.57.7.tgz}
+    engines: {node: '>=14'}
+    dependencies:
+      '@typescript-eslint/utils': 6.13.1(eslint@8.55.0)(typescript@5.3.2)
+      '@unocss/config': 0.57.7
+      '@unocss/core': 0.57.7
+      magic-string: 0.30.5
+      synckit: 0.8.6
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+      - typescript
+    dev: true
 
   /@unocss/extractor-arbitrary-variants@0.57.7:
     resolution: {integrity: sha512-JdyhPlsgS0x4zoF8WYXDcusPcpU4ysE6Rkkit4a9+xUZEvg7vy7InH6PQ8dL8B9oY7pbxF7G6eFguUDpv9xx4Q==, tarball: https://registry.npmmirror.com/@unocss/extractor-arbitrary-variants/-/extractor-arbitrary-variants-0.57.7.tgz}
@@ -2143,7 +2172,7 @@ packages:
       sirv: 2.0.3
     dev: false
 
-  /@unocss/nuxt@0.57.7(postcss@8.4.31)(vite@4.5.0)(webpack@5.89.0):
+  /@unocss/nuxt@0.57.7(postcss@8.4.31)(vite@5.0.4)(webpack@5.89.0):
     resolution: {integrity: sha512-txmi7qEU+uumF/APebRULtbRF2JTsyFlylkXyjwJPdVxYZrv6FakVi6ZDt4j3F3nyQFagG+qT3IcqmLX1i8aFA==, tarball: https://registry.npmmirror.com/@unocss/nuxt/-/nuxt-0.57.7.tgz}
     dependencies:
       '@nuxt/kit': 3.8.2
@@ -2157,9 +2186,9 @@ packages:
       '@unocss/preset-web-fonts': 0.57.7
       '@unocss/preset-wind': 0.57.7
       '@unocss/reset': 0.57.7
-      '@unocss/vite': 0.57.7(vite@4.5.0)
+      '@unocss/vite': 0.57.7(vite@5.0.4)
       '@unocss/webpack': 0.57.7(webpack@5.89.0)
-      unocss: 0.57.7(@unocss/webpack@0.57.7)(postcss@8.4.31)(vite@4.5.0)
+      unocss: 0.57.7(@unocss/webpack@0.57.7)(postcss@8.4.31)(vite@5.0.4)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -2297,7 +2326,7 @@ packages:
       '@unocss/core': 0.57.7
     dev: false
 
-  /@unocss/vite@0.57.7(vite@4.5.0):
+  /@unocss/vite@0.57.7(vite@5.0.4):
     resolution: {integrity: sha512-SbJrRgfc35MmgMBlHaEK4YpJVD2B0bmxH9PVgHRuDae/hOEOG0VqNP0f2ijJtX9HG3jOpQVlbEoGnUo8jsZtsw==, tarball: https://registry.npmmirror.com/@unocss/vite/-/vite-0.57.7.tgz}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0
@@ -2312,7 +2341,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.3.2
       magic-string: 0.30.5
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - rollup
     dev: false
@@ -2366,7 +2395,7 @@ packages:
       '@babel/core': 7.23.5
       '@babel/plugin-transform-typescript': 7.23.5(@babel/core@7.23.5)
       '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.23.5)
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 4.5.0
       vue: 3.3.9(typescript@5.3.2)
     transitivePeerDependencies:
       - supports-color
@@ -2378,7 +2407,7 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 4.5.0
       vue: 3.3.9(typescript@5.3.2)
 
   /@vue-macros/common@1.9.0(vue@3.3.9):
@@ -2534,7 +2563,7 @@ packages:
       '@vueuse/core': 10.6.1(vue@3.3.9)
       '@vueuse/metadata': 10.6.1
       local-pkg: 0.5.0
-      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@4.5.0)
+      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@5.0.4)
       vue-demi: 0.14.6(vue@3.3.9)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -5120,7 +5149,7 @@ packages:
     resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==, tarball: https://registry.npmmirror.com/minimatch/-/minimatch-5.1.6.tgz}
     engines: {node: '>=10'}
     dependencies:
-      brace-expansion: 2.0.1
+      brace-expansion: registry.npmmirror.com/brace-expansion@2.0.1
 
   /minimatch@9.0.3:
     resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==, tarball: https://registry.npmmirror.com/minimatch/-/minimatch-9.0.3.tgz}
@@ -5513,7 +5542,7 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /nuxt@3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@4.5.0):
+  /nuxt@3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@5.0.4):
     resolution: {integrity: sha512-HUAyifmqTs2zcQBGvcby3KNs2pBAk+l7ZbLjD1oCNqQQ+wBuZ1qgLC4Ebu++y4g3o3Y8WAWSvpafbKRLQZziPw==, tarball: https://registry.npmmirror.com/nuxt/-/nuxt-3.8.2.tgz}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -5527,7 +5556,7 @@ packages:
         optional: true
     dependencies:
       '@nuxt/devalue': 2.0.2
-      '@nuxt/devtools': 1.0.4(nuxt@3.8.2)(vite@4.5.0)
+      '@nuxt/devtools': 1.0.4(nuxt@3.8.2)(vite@5.0.4)
       '@nuxt/kit': 3.8.2
       '@nuxt/schema': 3.8.2
       '@nuxt/telemetry': 2.5.3
@@ -6780,6 +6809,14 @@ packages:
       csso: 5.0.5
       picocolors: 1.0.0
 
+  /synckit@0.8.6:
+    resolution: {integrity: sha512-laHF2savN6sMeHCjLRkheIU4wo3Zg9Ln5YOjOo7sZ5dVQW8yF5pPE5SIw1dsPhq3TRp1jisKRCdPhfs/1WMqDA==, tarball: https://registry.npmmirror.com/synckit/-/synckit-0.8.6.tgz}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    dependencies:
+      '@pkgr/utils': 2.4.2
+      tslib: 2.6.2
+    dev: true
+
   /tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==, tarball: https://registry.npmmirror.com/tapable/-/tapable-2.2.1.tgz}
     engines: {node: '>=6'}
@@ -6876,6 +6913,10 @@ packages:
       typescript: 5.3.2
     dev: true
 
+  /tslib@2.6.2:
+    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==, tarball: https://registry.npmmirror.com/tslib/-/tslib-2.6.2.tgz}
+    dev: true
+
   /tuf-js@2.1.0:
     resolution: {integrity: sha512-eD7YPPjVlMzdggrOeE8zwoegUaG/rt6Bt3jwoQPunRiNVzgcCE009UDFJKJjG+Gk9wFu6W/Vi+P5d/5QpdD9jA==, tarball: https://registry.npmmirror.com/tuf-js/-/tuf-js-2.1.0.tgz}
     engines: {node: ^16.14.0 || >=18.0.0}
@@ -6932,7 +6973,6 @@ packages:
       defu: 6.1.3
       jiti: 1.21.0
       mlly: 1.4.2
-    dev: false
 
   /uncrypto@0.1.3:
     resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==, tarball: https://registry.npmmirror.com/uncrypto/-/uncrypto-0.1.3.tgz}
@@ -7014,7 +7054,7 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==, tarball: https://registry.npmmirror.com/universalify/-/universalify-2.0.1.tgz}
     engines: {node: '>= 10.0.0'}
 
-  /unocss@0.57.7(@unocss/webpack@0.57.7)(postcss@8.4.31)(vite@4.5.0):
+  /unocss@0.57.7(@unocss/webpack@0.57.7)(postcss@8.4.31)(vite@5.0.4):
     resolution: {integrity: sha512-Z99ZZPkbkjIUXEM7L+K/7Y5V5yqUS0VigG7ZIFzLf/npieKmXHKlrPyvQWFQaf3OqooMFuKBQivh75TwvSOkcQ==, tarball: https://registry.npmmirror.com/unocss/-/unocss-0.57.7.tgz}
     engines: {node: '>=14'}
     peerDependencies:
@@ -7026,7 +7066,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      '@unocss/astro': 0.57.7(vite@4.5.0)
+      '@unocss/astro': 0.57.7(vite@5.0.4)
       '@unocss/cli': 0.57.7
       '@unocss/core': 0.57.7
       '@unocss/extractor-arbitrary-variants': 0.57.7
@@ -7045,9 +7085,9 @@ packages:
       '@unocss/transformer-compile-class': 0.57.7
       '@unocss/transformer-directives': 0.57.7
       '@unocss/transformer-variant-group': 0.57.7
-      '@unocss/vite': 0.57.7(vite@4.5.0)
+      '@unocss/vite': 0.57.7(vite@5.0.4)
       '@unocss/webpack': 0.57.7(webpack@5.89.0)
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -7215,7 +7255,7 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 4.5.0
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -7272,13 +7312,13 @@ packages:
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.1
       typescript: 5.3.2
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 4.5.0
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
 
-  /vite-plugin-inspect@0.7.42(@nuxt/kit@3.8.2)(vite@4.5.0):
+  /vite-plugin-inspect@0.7.42(@nuxt/kit@3.8.2)(vite@5.0.4):
     resolution: {integrity: sha512-JCyX86wr3siQc+p9Kd0t8VkFHAJag0RaQVIpdFGSv5FEaePEVB6+V/RGtz2dQkkGSXQzRWrPs4cU3dRKg32bXw==, tarball: https://registry.npmmirror.com/vite-plugin-inspect/-/vite-plugin-inspect-0.7.42.tgz}
     engines: {node: '>=14'}
     peerDependencies:
@@ -7297,12 +7337,12 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       sirv: 2.0.3
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
 
-  /vite-plugin-vue-inspector@4.0.0(vite@4.5.0):
+  /vite-plugin-vue-inspector@4.0.0(vite@5.0.4):
     resolution: {integrity: sha512-xNjMbRj3YrebuuInTvlC8ghPtzT+3LjMIQPeeR/5CaFd+WcbA9wBnECZmlcP3GITCVED0SxGmTyoJ3iVKsK4vQ==, tarball: https://registry.npmmirror.com/vite-plugin-vue-inspector/-/vite-plugin-vue-inspector-4.0.0.tgz}
     peerDependencies:
       vite: ^3.0.0-0 || ^4.0.0-0
@@ -7316,11 +7356,11 @@ packages:
       '@vue/compiler-dom': 3.3.9
       kolorist: 1.8.0
       magic-string: 0.30.5
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - supports-color
 
-  /vite@4.5.0(@types/node@20.10.1):
+  /vite@4.5.0:
     resolution: {integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==, tarball: https://registry.npmmirror.com/vite/-/vite-4.5.0.tgz}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -7348,10 +7388,44 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': registry.npmmirror.com/@types/node@20.10.1
       esbuild: 0.18.20
       postcss: 8.4.31
       rollup: 3.29.4
+    optionalDependencies:
+      fsevents: 2.3.3
+
+  /vite@5.0.4(@types/node@20.10.1):
+    resolution: {integrity: sha512-RzAr8LSvM8lmhB4tQ5OPcBhpjOZRZjuxv9zO5UcxeoY2bd3kP3Ticd40Qma9/BqZ8JS96Ll/jeBX9u+LJZrhVg==, tarball: https://registry.npmmirror.com/vite/-/vite-5.0.4.tgz}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      '@types/node': registry.npmmirror.com/@types/node@20.10.1
+      esbuild: 0.19.8
+      postcss: 8.4.31
+      rollup: 4.6.1
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -8332,7 +8406,7 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/@nuxt/devtools-kit@1.0.4(nuxt@3.8.2)(vite@4.5.0):
+  registry.npmmirror.com/@nuxt/devtools-kit@1.0.4(nuxt@3.8.2)(vite@5.0.4):
     resolution: {integrity: sha512-AXNeI1dBilNryCmwuTd3lU7CrPBhzUJ5ntTFiXw9MmFwe5QT3NOxDFOv0gX7z1DFnmBEmx5mPKWysCwh7htEnQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/devtools-kit/-/devtools-kit-1.0.4.tgz}
     id: registry.npmmirror.com/@nuxt/devtools-kit/1.0.4
     name: '@nuxt/devtools-kit'
@@ -8344,8 +8418,8 @@ packages:
       '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.8.2
       '@nuxt/schema': registry.npmmirror.com/@nuxt/schema@3.8.2
       execa: registry.npmmirror.com/execa@7.2.0
-      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@4.5.0)
-      vite: 4.5.0(@types/node@20.10.1)
+      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@5.0.4)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -8369,7 +8443,7 @@ packages:
       semver: registry.npmmirror.com/semver@7.5.4
     dev: true
 
-  registry.npmmirror.com/@nuxt/devtools@1.0.4(nuxt@3.8.2)(vite@4.5.0):
+  registry.npmmirror.com/@nuxt/devtools@1.0.4(nuxt@3.8.2)(vite@5.0.4):
     resolution: {integrity: sha512-G1Oo9+TaOYzePIXpNX+Zzalw/rJyIZKZpZmXfzolPlOJSA1i0JKzZX6Z7iQHdqPwNJ8t+HnVaF4PghPIpo1kwg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/devtools/-/devtools-1.0.4.tgz}
     id: registry.npmmirror.com/@nuxt/devtools/1.0.4
     name: '@nuxt/devtools'
@@ -8380,7 +8454,7 @@ packages:
       vite: '*'
     dependencies:
       '@antfu/utils': registry.npmmirror.com/@antfu/utils@0.7.6
-      '@nuxt/devtools-kit': registry.npmmirror.com/@nuxt/devtools-kit@1.0.4(nuxt@3.8.2)(vite@4.5.0)
+      '@nuxt/devtools-kit': registry.npmmirror.com/@nuxt/devtools-kit@1.0.4(nuxt@3.8.2)(vite@5.0.4)
       '@nuxt/devtools-wizard': registry.npmmirror.com/@nuxt/devtools-wizard@1.0.4
       '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.8.2
       birpc: registry.npmmirror.com/birpc@0.2.14
@@ -8399,7 +8473,7 @@ packages:
       local-pkg: registry.npmmirror.com/local-pkg@0.5.0
       magicast: registry.npmmirror.com/magicast@0.3.2
       nitropack: registry.npmmirror.com/nitropack@2.8.1
-      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@4.5.0)
+      nuxt: 3.8.2(eslint@8.55.0)(typescript@5.3.2)(vite@5.0.4)
       nypm: registry.npmmirror.com/nypm@0.3.3
       ofetch: registry.npmmirror.com/ofetch@1.3.3
       ohash: registry.npmmirror.com/ohash@1.1.3
@@ -8413,9 +8487,9 @@ packages:
       simple-git: registry.npmmirror.com/simple-git@3.21.0
       sirv: registry.npmmirror.com/sirv@2.0.3
       unimport: registry.npmmirror.com/unimport@3.6.0(rollup@4.6.1)
-      vite: 4.5.0(@types/node@20.10.1)
-      vite-plugin-inspect: registry.npmmirror.com/vite-plugin-inspect@0.7.42(@nuxt/kit@3.8.2)(vite@4.5.0)
-      vite-plugin-vue-inspector: registry.npmmirror.com/vite-plugin-vue-inspector@4.0.0(vite@4.5.0)
+      vite: 5.0.4(@types/node@20.10.1)
+      vite-plugin-inspect: registry.npmmirror.com/vite-plugin-inspect@0.7.42(@nuxt/kit@3.8.2)(vite@5.0.4)
+      vite-plugin-vue-inspector: registry.npmmirror.com/vite-plugin-vue-inspector@4.0.0(vite@5.0.4)
       which: registry.npmmirror.com/which@3.0.1
       ws: registry.npmmirror.com/ws@8.14.2
     transitivePeerDependencies:
@@ -8503,7 +8577,7 @@ packages:
     version: 2.3.0
     engines: {node: '>= 10.0.0'}
     dependencies:
-      is-glob: registry.npmmirror.com/is-glob@4.0.3
+      is-glob: 4.0.3
       micromatch: registry.npmmirror.com/micromatch@4.0.5
       napi-wasm: 1.1.0
     dev: true
@@ -8517,7 +8591,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dependencies:
       detect-libc: registry.npmmirror.com/detect-libc@1.0.3
-      is-glob: registry.npmmirror.com/is-glob@4.0.3
+      is-glob: 4.0.3
       micromatch: registry.npmmirror.com/micromatch@4.0.5
       node-addon-api: registry.npmmirror.com/node-addon-api@7.0.0
     optionalDependencies:
@@ -9124,7 +9198,6 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/balanced-match/-/balanced-match-1.0.2.tgz}
     name: balanced-match
     version: 1.0.2
-    dev: true
 
   registry.npmmirror.com/big-integer@1.6.52:
     resolution: {integrity: sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/big-integer/-/big-integer-1.6.52.tgz}
@@ -9163,22 +9236,12 @@ packages:
       big-integer: registry.npmmirror.com/big-integer@1.6.52
     dev: true
 
-  registry.npmmirror.com/brace-expansion@1.1.11:
-    resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/brace-expansion/-/brace-expansion-1.1.11.tgz}
-    name: brace-expansion
-    version: 1.1.11
-    dependencies:
-      balanced-match: registry.npmmirror.com/balanced-match@1.0.2
-      concat-map: registry.npmmirror.com/concat-map@0.0.1
-    dev: true
-
   registry.npmmirror.com/brace-expansion@2.0.1:
     resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/brace-expansion/-/brace-expansion-2.0.1.tgz}
     name: brace-expansion
     version: 2.0.1
     dependencies:
       balanced-match: registry.npmmirror.com/balanced-match@1.0.2
-    dev: true
 
   registry.npmmirror.com/braces@3.0.2:
     resolution: {integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/braces/-/braces-3.0.2.tgz}
@@ -9433,12 +9496,6 @@ packages:
       readable-stream: registry.npmmirror.com/readable-stream@3.6.2
     dev: true
 
-  registry.npmmirror.com/concat-map@0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/concat-map/-/concat-map-0.0.1.tgz}
-    name: concat-map
-    version: 0.0.1
-    dev: true
-
   registry.npmmirror.com/consola@3.2.3:
     resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/consola/-/consola-3.2.3.tgz}
     name: consola
@@ -9497,19 +9554,6 @@ packages:
       path-key: registry.npmmirror.com/path-key@3.1.1
       shebang-command: registry.npmmirror.com/shebang-command@2.0.0
       which: registry.npmmirror.com/which@2.0.2
-    dev: true
-
-  registry.npmmirror.com/debug@2.6.9:
-    resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/debug/-/debug-2.6.9.tgz}
-    name: debug
-    version: 2.6.9
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-    dependencies:
-      ms: registry.npmmirror.com/ms@2.0.0
     dev: true
 
   registry.npmmirror.com/debug@4.3.4:
@@ -10052,7 +10096,7 @@ packages:
     dependencies:
       foreground-child: registry.npmmirror.com/foreground-child@3.1.1
       jackspeak: registry.npmmirror.com/jackspeak@2.3.6
-      minimatch: registry.npmmirror.com/minimatch@9.0.3
+      minimatch: 9.0.3
       minipass: registry.npmmirror.com/minipass@7.0.4
       path-scurry: registry.npmmirror.com/path-scurry@1.10.1
     dev: true
@@ -10065,7 +10109,7 @@ packages:
       fs.realpath: registry.npmmirror.com/fs.realpath@1.0.0
       inflight: registry.npmmirror.com/inflight@1.0.6
       inherits: registry.npmmirror.com/inherits@2.0.4
-      minimatch: registry.npmmirror.com/minimatch@3.1.2
+      minimatch: 3.1.2
       once: registry.npmmirror.com/once@1.4.0
       path-is-absolute: registry.npmmirror.com/path-is-absolute@1.0.1
     dev: true
@@ -10079,7 +10123,7 @@ packages:
       fs.realpath: registry.npmmirror.com/fs.realpath@1.0.0
       inflight: registry.npmmirror.com/inflight@1.0.6
       inherits: registry.npmmirror.com/inherits@2.0.4
-      minimatch: registry.npmmirror.com/minimatch@5.1.6
+      minimatch: 5.1.6
       once: registry.npmmirror.com/once@1.4.0
     dev: true
 
@@ -10284,7 +10328,7 @@ packages:
     version: 6.0.4
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      minimatch: registry.npmmirror.com/minimatch@9.0.3
+      minimatch: 9.0.3
     dev: true
 
   registry.npmmirror.com/ignore@5.3.0:
@@ -10337,7 +10381,7 @@ packages:
     dependencies:
       '@ioredis/commands': registry.npmmirror.com/@ioredis/commands@1.2.0
       cluster-key-slot: registry.npmmirror.com/cluster-key-slot@1.1.2
-      debug: registry.npmmirror.com/debug@4.3.4
+      debug: 4.3.4
       denque: registry.npmmirror.com/denque@2.1.0
       lodash.defaults: registry.npmmirror.com/lodash.defaults@4.2.0
       lodash.isarguments: registry.npmmirror.com/lodash.isarguments@3.1.0
@@ -10844,32 +10888,6 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  registry.npmmirror.com/minimatch@3.1.2:
-    resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/minimatch/-/minimatch-3.1.2.tgz}
-    name: minimatch
-    version: 3.1.2
-    dependencies:
-      brace-expansion: registry.npmmirror.com/brace-expansion@1.1.11
-    dev: true
-
-  registry.npmmirror.com/minimatch@5.1.6:
-    resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/minimatch/-/minimatch-5.1.6.tgz}
-    name: minimatch
-    version: 5.1.6
-    engines: {node: '>=10'}
-    dependencies:
-      brace-expansion: registry.npmmirror.com/brace-expansion@2.0.1
-    dev: true
-
-  registry.npmmirror.com/minimatch@9.0.3:
-    resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/minimatch/-/minimatch-9.0.3.tgz}
-    name: minimatch
-    version: 9.0.3
-    engines: {node: '>=16 || 14 >=14.17'}
-    dependencies:
-      brace-expansion: registry.npmmirror.com/brace-expansion@2.0.1
-    dev: true
-
   registry.npmmirror.com/minipass-collect@2.0.1:
     resolution: {integrity: sha512-D7V8PO9oaz7PWGLbCACuI1qEOsq7UKfLotx/C0Aet43fCUB/wfQ7DYeq2oR/svFJGYDHPr38SHATeaj/ZoKHKw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/minipass-collect/-/minipass-collect-2.0.1.tgz}
     name: minipass-collect
@@ -10992,12 +11010,6 @@ packages:
     name: mrmime
     version: 1.0.1
     engines: {node: '>=10'}
-    dev: true
-
-  registry.npmmirror.com/ms@2.0.0:
-    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ms/-/ms-2.0.0.tgz}
-    name: ms
-    version: 2.0.0
     dev: true
 
   registry.npmmirror.com/ms@2.1.2:
@@ -11733,7 +11745,7 @@ packages:
     name: readdir-glob
     version: 1.1.3
     dependencies:
-      minimatch: registry.npmmirror.com/minimatch@5.1.6
+      minimatch: 5.1.6
     dev: true
 
   registry.npmmirror.com/readdirp@3.6.0:
@@ -11916,7 +11928,7 @@ packages:
     version: 0.18.0
     engines: {node: '>= 0.8.0'}
     dependencies:
-      debug: registry.npmmirror.com/debug@2.6.9
+      debug: 2.6.9
       depd: registry.npmmirror.com/depd@2.0.0
       destroy: registry.npmmirror.com/destroy@1.2.0
       encodeurl: registry.npmmirror.com/encodeurl@1.0.2
@@ -12677,7 +12689,7 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -12689,7 +12701,7 @@ packages:
       - terser
     dev: true
 
-  registry.npmmirror.com/vite-plugin-inspect@0.7.42(@nuxt/kit@3.8.2)(vite@4.5.0):
+  registry.npmmirror.com/vite-plugin-inspect@0.7.42(@nuxt/kit@3.8.2)(vite@5.0.4):
     resolution: {integrity: sha512-JCyX86wr3siQc+p9Kd0t8VkFHAJag0RaQVIpdFGSv5FEaePEVB6+V/RGtz2dQkkGSXQzRWrPs4cU3dRKg32bXw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-inspect/-/vite-plugin-inspect-0.7.42.tgz}
     id: registry.npmmirror.com/vite-plugin-inspect/0.7.42
     name: vite-plugin-inspect
@@ -12711,13 +12723,13 @@ packages:
       open: registry.npmmirror.com/open@9.1.0
       picocolors: registry.npmmirror.com/picocolors@1.0.0
       sirv: registry.npmmirror.com/sirv@2.0.3
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
     dev: true
 
-  registry.npmmirror.com/vite-plugin-vue-inspector@4.0.0(vite@4.5.0):
+  registry.npmmirror.com/vite-plugin-vue-inspector@4.0.0(vite@5.0.4):
     resolution: {integrity: sha512-xNjMbRj3YrebuuInTvlC8ghPtzT+3LjMIQPeeR/5CaFd+WcbA9wBnECZmlcP3GITCVED0SxGmTyoJ3iVKsK4vQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-vue-inspector/-/vite-plugin-vue-inspector-4.0.0.tgz}
     id: registry.npmmirror.com/vite-plugin-vue-inspector/4.0.0
     name: vite-plugin-vue-inspector
@@ -12734,7 +12746,7 @@ packages:
       '@vue/compiler-dom': registry.npmmirror.com/@vue/compiler-dom@3.3.9
       kolorist: registry.npmmirror.com/kolorist@1.8.0
       magic-string: registry.npmmirror.com/magic-string@0.30.5
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 5.0.4(@types/node@20.10.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -12793,7 +12805,7 @@ packages:
       strip-literal: registry.npmmirror.com/strip-literal@1.3.0
       tinybench: registry.npmmirror.com/tinybench@2.5.1
       tinypool: registry.npmmirror.com/tinypool@0.7.0
-      vite: 4.5.0(@types/node@20.10.1)
+      vite: 5.0.4(@types/node@20.10.1)
       vite-node: registry.npmmirror.com/vite-node@0.34.6(@types/node@20.10.1)
       why-is-node-running: registry.npmmirror.com/why-is-node-running@2.2.2
     transitivePeerDependencies:

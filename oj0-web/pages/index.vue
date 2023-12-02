@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { ACCESS_ENUM } from '~/constants'
+
 definePageMeta({
-  layout: 'default',
-  // middleware: 'auth',
+  name: 'Home',
+  access: ACCESS_ENUM.NOT_LOGIN,
 })
 
 const currentIdx = ref(1)
@@ -14,8 +16,8 @@ const name = computed(() => {
 </script>
 
 <template>
-  <div flex-center w-full h-full font-bold>
-    <div flex justify-between px-30px w-800px>
+  <div h-full w-full flex-center font-bold>
+    <div w-800px flex justify-between px-30px>
       <div text-4rem>
         Hi@{{ name }} <span text-primary-active>1111</span>
       </div>

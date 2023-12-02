@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { META } from '~/constants';
+import { META } from '~/constants'
 </script>
 
 <template>
