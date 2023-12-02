@@ -1,4 +1,9 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'default',
+  // middleware: 'auth',
+})
+
 const currentIdx = ref(1)
 const data = Array.from({ length: 4 }, (_, idx) => {
   return `用户-${idx}`

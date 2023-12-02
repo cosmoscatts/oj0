@@ -1,9 +1,8 @@
-
 export default defineNuxtConfig({
   devtools: { enabled: true },
   vue: {
     defineModel: true,
-    propsDestructure: true
+    propsDestructure: true,
   },
   modules: [
     '@vueuse/nuxt',
@@ -14,4 +13,10 @@ export default defineNuxtConfig({
     '@unocss/reset/tailwind.css',
     '~/styles/main.css',
   ],
+  router: {
+    options: {
+      hashMode: true,
+      scrollBehaviorType: 'smooth',
+    },
+  },
 })
