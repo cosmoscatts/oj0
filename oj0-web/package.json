@@ -33,6 +33,7 @@
     "@unocss/eslint-plugin": "^0.57.7",
     "eslint": "^8.52.0",
     "nuxt": "^3.8.2",
+    "openapi-typescript-codegen": "^0.25.0",
     "typescript": "^5.3.2",
     "vite": "^5.0.4",
     "vitest": "^0.34.6",
