@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware((to) => {
   const hasLogin = authStore.checkLogin()
 
   if (checkAccess(user, to.meta?.access))
-    return navigateTo(to.fullPath)
+    return navigateTo(to)
 
   if (!hasLogin)
     return navigateTo('/login')

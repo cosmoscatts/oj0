@@ -2,13 +2,16 @@
 import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
-  title: '登录',
   layout: 'none',
   name: 'Login',
   access: ACCESS_ENUM.NOT_LOGIN,
 })
+
+useHead('')
 </script>
 
 <template>
-  <div>Login</div>
+  <div h-screen w-screen flex-center text-10rem>
+    Login
+  </div>
 </template>
