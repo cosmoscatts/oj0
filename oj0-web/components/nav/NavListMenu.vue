@@ -10,14 +10,14 @@ function onMenuClick(path = '/') {
 
 const selectedKeys = computed(() => {
   return menus.value.filter(i => i.path === route.path)
-    .map(i => String(i.id)).filter(i => i != null)
+    .map(i => i.path)
 })
 </script>
 
 <template>
   <div h-full w-full>
-    <a-menu mode="horizontal" :selected-keys="selectedKeys" :theme="themeMode" :style="{ backgroundColor: 'transparent' }">
-      <a-menu-item v-for="menu in menus" :key="String(menu.id)" @click="onMenuClick(menu.path)">
+    <a-menu mode="horizontal" :selected-keys="selectedKeys" :theme="themeMode" :style="{ backgroundColor: 'transparent' }" @menu-item-click="onMenuClick">
+      <a-menu-item v-for="menu in menus" :key="menu.path">
         {{ menu.name }}
       </a-menu-item>
     </a-menu>
