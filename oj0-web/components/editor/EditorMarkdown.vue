@@ -25,5 +25,7 @@ function handleChange(value: string) {
 </script>
 
 <template>
-  <Editor :value="value" :plugins="plugins" @change="handleChange" />
+  <ClientOnly>
+    <Editor :value="value" :plugins="plugins" @change="handleChange" />
+  </ClientOnly>
 </template>
