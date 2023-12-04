@@ -35,10 +35,9 @@ declare global {
   interface Menu {
     id: number
     name: string
-    path?: string
+    path: string
     icon?: string
     access?: string // 菜单项所需要的用户权限
-    parentId?: number
   }
 }
 
