@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <a-layout h-full w-full of-hidden>
+  <a-layout v-if="isHydrated" h-full w-full of-hidden>
     <a-layout-header h-60px>
       <TheNav />
     </a-layout-header>
