@@ -18,11 +18,15 @@ declare global {
    */
   interface User {
     id: number
-    username: string
-    name?: string
-    password: string
-    role: string
-    avatar?: string
+    userAccount?: string // 用户账号
+    userName?: string // 用户昵称
+    unionId?: string // 开放平台id
+    mpOpenId?: string // 公众号openId
+    userAvatar?: string // 用户头像
+    userProfile?: string // 用户简介
+    userRole?: string // 用户角色 notLogin/user/admin
+    createTime?: Date // 创建时间
+    updateTime?: Date // 更新时间
   }
 
   /**

@@ -6,7 +6,7 @@ export const useAuthStore = defineStore('authStore', () => {
   }
 
   function checkLogin() {
-    return !!user.value && !!user.value.id
+    return !!user.value && !!user.value.userRole
   }
 
   return {

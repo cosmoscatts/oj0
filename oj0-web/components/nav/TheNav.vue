@@ -6,7 +6,10 @@
       </div>
 
       <NavListMenu h-full flex-1 />
-      <DarkToggle />
+      <div flex-y-center gap-3>
+        <DarkToggle />
+        <NavAvatarDropdown />
+      </div>
     </div>
 
     <!-- 小屏幕 -->
