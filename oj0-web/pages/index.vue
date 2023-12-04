@@ -16,7 +16,7 @@ const name = computed(() => {
 </script>
 
 <template>
-  <div h-full w-full flex-center font-bold>
+  <div h-full w-full font-bold>
     <div w-800px flex justify-between px-30px>
       <div text-4rem>
         Hi@{{ name }} <span text-primary-active>1111</span>
@@ -37,5 +37,6 @@ const name = computed(() => {
         </a-button>
       </div>
     </div>
+    <EditorMarkdown />
   </div>
 </template>

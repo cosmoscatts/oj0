@@ -12,6 +12,9 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@bytemd/plugin-gfm": "^1.21.0",
+    "@bytemd/plugin-highlight": "^1.21.0",
+    "@bytemd/vue-next": "^1.21.0",
     "@iconify/json": "^2.2.150",
     "@pinia/nuxt": "^0.5.1",
     "@unocss/nuxt": "^0.57.7",
@@ -22,6 +25,7 @@
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
     "lottie-web": "^5.12.2",
+    "monaco-editor": "^0.44.0",
     "pinia": "^2.1.7",
     "unocss": "^0.57.7",
     "vue-router": "^4.2.5"

@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   css: [
+    'bytemd/dist/index.css',
     '@unocss/reset/tailwind.css',
     '~/styles/default-theme.css',
     '~/styles/vars.css',

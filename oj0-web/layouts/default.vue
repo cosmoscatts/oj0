@@ -2,10 +2,10 @@
 
 <template>
   <a-layout h-full w-full of-hidden>
-    <a-layout-header h-50px>
+    <a-layout-header h-60px>
       <TheNav />
     </a-layout-header>
-    <a-layout :style="{ minHeight: 'calc(100% - 50px)', overflow: 'hidden auto' }">
+    <a-layout :style="{ minHeight: 'calc(100% - 60px)', overflow: 'hidden auto' }">
       <a-layout-content p-30px>
         <TheMainContent />
       </a-layout-content>

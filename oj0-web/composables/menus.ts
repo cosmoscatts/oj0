@@ -7,6 +7,7 @@ export function getAppMenus() {
   const authStore = useAuthStore()
 
   return computed(() => {
+    return MENUS
     const user = authStore.user
 
     if (!user)

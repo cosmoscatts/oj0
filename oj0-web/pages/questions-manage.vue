@@ -2,14 +2,14 @@
 import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
-  layout: 'none',
-  name: 'Login',
-  access: ACCESS_ENUM.NOT_LOGIN,
+  name: 'QuestionsManage',
+  access: ACCESS_ENUM.ADMIN, // 需要管理员权限
+  // middleware: 'auth',
 })
 </script>
 
 <template>
-  <div h-screen w-screen flex-center text-10rem>
-    Login
+  <div>
+    题目管理
   </div>
 </template>

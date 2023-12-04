@@ -12,5 +12,5 @@ export default defineNuxtRouteMiddleware((to) => {
   if (!hasLogin)
     return navigateTo('/login')
 
-  return navigateTo('/error')
+  return navigateTo('/no-auth')
 })
