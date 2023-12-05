@@ -10,11 +10,11 @@ const defaultSelectedKeys = ref<string[]>([route.path])
 <template>
   <div h-full w-full>
     <a-menu mode="horizontal" :default-selected-keys="defaultSelectedKeys" :theme="themeMode" :style="{ backgroundColor: 'transparent' }">
-      <a-menu-item v-for="menu in menus" :key="menu.path">
-        <RouterLink :to="menu.path">
+      <NuxtLink v-for="menu in menus" :key="menu.id" :to="menu.path">
+        <a-menu-item :key="menu.path">
           {{ menu.name }}
-        </RouterLink>
-      </a-menu-item>
+        </a-menu-item>
+      </NuxtLink>
     </a-menu>
   </div>
 </template>
