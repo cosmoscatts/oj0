@@ -6,3 +6,4 @@ export const META = {
 
 export * from './menus'
 export * from './access-enum'
+export * from './auth-enum'
