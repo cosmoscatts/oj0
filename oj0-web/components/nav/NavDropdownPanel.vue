@@ -60,7 +60,7 @@ watch(width, () => {
           <a-doption>
             <div flex-y-center gap-4>
               <div i-ri-logout-box-r-line />
-              退出登陆
+              退出登录
             </div>
           </a-doption>
         </div>

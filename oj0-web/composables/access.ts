@@ -6,7 +6,7 @@ import { ACCESS_ENUM } from '~/constants'
  * @return boolean
  */
 export function checkAccess(user: Nullable<User>, needAccess = ACCESS_ENUM.NOT_LOGIN) {
-  const userAccess = user?.role ?? ACCESS_ENUM.NOT_LOGIN
+  const userAccess = user?.userRole ?? ACCESS_ENUM.NOT_LOGIN
 
   if (needAccess === ACCESS_ENUM.NOT_LOGIN) // 不需要权限的页面
     return true
