@@ -1,0 +1,10 @@
+{
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+  "eslint.experimental.useFlatConfig": true,
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  }
+}
