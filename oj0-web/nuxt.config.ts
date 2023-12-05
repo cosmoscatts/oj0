@@ -21,9 +21,11 @@ export default defineNuxtConfig({
   ],
   css: [
     'bytemd/dist/index.css',
+    '@arco-design/web-vue/dist/arco.css',
     '@unocss/reset/tailwind.css',
     '~/styles/default-theme.css',
     '~/styles/vars.css',
+    '~/styles/arco-design-overrite.css',
     '~/styles/transition.css',
     '~/styles/scrollbars.css',
     '~/styles/main.css',

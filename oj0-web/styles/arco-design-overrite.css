@@ -1,0 +1,7 @@
+.arco-modal {
+  background-color: var(--c-bg-base);
+}
+
+.arco-divider-horizontal {
+  border-color: var(--c-border);
+}
