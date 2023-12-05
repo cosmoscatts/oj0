@@ -16,8 +16,10 @@ const isLoginAction = computed(() => type === AUTH_ACTION_ENUM.LOGIN)
         <div i-ri-close-fill />
       </div>
 
-      <AuthLoginForm v-if="isLoginAction" />
-      <AuthRegisterForm v-else />
+      <CommonTransition>
+        <AuthLoginForm v-if="isLoginAction" />
+        <AuthRegisterForm v-else />
+      </CommonTransition>
     </div>
   </a-modal>
 </template>
