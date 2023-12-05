@@ -19,7 +19,10 @@
             </div>
           </div>
         </div>
-        <div mt-4>
+
+        <a-divider />
+
+        <div>
           <a-doption>
             <div flex-y-center gap-4>
               <div i-ri-profile-line />

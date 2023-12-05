@@ -6,6 +6,7 @@
       </div>
 
       <NavListMenu h-full flex-1 />
+
       <div flex-y-center gap-3>
         <DarkToggle />
         <NavAvatarDropdown />
@@ -14,7 +15,11 @@
 
     <!-- 小屏幕 -->
     <div h-full w-full flex-y-center justify-between px-3 md:hidden>
-      12222
+      <div text-xl font-bold text-primary>
+        oj0
+      </div>
+
+      <NavDropdownPanel />
     </div>
   </nav>
 </template>
