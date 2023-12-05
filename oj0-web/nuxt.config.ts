@@ -18,6 +18,11 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
+    ['unplugin-icons/nuxt', {
+      autoInstall: true,
+      scale: 1,
+      defaultClass: 'inline-block',
+    }],
   ],
   css: [
     'bytemd/dist/index.css',

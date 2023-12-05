@@ -14,6 +14,13 @@ watch(isDark, () => {
   createArcoTheme()
   setThemeColor()
 })
+
+const authStore = useAuthStore()
+authStore.updateUser({
+  id: 1,
+  userName: '狂雪',
+  userRole: 'admin',
+})
 </script>
 
 <template>

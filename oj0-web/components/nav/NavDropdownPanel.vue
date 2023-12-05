@@ -42,6 +42,10 @@ watch(width, () => {
           <a-menu :theme="themeMode" :default-selected-keys="defaultSelectedKeys" :style="{ backgroundColor: 'transparent' }">
             <NuxtLink v-for="menu in menus" :key="menu.id" :to="menu.path">
               <a-menu-item :key="menu.path">
+                <div flex-y-center gap-2>
+                  <component :is="menu.icon" v-if="menu.icon" />
+                  {{ menu.name }}
+                </div>
                 {{ menu.name }}
               </a-menu-item>
             </NuxtLink>

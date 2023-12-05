@@ -12,7 +12,10 @@ const defaultSelectedKeys = ref<string[]>([route.path])
     <a-menu mode="horizontal" :default-selected-keys="defaultSelectedKeys" :theme="themeMode" :style="{ backgroundColor: 'transparent' }">
       <NuxtLink v-for="menu in menus" :key="menu.id" :to="menu.path">
         <a-menu-item :key="menu.path">
-          {{ menu.name }}
+          <div flex-y-center gap-2>
+            <component :is="menu.icon" v-if="menu.icon" />
+            {{ menu.name }}
+          </div>
         </a-menu-item>
       </NuxtLink>
     </a-menu>

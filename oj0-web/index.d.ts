@@ -1,6 +1,6 @@
-import type { ACCESS_ENUM } from './constants'
-
 import 'vue-router'
+import type { FunctionalComponent } from 'vue'
+import type { ACCESS_ENUM } from './constants'
 
 declare global {
   /**
@@ -36,7 +36,7 @@ declare global {
     id: number
     name: string
     path: string
-    icon?: string
+    icon?: FunctionalComponent
     access?: string // 菜单项所需要的用户权限
   }
 }

@@ -2,7 +2,7 @@
 import { AUTH_ACTION_ENUM } from '~/constants'
 
 const form = reactive({
-  userName: '',
+  userAccount: '',
   password: '',
   checkPass: '',
 })
@@ -30,8 +30,8 @@ function gotoLogin() {
 
     <div>
       <a-form :model="form" layout="vertical" size="small">
-        <a-form-item field="userName" label="用户账号">
-          <a-input v-model="form.userName" />
+        <a-form-item field="userAccount" label="用户账号">
+          <a-input v-model="form.userAccount" />
         </a-form-item>
         <a-form-item field="password" label="用户密码">
           <a-input v-model="form.password" />
