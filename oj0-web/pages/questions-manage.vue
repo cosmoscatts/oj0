@@ -9,7 +9,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div h-300px w-full flex-center bg-red text-30px font-bold>
-    题目管理
-  </div>
+  <a-card title="题目管理" w-full>
+    11
+  </a-card>
 </template>

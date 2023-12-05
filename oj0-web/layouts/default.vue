@@ -8,7 +8,7 @@
       </a-layout-header>
       <a-layout :style="{ minHeight: 'calc(100% - 60px)', overflow: 'hidden auto' }">
         <a-layout-content p-30px>
-          <TheMainContent />
+          <TheMainContent mx-a max-w-1280px />
         </a-layout-content>
         <a-layout-footer h-30px>
           <TheFooter />

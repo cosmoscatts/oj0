@@ -5,3 +5,12 @@
 .arco-divider-horizontal {
   border-color: var(--c-border);
 }
+
+.arco-card {
+  background-color: var(--c-bg-base);
+  border-color: var(--c-border);
+}
+
+.arco-card-header {
+  border-bottom-color: var(--c-border);
+}

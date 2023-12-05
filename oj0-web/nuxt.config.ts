@@ -27,6 +27,9 @@ export default defineNuxtConfig({
   css: [
     'bytemd/dist/index.css',
     '@arco-design/web-vue/dist/arco.css',
+    '@arco-design/web-vue/es/message/style/css.js',
+    '@arco-design/web-vue/es/modal/style/css.js',
+    '@arco-design/web-vue/es/notification/style/css.js',
     '@unocss/reset/tailwind.css',
     '~/styles/default-theme.css',
     '~/styles/vars.css',

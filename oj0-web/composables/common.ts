@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import { Notification as ANotification, Message, Modal } from '@arco-design/web-vue'
 
 export function batchInvoke(functions: Nullable<Fn>[]) {
   functions.forEach(fn => fn && fn())
@@ -26,4 +27,4 @@ export function getRandomStr(size = 16, dict = urlAlphabet): string {
   return id
 }
 
-export { dayjs }
+export { dayjs, ANotification, Message, Modal }

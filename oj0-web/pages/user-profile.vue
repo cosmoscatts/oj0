@@ -4,7 +4,7 @@ import { ACCESS_ENUM } from '~/constants'
 definePageMeta({
   name: 'UserProfile',
   access: ACCESS_ENUM.USER,
-  // middleware: 'auth',
+  middleware: 'auth',
 })
 </script>
 
