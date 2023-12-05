@@ -6,6 +6,15 @@ const menus = getAppMenus()
 const themeMode = computed(() => isDark.value ? 'dark' : 'light')
 
 const defaultSelectedKeys = ref<string[]>([route.path])
+
+/**
+ * 当屏幕宽度发生变化时，应关闭 dropdown
+ */
+const { width } = useWindowSize()
+watch(width, () => {
+  if (visible.value)
+    visible.value = false
+})
 </script>
 
 <template>

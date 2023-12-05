@@ -1,9 +1,18 @@
 <script setup lang="ts">
+const visible = ref(false)
 
+/**
+ * 当屏幕宽度发生变化时，应关闭 dropdown
+ */
+const { width } = useWindowSize()
+watch(width, () => {
+  if (visible.value)
+    visible.value = false
+})
 </script>
 
 <template>
-  <a-dropdown trigger="click">
+  <a-dropdown v-model:popup-visible="visible" trigger="click">
     <NavAvatar cursor-pointer :size="28" />
     <template #content>
       <div w-250px p-4>
