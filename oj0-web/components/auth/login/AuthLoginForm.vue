@@ -8,7 +8,7 @@ const form = reactive({
 
 const changeActionType = inject<(type: string) => void>('changeActionType')
 function gotoRegister() {
-  changeActionType(AUTH_ACTION_ENUM.REGISTER)
+  changeActionType?.(AUTH_ACTION_ENUM.REGISTER)
 }
 </script>
 

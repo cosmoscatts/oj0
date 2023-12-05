@@ -9,7 +9,7 @@ const form = reactive({
 
 const changeActionType = inject<(type: string) => void>('changeActionType')
 function gotoLogin() {
-  changeActionType(AUTH_ACTION_ENUM.LOGIN)
+  changeActionType?.(AUTH_ACTION_ENUM.LOGIN)
 }
 </script>
 
