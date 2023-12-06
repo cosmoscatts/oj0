@@ -20,10 +20,10 @@ function search() {
 }
 search()
 
-const drawerVisible = ref(false)
+const { visible, data, show } = useVisible<Partial<User>>()
 
 function add() {
-  drawerVisible.value = true
+  show()
 }
 </script>
 
@@ -42,8 +42,19 @@ function add() {
       :pagination="paginator.paginationProps.value"
       @page-change="paginator.onPageChange"
       @page-size-change="paginator.onPageSizeChange"
-    />
+    >
+      <template #action="{ record }">
+        <div flex-center>
+          <div btn-text @click="show(record)">
+            编辑
+          </div>
+          <div filter-saturate-0 btn-text>
+            删除
+          </div>
+        </div>
+      </template>
+    </a-table>
 
-    <UserManageFormDrawer v-model="drawerVisible" />
+    <UserManageFormDrawer v-model="visible" :data="data" />
   </CommonTableWrapper>
 </template>

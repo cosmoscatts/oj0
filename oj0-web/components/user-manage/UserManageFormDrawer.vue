@@ -1,8 +1,7 @@
 <script setup lang="ts">
 interface Params extends Partial<User & { checkPassword?: string }> {}
 
-const { type = 'add', data = {} } = defineProps<{
-  type?: 'add' | 'edit'
+const { data = {} } = defineProps<{
   data?: Params
 }>()
 const emit = defineEmits<{
@@ -10,7 +9,8 @@ const emit = defineEmits<{
 }>()
 const visible = defineModel<boolean>()
 
-const title = computed(() => ['添加用户', '编辑用户'][Number(type === 'edit')])
+const isAdd = computed(() => !data?.id)
+const title = computed(() => ['添加用户', '编辑用户'][Number(!isAdd.value)])
 
 const userRoleOptions = ['Admin', 'user'].map((i, idx) => {
   return {
@@ -46,7 +46,7 @@ const {
 watch(visible, (val) => {
   if (val) {
     reset()
-    assign([getBaseForm(), data][Number(type === 'edit')])
+    assign([getBaseForm(), data][Number(!isAdd.value)])
   }
 })
 function handleOk() {
@@ -71,7 +71,7 @@ function handleOk() {
         <a-input v-model="form.userName" allow-clear />
       </a-form-item>
       <a-form-item
-        v-if="type === 'add'" field="userPassword" label="用户密码" :rules="[
+        v-if="isAdd" field="userPassword" label="用户密码" :rules="[
           { required: true, message: '用户密码是必须的' },
           { minLength: 6, message: '用户密码长度必须大于6' },
         ]"
@@ -83,7 +83,7 @@ function handleOk() {
         </a-input-password>
       </a-form-item>
       <a-form-item
-        v-if="type === 'add'" field="checkPassword" label="确认密码" :rules="[
+        v-if="isAdd" field="checkPassword" label="确认密码" :rules="[
           { required: true, message: '确认密码是必须的' },
           { minLength: 6, message: '确认密码长度必须大于6' },
         ]"
