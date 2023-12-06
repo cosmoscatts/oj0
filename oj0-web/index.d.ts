@@ -14,6 +14,15 @@ declare global {
   type Fn<T = void> = () => T
 
   /**
+   * 返回结果
+   */
+  interface Result<T> {
+    code?: number
+    data: T
+    message?: string
+  }
+
+  /**
    * 用户
    */
   interface User {
@@ -38,6 +47,35 @@ declare global {
     path: string
     icon?: FunctionalComponent
     access?: string // 菜单项所需要的用户权限
+  }
+
+  interface JudgeCase {
+    input?: string
+    output?: string
+  }
+
+  interface JudgeConfig {
+    timeLimit?: number
+    memoryLimit?: number
+    stackLimit?: number
+  }
+
+  /**
+   * 题目
+   */
+  interface Question {
+    id: number
+    title?: string
+    content?: string
+    tags?: string[] // 标签
+    answer?: string
+    submitNum?: number
+    acceptedNum?: number
+    judgeCase?: JudgeCase[]
+    judgeConfig?: JudgeConfig[]
+    userId?: number // 创建用户 id
+    createTime?: Date
+    updateTime?: Date
   }
 }
 

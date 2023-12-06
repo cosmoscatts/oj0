@@ -27,4 +27,20 @@ export function getRandomStr(size = 16, dict = urlAlphabet): string {
   return id
 }
 
+export function useLoading(initValue = false) {
+  const loading = ref(initValue)
+  return {
+    loading,
+    startLoading() {
+      loading.value = true
+    },
+    endLoading() {
+      loading.value = false
+    },
+    toggleLoading() {
+      loading.value = !loading.value
+    },
+  }
+}
+
 export { dayjs, ANotification, Message, Modal }

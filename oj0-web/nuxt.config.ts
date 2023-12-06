@@ -45,7 +45,11 @@ export default defineNuxtConfig({
     },
   },
   imports: {
-    dirs: ['~/composables/**'],
+    dirs: [
+      './composables/question-manage',
+      './composables/table',
+    ],
+    injectAtEnd: true,
   },
   components: [
     {

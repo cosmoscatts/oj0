@@ -46,7 +46,6 @@ watch(width, () => {
                   <component :is="menu.icon" v-if="menu.icon" />
                   {{ menu.name }}
                 </div>
-                {{ menu.name }}
               </a-menu-item>
             </NuxtLink>
           </a-menu>
