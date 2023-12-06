@@ -107,3 +107,33 @@
 .arco-drawer-footer {
   border-top-color: var(--c-border);
 }
+
+/* Menu */
+
+.arco-menu-light .arco-menu-item:hover, .arco-menu-light .arco-menu-group-title:hover, .arco-menu-light .arco-menu-pop-header:hover, .arco-menu-light .arco-menu-inline-header:hover {
+  color: var(--c-text-secondary);
+  background-color: var(--c-bg-active);
+}
+
+.arco-menu-light.arco-menu-horizontal .arco-menu-item.arco-menu-selected:hover, .arco-menu-light.arco-menu-horizontal .arco-menu-group-title.arco-menu-selected:hover, .arco-menu-light.arco-menu-horizontal .arco-menu-pop-header.arco-menu-selected:hover, .arco-menu-light.arco-menu-horizontal .arco-menu-inline-header.arco-menu-selected:hover {
+  color: var(--c-primary);
+  background-color: var(--c-bg-active);
+}
+
+.arco-menu-dark .arco-menu-item:hover, .arco-menu-dark .arco-menu-group-title:hover, .arco-menu-dark .arco-menu-pop-header:hover, .arco-menu-dark .arco-menu-inline-header:hover {
+  color: var(--c-text-secondary);
+  background-color: var(--c-bg-active);
+}
+
+.arco-menu-dark.arco-menu-horizontal .arco-menu-item.arco-menu-selected:hover, .arco-menu-dark.arco-menu-horizontal .arco-menu-group-title.arco-menu-selected:hover, .arco-menu-dark.arco-menu-horizontal .arco-menu-pop-header.arco-menu-selected:hover, .arco-menu-dark.arco-menu-horizontal .arco-menu-inline-header.arco-menu-selected:hover {
+  color: white;
+  background-color: var(--c-bg-active);
+}
+
+.arco-menu-light .arco-menu-item, .arco-menu-light .arco-menu-group-title, .arco-menu-light .arco-menu-pop-header, .arco-menu-light .arco-menu-inline-header {
+  color: var(--c-text-secondary);
+}
+
+.arco-menu-dark .arco-menu-item, .arco-menu-dark .arco-menu-group-title, .arco-menu-dark .arco-menu-pop-header, .arco-menu-dark .arco-menu-inline-header {
+  color: var(--c-text-secondary);
+}

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const refSearchForm = ref()
+
 const columns = getUserManageTableColumns()
 
 const tableData = ref<User[]>([])
@@ -11,14 +13,13 @@ function search() {
 const drawerVisible = ref(false)
 
 function add() {
-  console.log('action add')
   drawerVisible.value = true
 }
 </script>
 
 <template>
   <CommonTableWrapper title="用户管理" @add="add">
-    <UserManageSearchForm @search="search" />
+    <UserManageSearchForm ref="refSearchForm" @search="search" />
 
     <a-divider />
 
