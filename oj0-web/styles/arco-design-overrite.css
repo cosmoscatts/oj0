@@ -45,7 +45,7 @@
   border-right-color: var(--c-border);
 }
 
-/* Form */
+/* Input */
 
 .arco-input-wrapper {
   background-color: transparent;
@@ -58,5 +58,16 @@
 }
 
 .arco-input-wrapper:hover {
+  background-color: var(--c-bg-active);
+}
+
+/* Select */
+
+.arco-select-view-single {
+  background-color: transparent;
+  border-color: var(--c-border);
+}
+
+.arco-select-view-single:hover {
   background-color: var(--c-bg-active);
 }

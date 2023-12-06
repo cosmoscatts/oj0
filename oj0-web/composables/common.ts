@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import lodash from 'lodash'
 import { Notification as ANotification, Message, Modal } from '@arco-design/web-vue'
 
 export function batchInvoke(functions: Nullable<Fn>[]) {
@@ -41,6 +42,14 @@ export function useLoading(initValue = false) {
       loading.value = !loading.value
     },
   }
+}
+
+export function clone<T = any>(source: T) {
+  return JSON.parse(JSON.stringify(source)) as T
+}
+
+export function cloneDeep<T = any>(source: T) {
+  return lodash.cloneDeep<T>(source)
 }
 
 export { dayjs, ANotification, Message, Modal }
