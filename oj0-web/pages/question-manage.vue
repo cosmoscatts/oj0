@@ -1,29 +1,60 @@
 <script setup lang="ts">
-import { ACCESS_ENUM } from '~/constants'
+const refSearchForm = ref()
 
-definePageMeta({
-  name: 'QuestionManage',
-  access: ACCESS_ENUM.ADMIN, // 需要管理员权限
-  // middleware: 'auth',
-})
-
-const columns = getQuestionManageTableColumns()
+const columns = getUserManageTableColumns()
 
 const tableData = ref<Question[]>([])
-
 const { loading } = useLoading()
 
-function fetchData() {
+const paginator = useTablePagination(search)
 
+function search() {
+  tableData.value = Array.from({ length: 6 }, (_, idx) => {
+    return {
+      id: idx + 1,
+      userAccount: getRandomStr(10),
+      userName: getRandomStr(10),
+    }
+  })
+  paginator.setPaginationTotal(6)
+}
+search()
+
+const { visible, data, show } = useVisible<Partial<User>>()
+
+function add() {
+  show()
 }
 </script>
 
 <template>
-  <a-card title="题目管理" w-full>
+  <CommonTableWrapper title="题目管理" @add="add">
+    <QuestionManageSearchForm ref="refSearchForm" @search="search" />
+
+    <a-divider />
+
     <a-table
+      row-key="id"
       :columns="columns"
       :data="tableData"
       :loading="loading"
-    />
-  </a-card>
+      :bordered="false"
+      :pagination="paginator.paginationProps.value"
+      @page-change="paginator.onPageChange"
+      @page-size-change="paginator.onPageSizeChange"
+    >
+      <template #action="{ record }">
+        <div flex-center>
+          <div btn-text @click="show(record)">
+            编辑
+          </div>
+          <div filter-saturate-0 btn-text>
+            删除
+          </div>
+        </div>
+      </template>
+    </a-table>
+
+    <UserManageFormDrawer v-model="visible" :data="data" />
+  </CommonTableWrapper>
 </template>

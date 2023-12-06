@@ -85,6 +85,25 @@
   background-color: var(--c-bg-active);
 }
 
+.arco-select-view-multiple {
+  background-color: transparent;
+  border-color: var(--c-border);
+}
+
+.arco-select-view-multiple:hover  {
+  background-color: var(--c-bg-active);
+}
+
+.arco-select-view-multiple:focus-within, .arco-select-view-multiple.arco-select-view-focus {
+  background-color: var(--c-bg-active);
+  border-color: var(--c-primary-light);
+}
+
+.arco-select-view-multiple .arco-select-view-tag {
+  background-color: transparent;
+  border-color: var(--c-border);
+}
+
 /* Textarea */
 
 .arco-textarea-wrapper {
