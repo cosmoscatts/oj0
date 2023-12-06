@@ -9,27 +9,15 @@ export function getUserManageTableColumns(): TableColumnData[] {
       align: 'center',
     },
     {
-      title: '账号',
+      title: '用户账号',
       dataIndex: 'userAccount',
       slotName: 'userAccount',
       align: 'center',
     },
     {
-      title: '昵称',
+      title: '用户昵称',
       dataIndex: 'userName',
       slotName: 'userName',
-      align: 'center',
-    },
-    {
-      title: '开放平台id',
-      dataIndex: 'unionId',
-      slotName: 'unionId',
-      align: 'center',
-    },
-    {
-      title: '公众号openId',
-      dataIndex: 'mpOpenId',
-      slotName: 'mpOpenId',
       align: 'center',
     },
     {

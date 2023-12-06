@@ -65,14 +65,4 @@ function gotoLogin() {
 :deep(.arco-form-item-label-col > .arco-form-item-label) {
   color: var(--c-text-secondary);
 }
-
-:deep(.arco-input-wrapper) {
-  background-color: transparent;
-  border-color: var(--c-border);
-}
-
-:deep(.arco-input-wrapper):focus-within {
-  background-color: var(--c-bg-active);
-  border-color: var(--c-primary-light);
-}
 </style>

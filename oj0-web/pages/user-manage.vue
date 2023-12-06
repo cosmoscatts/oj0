@@ -6,11 +6,11 @@ const { loading } = useLoading()
 </script>
 
 <template>
-  <a-card title="题目管理" w-full>
+  <CommonTableWrapper title="题目管理">
     <a-table
       :columns="columns"
       :data="tableData"
       :loading="loading"
     />
-  </a-card>
+  </CommonTableWrapper>
 </template>
