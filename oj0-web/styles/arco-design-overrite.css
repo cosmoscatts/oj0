@@ -137,3 +137,15 @@
 .arco-menu-dark .arco-menu-item, .arco-menu-dark .arco-menu-group-title, .arco-menu-dark .arco-menu-pop-header, .arco-menu-dark .arco-menu-inline-header {
   color: var(--c-text-secondary);
 }
+
+/* Pagination */
+
+.arco-pagination-item-active, .arco-pagination-item-active:hover {
+  background-color: transparent;
+  color: var(--c-text-base);
+  border: 1px solid var(--c-border);
+}
+
+.arco-pagination-item:hover {
+  background-color: var(--c-bg-active);
+}

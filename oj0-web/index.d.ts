@@ -23,6 +23,15 @@ declare global {
   }
 
   /**
+   * 分页
+   */
+  interface Pagination {
+    current: number
+    pageSize: number
+    total?: number
+  }
+
+  /**
    * 用户
    */
   interface User {
