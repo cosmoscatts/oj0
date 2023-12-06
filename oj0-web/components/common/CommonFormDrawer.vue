@@ -3,7 +3,10 @@ const { width = 900 } = defineProps<{
   width?: number
   title?: string
 }>()
-const emit = defineEmits<{ (event: 'ok'): void }>()
+const emit = defineEmits<{
+  (event: 'ok'): void
+  (event: 'reset'): void
+}>()
 const visible = defineModel<boolean>()
 
 const { width: windowWidth } = useWindowSize()
@@ -15,6 +18,10 @@ const responsiveWidth = computed(() => {
 
 function handleOk() {
   emit('ok')
+}
+
+function reset() {
+  emit('reset')
 }
 </script>
 
@@ -46,8 +53,8 @@ function handleOk() {
           <div btn-solid @click="handleOk">
             保存
           </div>
-          <div filter-saturate-0 btn-text @click="visible = false">
-            取消
+          <div filter-saturate-0 btn-text @click="reset">
+            重置
           </div>
         </div>
       </slot>

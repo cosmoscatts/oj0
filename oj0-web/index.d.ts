@@ -43,6 +43,7 @@ declare global {
     userAvatar?: string // 用户头像
     userProfile?: string // 用户简介
     userRole?: string // 用户角色 notLogin/user/admin
+    userPassword?: string // 用户密码
     createTime?: Date // 创建时间
     updateTime?: Date // 更新时间
   }

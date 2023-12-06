@@ -85,6 +85,22 @@
   background-color: var(--c-bg-active);
 }
 
+/* Textarea */
+
+.arco-textarea-wrapper {
+  background-color: transparent;
+  border-color: var(--c-border);
+}
+
+.arco-textarea-wrapper:hover {
+  background-color: var(--c-bg-active);
+}
+
+.arco-textarea-wrapper:focus-within {
+  background-color: var(--c-bg-active);
+  border-color: var(--c-primary-light);
+}
+
 /* Dropdown */
 .arco-dropdown {
   background-color: var(--c-bg-base);
@@ -148,4 +164,26 @@
 
 .arco-pagination-item:hover {
   background-color: var(--c-bg-active);
+}
+
+/* Form */
+
+.arco-form-item-status-error .arco-select-view:not(.arco-select-view-disabled):hover, .arco-form-item-status-error .arco-input-tag:not(.arco-input-tag-disabled):hover {
+  background-color: var(--c-bg-active);
+  border: 1px var(--c-danger) solid;
+}
+
+.arco-form-item-status-error .arco-select-view:not(.arco-select-view-disabled), .arco-form-item-status-error .arco-input-tag:not(.arco-input-tag-disabled) {
+  background-color: transparent;
+  border: 1px var(--c-danger) solid;
+}
+
+.arco-form-item-status-error .arco-input-wrapper:not(.arco-input-disabled), .arco-form-item-status-error .arco-textarea-wrapper:not(.arco-textarea-disabled) {
+  background-color: transparent;
+  border: 1px var(--c-danger) solid;
+}
+
+.arco-form-item-status-error .arco-input-wrapper:not(.arco-input-disabled):hover, .arco-form-item-status-error .arco-textarea-wrapper:not(.arco-textarea-disabled):hover {
+  background-color: var(--c-bg-active);
+  border: 1px var(--c-danger) solid;
 }
