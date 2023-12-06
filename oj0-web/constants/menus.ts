@@ -1,5 +1,5 @@
 import { ACCESS_ENUM } from './access-enum'
-import IconHome from '~icons/ri/home-2-fill'
+import IconHome from '~icons/ri/home-2-line'
 import IconUserManage from '~icons/ri/user-2-line'
 import IconQuestions from '~icons/ri/file-list-line'
 import IconQuestionManage from '~icons/ri/crop-line'

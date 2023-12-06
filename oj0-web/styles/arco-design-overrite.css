@@ -1,10 +1,16 @@
+/* Modal */
+
 .arco-modal {
   background-color: var(--c-bg-base);
 }
 
+/* Divider */
+
 .arco-divider-horizontal {
   border-color: var(--c-border);
 }
+
+/* Card */
 
 .arco-card {
   background-color: var(--c-bg-base);
@@ -13,4 +19,14 @@
 
 .arco-card-header {
   border-bottom-color: var(--c-border);
+}
+
+/* Table */
+
+.arco-table-th {
+  background-color: var(--c-bg-base);
+}
+
+.arco-table-td {
+  background-color: var(--c-bg-base);
 }
