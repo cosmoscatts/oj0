@@ -11,6 +11,7 @@ const { loading } = useLoading()
       :columns="columns"
       :data="tableData"
       :loading="loading"
+      :bordered="false"
     />
   </CommonTableWrapper>
 </template>

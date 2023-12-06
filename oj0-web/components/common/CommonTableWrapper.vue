@@ -11,23 +11,20 @@ defineEmits<{
   <div w-full>
     <div h-50px flex-y-center justify-between>
       <slot name="title">
-        <div text-lg font-bold>
+        <div text-lg>
           {{ title }}
         </div>
       </slot>
 
       <slot name="extra">
-        <a-button type="primary" @click="$emit('add')">
-          <template #icon>
-            <IconPlus />
-          </template>
+        <div btn-solid @click="$emit('add')">
           新增
-        </a-button>
+        </div>
       </slot>
     </div>
 
-    <a-card mt-4 w-full>
+    <div mt-4 w-full>
       <slot />
-    </a-card>
+    </div>
   </div>
 </template>
