@@ -23,7 +23,7 @@ defineEmits<{
       </slot>
     </div>
 
-    <div mt-4 w-full>
+    <div mt-6 w-full>
       <slot />
     </div>
   </div>
