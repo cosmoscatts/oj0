@@ -7,10 +7,17 @@ const { loading } = useLoading()
 function search() {
 
 }
+
+const drawerVisible = ref(false)
+
+function add() {
+  console.log('action add')
+  drawerVisible.value = true
+}
 </script>
 
 <template>
-  <CommonTableWrapper title="用户管理">
+  <CommonTableWrapper title="用户管理" @add="add">
     <UserManageSearchForm @search="search" />
 
     <a-divider />
@@ -21,5 +28,7 @@ function search() {
       :loading="loading"
       :bordered="false"
     />
+
+    <UserManageFormDrawer v-model="drawerVisible" />
   </CommonTableWrapper>
 </template>
