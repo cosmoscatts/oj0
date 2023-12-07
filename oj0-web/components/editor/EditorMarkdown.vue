@@ -2,6 +2,11 @@
 import gfm from '@bytemd/plugin-gfm'
 import highlight from '@bytemd/plugin-highlight'
 import { Editor } from '@bytemd/vue-next'
+import zhHans from '~/config/zh_Hans.json'
+
+const { mode = 'split' } = defineProps<{
+  mode?: string
+}>()
 
 const value = defineModel<string>()
 
@@ -21,7 +26,19 @@ function handleChange(newValue: string) {
 <template>
   <ClientOnly>
     <div w-full>
-      <Editor :value="value" :plugins="plugins" @change="handleChange" />
+      <Editor
+        :value="value"
+        :plugins="plugins"
+        :mode="mode"
+        :locale="zhHans"
+        @change="handleChange"
+      />
     </div>
   </ClientOnly>
 </template>
+
+<style scoped>
+:deep(.bytemd-toolbar-icon.bytemd-tippy.bytemd-tippy-right:last-child) {
+  display: none;
+}
+</style>
