@@ -54,11 +54,16 @@ function handleOk() {
     emit('save', clone(form))
   })
 }
+
+const previewAvatarVisible = ref(false)
 </script>
 
 <template>
   <CommonFormDrawer v-model="visible" :width="650" :title="title" @ok="handleOk" @reset="reset">
     <a-form ref="refForm" :model="form" auto-label-width size="large" mt-4>
+      <a-form-item field="userAvatar" label="用户头像">
+        <CommonAvatarUpload v-model:visible="previewAvatarVisible" v-model:avatar="form.userAvatar" />
+      </a-form-item>
       <a-form-item
         field="userAccount" label="用户账号" :rules="[
           { required: true, message: '用户账号是必须的' },
