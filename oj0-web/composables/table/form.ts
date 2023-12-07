@@ -11,7 +11,7 @@ export function useTableForm<T = object, K = Partial<T>>({
   const form = toReactive(baseForm) as UnwrapNestedRefs<T>
 
   const assign = (data: K) => {
-    baseForm.value = data as UnwrapRef<K>
+    baseForm.value = clone(data) as UnwrapRef<K>
   }
 
   const ok = (fn?: () => void) => {

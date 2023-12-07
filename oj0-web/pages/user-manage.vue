@@ -25,6 +25,16 @@ const { visible, data, show } = useVisible<Partial<User>>()
 function add() {
   show()
 }
+
+function remove(_record: User) {
+  useConfirm({
+    title: '删除确认',
+    content: '确定要删除该用户吗？',
+    ok: () => {
+      Message.success('删除成功')
+    },
+  })
+}
 </script>
 
 <template>
@@ -48,7 +58,7 @@ function add() {
           <div btn-text @click="show(record)">
             编辑
           </div>
-          <div filter-saturate-0 btn-text>
+          <div filter-saturate-0 btn-text @click="remove(record)">
             删除
           </div>
         </div>
