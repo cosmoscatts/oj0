@@ -42,6 +42,7 @@
 .markdown-body {
   background-color: transparent;
   color: var(--color-text-2);
+  font-size: 14px;
 }
 
 .cm-s-default .cm-header {
@@ -101,3 +102,6 @@ ol ol ol, ul ul ul, menu menu menu {
   list-style: square;
 }
 
+.hljs.language-elm {
+  color: var(--c-text-base);
+}
