@@ -22,8 +22,10 @@ export function useTableForm<T = object, K = Partial<T>>({
     })
   }
 
-  const reset = () => {
-    baseForm.value = getBaseForm() as UnwrapRef<K>
+  const reset = (data?: K) => {
+    baseForm.value = data && Object.keys(data).length
+      ? data as UnwrapRef<K>
+      : getBaseForm() as UnwrapRef<K>
     refForm.value?.clearValidate()
   }
 
