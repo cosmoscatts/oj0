@@ -20,6 +20,20 @@
   border-top-color: var(--c-border);
 }
 
+.bytemd-dropdown {
+  background-color: var(--c-bg-base);
+  color: var(--c-text-base);
+}
+
+.bytemd-dropdown-item:hover {
+  background-color: var(--c-bg-active);
+}
+
+.tippy-box[data-theme~='light-border'] { 
+  background-color: var(--c-bg-base);
+  border-color: var(--c-border);
+}
+
 .CodeMirror {
   background-color: transparent;
   color: var(--color-text-2);
