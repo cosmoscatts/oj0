@@ -55,12 +55,16 @@ function remove(_record: User) {
     >
       <template #action="{ record }">
         <div flex-center>
-          <div btn-text @click="show(record)">
-            编辑
-          </div>
-          <div filter-saturate-0 btn-text @click="remove(record)">
-            删除
-          </div>
+          <CommonTooltip content="编辑用户">
+            <div btn-text @click="show(record)">
+              编辑
+            </div>
+          </CommonTooltip>
+          <CommonTooltip content="删除用户">
+            <div filter-saturate-0 btn-text @click="remove(record)">
+              删除
+            </div>
+          </CommonTooltip>
         </div>
       </template>
     </a-table>

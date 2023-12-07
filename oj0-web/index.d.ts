@@ -81,8 +81,8 @@ declare global {
     answer?: string
     submitNum?: number
     acceptedNum?: number
-    judgeCase?: JudgeCase[]
-    judgeConfig?: JudgeConfig[]
+    judgeCase?: JudgeCase[] // 判题用例
+    judgeConfig?: JudgeConfig[] // 判题配置
     userId?: number // 创建用户 id
     createTime?: Date
     updateTime?: Date

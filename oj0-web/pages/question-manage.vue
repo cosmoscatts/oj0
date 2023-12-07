@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const refSearchForm = ref()
 
-const columns = getUserManageTableColumns()
+const columns = getQuestionManageTableColumns()
 
 const tableData = ref<Question[]>([])
 const { loading } = useLoading()
@@ -12,8 +12,11 @@ function search() {
   tableData.value = Array.from({ length: 6 }, (_, idx) => {
     return {
       id: idx + 1,
-      userAccount: getRandomStr(10),
-      userName: getRandomStr(10),
+      title: `题目${idx + 1}`,
+      content: '哈哈哈哈哈哈哈',
+      tags: ['简单', '二叉树'],
+      createTime: new Date(),
+      updateTime: new Date(),
     }
   })
   paginator.setPaginationTotal(6)
@@ -43,14 +46,41 @@ function add() {
       @page-change="paginator.onPageChange"
       @page-size-change="paginator.onPageSizeChange"
     >
+      <template #tags="{ record }">
+        <div v-if="record.tags.length" w-200px>
+          <a-overflow-list>
+            <a-tag v-for="tag in record.tags" :key="tag" bordered color="transparent" :style="{ color: 'var(--c-text-base)' }">
+              {{ tag }}
+            </a-tag>
+          </a-overflow-list>
+        </div>
+      </template>
+      <template #userId>
+        管理员
+      </template>
+      <template #createTime="{ record }">
+        {{ formatDate(record.createTime) }}
+      </template>
+      <template #updateTime="{ record }">
+        {{ formatDate(record.updateTime) }}
+      </template>
       <template #action="{ record }">
         <div flex-center>
-          <div btn-text @click="show(record)">
-            编辑
-          </div>
-          <div filter-saturate-0 btn-text>
-            删除
-          </div>
+          <CommonTooltip content="查看完整题目">
+            <div btn-text @click="show(record)">
+              查看
+            </div>
+          </CommonTooltip>
+          <CommonTooltip content="编辑题目">
+            <div btn-text @click="show(record)">
+              编辑
+            </div>
+          </CommonTooltip>
+          <CommonTooltip content="删除题目">
+            <div filter-saturate-0 btn-text>
+              删除
+            </div>
+          </CommonTooltip>
         </div>
       </template>
     </a-table>

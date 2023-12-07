@@ -27,6 +27,12 @@ export function getQuestionManageTableColumns(): TableColumnData[] {
       align: 'center',
     },
     {
+      title: '创建人',
+      dataIndex: 'userId',
+      slotName: 'userId',
+      align: 'center',
+    },
+    {
       title: '创建时间',
       dataIndex: 'createTime',
       slotName: 'createTime',
@@ -43,6 +49,7 @@ export function getQuestionManageTableColumns(): TableColumnData[] {
       dataIndex: 'action',
       slotName: 'action',
       align: 'center',
+      width: 250,
     },
   ]
 }

@@ -31,11 +31,13 @@ export default defineNuxtConfig({
     '@arco-design/web-vue/es/modal/style/css.js',
     '@arco-design/web-vue/es/notification/style/css.js',
     '@unocss/reset/tailwind.css',
+    'floating-vue/dist/style.css',
     '~/styles/default-theme.css',
     '~/styles/vars.css',
     '~/styles/arco-design-overrite.css',
     '~/styles/transition.css',
     '~/styles/scrollbars.css',
+    '~/styles/dropdown.css',
     '~/styles/main.css',
   ],
   router: {
