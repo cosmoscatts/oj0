@@ -21,6 +21,12 @@ export function getQuestionManageTableColumns(): TableColumnData[] {
       align: 'center',
     },
     {
+      title: '难度',
+      dataIndex: 'difficulty',
+      slotName: 'difficulty',
+      align: 'center',
+    },
+    {
       title: '标签',
       dataIndex: 'tags',
       slotName: 'tags',
@@ -49,7 +55,6 @@ export function getQuestionManageTableColumns(): TableColumnData[] {
       dataIndex: 'action',
       slotName: 'action',
       align: 'center',
-      width: 250,
     },
   ]
 }

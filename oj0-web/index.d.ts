@@ -78,6 +78,7 @@ declare global {
     title?: string
     content?: string
     tags?: string[] // 标签
+    difficulty?: string // 题目难度
     answer?: string
     submitNum?: number
     acceptedNum?: number

@@ -52,7 +52,7 @@ export function cloneDeep<T = any>(source: T) {
   return lodash.cloneDeep<T>(source)
 }
 
-export function formatDate(date?: Date | string, partten = 'YY-MM-DD HH:mm') {
+export function formatDate(date?: Date | string, partten = 'YY-MM-DD HH:mm:ss') {
   if (!date)
     return ''
   return dayjs(date).format(partten)

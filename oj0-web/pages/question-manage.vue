@@ -66,11 +66,6 @@ function add() {
       </template>
       <template #action="{ record }">
         <div flex-center>
-          <CommonTooltip content="查看完整题目">
-            <div btn-text @click="show(record)">
-              查看
-            </div>
-          </CommonTooltip>
           <CommonTooltip content="编辑题目">
             <div btn-text @click="show(record)">
               编辑
@@ -85,6 +80,6 @@ function add() {
       </template>
     </a-table>
 
-    <UserManageFormDrawer v-model="visible" :data="data" />
+    <QuestionManageFormDrawer v-model="visible" :data="data" />
   </CommonTableWrapper>
 </template>

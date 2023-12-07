@@ -3,13 +3,7 @@ import gfm from '@bytemd/plugin-gfm'
 import highlight from '@bytemd/plugin-highlight'
 import { Editor } from '@bytemd/vue-next'
 
-const { value = '' } = defineProps<{
-  value?: string
-}>()
-
-const emit = defineEmits<{
-  (event: 'change', value: string): void
-}>()
+const value = defineModel<string>()
 
 /**
  * 定义编辑器需要用到的插件
@@ -19,13 +13,15 @@ const plugins = [
   highlight(),
 ]
 
-function handleChange(value: string) {
-  emit('change', value)
+function handleChange(newValue: string) {
+  value.value = newValue
 }
 </script>
 
 <template>
   <ClientOnly>
-    <Editor :value="value" :plugins="plugins" @change="handleChange" />
+    <div w-full>
+      <Editor :value="value" :plugins="plugins" @change="handleChange" />
+    </div>
   </ClientOnly>
 </template>
