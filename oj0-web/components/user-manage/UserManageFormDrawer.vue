@@ -12,13 +12,6 @@ const visible = defineModel<boolean>()
 const isAdd = computed(() => !data?.id)
 const title = computed(() => ['添加用户', '编辑用户'][Number(!isAdd.value)])
 
-const userRoleOptions = ['Admin', 'user'].map((i, idx) => {
-  return {
-    value: i,
-    label: ['管理员', '用户'][idx],
-  }
-})
-
 const refForm = ref()
 function getBaseForm() {
   return {

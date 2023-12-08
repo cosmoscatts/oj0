@@ -32,7 +32,7 @@ function add() {
 
 <template>
   <CommonTableWrapper title="题目管理" @add="add">
-    <QuestionManageSearchForm ref="refSearchForm" h-60px @search="search" />
+    <QuestionManageSearchForm ref="refSearchForm" @search="search" />
 
     <a-divider />
 

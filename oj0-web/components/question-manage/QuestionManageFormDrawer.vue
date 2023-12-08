@@ -81,13 +81,6 @@ function handleOk() {
   })
 }
 
-const questionDifficultyOptions = Array.from({ length: 3 }, (_, idx) => {
-  return {
-    value: [QUESTION_DIFFICULTY_ENUM.EASY, QUESTION_DIFFICULTY_ENUM.MEDIUM, QUESTION_DIFFICULTY_ENUM.HARD][idx],
-    label: ['简单', '中等', '困难'][idx],
-  }
-})
-
 function addJudgeCase() {
   if (!form.judgeCase?.length) {
     form.judgeCase = [getBaseJudgeCase()]
@@ -121,7 +114,7 @@ function removeJudgeCase(index: number) {
         <a-select v-model="form.difficulty" allow-clear :options="questionDifficultyOptions" />
       </a-form-item>
       <a-form-item field="tags" label="题目标签">
-        <a-select v-model="form.tags" multiple allow-create allow-search allow-clear :options="[]" />
+        <a-select v-model="form.tags" multiple allow-search allow-clear :options="questionTagGroupOptions" />
       </a-form-item>
       <a-form-item field="content" label="题目内容">
         <EditorMarkdown v-model="form.content" w-full />
