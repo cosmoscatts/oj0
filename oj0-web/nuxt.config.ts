@@ -52,6 +52,7 @@ export default defineNuxtConfig({
   imports: {
     dirs: [
       './composables/question-manage',
+      './composables/questions',
       './composables/table',
       './composables/user-manage',
     ],
