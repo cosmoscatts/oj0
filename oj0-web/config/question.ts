@@ -19,7 +19,7 @@ export const popularQuestionTags = [
   '数组',
   '字符串',
   '动态规划',
-  '二分查找',
+  '数据库',
   '双指针',
   '链表',
 ]
