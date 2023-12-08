@@ -27,7 +27,7 @@ function getBaseJudgeConfig() {
 function getBaseJudgeCase() {
   return {
     input: '',
-    ouput: '',
+    output: '',
   } as JudgeCase
 }
 
@@ -54,21 +54,24 @@ const {
   refForm,
 })
 
+function getTransformPropsData() {
+  const res = clone(data)
+  if (!res.judgeConfig || !Object.keys(res.judgeConfig).length)
+    res.judgeConfig = getBaseJudgeConfig()
+  if (!res.judgeCase?.length)
+    res.judgeCase = [getBaseJudgeCase()]
+  return res
+}
+
 watch(visible, (val) => {
   if (val) {
     reset()
-    if (isAdd.value) {
-      assign(getBaseForm())
-    }
-    else {
-      const res = clone(data)
-      if (!res.judgeConfig || !Object.keys(res.judgeConfig).length)
-        res.judgeConfig = getBaseJudgeConfig()
-      if (!res.judgeCase?.length)
-        res.judgeCase = [getBaseJudgeCase()]
 
-      assign(res)
-    }
+    if (isAdd.value)
+      assign(getBaseForm())
+
+    else
+      assign(getTransformPropsData())
   }
 })
 
@@ -101,7 +104,7 @@ function removeJudgeCase(index: number) {
 </script>
 
 <template>
-  <CommonFormDrawer v-model="visible" :width="900" :title="title" @ok="handleOk" @reset="reset(data)">
+  <CommonFormDrawer v-model="visible" :width="900" :title="title" @ok="handleOk" @reset="reset(getTransformPropsData())">
     <a-form ref="refForm" :model="form" auto-label-width size="large" mt-4>
       <a-form-item
         field="title" label="题目标题" :rules="[
@@ -128,7 +131,7 @@ function removeJudgeCase(index: number) {
       </a-form-item>
       <a-form-item field="judgeCase" label="判题用例" :content-flex="false">
         <template v-for="(item, idx) in form.judgeCase" :key="idx">
-          <CommonTransition>
+          <CommonTransition name="bounce">
             <div grid="~ cols-13 gap-2">
               <a-form-item field="judgeConfig.timeLimit" label="输入用例" col-span-6>
                 <a-input v-model="item.input" allow-clear />
