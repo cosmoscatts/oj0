@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { popularQuestionTags as tags } from '~/config/question'
 
-const value = defineModel<string>()
+const modelValue = defineModel<string>()
 
 function isActive(tag: string) {
-  return tag === value.value
+  return tag === modelValue.value
 }
 
 const icons = [
@@ -22,11 +22,19 @@ function getIcon(index: number) {
     return icons[icons.length]
   return icons[index]
 }
+
+function handleClick(tag: string) {
+  if (modelValue.value === tag) {
+    modelValue.value = undefined
+    return
+  }
+  modelValue.value = tag
+}
 </script>
 
 <template>
   <div flex="~ gap4 wrap" gap-4>
-    <button v-for="tag, idx in tags" :key="tag" flex="~ gap-1 center" border="~ base rounded" :class="isActive(tag) ? 'pointer-events-none' : 'filter-saturate-0'" flex-1 ws-nowrap bg-base p4 btn-text @click="value = tag">
+    <button v-for="tag, idx in tags" :key="tag" flex="~ gap-1 center" border="~ base rounded" :class="isActive(tag) ? '' : 'filter-saturate-0'" flex-1 ws-nowrap bg-base p4 btn-text @click="handleClick(tag)">
       <span :class="getIcon(idx)" /> {{ tag }}
     </button>
   </div>
