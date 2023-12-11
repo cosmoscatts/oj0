@@ -106,3 +106,7 @@ ol ol ol, ul ul ul, menu menu menu {
 .hljs.language-elm {
   color: var(--c-text-base);
 }
+
+.language-java.hljs {
+  color: var(--c-text-base);
+}
