@@ -36,9 +36,9 @@ function gotoRegister() {
           <a-input v-model="form.password" />
         </a-form-item>
         <a-form-item mt-2>
-          <a-button long type="primary">
+          <button w-full btn-solid>
             提交
-          </a-button>
+          </button>
         </a-form-item>
       </a-form>
     </div>
