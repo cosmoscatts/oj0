@@ -11,6 +11,8 @@ definePageMeta({
 const route = useRoute()
 
 const id = computed(() => route.params.id) // 题目 id
+
+const selectedLeftTab = ref(0) // 0 - 题目描述；1 - 题解；2 - 提交记录
 </script>
 
 <template>
@@ -18,16 +20,18 @@ const id = computed(() => route.params.id) // 题目 id
     <ResolveActionBar />
 
     <div :style="{ height: `calc(100vh - 6rem)` }" mb-2 of-hidden px-30px>
-      <a-split
-        :style="{
-          height: '100%',
-          width: '100%',
-          minWidth: '500px',
-        }" flex
-      >
+      <a-split :style="{ height: '100%', width: '100%', minWidth: '500px' }">
         <template #first>
-          <div h-full w-full of-x-hidden of-y-auto border="1 base" px-5 py-2>
-            <ViewerMarkdown w-full value="# hhhh" />
+          <div h-full w-full of-hidden flex="~ col" border="1 base">
+            <ResolveLeftSelectTabs v-model="selectedLeftTab" />
+
+            <div flex="~ 1 col">
+              <CommonTransition name="layout">
+                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 0" />
+                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 1" />
+                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 2" />
+              </CommonTransition>
+            </div>
           </div>
         </template>
         <template #second>
@@ -35,12 +39,12 @@ const id = computed(() => route.params.id) // 题目 id
             <a-split direction="vertical" :style="{ height: 'calc(100vh - 6rem)', overflow: 'hidden' }">
               <template #first>
                 <div h-full w-full of-x-hidden of-y-auto border="1 base">
-                  2
+                  <ResolveRightCodeEditor />
                 </div>
               </template>
               <template #second>
                 <div h-full w-full of-x-hidden of-y-auto border="1 base">
-                  3
+                  <ResolveRightTest />
                 </div>
               </template>
             </a-split>
