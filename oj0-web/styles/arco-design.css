@@ -211,3 +211,9 @@
   background-color: var(--c-bg-active);
   border: 1px var(--c-danger) solid;
 }
+
+/* Split */
+
+.arco-split-trigger-icon-wrapper {
+  background-color: var(--c-border);
+}
