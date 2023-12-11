@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ACCESS_ENUM } from '~/constants'
+import { ACCESS_ENUM, QUESTION_DIFFICULTY_ENUM } from '~/constants'
 
 definePageMeta({
   name: 'Questions',
@@ -97,9 +97,9 @@ function getRandomQuestion() {
         </div>
       </template>
       <template #difficulty="{ record }">
-        <span v-if="record.difficulty === 'easy'" text-green>简单</span>
-        <span v-if="record.difficulty === 'medium'" text-orange>中等</span>
-        <span v-if="record.difficulty === 'hard'" text-hard>困难</span>
+        <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.EASY" text-green>简单</span>
+        <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.MEDIUM" text-orange>中等</span>
+        <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.HARD" text-red>困难</span>
       </template>
     </a-table>
   </div>

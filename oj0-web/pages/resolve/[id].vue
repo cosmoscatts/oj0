@@ -13,6 +13,15 @@ const route = useRoute()
 const id = computed(() => route.params.id) // 题目 id
 
 const selectedLeftTab = ref(0) // 0 - 题目描述；1 - 题解；2 - 提交记录
+
+const currentQuestion = ref({
+  title: '两数之和',
+  content: '哈哈哈哈哈哈哈哈',
+  tags: ['二叉树', '动态规划', '递归'],
+  difficulty: 'easy',
+  hasSubmited: true,
+  hasResolved: false,
+})
 </script>
 
 <template>
@@ -27,7 +36,7 @@ const selectedLeftTab = ref(0) // 0 - 题目描述；1 - 题解；2 - 提交记�
 
             <div flex="~ 1 col">
               <CommonTransition name="layout">
-                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 0" />
+                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 0" :="currentQuestion" />
                 <ResolveLeftQuestionInfo v-if="selectedLeftTab === 1" />
                 <ResolveLeftQuestionInfo v-if="selectedLeftTab === 2" />
               </CommonTransition>
