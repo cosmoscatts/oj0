@@ -12,7 +12,7 @@ const previewAvatarVisible = ref(false)
 </script>
 
 <template>
-  <div max-w-600px lt-md:w-full>
+  <div max-w-650px lt-md:w-full>
     <a-form ref="refForm" :model="form" auto-label-width size="large" mt-4>
       <a-form-item field="userAvatar" label="用户头像">
         <div w-full flex-center>
