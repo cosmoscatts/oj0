@@ -16,7 +16,7 @@ const textAvatar = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div select-none>
     <a-avatar :size="size">
       <img
         v-if="currentUser?.userAvatar"
