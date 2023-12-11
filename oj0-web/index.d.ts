@@ -87,6 +87,8 @@ declare global {
     userId?: number // 创建用户 id
     createTime?: Date
     updateTime?: Date
+
+    solutionNum?: number // 题解数量
   }
 }
 

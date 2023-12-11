@@ -25,7 +25,7 @@ defineExpose({ getSearchParams })
     </a-col>
     <a-col :span="8">
       <a-form-item field="tags" label="标签" hide-label>
-        <a-select v-model="form.tags" placeholder="标签" multiple allow-search allow-clear :options="questionTagGroupOptions" />
+        <a-select v-model="form.tags" placeholder="标签" multiple allow-search allow-clear :max-tag-count="10" :options="questionTagGroupOptions" />
       </a-form-item>
     </a-col>
     <a-col :span="8">

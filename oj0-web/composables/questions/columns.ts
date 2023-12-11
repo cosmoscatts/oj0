@@ -22,8 +22,14 @@ export function getQuestionsTableColumns(): TableColumnData[] {
     },
     {
       title: '题解',
-      dataIndex: 'solutions',
-      slotName: 'solutions',
+      dataIndex: 'solutionNum',
+      slotName: 'solutionNum',
+      align: 'center',
+    },
+    {
+      title: '通过率',
+      dataIndex: 'acceptPercent',
+      slotName: 'acceptPercent',
       align: 'center',
     },
     {

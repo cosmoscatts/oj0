@@ -17,8 +17,21 @@ const paginator = useTablePagination(search)
 
 const tableData = ref<Question[]>()
 function search() {
-
+  tableData.value = Array.from({ length: 6 }, (_, idx) => {
+    return {
+      id: idx + 1,
+      state: getRandomInteger(2),
+      title: getRandomStr(6),
+      solutionNum: getRandomInteger(10),
+      tags: Array(3).fill('').map(() => {
+        return questionTagOptions[getRandomInteger(questionTagOptions.length)].value as string
+      }),
+      acceptedNum: getRandomInteger(100, 20),
+      difficulty: 'easy',
+    }
+  })
 }
+search()
 </script>
 
 <template>
@@ -49,14 +62,34 @@ function search() {
       @page-change="paginator.onPageChange"
       @page-size-change="paginator.onPageSizeChange"
     >
-      <template #tags="{ record }">
-        <div v-if="record.tags.length" w-200px>
-          <a-overflow-list>
-            <a-tag v-for="tag in record.tags" :key="tag" bordered color="transparent" :style="{ color: 'var(--c-text-base)' }">
-              {{ tag }}
-            </a-tag>
-          </a-overflow-list>
+      <template #state="{ record }">
+        <div v-if="record.state === 1" w-full flex-center text-lg>
+          <div i-ri-check-line text-green />
         </div>
+      </template>
+      <template #title="{ record }">
+        <a v-if="record.title" cursor-pointer hover="underline text-primary">
+          {{ record.title }}
+        </a>
+      </template>
+      <template #acceptPercent="{ record }">
+        {{ record.acceptedNum ?? 0 }} %
+      </template>
+      <template #tags="{ record }">
+        <div v-if="record.tags.length" w-250px>
+          <CommonTooltip :content="record.tags.reduce((prev: string, cur: string) => `${prev}, ${cur}`, '').slice(1)">
+            <a-overflow-list>
+              <a-tag v-for="tag in record.tags" :key="tag" bordered color="transparent" :style="{ color: 'var(--c-text-base)' }">
+                {{ tag }}
+              </a-tag>
+            </a-overflow-list>
+          </CommonTooltip>
+        </div>
+      </template>
+      <template #difficulty="{ record }">
+        <span v-if="record.difficulty === 'easy'" text-green>简单</span>
+        <span v-if="record.difficulty === 'medium'" text-orange>中等</span>
+        <span v-if="record.difficulty === 'hard'" text-hard>困难</span>
       </template>
     </a-table>
   </div>
