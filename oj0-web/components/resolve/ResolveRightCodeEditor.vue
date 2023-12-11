@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const selectedLanguage = ref('java')
+
+const code = ref('hhhhh')
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const selectedLanguage = ref('java')
     </div>
 
     <div flex="~ 1 col" p-3>
-      1
+      <EditorCode v-model="code" :language="selectedLanguage" />
     </div>
   </div>
 </template>
