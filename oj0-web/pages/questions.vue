@@ -7,6 +7,8 @@ definePageMeta({
   // middleware: 'auth',
 })
 
+const router = useRouter()
+
 const columns = getQuestionsTableColumns()
 
 const selectedRadioValue = ref<string>()
@@ -32,6 +34,10 @@ function search() {
   })
 }
 search()
+
+function getRandomQuestion() {
+  router.push('/resolve/1111')
+}
 </script>
 
 <template>
@@ -43,7 +49,7 @@ search()
 
       <div col-span-1 flex justify-end gap-3>
         <div mt-2px h-32px flex-center>
-          <div flex-center gap-2 btn-solid>
+          <div flex-center gap-2 btn-solid @click="getRandomQuestion">
             <button i-ri-shuffle-line />
             随机一题
           </div>
