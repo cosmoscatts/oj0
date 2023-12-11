@@ -60,6 +60,16 @@ function createQuestionTagGroupOptions(): SelectOptionGroup[] {
 export const questionTagGroupOptions = createQuestionTagGroupOptions()
 
 /**
+ * 做题语言类型
+ */
+export const questionResolveLanguageOptions = Array.from({ length: 3 }, (_, idx) => {
+  return {
+    value: ['java', 'cpp', 'go'][idx],
+    label: ['Java', 'C++', 'Go'][idx],
+  }
+})
+
+/**
  * 根据 value 获取 label
  */
 export function getOptionsLabel(options?: SelectOptionData[], value?: string | number) {
