@@ -79,7 +79,7 @@ declare global {
     content?: string
     tags?: string[] // 标签
     difficulty?: string // 题目难度
-    answer?: string
+    answer?: string // 题解
     submitNum?: number
     acceptedNum?: number
     judgeCase?: JudgeCase[] // 判题用例
@@ -87,8 +87,6 @@ declare global {
     userId?: number // 创建用户 id
     createTime?: Date
     updateTime?: Date
-
-    solutionNum?: number // 题解数量
   }
 }
 

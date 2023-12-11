@@ -2,7 +2,7 @@
 import gfm from '@bytemd/plugin-gfm'
 import highlight from '@bytemd/plugin-highlight'
 import { Editor } from '@bytemd/vue-next'
-import zhHans from '~/config/zh_Hans.json'
+import zhHans from 'bytemd/locales/zh_Hans.json'
 
 const { mode = 'split' } = defineProps<{
   mode?: string

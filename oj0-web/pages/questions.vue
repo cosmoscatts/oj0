@@ -30,6 +30,7 @@ function search() {
       }),
       acceptedNum: getRandomInteger(100, 20),
       difficulty: 'easy',
+      answer: getRandomInteger(2) < 1 ? 'hhh' : '',
     }
   })
 }
@@ -51,7 +52,7 @@ function getRandomQuestion() {
         <div mt-2px h-32px flex-center>
           <div flex-center gap-2 btn-solid @click="getRandomQuestion">
             <button i-ri-shuffle-line />
-            随机一题
+            <span lt-xl:hidden>随机一题</span>
           </div>
         </div>
       </div>
@@ -77,6 +78,9 @@ function getRandomQuestion() {
         <a v-if="record.title" cursor-pointer hover="underline text-primary">
           {{ record.title }}
         </a>
+      </template>
+      <template #answer="{ record }">
+        {{ record.answer ? '已有题解' : '暂未发布' }}
       </template>
       <template #acceptPercent="{ record }">
         {{ record.acceptedNum ?? 0 }} %

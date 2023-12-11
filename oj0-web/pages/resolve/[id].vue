@@ -26,12 +26,12 @@ const id = computed(() => route.params.id) // 题目 id
         }" flex
       >
         <template #first>
-          <div h-full w-full of-x-hidden of-y-auto border="1 base">
-            1
+          <div h-full w-full of-x-hidden of-y-auto border="1 base" px-5 py-2>
+            <ViewerMarkdown w-full value="# hhhh" />
           </div>
         </template>
         <template #second>
-          <div>
+          <div lt-md:w-full>
             <a-split direction="vertical" :style="{ height: 'calc(100vh - 6rem)', overflow: 'hidden' }">
               <template #first>
                 <div h-full w-full of-x-hidden of-y-auto border="1 base">

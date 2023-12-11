@@ -22,8 +22,8 @@ export function getQuestionsTableColumns(): TableColumnData[] {
     },
     {
       title: '题解',
-      dataIndex: 'solutionNum',
-      slotName: 'solutionNum',
+      dataIndex: 'answer',
+      slotName: 'answer',
       align: 'center',
     },
     {
