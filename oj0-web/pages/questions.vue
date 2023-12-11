@@ -25,6 +25,19 @@ function search() {
   <div min-h-500px w-full>
     <QuestionsFilterRadioGroup v-model="selectedRadioValue" />
 
+    <div grid="~ cols-10" mt-5 gap-4 lt-lg:hidden>
+      <QuestionsSearchForm col-span-9 />
+
+      <div col-span-1 flex justify-end gap-3>
+        <div mt-2px h-32px flex-center>
+          <div flex-center gap-2 btn-solid>
+            <button i-ri-shuffle-line />
+            随机一题
+          </div>
+        </div>
+      </div>
+    </div>
+
     <a-table
       mt-4
       row-key="id"
