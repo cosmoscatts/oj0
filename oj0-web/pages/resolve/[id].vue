@@ -19,7 +19,7 @@ const currentQuestion = ref({
   content: '哈哈哈哈哈哈哈哈',
   tags: ['二叉树', '动态规划', '递归'],
   difficulty: 'easy',
-  hasSubmited: true,
+  hasSubmitted: true,
   hasResolved: false,
   judgeCase: [
     {

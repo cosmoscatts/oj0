@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { QUESTION_DIFFICULTY_ENUM } from '~/constants'
 
-const { title = '', content = '', tags = [], hasSubmited = false, hasResolved = false } = defineProps<{
+const { title = '', content = '', tags = [], hasSubmitted = false, hasResolved = false } = defineProps<{
   title?: string
   content?: string
   tags?: string[]
   difficulty?: string
-  hasSubmited?: boolean // 是否有提交记录
+  hasSubmitted?: boolean // 是否有提交记录
   hasResolved?: boolean // 是否解答
 }>()
 </script>
@@ -18,7 +18,7 @@ const { title = '', content = '', tags = [], hasSubmited = false, hasResolved = 
         {{ title }}
       </div>
       <div flex-y-center justify-end>
-        <template v-if="hasSubmited">
+        <template v-if="hasSubmitted">
           <div v-if="hasResolved" flex-center gap-2>
             <div>已解答</div>
             <div i-carbon-checkmark-outline text-green />
