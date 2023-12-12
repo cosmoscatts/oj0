@@ -1,19 +1,21 @@
 <script setup lang="ts">
+const authStore = useAuthStore()
+
+onMounted(async () => {
+  const result = await AuthApi.getLoginUser()
+  authStore.updateUser(result.data)
+})
+
 function createArcoTheme() {
   if (isDark.value)
     document.body.setAttribute('arco-theme', 'dark')
   else document.body.removeAttribute('arco-theme')
 }
 
-onMounted(() => {
-  setThemeColor()
-  createArcoTheme()
-})
-
 watch(isDark, () => {
   createArcoTheme()
   setThemeColor()
-})
+}, { immediate: true })
 
 const route = useRoute()
 watch(() => route.path, () => {

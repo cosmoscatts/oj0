@@ -51,7 +51,7 @@ async function submit() {
     <div>
       <a-form ref="refForm" :model="form" layout="vertical" size="small">
         <a-form-item
-          field="userAccount" label="用户账号" :rules="[
+          field="userAccount" label="用户账号" hide-asterisk :rules="[
             { required: true, message: '用户账号是必须的' },
             { minLength: 4, message: '用户账号不能少于4个字符' },
           ]"
@@ -59,7 +59,7 @@ async function submit() {
           <a-input v-model="form.userAccount" allow-clear />
         </a-form-item>
         <a-form-item
-          field="userPassword" label="用户密码" :rules="[
+          field="userPassword" label="用户密码" hide-asterisk :rules="[
             { required: true, message: '用户密码是必须的' },
             { minLength: 8, message: '用户密码不能少于8位' },
           ]"
@@ -67,7 +67,7 @@ async function submit() {
           <a-input-password v-model="form.userPassword" allow-clear />
         </a-form-item>
         <a-form-item
-          field="checkPassword" label="确认密码" :rules="[
+          field="checkPassword" hide-asterisk label="确认密码" :rules="[
             { required: true, message: '确认密码是必须的' },
             { validator: validatePasswordSame },
           ]" validate-trigger="input"
