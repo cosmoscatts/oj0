@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import logo from '~/public/logo.svg'
-
 const router = useRouter()
 
 function back() {
@@ -11,10 +9,6 @@ function back() {
 <template>
   <div mb-5 me-8 h-14 w-full flex-y-center justify-between border-b border-base px-30px>
     <div flex-center gap-1>
-      <div mr-2 h-8 w-8 flex-center cursor-pointer select-none>
-        <img :src="logo" rounded-lg>
-      </div>
-
       <CommonTooltip content="回退">
         <div i-ri:arrow-left-line text-xl btn-text @click="back" />
       </CommonTooltip>

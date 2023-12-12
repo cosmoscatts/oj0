@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     head: {
       viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
       link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+        { rel: 'icon', href: '/favicon.png', sizes: 'any' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
     },
   },
