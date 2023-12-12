@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     '~/styles/default-theme.css',
     '~/styles/vars.css',
     '~/styles/bytemd.css',
+    '~/styles/codemirror.css',
     '~/styles/arco-design.css',
     '~/styles/transition.css',
     '~/styles/scrollbars.css',

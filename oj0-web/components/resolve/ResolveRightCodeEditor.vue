@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const selectedLanguage = ref('java')
+import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
+
+const selectedLanguage = ref(RESOLVE_LANGUAGE_ENUM.JAVA)
 
 const code = ref('hhhhh')
 </script>

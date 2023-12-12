@@ -1,50 +1,48 @@
 <script setup lang="ts">
-import * as monaco from 'monaco-editor'
+import { Codemirror } from 'vue-codemirror'
+import { java } from '@codemirror/lang-java'
+import { cpp } from '@codemirror/lang-cpp'
+import { StreamLanguage } from '@codemirror/language'
+import { go } from '@codemirror/legacy-modes/mode/go'
+import { oneDark } from '@codemirror/theme-one-dark'
+import { tomorrow } from 'thememirror'
+import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
 
-const { language = 'java' } = defineProps<{
+const { language = RESOLVE_LANGUAGE_ENUM.JAVA } = defineProps<{
   language?: string
 }>()
 
 const modelValue = defineModel<string>()
 
-const refEl = ref()
-const codeEditor = ref()
+const extensions = computed(() => {
+  const result = []
+  result.push(
+    isDark.value
+      ? oneDark
+      : tomorrow,
+  )
+  if (language === RESOLVE_LANGUAGE_ENUM.JAVA)
+    result.push(java())
 
-watch(() => language, () => {
-  if (codeEditor.value) {
-    monaco.editor.setModelLanguage(
-      toRaw(codeEditor.value).getModel(),
-      language,
-    )
-  }
-})
+  if (language === RESOLVE_LANGUAGE_ENUM.CPP)
+    result.push(cpp())
 
-onMounted(() => {
-  if (!refEl.value)
-    return
+  if (language === RESOLVE_LANGUAGE_ENUM.GO)
+    result.push(StreamLanguage.define(go))
 
-  codeEditor.value = monaco.editor.create(refEl.value, {
-    value: modelValue.value,
-    language,
-    automaticLayout: true,
-    colorDecorators: true,
-    minimap: {
-      enabled: true,
-    },
-    readOnly: false,
-    theme: 'vs-dark',
-    // lineNumbers: "off",
-    // roundedSelection: false,
-    // scrollBeyondLastLine: false,
-  })
-
-  // 编辑 监听内容变化
-  codeEditor.value.onDidChangeModelContent(() => {
-    modelValue.value = toRaw(codeEditor.value).getValue()
-  })
+  return result
 })
 </script>
 
 <template>
-  <div id="code-editor" ref="refEl" h-full w-full />
+  <ClientOnly>
+    <Codemirror
+      v-model="modelValue"
+      :style="{ height: '100%', width: '100%' }"
+      :autofocus="false"
+      :indent-with-tab="true"
+      :tab-size="2"
+      :extensions="extensions"
+    />
+  </ClientOnly>
 </template>

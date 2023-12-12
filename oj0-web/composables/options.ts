@@ -3,7 +3,7 @@
  */
 
 import type { SelectOptionData, SelectOptionGroup } from '@arco-design/web-vue'
-import { ACCESS_ENUM, QUESTION_DIFFICULTY_ENUM } from '~/constants'
+import { ACCESS_ENUM, QUESTION_DIFFICULTY_ENUM, RESOLVE_LANGUAGE_ENUM } from '~/constants'
 import { commonQuestionGroupTags, commonQuestionTags } from '~/config/question'
 
 /**
@@ -64,7 +64,7 @@ export const questionTagGroupOptions = createQuestionTagGroupOptions()
  */
 export const questionResolveLanguageOptions = Array.from({ length: 3 }, (_, idx) => {
   return {
-    value: ['java', 'cpp', 'go'][idx],
+    value: [RESOLVE_LANGUAGE_ENUM.JAVA, RESOLVE_LANGUAGE_ENUM.CPP, RESOLVE_LANGUAGE_ENUM.GO][idx],
     label: ['Java', 'C++', 'Go'][idx],
   }
 })
