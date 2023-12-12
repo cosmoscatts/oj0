@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { answer = '' } = defineProps<{
+  answer?: string
+}>()
+</script>
 
 <template>
-  <div>1</div>
+  <div of-y-auto px-3 py-10px>
+    <ViewerMarkdown :value="answer" />
+  </div>
 </template>

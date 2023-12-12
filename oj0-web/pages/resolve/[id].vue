@@ -31,6 +31,7 @@ const currentQuestion = ref({
       output: '2222asd22',
     },
   ],
+  answer: '# 递归',
 })
 </script>
 
@@ -47,8 +48,8 @@ const currentQuestion = ref({
             <div flex="~ 1 col" of-auto>
               <CommonTransition name="layout">
                 <ResolveLeftQuestionInfo v-if="selectedLeftTab === 0" :="currentQuestion" />
-                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 1" />
-                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 2" />
+                <ResolveLeftQuestionAnswer v-if="selectedLeftTab === 1" :="currentQuestion" />
+                <ResolveLeftQuestionSubmitList v-if="selectedLeftTab === 2" />
               </CommonTransition>
             </div>
           </div>
