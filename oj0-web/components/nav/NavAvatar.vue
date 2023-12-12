@@ -7,11 +7,12 @@ const authStore = useAuthStore()
 const currentUser = computed(() => authStore.user)
 
 const textAvatar = computed(() => {
-  const userName = currentUser.value?.userName ?? ''
-  if (userName === '')
+  let str = currentUser.value?.userName ?? ''
+  if (str === '')
+    str = currentUser.value?.userAccount ?? ''
+  if (str === '')
     return 'X'
-
-  return userName.substring(0, 1)
+  return str.substring(0, 1)
 })
 </script>
 

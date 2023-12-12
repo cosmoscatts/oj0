@@ -1,14 +1,37 @@
 <script setup lang="ts">
 import { AUTH_ACTION_ENUM } from '~/constants'
 
+const authStore = useAuthStore()
+const closeAuthModal = inject<() => void>('closeAuthModal')
+
 const form = reactive({
   userAccount: '',
-  password: '',
+  userPassword: '',
 })
 
 const changeActionType = inject<(type: string) => void>('changeActionType')
 function gotoRegister() {
   changeActionType?.(AUTH_ACTION_ENUM.REGISTER)
+}
+
+const refForm = ref()
+function submit() {
+  refForm.value.validate(async (errors: any) => {
+    if (errors)
+      return
+    const result = await AuthApi.login(form)
+    if (result.code !== 0) {
+      Message.error(result.message ?? '登录失败')
+      return
+    }
+    authStore.updateUser(result.data)
+    closeAuthModal?.()
+    const userName = result.data.userName ?? ''
+    const content = userName === ''
+      ? '欢迎回来！'
+      : `${userName}, 欢迎回来！`
+    ANotification.success(content)
+  })
 }
 </script>
 
@@ -28,15 +51,15 @@ function gotoRegister() {
     <a-divider />
 
     <div>
-      <a-form :model="form" layout="vertical" size="small">
-        <a-form-item field="userAccount" label="用户账号">
+      <a-form ref="refForm" :model="form" layout="vertical" size="small">
+        <a-form-item field="userAccount" label="用户账号" :rules="[{ required: true, message: '用户账号是必须的' }]">
           <a-input v-model="form.userAccount" />
         </a-form-item>
-        <a-form-item field="password" label="用户密码">
-          <a-input v-model="form.password" />
+        <a-form-item field="userPassword" label="用户密码" :rules="[{ required: true, message: '用户密码是必须的' }]">
+          <a-input-password v-model="form.userPassword" />
         </a-form-item>
         <a-form-item mt-2>
-          <button w-full btn-solid>
+          <button w-full btn-solid @click="submit">
             提交
           </button>
         </a-form-item>

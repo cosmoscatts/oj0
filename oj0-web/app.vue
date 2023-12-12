@@ -15,13 +15,6 @@ watch(isDark, () => {
   setThemeColor()
 })
 
-const authStore = useAuthStore()
-authStore.updateUser({
-  id: 1,
-  userName: '狂雪',
-  userRole: 'admin',
-})
-
 const route = useRoute()
 watch(() => route.path, () => {
   const title = (route.meta.title ?? 'OJ0') as string

@@ -5,8 +5,12 @@ const { type = AUTH_ACTION_ENUM.LOGIN } = defineProps<{
   type?: string
 }>()
 const visible = defineModel<boolean>()
-
 const isLoginAction = computed(() => type === AUTH_ACTION_ENUM.LOGIN)
+
+function closeAuthModal() {
+  visible.value = false
+}
+provide('closeAuthModal', closeAuthModal)
 </script>
 
 <template>

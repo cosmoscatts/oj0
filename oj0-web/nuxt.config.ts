@@ -59,11 +59,8 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
-      './composables/question-manage',
-      './composables/questions',
-      './composables/submit-history',
-      './composables/table',
-      './composables/user-manage',
+      './composables/**',
+      './api/**',
     ],
     injectAtEnd: true,
   },
