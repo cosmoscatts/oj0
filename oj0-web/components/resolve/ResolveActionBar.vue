@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import logo from '~/public/logo.png'
+import logo from '~/public/logo.svg'
 
 const router = useRouter()
 
