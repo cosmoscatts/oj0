@@ -34,7 +34,7 @@ const currentQuestion = ref({
           <div h-full w-full of-hidden flex="~ col" border="1 base">
             <ResolveLeftSelectTabs v-model="selectedLeftTab" />
 
-            <div flex="~ 1 col">
+            <div flex="~ 1 col" of-auto>
               <CommonTransition name="layout">
                 <ResolveLeftQuestionInfo v-if="selectedLeftTab === 0" :="currentQuestion" />
                 <ResolveLeftQuestionInfo v-if="selectedLeftTab === 1" />
@@ -47,12 +47,12 @@ const currentQuestion = ref({
           <div lt-md:w-full>
             <a-split direction="vertical" :style="{ height: 'calc(100vh - 6rem)', overflow: 'hidden' }">
               <template #first>
-                <div h-full w-full of-x-hidden of-y-auto border="1 base">
+                <div h-full w-full of-hidden border="1 base">
                   <ResolveRightCodeEditor />
                 </div>
               </template>
               <template #second>
-                <div h-full w-full of-x-hidden of-y-auto border="1 base">
+                <div h-full w-full of-hidden border="1 base">
                   <ResolveRightTest />
                 </div>
               </template>

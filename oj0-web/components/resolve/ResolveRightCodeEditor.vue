@@ -22,7 +22,7 @@ const code = ref('hhhhh')
       </div>
     </div>
 
-    <div flex="~ 1 col" p-3>
+    <div flex="~ 1 col" of-auto p-3>
       <EditorCode v-model="code" :language="selectedLanguage" />
     </div>
   </div>

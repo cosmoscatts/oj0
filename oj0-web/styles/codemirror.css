@@ -36,3 +36,10 @@
   background-color: var(--c-bg-active);
 }
 
+.ͼ2 .cm-gutters {
+  border-right-color: var(--c-border);
+}
+
+.ͼ1.cm-focused {
+  outline: none;
+}

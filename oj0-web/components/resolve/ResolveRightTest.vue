@@ -13,7 +13,7 @@ const selectedTab = ref(0) // 0 - 测试用例；1 - 测试结果
       </button>
     </div>
 
-    <div flex="~ 1 col">
+    <div flex="~ 1 col" of-auto>
       1
     </div>
   </div>
