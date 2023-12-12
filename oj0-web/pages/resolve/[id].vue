@@ -21,6 +21,16 @@ const currentQuestion = ref({
   difficulty: 'easy',
   hasSubmited: true,
   hasResolved: false,
+  judgeCase: [
+    {
+      input: '22222',
+      output: '222',
+    },
+    {
+      input: '2222221231c',
+      output: '2222asd22',
+    },
+  ],
 })
 </script>
 
@@ -53,7 +63,7 @@ const currentQuestion = ref({
               </template>
               <template #second>
                 <div h-full w-full of-hidden border="1 base">
-                  <ResolveRightTest />
+                  <ResolveRightTest :judge-case="currentQuestion.judgeCase" />
                 </div>
               </template>
             </a-split>

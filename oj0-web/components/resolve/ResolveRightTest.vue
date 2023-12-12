@@ -13,8 +13,10 @@ const selectedTab = ref(0) // 0 - 测试用例；1 - 测试结果
       </button>
     </div>
 
-    <div flex="~ 1 col" of-auto>
-      1
+    <div flex="~ 1 col" of-x-hidden of-y-auto>
+      <CommonTransition name="layout">
+        <ResolveRightTestCase v-if="selectedTab === 0" :="$attrs" />
+      </CommonTransition>
     </div>
   </div>
 </template>
