@@ -55,7 +55,7 @@ function onRowClick() {
 </script>
 
 <template>
-  <div min-w-300px of-auto py-10px>
+  <div min-w-400px of-auto py-10px>
     <a-table :columns="columns" :data="tableData" :bordered="false" row-class="cursor-pointer" @row-click="onRowClick">
       <template #state="{ record }">
         <div grid="~ rows-2 gap-1" text-sm>
