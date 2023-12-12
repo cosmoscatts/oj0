@@ -54,6 +54,7 @@ export default defineNuxtConfig({
     dirs: [
       './composables/question-manage',
       './composables/questions',
+      './composables/submit-history',
       './composables/table',
       './composables/user-manage',
     ],

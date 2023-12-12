@@ -88,6 +88,21 @@ declare global {
     createTime?: Date
     updateTime?: Date
   }
+
+  /**
+   * 题目提交
+   */
+  interface QuestionSubmit {
+    id: number
+    questionId?: number // 题目 id
+    questionTitle: string // 题目标题
+    language?: string // 编程语言
+    state?: number // 0 - 等待中；1 - 解答错误；2 - 通过；
+    useMemory?: number // 消耗内存
+    useTime?: number // 用时
+    userId?: number // 提交人
+    createTime?: Date
+  }
 }
 
 declare module '#app' {

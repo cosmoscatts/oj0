@@ -12,7 +12,7 @@ const { title = '', content = '', tags = [], hasSubmitted = false, hasResolved =
 </script>
 
 <template>
-  <div flex="~ col" min-w-200px of-x-auto>
+  <div flex="~ col" min-w-200px>
     <div h-50px flex-y-center justify-between px-3 py-2>
       <div text-2xl font-bold text-base>
         {{ title }}

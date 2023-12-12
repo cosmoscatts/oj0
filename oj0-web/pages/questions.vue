@@ -75,7 +75,7 @@ function getRandomQuestion() {
         </div>
       </template>
       <template #title="{ record }">
-        <a v-if="record.title" cursor-pointer hover="underline text-primary">
+        <a v-if="record.title" cursor-pointer hover="underline underline-offset-2 text-primary">
           {{ record.title }}
         </a>
       </template>

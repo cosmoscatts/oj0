@@ -70,6 +70,16 @@ export const questionResolveLanguageOptions = Array.from({ length: 3 }, (_, idx)
 })
 
 /**
+ * 题目提交结果
+ */
+export const questionSubmitStateOptions = Array.from({ length: 3 }, (_, idx) => {
+  return {
+    value: idx,
+    label: ['等待中', '解答错误', '通过'][idx],
+  }
+})
+
+/**
  * 根据 value 获取 label
  */
 export function getOptionsLabel(options?: SelectOptionData[], value?: string | number) {

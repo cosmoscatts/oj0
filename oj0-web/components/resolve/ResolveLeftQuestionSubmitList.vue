@@ -16,14 +16,14 @@ const columns: TableColumnData[] = [
   },
   {
     title: '执行用时',
-    dataIndex: 'time',
-    slotName: 'time',
+    dataIndex: 'useTime',
+    slotName: 'useTime',
     align: 'center',
   },
   {
     title: '消耗内存',
-    dataIndex: 'memory',
-    slotName: 'memory',
+    dataIndex: 'useMemory',
+    slotName: 'useMemory',
     align: 'center',
   },
 ]
@@ -31,18 +31,18 @@ const columns: TableColumnData[] = [
 const tableData = ref<{
   state: number
   language: string
-  time?: number
-  memory?: number
+  useTime?: number
+  useMemory?: number
   createTime?: Date
 }[]>([])
 
 function fetchData() {
   tableData.value = Array.from({ length: 3 }, () => {
     return {
-      state: getRandomInteger(2),
+      state: getRandomInteger(3),
       language: 'java',
-      time: getRandomInteger(2) < 1 ? undefined : getRandomInteger(20, 1),
-      memory: getRandomInteger(50, 20),
+      useTime: getRandomInteger(2) < 1 ? undefined : getRandomInteger(20, 1),
+      useMemory: getRandomInteger(50, 20),
       createTime: new Date(),
     }
   })
@@ -56,15 +56,19 @@ function onRowClick() {
 
 <template>
   <div min-w-400px of-auto py-10px>
-    <a-table :columns="columns" :data="tableData" :bordered="false" row-class="cursor-pointer" @row-click="onRowClick">
+    <a-table :columns="columns" :data="tableData" :pagination="false" :bordered="false" row-class="cursor-pointer" @row-click="onRowClick">
       <template #state="{ record }">
         <div grid="~ rows-2 gap-1" text-sm>
           <div row-span-1 flex-center>
-            <div v-if="record.state === 1" text-green>
+            <div v-if="record.state === 1" text-red>
+              解答错误
+            </div>
+            <div v-else-if="record.state === 2" text-green>
               通过
             </div>
-            <div v-else text-red>
-              解答错误
+            <div v-else flex-center gap-2>
+              <div i-ri-loader-2-line animate-spin />
+              等待中
             </div>
           </div>
           <CommonTooltip :content="formatDate(record.createTime, 'YYYY-MM-DD HH:mm:ss')">
@@ -75,14 +79,16 @@ function onRowClick() {
         </div>
       </template>
       <template #language="{ record }">
-        {{ getOptionsLabel(questionResolveLanguageOptions, record.language) }}
+        <span select-none rounded-lg bg-dm px-3 py-1>
+          {{ getOptionsLabel(questionResolveLanguageOptions, record.language) }}
+        </span>
       </template>
-      <template #time="{ record }">
+      <template #useTime="{ record }">
         <div flex-center gap-1>
           <div i-ri-time-line />
-          <template v-if="record.time">
+          <template v-if="record.useTime">
             <div mt-0.5>
-              {{ record.time || 0 }} ms
+              {{ record.useTime || 0 }} ms
             </div>
           </template>
           <template v-else>
@@ -92,12 +98,12 @@ function onRowClick() {
           </template>
         </div>
       </template>
-      <template #memory="{ record }">
+      <template #useMemory="{ record }">
         <div flex-center gap-1>
           <div i-ri-cpu-line />
-          <template v-if="record.memory">
+          <template v-if="record.useMemory">
             <div mt-0.5>
-              {{ record.memory || 0 }} MB
+              {{ record.useMemory || 0 }} MB
             </div>
           </template>
           <template v-else>
