@@ -114,6 +114,7 @@ declare module '#app' {
 declare module 'vue-router' {
   interface RouteMeta {
     access?: string
+    title?: string
   }
 }
 

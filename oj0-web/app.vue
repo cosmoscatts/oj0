@@ -21,6 +21,12 @@ authStore.updateUser({
   userName: '狂雪',
   userRole: 'admin',
 })
+
+const route = useRoute()
+watch(() => route.path, () => {
+  const title = (route.meta.title ?? 'OJ0') as string
+  useHead({ title })
+}, { immediate: true })
 </script>
 
 <template>

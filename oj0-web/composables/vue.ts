@@ -35,16 +35,3 @@ export function onReactivated(hook: () => void, target?: ComponentInternalInstan
   }, target)
   onDeactivated(() => initial.value = false)
 }
-
-export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: UseHeadOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
-  if (input && typeof input === 'object' && !('value' in input)) {
-    const title = 'title' in input ? input.title : undefined
-    if (title)
-      (input as any).title = () => isHydrated.value ? typeof title === 'function' ? title() : title : ''
-  }
-  return useHead((() => {
-    if (!isHydrated.value)
-      return {}
-    return resolveUnref(input)
-  }) as UseHeadInput<T>, options)
-}

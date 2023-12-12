@@ -135,6 +135,10 @@
   background-color: var(--c-bg-active);
 }
 
+.arco-dropdown-option {
+  color: var(--c-text-secondary);
+}
+
 /* Drawer */
 .arco-drawer {
   background-color: var(--c-bg-base);

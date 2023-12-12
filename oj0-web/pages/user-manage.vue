@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import { ACCESS_ENUM } from '~/constants'
+
+definePageMeta({
+  name: 'UserManage',
+  title: '用户管理 - OJ0',
+  access: ACCESS_ENUM.ADMIN,
+  // middleware: 'auth',
+})
+
 const refSearchForm = ref()
 
 const columns = getUserManageTableColumns()

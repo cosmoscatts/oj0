@@ -3,6 +3,7 @@ import { ACCESS_ENUM, QUESTION_DIFFICULTY_ENUM } from '~/constants'
 
 definePageMeta({
   name: 'Questions',
+  title: '题库 - OJ0',
   access: ACCESS_ENUM.USER, // 需要用户权限
   // middleware: 'auth',
 })

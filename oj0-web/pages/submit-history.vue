@@ -3,6 +3,7 @@ import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
   name: 'SubmitHistory',
+  title: '历史提交 - OJ0',
   access: ACCESS_ENUM.USER, // 需要用户权限
   // middleware: 'auth',
 })
@@ -11,7 +12,7 @@ const refSearchForm = ref()
 
 const columns = getSubmitHistoryTableColumns()
 
-const tableData = ref<User[]>([])
+const tableData = ref<QuestionSubmit[]>([])
 const { loading } = useLoading()
 
 const paginator = useTablePagination(search)

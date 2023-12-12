@@ -3,6 +3,7 @@ import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
   name: 'UserProfile',
+  title: '个人中心 - OJ0',
   access: ACCESS_ENUM.USER,
   // middleware: 'auth',
 })

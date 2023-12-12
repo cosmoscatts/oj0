@@ -8,6 +8,13 @@ export default defineNuxtConfig({
       name: 'layout',
       mode: 'out-in',
     },
+    head: {
+      viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
+      link: [
+        { rel: 'icon', href: '/logo.png', sizes: 'any' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
+    },
   },
   devtools: { enabled: true },
   vue: {
