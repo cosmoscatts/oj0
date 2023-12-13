@@ -3,6 +3,8 @@ const API_URL_ENUM = {
   REGISTER: '/user/register',
   LOGOUT: '/user/logout',
   GET_LOGIN_USER: '/user/get/login',
+  GET_MY: '/user/get/my',
+  UPDATE_MY: '/user/update/my',
 }
 
 export const AuthApi = {
@@ -41,5 +43,19 @@ export const AuthApi = {
    */
   logout() {
     return useRequest.post<boolean, Result<boolean>>(API_URL_ENUM.LOGOUT)
+  },
+
+  /**
+   * 获取个人信息
+   */
+  getMy() {
+    return useRequest.get<User, Result<User>>(API_URL_ENUM.GET_MY)
+  },
+
+  /**
+   * 更新个人信息
+   */
+  updateMy(params: Partial<User>) {
+    return useRequest.post<boolean, Result<boolean>>(API_URL_ENUM.UPDATE_MY, params)
   },
 }

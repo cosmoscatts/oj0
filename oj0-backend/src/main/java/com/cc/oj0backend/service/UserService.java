@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.cc.oj0backend.model.dto.user.UserQueryRequest;
 import com.cc.oj0backend.model.entity.User;
 import com.cc.oj0backend.model.vo.LoginUserVO;
+import com.cc.oj0backend.model.vo.UserMyVO;
 import com.cc.oj0backend.model.vo.UserVO;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -90,6 +91,13 @@ public interface UserService extends IService<User> {
      * @return
      */
     LoginUserVO getLoginUserVO(User user);
+
+    /**
+     * 获取用户个人信息（包含账号）
+     *
+     * @return
+     */
+    UserMyVO getUserMyVO(User user);
 
     /**
      * 获取脱敏的用户信息

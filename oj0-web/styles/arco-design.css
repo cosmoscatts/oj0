@@ -71,6 +71,11 @@
   background-color: rgb(107 114 128 / 0.05);
 }
 
+.arco-input-wrapper.arco-input-disabled:hover {
+  color: rgb(107 114 128 / 0.5);
+  background-color: rgb(107 114 128 / 0.05);
+}
+
 /* Select */
 
 .arco-select-view-single {

@@ -10,14 +10,10 @@ import com.cc.oj0backend.config.WxOpenConfig;
 import com.cc.oj0backend.constant.UserConstant;
 import com.cc.oj0backend.exception.BusinessException;
 import com.cc.oj0backend.exception.ThrowUtils;
-import com.cc.oj0backend.model.dto.user.UserAddRequest;
-import com.cc.oj0backend.model.dto.user.UserLoginRequest;
-import com.cc.oj0backend.model.dto.user.UserQueryRequest;
-import com.cc.oj0backend.model.dto.user.UserRegisterRequest;
-import com.cc.oj0backend.model.dto.user.UserUpdateMyRequest;
-import com.cc.oj0backend.model.dto.user.UserUpdateRequest;
+import com.cc.oj0backend.model.dto.user.*;
 import com.cc.oj0backend.model.entity.User;
 import com.cc.oj0backend.model.vo.LoginUserVO;
+import com.cc.oj0backend.model.vo.UserMyVO;
 import com.cc.oj0backend.model.vo.UserVO;
 import com.cc.oj0backend.service.UserService;
 import java.util.List;
@@ -314,5 +310,17 @@ public class UserController {
         boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
+    }
+
+    /**
+     * 获取自己的个人信息
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping("/get/my")
+    public BaseResponse<UserMyVO> GetMyUser(HttpServletRequest request) {
+        User user = userService.getLoginUser(request);
+        return ResultUtils.success(userService.getUserMyVO(user));
     }
 }

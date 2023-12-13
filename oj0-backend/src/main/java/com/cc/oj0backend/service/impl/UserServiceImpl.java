@@ -13,6 +13,7 @@ import com.cc.oj0backend.model.dto.user.UserQueryRequest;
 import com.cc.oj0backend.model.entity.User;
 import com.cc.oj0backend.model.enums.UserRoleEnum;
 import com.cc.oj0backend.model.vo.LoginUserVO;
+import com.cc.oj0backend.model.vo.UserMyVO;
 import com.cc.oj0backend.model.vo.UserVO;
 import com.cc.oj0backend.service.UserService;
 import com.cc.oj0backend.utils.SqlUtils;
@@ -222,6 +223,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         LoginUserVO loginUserVO = new LoginUserVO();
         BeanUtils.copyProperties(user, loginUserVO);
         return loginUserVO;
+    }
+
+    @Override
+    public UserMyVO getUserMyVO(User user) {
+        if (user == null) {
+            return null;
+        }
+        UserMyVO userMyVO = new UserMyVO();
+        BeanUtils.copyProperties(user, userMyVO);
+        return userMyVO;
     }
 
     @Override

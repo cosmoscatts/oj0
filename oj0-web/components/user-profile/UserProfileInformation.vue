@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const refForm = ref()
-const form = reactive({
+const form = reactive<Partial<User>>({
   id: undefined,
   userAccount: '', // 用户账号
   userName: '', // 用户昵称
@@ -8,7 +8,28 @@ const form = reactive({
   userProfile: '', // 用户简介
 })
 
+async function fetchMy() {
+  const { data } = await AuthApi.getMy()
+  form.id = data.id
+  form.userAccount = data.userAccount
+  form.userName = data.userName
+  form.userAvatar = data.userAvatar
+  form.userProfile = data.userProfile
+}
+fetchMy()
+
 const previewAvatarVisible = ref(false)
+
+const authStore = useAuthStore()
+async function save() {
+  const { code, message } = await AuthApi.updateMy(form)
+  if (code !== 0) {
+    Message.error(message || '提交失败')
+    return
+  }
+  Message.success('提交成功')
+  authStore.autoLogin()
+}
 </script>
 
 <template>
@@ -23,9 +44,9 @@ const previewAvatarVisible = ref(false)
         field="userAccount" label="用户账号" :rules="[
           { required: true, message: '用户账号是必须的' },
           { minLength: 5, message: '用户账号长度必须大于5' },
-        ]"
+        ]" hide-asterisk
       >
-        <a-input v-model="form.userAccount" allow-clear />
+        <a-input v-model="form.userAccount" allow-clear disabled />
       </a-form-item>
       <a-form-item field="userName" label="用户昵称">
         <a-input v-model="form.userName" allow-clear />
@@ -38,7 +59,7 @@ const previewAvatarVisible = ref(false)
         <a-textarea v-model="form.userProfile" :max-length="{ length: 20, errorOnly: true }" allow-clear show-word-limit />
       </a-form-item>
       <a-form-item>
-        <button w-full btn-solid>
+        <button w-full btn-solid @click="save">
           提交
         </button>
       </a-form-item>
