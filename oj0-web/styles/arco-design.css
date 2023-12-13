@@ -66,6 +66,11 @@
   background-color: var(--c-bg-active);
 }
 
+.arco-input-wrapper.arco-input-disabled {
+  color: rgb(107 114 128 / 0.5);
+  background-color: rgb(107 114 128 / 0.05);
+}
+
 /* Select */
 
 .arco-select-view-single {

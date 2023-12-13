@@ -162,9 +162,19 @@ public class UserController {
         if (userAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
+
+        String userAccount = userAddRequest.getUserAccount();
+        String userPassword = userAddRequest.getUserPassword();
+        String checkPassword = userAddRequest.getCheckPassword();
+        if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户账号或密码不能为空");
+        }
+        long userId = userService.userRegister(userAccount, userPassword, checkPassword);
         User user = new User();
         BeanUtils.copyProperties(userAddRequest, user);
-        boolean result = userService.save(user);
+        user.setId(userId);
+        user.setUserPassword(null);
+        boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(user.getId());
     }

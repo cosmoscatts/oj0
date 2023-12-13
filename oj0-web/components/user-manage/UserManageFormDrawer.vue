@@ -70,7 +70,8 @@ function validatePasswordSame(value: string, callback: (error?: string) => void)
           { minLength: 5, message: '用户账号长度必须大于4' },
         ]"
       >
-        <a-input v-model="form.userAccount" allow-clear />
+        <a-input v-if="isAdd" v-model="form.userAccount" allow-clear />
+        <a-input v-else v-model="form.userAccount" allow-clear disabled />
       </a-form-item>
       <a-form-item field="userName" label="用户昵称">
         <a-input v-model="form.userName" allow-clear />
