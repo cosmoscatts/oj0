@@ -30,7 +30,7 @@ async function search() {
 }
 search()
 
-const { visible, data, show } = useVisible<Partial<User>>()
+const { visible, data, show, close } = useVisible<Partial<User>>()
 
 function add() {
   show()
@@ -41,6 +41,10 @@ function remove({ id }: User) {
     title: '删除确认',
     content: '确定要删除该用户吗？',
     ok: async () => {
+      if (!checkBeforeDeleteUser(id)) {
+        Message.warning('不可删除当前登录用户')
+        return
+      }
       const { code, message } = await UserApi.delete({ id })
       if (code !== 0) {
         Message.error(message || '删除失败')
@@ -50,6 +54,22 @@ function remove({ id }: User) {
       search()
     },
   })
+}
+
+async function saveData(data: Partial<User>) {
+  const isAdd = !data.id
+  const text = ['更新', '新增'][Number(isAdd)]
+  const fn = isAdd ? UserApi.add : UserApi.update
+  const { code, message } = await fn(data)
+  if (code !== 0) {
+    Message.error(message || `${text}失败`)
+    return
+  }
+  Message.success(`${text}成功`)
+  batchInvoke([close, search])
+
+  if (!isAdd)
+    checkAfterUpdateUser(data)
 }
 </script>
 
@@ -99,6 +119,6 @@ function remove({ id }: User) {
       </template>
     </a-table>
 
-    <UserManageFormDrawer v-model="visible" :data="data" />
+    <UserManageFormDrawer v-model="visible" :data="data" @save="saveData" />
   </CommonTableWrapper>
 </template>

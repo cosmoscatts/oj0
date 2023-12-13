@@ -56,7 +56,11 @@ async function submit() {
             { minLength: 4, message: '用户账号不能少于4个字符' },
           ]"
         >
-          <a-input v-model="form.userAccount" allow-clear />
+          <a-input v-model="form.userAccount" allow-clear>
+            <template #prefix>
+              <IconLock />
+            </template>
+          </a-input>
         </a-form-item>
         <a-form-item
           field="userPassword" label="用户密码" hide-asterisk :rules="[
@@ -64,7 +68,11 @@ async function submit() {
             { minLength: 8, message: '用户密码不能少于8位' },
           ]"
         >
-          <a-input-password v-model="form.userPassword" allow-clear />
+          <a-input-password v-model="form.userPassword" allow-clear>
+            <template #prefix>
+              <IconLock />
+            </template>
+          </a-input-password>
         </a-form-item>
         <a-form-item
           field="checkPassword" hide-asterisk label="确认密码" :rules="[
@@ -72,7 +80,11 @@ async function submit() {
             { validator: validatePasswordSame },
           ]" validate-trigger="input"
         >
-          <a-input-password v-model="form.checkPassword" allow-clear />
+          <a-input-password v-model="form.checkPassword" allow-clear>
+            <template #prefix>
+              <IconLock />
+            </template>
+          </a-input-password>
         </a-form-item>
         <a-form-item mt-2>
           <button w-full btn-solid @click="submit">

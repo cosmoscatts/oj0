@@ -49,6 +49,11 @@ function handleOk() {
 }
 
 const previewAvatarVisible = ref(false)
+
+function validatePasswordSame(value: string, callback: (error?: string) => void) {
+  if (value !== form.userPassword)
+    callback('两次输入的密码不一致')
+}
 </script>
 
 <template>
@@ -62,7 +67,7 @@ const previewAvatarVisible = ref(false)
       <a-form-item
         field="userAccount" label="用户账号" :rules="[
           { required: true, message: '用户账号是必须的' },
-          { minLength: 5, message: '用户账号长度必须大于5' },
+          { minLength: 5, message: '用户账号长度必须大于4' },
         ]"
       >
         <a-input v-model="form.userAccount" allow-clear />
@@ -73,7 +78,7 @@ const previewAvatarVisible = ref(false)
       <a-form-item
         v-if="isAdd" field="userPassword" label="用户密码" :rules="[
           { required: true, message: '用户密码是必须的' },
-          { minLength: 6, message: '用户密码长度必须大于6' },
+          { minLength: 6, message: '用户密码长度必须大于8' },
         ]"
       >
         <a-input-password v-model="form.userPassword" allow-clear>
@@ -85,8 +90,8 @@ const previewAvatarVisible = ref(false)
       <a-form-item
         v-if="isAdd" field="checkPassword" label="确认密码" :rules="[
           { required: true, message: '确认密码是必须的' },
-          { minLength: 6, message: '确认密码长度必须大于6' },
-        ]"
+          { validator: validatePasswordSame },
+        ]" validate-trigger="input"
       >
         <a-input-password v-model="form.checkPassword" allow-clear>
           <template #prefix>

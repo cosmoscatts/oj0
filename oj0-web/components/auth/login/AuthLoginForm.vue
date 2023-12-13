@@ -57,10 +57,18 @@ function submit() {
     <div>
       <a-form ref="refForm" :model="form" layout="vertical" size="small">
         <a-form-item field="userAccount" label="用户账号" hide-asterisk :rules="[{ required: true, message: '用户账号是必须的' }]">
-          <a-input v-model="form.userAccount" />
+          <a-input v-model="form.userAccount">
+            <template #prefix>
+              <IconUser />
+            </template>
+          </a-input>
         </a-form-item>
         <a-form-item field="userPassword" label="用户密码" hide-asterisk :rules="[{ required: true, message: '用户密码是必须的' }]">
-          <a-input-password v-model="form.userPassword" />
+          <a-input-password v-model="form.userPassword">
+            <template #prefix>
+              <IconLock />
+            </template>
+          </a-input-password>
         </a-form-item>
         <a-form-item mt-2>
           <button w-full btn-solid @click="submit">
