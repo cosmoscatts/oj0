@@ -15,7 +15,7 @@ function handleAuth(to: RouteLocationNormalized) {
   const user = authStore.user
 
   if (checkAccess(user, to.meta?.access))
-    return navigateTo(to)
-  else
-    return navigateTo('/no-auth')
+    return
+
+  return navigateTo('/no-auth')
 }
