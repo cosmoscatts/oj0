@@ -6,6 +6,15 @@ const form = reactive({
   userNewPassword: '', // 新密码
   checkNewPassword: '', // 确认新密码
 })
+
+function onExtraBtnClick(e: MouseEvent) {
+  e.preventDefault()
+  Message.warning('功能开发中，暂不支持此操作！')
+}
+
+function submit() {
+
+}
 </script>
 
 <template>
@@ -48,7 +57,7 @@ const form = reactive({
         </a-input-password>
       </a-form-item>
       <a-form-item>
-        <button w-full btn-solid>
+        <button w-full btn-solid @click="submit">
           提交
         </button>
       </a-form-item>
@@ -66,7 +75,7 @@ const form = reactive({
           <div flex="1 center">
             未绑定
           </div>
-          <button btn-text>
+          <button btn-text @click="onExtraBtnClick">
             绑定
           </button>
         </div>
@@ -83,7 +92,7 @@ const form = reactive({
           <div flex="1 center">
             未绑定
           </div>
-          <button btn-text>
+          <button btn-text @click="onExtraBtnClick">
             绑定
           </button>
         </div>
@@ -100,7 +109,7 @@ const form = reactive({
           <div flex="1 center">
             未绑定
           </div>
-          <button btn-text>
+          <button btn-text @click="onExtraBtnClick">
             绑定
           </button>
         </div>
@@ -117,7 +126,7 @@ const form = reactive({
           <div flex="1 center">
             未绑定
           </div>
-          <button btn-text>
+          <button btn-text @click="onExtraBtnClick">
             绑定
           </button>
         </div>
@@ -134,7 +143,7 @@ const form = reactive({
           <div flex="1 center">
             未绑定
           </div>
-          <button btn-text>
+          <button btn-text @click="onExtraBtnClick">
             绑定
           </button>
         </div>

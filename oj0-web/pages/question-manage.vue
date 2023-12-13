@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ACCESS_ENUM } from '~/constants'
+import { ACCESS_ENUM, QUESTION_DIFFICULTY_ENUM } from '~/constants'
 
 definePageMeta({
   name: 'QuestionManage',
@@ -23,7 +23,8 @@ function search() {
       id: idx + 1,
       title: `题目${idx + 1}`,
       content: '哈哈哈哈哈哈哈',
-      tags: ['简单', '二叉树'],
+      difficulty: [QUESTION_DIFFICULTY_ENUM.EASY, QUESTION_DIFFICULTY_ENUM.MEDIUM, QUESTION_DIFFICULTY_ENUM.HARD][getRandomInteger(3)],
+      tags: ['递归', '动态规划', '二叉树'],
       createTime: new Date(),
       updateTime: new Date(),
     }
@@ -55,6 +56,11 @@ function add() {
       @page-change="paginator.onPageChange"
       @page-size-change="paginator.onPageSizeChange"
     >
+      <template #difficulty="{ record }">
+        <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.EASY" text-green>简单</span>
+        <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.MEDIUM" text-orange>中等</span>
+        <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.HARD" text-red>困难</span>
+      </template>
       <template #tags="{ record }">
         <div v-if="record.tags.length" w-200px>
           <a-overflow-list>
@@ -65,7 +71,9 @@ function add() {
         </div>
       </template>
       <template #userId>
-        管理员
+        <span select-none rounded-lg bg-dm px-3 py-1>
+          管理员
+        </span>
       </template>
       <template #createTime="{ record }">
         {{ formatDate(record.createTime) }}

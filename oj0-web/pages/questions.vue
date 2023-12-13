@@ -81,7 +81,9 @@ function getRandomQuestion() {
         </a>
       </template>
       <template #answer="{ record }">
-        {{ record.answer ? '已有题解' : '暂未发布' }}
+        <span select-none rounded-lg bg-dm px-3 py-1>
+          {{ record.answer ? '已有题解' : '暂未发布' }}
+        </span>
       </template>
       <template #acceptPercent="{ record }">
         {{ record.acceptedNum ?? 0 }} %
