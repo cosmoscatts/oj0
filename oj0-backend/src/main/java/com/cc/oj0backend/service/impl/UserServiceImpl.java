@@ -3,6 +3,7 @@ package com.cc.oj0backend.service.impl;
 import static com.cc.oj0backend.constant.UserConstant.USER_LOGIN_STATE;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cc.oj0backend.common.ErrorCode;
@@ -105,6 +106,40 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 3. 记录用户的登录态
         request.getSession().setAttribute(USER_LOGIN_STATE, user);
         return this.getLoginUserVO(user);
+    }
+
+    @Override
+    public boolean updateMyPassword(Long userId, String userAccount, String userOldPassword, String userNewPassword, String checkNewPassword){
+        if (userNewPassword.length() < 8 || checkNewPassword.length() < 8) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户新密码过短");
+        }
+        // 新密码和校验新密码相同
+        if (!userNewPassword.equals(checkNewPassword)) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "两次输入的新密码不一致");
+        }
+        // 验证原密码是否正确
+        String encryptOldPassword = DigestUtils.md5DigestAsHex((SALT + userOldPassword).getBytes());
+        // 查询用户是否存在
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userAccount", userAccount);
+        queryWrapper.eq("userPassword", encryptOldPassword);
+        User user = this.baseMapper.selectOne(queryWrapper);
+        // 用户不存在
+        if (user == null) {
+            log.info("user login failed, userAccount cannot match userPassword");
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户不存在或密码错误");
+        }
+        // 加密新密码
+        String encryptNewPassword = DigestUtils.md5DigestAsHex((SALT + userNewPassword).getBytes());
+        // 更新密码
+        user = new User();
+        user.setId(userId);
+        user.setUserPassword(encryptNewPassword);
+        boolean saveResult = this.updateById(user);
+        if (!saveResult) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "注册失败，数据库错误");
+        }
+        return true;
     }
 
     @Override

@@ -323,4 +323,29 @@ public class UserController {
         User user = userService.getLoginUser(request);
         return ResultUtils.success(userService.getUserMyVO(user));
     }
+
+    /**
+     * 用户更新密码
+     *
+     * @param userUpdateMyPasswordRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/update/my/password")
+    public BaseResponse<Boolean> updateMyPassword(@RequestBody UserUpdateMyPasswordRequest userUpdateMyPasswordRequest,
+                                              HttpServletRequest request) {
+        if (userUpdateMyPasswordRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        String userOldPassword = userUpdateMyPasswordRequest.getUserOldPassword();
+        String userNewPassword = userUpdateMyPasswordRequest.getUserNewPassword();
+        String checkNewPassword = userUpdateMyPasswordRequest.getCheckNewPassword();
+        if (StringUtils.isAnyBlank(userOldPassword, userNewPassword, checkNewPassword)) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
+        }
+        User loginUser = userService.getLoginUser(request);;
+        boolean result = userService.updateMyPassword(loginUser.getId(), loginUser.getUserAccount(), userOldPassword, userNewPassword, checkNewPassword);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return ResultUtils.success(true);
+    }
 }

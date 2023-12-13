@@ -26,10 +26,11 @@ export const useAuthStore = defineStore('authStore', () => {
   /**
    * 退出登录
    */
-  async function logout() {
+  async function logout(message = true) {
     const result = await AuthApi.logout()
     if (result.data === true) {
-      Message.success('退出成功')
+      if (message)
+        Message.success('退出成功')
       updateUser(null)
       const route = useRoute()
       const router = useRouter()
@@ -39,7 +40,8 @@ export const useAuthStore = defineStore('authStore', () => {
 
       return
     }
-    Message.error('退出失败，请重试！')
+    if (message)
+      Message.error('退出失败，请重试！')
   }
 
   return {

@@ -5,6 +5,7 @@ const API_URL_ENUM = {
   GET_LOGIN_USER: '/user/get/login',
   GET_MY: '/user/get/my',
   UPDATE_MY: '/user/update/my',
+  UPDATE_MY_PASSWORD: '/user/update/my/password',
 }
 
 export const AuthApi = {
@@ -57,5 +58,16 @@ export const AuthApi = {
    */
   updateMy(params: Partial<User>) {
     return useRequest.post<boolean, Result<boolean>>(API_URL_ENUM.UPDATE_MY, params)
+  },
+
+  /**
+   * 更新个人密码
+   */
+  updateMyPassword(params: {
+    userOldPassword?: string
+    userNewPassword?: string
+    checkNewPassword?: string
+  }) {
+    return useRequest.post<boolean, Result<boolean>>(API_URL_ENUM.UPDATE_MY_PASSWORD, params)
   },
 }

@@ -123,4 +123,6 @@ public interface UserService extends IService<User> {
      */
     QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
 
+    boolean updateMyPassword(Long userId, String userAccount, String userOldPassword, String userNewPassword, String checkNewPassword);
+
 }
