@@ -27,8 +27,8 @@ const hasLogin = authStore.getHasLogin()
 
       <div flex-y-center gap-3>
         <DarkToggle />
+        <NavDropdownPanel />
         <NavLoginBtns v-if="!hasLogin" />
-        <NavDropdownPanel v-else />
       </div>
     </div>
   </nav>

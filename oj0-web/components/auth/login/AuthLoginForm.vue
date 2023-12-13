@@ -30,7 +30,11 @@ function submit() {
     const content = userName === ''
       ? '欢迎回来！'
       : `${userName}, 欢迎回来！`
-    ANotification.success(content)
+    ANotification.success({
+      title: '登录成功',
+      content,
+      duration: 3000,
+    })
   })
 }
 </script>

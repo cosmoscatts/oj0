@@ -25,6 +25,10 @@ const authStore = useAuthStore()
 function logout() {
   authStore.logout()
 }
+
+const hasLogin = authStore.getHasLogin()
+const userName = computed(() => hasLogin.value ? authStore.user?.userName || '默认昵称' : '请先登录')
+const userProfile = computed(() => hasLogin.value ? authStore.user?.userProfile || '还未添加任何简介～' : '登录后即可查看~')
 </script>
 
 <template>
@@ -38,10 +42,10 @@ function logout() {
 
           <div pl-3>
             <div text-xl font-bold>
-              赤徑
+              {{ userName }}
             </div>
             <div mt-1 text-primary>
-              I have no bio.
+              {{ userProfile }}
             </div>
           </div>
         </div>
@@ -61,9 +65,9 @@ function logout() {
           </a-menu>
         </div>
 
-        <a-divider />
+        <a-divider v-if="hasLogin" />
 
-        <div>
+        <div v-if="hasLogin">
           <a-doption @click="checkProfile">
             <div flex-y-center gap-4>
               <div i-ri-profile-line />

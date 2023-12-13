@@ -19,6 +19,9 @@ const authStore = useAuthStore()
 function logout() {
   authStore.logout()
 }
+
+const userName = computed(() => authStore.user?.userName || '默认昵称')
+const userProfile = computed(() => authStore.user?.userProfile || '还未添加任何简介～')
 </script>
 
 <template>
@@ -31,10 +34,10 @@ function logout() {
 
           <div pl-3>
             <div text-xl font-bold>
-              赤徑
+              {{ userName }}
             </div>
-            <div mt-1 text-primary>
-              I have no bio.
+            <div mt-1 text-sm text-primary>
+              {{ userProfile }}
             </div>
           </div>
         </div>
