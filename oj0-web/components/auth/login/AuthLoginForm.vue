@@ -67,7 +67,7 @@ function submit() {
     </div>
 
     <p mt-2 text-sm text-secondary>
-      没有账号？<a cursor-pointer text-base underline @click="gotoRegister">注册一个</a>
+      没有账号？<a cursor-pointer text-base underline underline-offset-2 hover:text-primary @click="gotoRegister">注册一个</a>
     </p>
   </div>
 </template>

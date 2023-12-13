@@ -83,7 +83,7 @@ async function submit() {
     </div>
 
     <p mt-2 text-sm text-secondary>
-      已经注册？<a cursor-pointer text-base underline @click="gotoLogin">登录</a>
+      已经注册？<a cursor-pointer text-base underline underline-offset-2 hover:text-primary @click="gotoLogin">登录</a>
     </p>
   </div>
 </template>
