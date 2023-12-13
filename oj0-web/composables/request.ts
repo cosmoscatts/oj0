@@ -8,6 +8,7 @@ function create() {
     baseURL: `${import.meta.env.VITE_BASE_API_URL}/api`,
     timeout: AXIOS_TIMEOUT,
   })
+  _axios.defaults.withCredentials = true // 传递 cookie
   _axios.interceptors.request.use(
     (config: AxiosRequestConfig) => {
       // const token = getToken()
