@@ -5,7 +5,7 @@ definePageMeta({
   name: 'UserManage',
   title: '用户管理 - OJ0',
   access: ACCESS_ENUM.ADMIN,
-  // middleware: 'auth',
+  middleware: 'auth',
 })
 
 const refSearchForm = ref()

@@ -18,15 +18,10 @@ watch(() => route.path, () => {
   useHead({ title })
 }, { immediate: true })
 
-async function checkLogin() {
-  const result = await AuthApi.getLoginUser()
-  authStore.updateUser(result.data)
-}
-
 onMounted(() => {
   createArcoTheme()
   setThemeColor()
-  checkLogin()
+  authStore.autoLogin()
 })
 </script>
 

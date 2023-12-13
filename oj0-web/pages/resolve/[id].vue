@@ -5,7 +5,7 @@ definePageMeta({
   name: 'ResolveQuestion',
   access: ACCESS_ENUM.USER, // 需要用户权限
   layout: 'none',
-  // middleware: 'auth',
+  middleware: 'auth',
 })
 
 const route = useRoute()

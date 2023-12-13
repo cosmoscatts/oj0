@@ -5,6 +5,7 @@ definePageMeta({
   name: 'Home',
   title: '首页 - OJ0',
   access: ACCESS_ENUM.NOT_LOGIN,
+  middleware: 'auth',
 })
 
 const currentIdx = ref(1)

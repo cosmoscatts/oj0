@@ -5,7 +5,7 @@ definePageMeta({
   name: 'SubmitHistory',
   title: '历史提交 - OJ0',
   access: ACCESS_ENUM.USER, // 需要用户权限
-  // middleware: 'auth',
+  middleware: 'auth',
 })
 
 const refSearchForm = ref()

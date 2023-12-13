@@ -1,6 +1,7 @@
 const API_URL_ENUM = {
   LOGIN: '/user/login',
   REGISTER: '/user/register',
+  LOGOUT: '/user/logout',
   GET_LOGIN_USER: '/user/get/login',
 }
 
@@ -33,5 +34,12 @@ export const AuthApi = {
    */
   async getLoginUser() {
     return await useRequest.get<User, Result<User>>(API_URL_ENUM.GET_LOGIN_USER)
+  },
+
+  /**
+   * 退出登录
+   */
+  async logout() {
+    return await useRequest.post<boolean, Result<boolean>>(API_URL_ENUM.LOGOUT)
   },
 }

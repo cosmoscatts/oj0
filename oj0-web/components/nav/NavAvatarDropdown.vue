@@ -14,6 +14,11 @@ const router = useRouter()
 function checkProfile() {
   router.push('/user-profile')
 }
+
+const authStore = useAuthStore()
+function logout() {
+  authStore.logout()
+}
 </script>
 
 <template>
@@ -43,7 +48,7 @@ function checkProfile() {
               个人中心
             </div>
           </a-doption>
-          <a-doption>
+          <a-doption @click="logout">
             <div flex-y-center gap-4>
               <div i-ri-logout-box-r-line />
               退出登陆

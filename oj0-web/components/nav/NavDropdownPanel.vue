@@ -15,6 +15,16 @@ watch(width, () => {
   if (visible.value)
     visible.value = false
 })
+
+const router = useRouter()
+function checkProfile() {
+  router.push('/user-profile')
+}
+
+const authStore = useAuthStore()
+function logout() {
+  authStore.logout()
+}
 </script>
 
 <template>
@@ -54,13 +64,13 @@ watch(width, () => {
         <a-divider />
 
         <div>
-          <a-doption>
+          <a-doption @click="checkProfile">
             <div flex-y-center gap-4>
               <div i-ri-profile-line />
               个人中心
             </div>
           </a-doption>
-          <a-doption>
+          <a-doption @click="logout">
             <div flex-y-center gap-4>
               <div i-ri-logout-box-r-line />
               退出登录

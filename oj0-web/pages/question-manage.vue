@@ -5,7 +5,7 @@ definePageMeta({
   name: 'QuestionManage',
   title: '题目管理 - OJ0',
   access: ACCESS_ENUM.ADMIN,
-  // middleware: 'auth',
+  middleware: 'auth',
 })
 
 const refSearchForm = ref()
