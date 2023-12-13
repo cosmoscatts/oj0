@@ -20,7 +20,7 @@ export function useConfirm(opts?: {
         }
       }
       return h('div', { class: 'flex-y-center justify-end gap-2' }, [
-        h('div', { class: 'btn-solid', onClick: onOk }, { default: () => '保存' }),
+        h('div', { class: 'btn-solid', onClick: onOk }, { default: () => '确定' }),
         h('div', { class: 'filter-saturate-0 btn-text', onClick: instance.close }, { default: () => '取消' }),
       ])
     },

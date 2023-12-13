@@ -4,7 +4,6 @@ const emit = defineEmits<{
 }>()
 
 const { form, reset, getSearchParams } = useTableSearch<Partial<User>>(() => ({
-  userAccount: '',
   userName: '',
   userRole: '',
 }))
@@ -18,11 +17,6 @@ defineExpose({ getSearchParams })
 
 <template>
   <CommonTableSearchForm :="{ form }" @search="search" @reset="reset">
-    <a-col :span="8">
-      <a-form-item field="userAccount" label="用户账号">
-        <a-input v-model="form.userAccount" allow-clear />
-      </a-form-item>
-    </a-col>
     <a-col :span="8">
       <a-form-item field="userName" label="用户名称">
         <a-input v-model="form.userName" allow-clear />

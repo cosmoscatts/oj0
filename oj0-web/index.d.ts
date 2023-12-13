@@ -23,6 +23,18 @@ declare global {
   }
 
   /**
+   * 分页返回结果
+   */
+  interface PageResult<T> {
+    code?: number
+    data: {
+      records: T[]
+      total: number
+    }
+    message?: string
+  }
+
+  /**
    * 分页
    */
   interface Pagination {
