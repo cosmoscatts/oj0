@@ -7,6 +7,7 @@ const { form, reset, getSearchParams } = useTableSearch<Partial<Question>>(() =>
   title: '',
   content: '',
   tags: [],
+  difficulty: '',
 }))
 
 function search() {
