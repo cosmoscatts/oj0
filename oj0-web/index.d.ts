@@ -83,6 +83,25 @@ declare global {
   }
 
   /**
+   * 题目 (实体)
+   */
+  interface QuestionDO {
+    id: number
+    title?: string
+    content?: string
+    tags?: string // 标签
+    difficulty?: string // 题目难度
+    answer?: string // 题解
+    submitNum?: number
+    acceptedNum?: number
+    judgeCase?: string // 判题用例
+    judgeConfig?: string // 判题配置
+    userId?: number // 创建用户 id
+    createTime?: Date
+    updateTime?: Date
+  }
+
+  /**
    * 题目
    */
   interface Question {

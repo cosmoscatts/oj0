@@ -113,10 +113,18 @@ function removeJudgeCase(index: number) {
       >
         <a-select v-model="form.difficulty" allow-clear :options="questionDifficultyOptions" />
       </a-form-item>
-      <a-form-item field="tags" label="题目标签">
+      <a-form-item
+        field="tags" label="题目标签" :rules="[
+          { required: true, message: '题目标签是必须的' },
+        ]"
+      >
         <a-select v-model="form.tags" multiple allow-search allow-clear :options="questionTagGroupOptions" />
       </a-form-item>
-      <a-form-item field="content" label="题目内容">
+      <a-form-item
+        field="content" label="题目内容" :rules="[
+          { required: true, message: '题目内容是必须的' },
+        ]"
+      >
         <EditorMarkdown v-model="form.content" w-full />
       </a-form-item>
       <a-form-item field="content" label="题目答案">

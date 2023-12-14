@@ -54,12 +54,13 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         String title = question.getTitle();
         String content = question.getContent();
         String tags = question.getTags();
+        String difficulty = question.getDifficulty();
         String answer = question.getAnswer();
         String judgeCase = question.getJudgeCase();
         String judgeConfig = question.getJudgeConfig();
         // 创建时，参数不能为空
         if (add) {
-            ThrowUtils.throwIf(StringUtils.isAnyBlank(title, content, tags), ErrorCode.PARAMS_ERROR);
+            ThrowUtils.throwIf(StringUtils.isAnyBlank(title, content, tags, difficulty), ErrorCode.PARAMS_ERROR);
         }
         // 有参数则校验
         if (StringUtils.isNotBlank(title) && title.length() > 80) {

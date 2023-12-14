@@ -17,26 +17,52 @@ const { loading } = useLoading()
 
 const paginator = useTablePagination(search)
 
-function search() {
-  tableData.value = Array.from({ length: 6 }, (_, idx) => {
-    return {
-      id: idx + 1,
-      title: `题目${idx + 1}`,
-      content: '哈哈哈哈哈哈哈',
-      difficulty: [QUESTION_DIFFICULTY_ENUM.EASY, QUESTION_DIFFICULTY_ENUM.MEDIUM, QUESTION_DIFFICULTY_ENUM.HARD][getRandomInteger(3)],
-      tags: ['递归', '动态规划', '二叉树'],
-      createTime: new Date(),
-      updateTime: new Date(),
-    }
-  })
-  paginator.setPaginationTotal(6)
+async function search() {
+  const { current, pageSize } = paginator.pagination
+  const searchParams = {
+    current,
+    pageSize,
+    ...refSearchForm.value?.getSearchParams(),
+  }
+  const { data: { records, total } } = await QuestionApi.list(searchParams)
+  tableData.value = transformQuestionToVO(records)
+  paginator.setPaginationTotal(Number(total || 0))
 }
 search()
 
-const { visible, data, show } = useVisible<Partial<User>>()
+const { visible, data, show, close } = useVisible<Partial<Question>>()
 
 function add() {
   show()
+}
+
+function remove({ id }: Question) {
+  useConfirm({
+    title: '删除确认',
+    content: '确定要删除该题目吗？',
+    ok: async () => {
+      const { code, message } = await QuestionApi.delete({ id })
+      if (code !== 0) {
+        Message.error(message || '删除失败')
+        return
+      }
+      Message.success('删除成功')
+      search()
+    },
+  })
+}
+
+async function saveData(data: Partial<Question>) {
+  const isAdd = !data.id
+  const text = ['更新', '新增'][Number(isAdd)]
+  const fn = isAdd ? QuestionApi.add : QuestionApi.update
+  const { code, message } = await fn(data)
+  if (code !== 0) {
+    Message.error(message || `${text}失败`)
+    return
+  }
+  Message.success(`${text}成功`)
+  batchInvoke([close, search])
 }
 </script>
 
@@ -56,6 +82,9 @@ function add() {
       @page-change="paginator.onPageChange"
       @page-size-change="paginator.onPageSizeChange"
     >
+      <template #id="{ rowIndex }">
+        {{ paginator.formatRowIndex(rowIndex) }}
+      </template>
       <template #difficulty="{ record }">
         <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.EASY" text-green>简单</span>
         <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.MEDIUM" text-orange>中等</span>
@@ -89,7 +118,7 @@ function add() {
             </div>
           </CommonTooltip>
           <CommonTooltip content="删除题目">
-            <div filter-saturate-0 btn-text>
+            <div filter-saturate-0 btn-text @click="remove(record)">
               删除
             </div>
           </CommonTooltip>
@@ -97,6 +126,6 @@ function add() {
       </template>
     </a-table>
 
-    <QuestionManageFormDrawer v-model="visible" :data="data" />
+    <QuestionManageFormDrawer v-model="visible" :data="data" @save="saveData" />
   </CommonTableWrapper>
 </template>
