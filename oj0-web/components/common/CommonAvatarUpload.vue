@@ -52,7 +52,7 @@ function checkImageBeforeUpload(file: File): Promise<boolean | File> {
           <div i-ri-eye-2-line />
         </div>
       </template>
-      <img v-if="avatar" :src="avatar">
+      <img :src="avatar" h-full w-full>
     </a-avatar>
     <div v-if="avatar">
       <a-image-preview v-model:visible="visible" :src="avatar" />

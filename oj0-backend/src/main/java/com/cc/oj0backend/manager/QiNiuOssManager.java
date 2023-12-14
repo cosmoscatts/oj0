@@ -99,7 +99,7 @@ public class QiNiuOssManager {
         }
         String suffix = fileName.substring(index);
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        String path = uuid + suffix;
+        String path = qiNiuClientConfig.getDir() + uuid + suffix;
         return path;
     }
 }

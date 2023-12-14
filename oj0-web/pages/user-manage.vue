@@ -92,6 +92,11 @@ async function saveData(data: Partial<User>) {
       <template #id="{ rowIndex }">
         {{ paginator.formatRowIndex(rowIndex) }}
       </template>
+      <template #userAvatar="{ record }">
+        <a-avatar v-if="record.userAvatar" :size="36">
+          <img alt="头像" :src="record.userAvatar">
+        </a-avatar>
+      </template>
       <template #userRole="{ record }">
         <span select-none rounded-lg bg-dm px-3 py-1>
           {{ getOptionsLabel(userRoleOptions, record.userRole) }}

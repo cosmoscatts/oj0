@@ -30,4 +30,9 @@ public class QiNiuClientConfig {
      * 桶名
      */
     private String bucketName;
+
+    /**
+     * 目录名称
+     */
+    private String dir;
 }

@@ -93,5 +93,6 @@ oss:
   qiniu:
     url: http://cdn.hilyc.cn
     accessKey: xxx
-    secretKey: xx
+    secretKey: xxx
     bucketName: cosmoscatts
+    dir: oj0/
