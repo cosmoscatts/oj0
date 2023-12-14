@@ -231,3 +231,14 @@
 .arco-split-trigger-icon-wrapper {
   background-color: var(--c-border);
 }
+
+/* Tooltip */
+
+.arco-tooltip-content {
+  --at-apply: bg-base text-base text-sm rounded border border-base shadow;
+  box-shadow: 0 6px 30px #0000001a;
+}
+
+.arco-trigger-arrow {
+  --at-apply: hidden;
+}
