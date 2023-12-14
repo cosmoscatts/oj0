@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { FileItem } from '@arco-design/web-vue/es/upload/interfaces'
-import defaultAvatar from '~/public/default-avatar.jpg'
+import defaultAvatar from '~/public/default-avatar.png'
 
 const visible = defineModel<boolean>('visible')
 const avatar = defineModel<string>('avatar')

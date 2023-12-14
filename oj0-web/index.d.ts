@@ -110,7 +110,7 @@ declare global {
     content?: string
     tags?: string[] // 标签
     difficulty?: string // 题目难度
-    answer?: string // 题解
+    answer?: string // 题目答案
     submitNum?: number
     acceptedNum?: number
     judgeCase?: JudgeCase[] // 判题用例
