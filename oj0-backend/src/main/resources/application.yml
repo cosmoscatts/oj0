@@ -21,7 +21,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/oj0
     username: root
-    password:
+    password: 
   # Redis 配置
   # todo 需替换配置，然后取消注释
 #  redis:
@@ -80,7 +80,7 @@ wx:
   open:
     appId: xxx
     appSecret: xxx
-# 对象存储
+# 腾讯云对象存储
 # todo 需替换配置
 cos:
   client:
@@ -88,3 +88,10 @@ cos:
     secretKey: xxx
     region: xxx
     bucket: xxx
+# 七牛云
+oss:
+  qiniu:
+    url: http://cdn.hilyc.cn
+    accessKey: xxx
+    secretKey: xx
+    bucketName: cosmoscatts
