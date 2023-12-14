@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { FileItem } from '@arco-design/web-vue/es/upload/interfaces'
+import defaultAvatar from '~/public/default-avatar.jpg'
 
 const visible = defineModel<boolean>('visible')
 const avatar = defineModel<string>('avatar')
@@ -52,7 +53,7 @@ function checkImageBeforeUpload(file: File): Promise<boolean | File> {
           <div i-ri-eye-2-line />
         </div>
       </template>
-      <img :src="avatar" h-full w-full>
+      <img :src="avatar ?? defaultAvatar" h-full w-full>
     </a-avatar>
     <div v-if="avatar">
       <a-image-preview v-model:visible="visible" :src="avatar" />
