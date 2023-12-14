@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const authStore = useAuthStore()
-
 function createArcoTheme() {
   if (isDark.value)
     document.body.setAttribute('arco-theme', 'dark')
@@ -21,7 +19,6 @@ watch(() => route.path, () => {
 onMounted(() => {
   createArcoTheme()
   setThemeColor()
-  authStore.autoLogin()
 })
 </script>
 

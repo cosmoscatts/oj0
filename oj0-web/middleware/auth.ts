@@ -10,11 +10,13 @@ export default defineNuxtRouteMiddleware((to) => {
   onHydrated(() => handleAuth(to))
 })
 
-function handleAuth(to: RouteLocationNormalized) {
+async function handleAuth(to: RouteLocationNormalized) {
   const authStore = useAuthStore()
-  const user = authStore.user
+  const hasLogin = authStore.getHasLogin()
+  if (!hasLogin.value)
+    await authStore.autoLogin()
 
-  if (checkAccess(user, to.meta?.access))
+  if (checkAccess(authStore.user, to.meta?.access))
     return
 
   return navigateTo('/no-auth')

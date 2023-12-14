@@ -26,7 +26,7 @@ async function search() {
   }
   const { data: { records, total } } = await UserApi.list(searchParams)
   tableData.value = records || []
-  paginator.setPaginationTotal(total || 0)
+  paginator.setPaginationTotal(Number(total || 0))
 }
 search()
 
