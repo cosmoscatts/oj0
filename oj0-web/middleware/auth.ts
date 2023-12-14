@@ -19,5 +19,5 @@ async function handleAuth(to: RouteLocationNormalized) {
   if (checkAccess(authStore.user, to.meta?.access))
     return
 
-  return navigateTo('/no-auth')
+  return navigateTo(`/no-auth?redirect=${to.fullPath}`)
 }

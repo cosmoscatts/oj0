@@ -15,6 +15,8 @@ function gotoRegister() {
 }
 
 const refForm = ref()
+const route = useRoute()
+const router = useRouter()
 function submit() {
   refForm.value.validate(async (errors: any) => {
     if (errors)
@@ -35,6 +37,8 @@ function submit() {
       content,
       duration: 3000,
     })
+    const path = route.query?.redirect as string || '/'
+    router.push(path)
   })
 }
 </script>
