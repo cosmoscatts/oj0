@@ -4,31 +4,13 @@ import type { FileItem } from '@arco-design/web-vue/es/upload/interfaces'
 const visible = defineModel<boolean>('visible')
 const avatar = defineModel<string>('avatar')
 
-function useBase64(file: File) {
-  return new Promise<string>((resolve, reject) => {
-    const reader = new FileReader()
-    let imageAsDataURL = ''
-    reader.readAsDataURL(file)
-    reader.onload = (data) => {
-      const res: any = data.target || data.srcElement
-      imageAsDataURL = res.result
-    }
-    reader.onerror = (err) => {
-      reject(err)
-    }
-    reader.onloadend = () => {
-      resolve(imageAsDataURL)
-    }
-  })
-}
-
 async function onChange(_: FileItem[], fileItem: FileItem) {
   avatar.value = ''
   const loading = Message.loading('上传中···')
-  const data = await useBase64(fileItem.file!)
+  const { code, data, message } = await UploadApi.upload({ file: fileItem.file })
   loading.close()
-  if (data === '') {
-    Message.error('上传失败')
+  if (code !== 0) {
+    Message.error(message || '上传失败')
     return
   }
   avatar.value = data

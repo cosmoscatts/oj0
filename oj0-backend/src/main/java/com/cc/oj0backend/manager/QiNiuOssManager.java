@@ -24,22 +24,21 @@ import java.util.UUID;
  * 七牛云对象存储操作
  */
 @Component
-public class QiNiuManager {
+public class QiNiuOssManager {
     @Resource
-    private QiNiuClientConfig qiNiuClientConfig;
-    private UploadManager uploadManager;
-    private String token;
-    private Auth auth;
-    private BucketManager bucketManager;
+    private  QiNiuClientConfig qiNiuClientConfig;
+    private  UploadManager uploadManager;
+    private  String token;
+    private  Auth auth;
+    private  BucketManager bucketManager;
 
     @PostConstruct
-    private void init() {
+    public void init() {
         uploadManager = new UploadManager(new Configuration(Zone.zone0()));
         auth = Auth.create(qiNiuClientConfig.getAccessKey(), qiNiuClientConfig.getSecretKey());
         bucketManager = new BucketManager(auth, new Configuration(Zone.zone2()));
         token = auth.uploadToken(qiNiuClientConfig.getBucketName());
     }
-
 
     /**
      * 上传文件
