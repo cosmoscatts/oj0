@@ -21,18 +21,6 @@
   filter: blur(1rem);
 }
 
-@keyframes slide-enter {
-  0% {
-    transform: translateY(10px);
-    opacity: 0
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 100
-  }
-}
-
 .bounce-enter-active {
   animation: bounce-in 0.5s;
 }
@@ -48,6 +36,18 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes slide-enter {
+  0% {
+    transform: translateY(10px);
+    opacity: 0
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 100
   }
 }
 
