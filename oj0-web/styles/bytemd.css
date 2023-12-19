@@ -4,6 +4,7 @@
   color: var(--color-text-2);
   height: 650px;
 }
+
 .bytemd-toolbar {
   background-color: transparent;
   border-bottom-color: var(--c-border);
