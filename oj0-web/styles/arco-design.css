@@ -242,3 +242,9 @@
 .arco-trigger-arrow {
   --at-apply: hidden;
 }
+
+/* Spin */
+
+.arco-spin-mask { 
+  background-color: transparent;
+}

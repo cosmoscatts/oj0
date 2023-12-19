@@ -13,11 +13,12 @@ const refSearchForm = ref()
 const columns = getSubmitHistoryTableColumns()
 
 const tableData = ref<QuestionSubmit[]>([])
-const { loading } = useLoading()
+const { loading, startLoading, endLoading } = useLoading()
 
 const paginator = useTablePagination(search)
 
 function search() {
+  startLoading()
   tableData.value = Array.from({ length: 6 }, (_, idx) => {
     const questionNames = ['下一个更大元素 IV', '两数之和', '最长回文子串']
     const questionId = getRandomInteger(3) + 1
@@ -34,8 +35,9 @@ function search() {
     }
   })
   paginator.setPaginationTotal(6)
+  useTimeoutFn(endLoading, 500)
 }
-search()
+onMounted(search)
 </script>
 
 <template>

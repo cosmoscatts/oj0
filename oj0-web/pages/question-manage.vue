@@ -13,11 +13,12 @@ const refSearchForm = ref()
 const columns = getQuestionManageTableColumns()
 
 const tableData = ref<Question[]>([])
-const { loading } = useLoading()
+const { loading, startLoading, endLoading } = useLoading()
 
 const paginator = useTablePagination(search)
 
 async function search() {
+  startLoading()
   const { current, pageSize } = paginator.pagination
   const searchParams = {
     current,
@@ -27,8 +28,9 @@ async function search() {
   const { data: { records, total } } = await QuestionApi.list(searchParams)
   tableData.value = transformQuestionToVO(records)
   paginator.setPaginationTotal(Number(total || 0))
+  useTimeoutFn(endLoading, 500)
 }
-search()
+onMounted(search)
 
 const { visible, data, show, close } = useVisible<Partial<Question>>()
 

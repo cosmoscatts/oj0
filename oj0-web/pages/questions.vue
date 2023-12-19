@@ -14,12 +14,13 @@ const columns = getQuestionsTableColumns()
 
 const selectedRadioValue = ref<string>()
 
-const { loading } = useLoading()
+const { loading, startLoading, endLoading } = useLoading()
 
 const paginator = useTablePagination(search)
 
 const tableData = ref<Question[]>()
 function search() {
+  startLoading()
   tableData.value = Array.from({ length: 6 }, (_, idx) => {
     return {
       id: idx + 1,
@@ -34,8 +35,9 @@ function search() {
       answer: getRandomInteger(2) < 1 ? 'hhh' : '',
     }
   })
+  useTimeoutFn(endLoading, 500)
 }
-search()
+onMounted(search)
 
 function getRandomQuestion() {
   router.push('/resolve/1111')
