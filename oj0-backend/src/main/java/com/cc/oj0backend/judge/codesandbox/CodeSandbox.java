@@ -1,5 +1,8 @@
 package com.cc.oj0backend.judge.codesandbox;
 
+import com.cc.oj0backend.judge.codesandbox.model.ExecuteCodeRequest;
+import com.cc.oj0backend.judge.codesandbox.model.ExecuteCodeResponse;
+
 /**
  * 代码沙箱接口定义
  */
@@ -11,6 +14,5 @@ public interface CodeSandbox {
      * @param executeCodeRequest
      * @return
      */
-//    ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest);
-
+    ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest);
 }
