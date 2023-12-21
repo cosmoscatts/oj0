@@ -11,13 +11,6 @@ function create() {
   _axios.defaults.withCredentials = true // 传递 cookie
   _axios.interceptors.request.use(
     (config: AxiosRequestConfig) => {
-      // const token = getToken()
-      // if (token) {
-      //   if (!config.headers)
-      //     config.headers = {}
-
-      //   config.headers.Authorization = `Bearer ${token}`
-      // }
       return config as InternalAxiosRequestConfig
     },
     error => Promise.reject(error),
