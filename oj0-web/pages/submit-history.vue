@@ -138,7 +138,7 @@ fetchUserOptions()
           <div i-ri-cpu-line />
           <template v-if="record.judgeInfo?.memory">
             <div mt-0.5>
-              {{ record.judgeInfo.memory }} MB
+              {{ record.judgeInfo.memory }} KB
             </div>
           </template>
           <template v-else>

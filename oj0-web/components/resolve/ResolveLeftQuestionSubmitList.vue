@@ -32,8 +32,10 @@ const columns: TableColumnData[] = [
 
 const authStore = useAuthStore()
 const tableData = ref<QuestionSubmit[]>([])
+const { loading, startLoading, endLoading } = useLoading()
 
 async function fetchData() {
+  startLoading()
   const searchParams = {
     userId: authStore.user?.id,
     questionId: id,
@@ -42,6 +44,7 @@ async function fetchData() {
   }
   const { data: { records } } = await QuestionSubmitApi.list(searchParams)
   tableData.value = records || []
+  useTimeoutFn(endLoading, 500)
 }
 fetchData()
 
@@ -52,7 +55,7 @@ function onRowClick() {
 
 <template>
   <div min-w-400px of-auto py-10px>
-    <a-table :columns="columns" :data="tableData" :pagination="false" :bordered="false" row-class="cursor-pointer" @row-click="onRowClick">
+    <a-table :loading="loading" :columns="columns" :data="tableData" :pagination="false" :bordered="false" row-class="cursor-pointer" @row-click="onRowClick">
       <template #status="{ record }">
         <div grid="~ rows-2 gap-1" text-sm>
           <div row-span-1 flex-center>
@@ -104,7 +107,7 @@ function onRowClick() {
           <div i-ri-cpu-line />
           <template v-if="record.judgeInfo?.memory">
             <div mt-0.5>
-              {{ record.judgeInfo.memory }} MB
+              {{ record.judgeInfo.memory }} KB
             </div>
           </template>
           <template v-else>

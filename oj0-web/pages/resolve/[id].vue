@@ -22,6 +22,8 @@ async function fetchCurrentQuestion() {
   currentQuestion.value = data
 }
 fetchCurrentQuestion()
+
+const currentSubmitId = ref()
 </script>
 
 <template>

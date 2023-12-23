@@ -1,8 +1,44 @@
 <script setup lang="ts">
+const route = useRoute()
 const router = useRouter()
 
 function back() {
   router.push('/questions')
+}
+
+const id = computed(() => route.params?.id as string)
+
+async function checkoutRandomQuestion() {
+  const { data, message } = await QuestionApi.getRandomQuestionId()
+  if (!data) {
+    Message.error(message || '获取随机题目发生异常')
+    return
+  }
+  router.replace(`/resolve/${data}`)
+}
+
+async function checkoutPrevQuestion() {
+  if (!id)
+    return
+
+  const { data, message } = await QuestionApi.getPrevQuestionId({ id: id.value })
+  if (!data) {
+    Message.error(message || '获取上一题发生异常')
+    return
+  }
+  router.replace(`/resolve/${data}`)
+}
+
+async function checkoutNextQuestion() {
+  if (!id)
+    return
+
+  const { data, message } = await QuestionApi.getNextQuestionId({ id: id.value })
+  if (!data) {
+    Message.error(message || '获取下一题发生异常')
+    return
+  }
+  router.replace(`/resolve/${data}`)
 }
 </script>
 
@@ -14,13 +50,13 @@ function back() {
       </CommonTooltip>
       <a-divider direction="vertical" />
       <CommonTooltip content="上一题">
-        <div i-ri-arrow-left-s-line text-xl filter-saturate-0 btn-text @click="back" />
+        <div i-ri-arrow-left-s-line text-xl filter-saturate-0 btn-text @click="checkoutPrevQuestion" />
       </CommonTooltip>
       <CommonTooltip content="下一题">
-        <div i-ri-arrow-right-s-line text-xl filter-saturate-0 btn-text @click="back" />
+        <div i-ri-arrow-right-s-line text-xl filter-saturate-0 btn-text @click="checkoutNextQuestion" />
       </CommonTooltip>
       <CommonTooltip content="随机一题">
-        <div i-ri-shuffle-line filter-saturate-0 btn-text @click="back" />
+        <div i-ri-shuffle-line filter-saturate-0 btn-text @click="checkoutRandomQuestion" />
       </CommonTooltip>
     </div>
 

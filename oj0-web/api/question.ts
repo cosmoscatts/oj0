@@ -6,6 +6,8 @@ const API_URL_ENUM = {
   LIST_VO: '/question/list/page/vo',
   GET_VO: '/question/get/vo',
   GET_RANDOM: '/question/random',
+  GET_PREV: '/question/prev',
+  GET_NEXT: '/question/next',
 }
 
 export const QuestionApi = {
@@ -71,5 +73,19 @@ export const QuestionApi = {
    */
   getRandomQuestionId() {
     return useRequest.get<number, Result<number>>(API_URL_ENUM.GET_RANDOM)
+  },
+
+  /**
+   * 获取上一题题号
+   */
+  getPrevQuestionId(params: { id: string | number }) {
+    return useRequest.get<number, Result<number>>(API_URL_ENUM.GET_PREV, { params })
+  },
+
+  /**
+   * 获取下一题题号
+   */
+  getNextQuestionId(params: { id: string | number }) {
+    return useRequest.get<number, Result<number>>(API_URL_ENUM.GET_NEXT, { params })
   },
 }

@@ -335,6 +335,12 @@ public class QuestionController {
         return ResultUtils.success(questionSubmitService.getQuestionSubmitVOPage(questionSubmitPage, loginUser));
     }
 
+    /**
+     * 随机获取题目
+     *
+     * @param request
+     * @return
+     */
     @GetMapping("/random")
     public BaseResponse<Long> getRandomQuestionId(HttpServletRequest request) {
         final User loginUser = userService.getLoginUser(request);
@@ -351,11 +357,83 @@ public class QuestionController {
         return ResultUtils.success(unAcceptedQuestionIdList.get(index));
     }
 
+    @GetMapping("/prev")
+    public BaseResponse<Long> getPrevQuestionId(Long id) {
+        if (id <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        List<Long> questionIdList = questionService.list().stream()
+                .map(Question::getId)
+                .collect(Collectors.toList());
+        int index = 0;
+        for (int i = 0; i < questionIdList.size(); i++) {
+            if (id.equals(questionIdList.get(i))) {
+                index = i;
+                break;
+            }
+        }
+        if (index == 0) {
+            index = questionIdList.size() - 1;
+        } else {
+            index -= 1;
+        }
+        return ResultUtils.success(questionIdList.get(index));
+    }
+
+    @GetMapping("/next")
+    public BaseResponse<Long> getNextQuestionId(Long id) {
+        if (id <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        List<Long> questionIdList = questionService.list().stream()
+                .map(Question::getId)
+                .collect(Collectors.toList());
+        int index = 0;
+        for (int i = 0; i < questionIdList.size(); i++) {
+            if (id.equals(questionIdList.get(i))) {
+                index = i;
+                break;
+            }
+        }
+        if (index == questionIdList.size() - 1) {
+            index = 0;
+        } else {
+            index += 1;
+        }
+        return ResultUtils.success(questionIdList.get(index));
+    }
+
+    /**
+     * 获取用户已经通过的题目 id 集合
+     *
+     * @param request
+     * @return
+     */
     @GetMapping("/question_submit/accepted/my")
     public BaseResponse<List<Long>> getMyAcceptedQuestionIdList(HttpServletRequest request) {
         final User loginUser = userService.getLoginUser(request);
         List<Long> list = questionSubmitService.getMyAcceptedQuestionIdList(loginUser);
         return ResultUtils.success(list);
+    }
+
+    /**
+     * 根据 id 获取提交记录
+     *
+     * @param id
+     * @param request
+     * @return
+     */
+    @GetMapping("/question_submit/get")
+    public BaseResponse<QuestionSubmitVO> getQuestionSubmitById(long id, HttpServletRequest request) {
+        if (id <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        QuestionSubmit questionSubmit = questionSubmitService.getById(id);
+        if (questionSubmit == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        final User loginUser = userService.getLoginUser(request);
+        return ResultUtils.success(questionSubmitService.getQuestionSubmitVO(questionSubmit, loginUser));
     }
 }
 
