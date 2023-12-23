@@ -8,7 +8,7 @@ export const QuestionSubmitApi = {
    * 查询题目提交记录
    */
   list(params?: {
-    title?: string
+    questionId?: number
     language?: string
     status?: number
     userId?: number

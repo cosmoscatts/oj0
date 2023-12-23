@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SelectOptionData } from '@arco-design/web-vue'
 import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
@@ -8,24 +9,67 @@ definePageMeta({
   middleware: 'auth',
 })
 
+const authStore = useAuthStore()
 const refSearchForm = ref()
 const columns = getSubmitHistoryTableColumns()
 const tableData = ref<QuestionSubmit[]>([])
 const paginator = useTablePagination(search)
+const isOnlyMy = ref(false) // 仅查看自己的提交
 const { loading, startLoading, endLoading } = useLoading()
+
+/**
+ * 获取查询参数
+ */
+function getSerchParams() {
+  const { current, pageSize } = paginator.pagination
+  const searchParams = {
+    current,
+    pageSize,
+    ...refSearchForm.value?.getSearchParams(),
+  }
+  if (isOnlyMy.value === true)
+    searchParams.userId = authStore.user?.id
+
+  return searchParams
+}
 
 async function search() {
   startLoading()
-  const { data: { records, total } } = await QuestionSubmitApi.list()
+  const { data: { records, total } } = await QuestionSubmitApi.list(getSerchParams())
   tableData.value = records || []
   paginator.setPaginationTotal(Number(total || 0))
   useTimeoutFn(endLoading, 500)
 }
 onMounted(search)
+
+watch(isOnlyMy, search)
+
+const userOptions = ref<SelectOptionData[]>([])
+async function fetchUserOptions() {
+  const { data: { records = [] } } = await UserApi.list({})
+  userOptions.value = records.map((i) => {
+    return {
+      value: i.id,
+      label: i.userName || '匿名用户',
+    }
+  })
+}
+fetchUserOptions()
 </script>
 
 <template>
-  <CommonTableWrapper title="历史提交记录">
+  <CommonTableWrapper>
+    <template #title>
+      <div w-full flex-y-center justify-between>
+        <div>历史提交记录</div>
+        <div>
+          <a-checkbox v-model="isOnlyMy">
+            仅自己
+          </a-checkbox>
+        </div>
+      </div>
+    </template>
+
     <template #extra>
       <div />
     </template>
@@ -75,9 +119,9 @@ onMounted(search)
       <template #useTime="{ record }">
         <div flex-center gap-1>
           <div i-ri-time-line />
-          <template v-if="record.useTime">
+          <template v-if="record.judgeInfo?.time">
             <div mt-0.5>
-              {{ record.useTime || 0 }} ms
+              {{ record.judgeInfo.time }} ms
             </div>
           </template>
           <template v-else>
@@ -90,9 +134,9 @@ onMounted(search)
       <template #useMemory="{ record }">
         <div flex-center gap-1>
           <div i-ri-cpu-line />
-          <template v-if="record.useMemory">
+          <template v-if="record.judgeInfo?.memory">
             <div mt-0.5>
-              {{ record.useMemory || 0 }} MB
+              {{ record.judgeInfo.memory }} MB
             </div>
           </template>
           <template v-else>
@@ -102,8 +146,8 @@ onMounted(search)
           </template>
         </div>
       </template>
-      <template #userId>
-        狂雪
+      <template #userId="{ record }">
+        {{ getOptionsLabel(userOptions, record.userId) }}
       </template>
       <template #createTime="{ record }">
         <div>
