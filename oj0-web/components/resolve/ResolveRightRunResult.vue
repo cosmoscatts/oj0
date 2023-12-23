@@ -30,6 +30,13 @@ watch(() => submitId, fetchSubmitInfo)
 
 const authStore = useAuthStore()
 const userName = computed(() => authStore.user?.userName || '匿名用户')
+
+onBeforeUnmount(() => {
+  if (timer) {
+    clearInterval(timer)
+    timer = null
+  }
+})
 </script>
 
 <template>
@@ -46,9 +53,14 @@ const userName = computed(() => authStore.user?.userName || '匿名用户')
         <div i-ri-loader-2-line animate-spin />
         判题中
       </div>
-      <div v-else-if="submitInfo.status === 3" h-full flex-center gap-2 text-red>
-        <div i-ri-error-warning-line />
-        判题失败
+      <div v-else-if="submitInfo.status === 3" h-full flex="~ col" gap-3>
+        <div flex-y-center gap-2 text-red>
+          <div i-ri-error-warning-line />
+          判题失败
+        </div>
+        <div w-full gap-2 rounded-10px bg-code p-3>
+          {{ submitInfo.judgeInfo?.message || '系统错误' }}
+        </div>
       </div>
       <div v-else flex="~ col" h-full min-h-270px>
         <div h-60px flex="~ col" gap-1>

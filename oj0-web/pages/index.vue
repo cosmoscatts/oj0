@@ -8,27 +8,38 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const currentIdx = ref(1)
-const data = Array.from({ length: 4 }, (_, idx) => {
-  return `用户-${idx}`
-})
-const name = computed(() => {
-  return data[currentIdx.value % 4]
-})
+const emojiArray = [
+  '\\(o_o)/',
+  '(o^^)o',
+  '(˚Δ˚)b',
+  '(^-^*)',
+  '(^_^)b',
+  '(╯‵□′)╯',
+  '(=\'X\'=)',
+  '(>_<)',
+  '\\(°ˊДˋ°)/',
+  'ㄟ(▔▽▔)ㄏ',
+]
+function getEmoji(): string {
+  return emojiArray[Math.floor(Math.random() * emojiArray.length)]
+}
+
+onMounted(() => useLottie({
+  containerId: '#lottie',
+  path: 'https://lottie.host/87e660f6-9b48-43fe-878e-daa18eab5ebb/7uuyUSkDbI.json',
+}))
 </script>
 
 <template>
-  <div h-full w-full font-bold>
-    <div w-800px flex justify-between px-30px>
-      <div text-4rem>
-        Hi@{{ name }} <span text-primary-active>1111</span>
-      </div>
-
-      <div h-500px flex-center>
-        <div h-12rem w-12rem flex-center bg-primary text-7rem text-base>
-          OJ
-        </div>
-      </div>
+  <div flex="col center" h-full min-h-600px w-full>
+    <div id="lottie" h-300px w-400px />
+    <div mt-30px text-center font-bold>
+      <h1 text="3xl" m="t-2 b-2">
+        Hello, {{ getEmoji() }}.
+      </h1>
+      <p m="t-3 b-2" mx-a w-40vw text-2xl>
+        纵有疾风起，人生不言弃！
+      </p>
     </div>
   </div>
 </template>

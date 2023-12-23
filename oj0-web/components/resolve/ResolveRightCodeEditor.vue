@@ -3,7 +3,13 @@ import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
 
 const selectedLanguage = ref(RESOLVE_LANGUAGE_ENUM.JAVA)
 
-const code = ref('')
+const DEFAULT_CODE = `public class Main {
+  public static void main(String[] args) {
+    
+  }
+}`
+
+const code = ref(DEFAULT_CODE)
 
 function getCode() {
   return code.value
