@@ -13,6 +13,7 @@ import com.cc.oj0backend.judge.strategy.JudgeContext;
 import com.cc.oj0backend.model.dto.question.JudgeCase;
 import com.cc.oj0backend.model.entity.Question;
 import com.cc.oj0backend.model.entity.QuestionSubmit;
+import com.cc.oj0backend.model.enums.JudgeInfoMessageEnum;
 import com.cc.oj0backend.model.enums.QuestionSubmitStatusEnum;
 import com.cc.oj0backend.service.QuestionService;
 import com.cc.oj0backend.service.QuestionSubmitService;
@@ -63,6 +64,15 @@ public class JudgeServiceImpl implements JudgeService {
         if (!update) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目状态更新错误");
         }
+        // 更新提交数
+        Question questionUpdate = new Question();
+        questionUpdate.setId(question.getId());
+        int submitNum = question.getSubmitNum() == null ? 0 : question.getSubmitNum();
+        questionUpdate.setSubmitNum(submitNum + 1);
+        update = questionService.updateById(questionUpdate);
+        if (!update) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目提交数更新错误");
+        }
         // 4）调用沙箱，获取到执行结果
         CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(type);
         codeSandbox = new CodeSandboxProxy(codeSandbox);
@@ -96,6 +106,17 @@ public class JudgeServiceImpl implements JudgeService {
         update = questionSubmitService.updateById(questionSubmitUpdate);
         if (!update) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目状态更新错误");
+        }
+        // 如果题目通过，修改题目通过数
+        if (JudgeInfoMessageEnum.ACCEPTED.getValue().equals(judgeInfo.getMessage())) {
+            questionUpdate = new Question();
+            questionUpdate.setId(question.getId());
+            int acceptedNum = question.getAcceptedNum() == null ? 0 : question.getAcceptedNum();
+            questionUpdate.setAcceptedNum(acceptedNum + 1);
+            update = questionService.updateById(questionUpdate);
+            if (!update) {
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目通过数更新错误");
+            }
         }
         QuestionSubmit questionSubmitResult = questionSubmitService.getById(questionId);
         return questionSubmitResult;

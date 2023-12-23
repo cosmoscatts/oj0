@@ -39,15 +39,21 @@ const userName = computed(() => authStore.user?.userName || '匿名用户')
         <div i-ri-loader-2-line animate-spin />
         等待中
       </div>
-      <div v-if="submitInfo.status === 1" h-full flex-center gap-2 text-orange>
+      <div v-else-if="submitInfo.status === 1" h-full flex-center gap-2 text-orange>
         <div i-ri-loader-2-line animate-spin />
         判题中
+      </div>
+      <div v-else-if="submitInfo.status === 3" h-full flex-center gap-2 text-red>
+        <div i-ri-error-warning-line />
+        判题失败
       </div>
       <div v-else flex="~ col" h-full min-h-270px>
         <div h-60px flex="~ col" gap-1>
           <div text-lg font-bold>
-            <span v-if="submitInfo.status === 2" text-green> 通过</span>
-            <span v-else text-red>解答错误</span>
+            <span v-if="checkQuestionAccepted(submitInfo)" text-green> 通过</span>
+            <span v-else text-red>
+              {{ getOptionsLabel(questionSubmitJugdeOptions, submitInfo.judgeInfo?.message) || '解答错误' }}
+            </span>
           </div>
           <div flex-y-center gap-2 text-sm>
             <NavAvatar :size="16" />

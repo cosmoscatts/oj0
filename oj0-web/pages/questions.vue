@@ -121,8 +121,13 @@ function checkHasAccepted(record: Question) {
           <div i-ri-check-line text-green />
         </div>
       </template>
+      <template #id="{ record }">
+        <a v-if="record.id" cursor-pointer hover="underline underline-offset-2 text-primary" @click="checkoutQuestion(record)">
+          {{ record.id }}
+        </a>
+      </template>
       <template #title="{ record }">
-        <a v-if="record.title" cursor-pointer hover="underline underline-offset-2 text-primary">
+        <a v-if="record.title" cursor-pointer hover="underline underline-offset-2 text-primary" @click="checkoutQuestion(record)">
           {{ record.title }}
         </a>
       </template>

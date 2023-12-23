@@ -75,7 +75,18 @@ export const questionResolveLanguageOptions = Array.from({ length: 3 }, (_, idx)
 export const questionSubmitStatusOptions = Array.from({ length: 4 }, (_, idx) => {
   return {
     value: idx,
-    label: ['等待中', '判题中', '通过', '解答错误'][idx],
+    label: ['等待中', '判题中', '判题成功', '判题失败'][idx],
+  }
+})
+
+/**
+ * 提交成功后的判题结果
+ */
+export const questionSubmitJugdeOptions = Array.from({ length: 11 }, (_, idx) => {
+  const values = ['Accepted', '答案错误', '编译错误', '内存溢出', '超时', '展示错误', '等待中', '输出溢出', '危险操作', '运行错误', '系统错误']
+  return {
+    value: values[idx],
+    label: values[idx],
   }
 })
 

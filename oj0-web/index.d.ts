@@ -124,7 +124,13 @@ declare global {
    * 判题结果信息
    */
   interface JudgeInfo {
-    message?: string // 消息
+    /**
+     * 程序执行信息
+     * 当提交信息的 status = 2 时，判断 message：
+     *  - Accepted: 通过
+     *  - 其余则是解答错误
+     */
+    message?: string
     memory?: number // 消耗内存
     time?: number // 执行耗时
   }

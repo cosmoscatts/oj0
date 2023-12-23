@@ -74,6 +74,10 @@ const router = useRouter()
 function checkoutQuestion(record: QuestionSubmit) {
   router.push(`/resolve/${record.questionId}`)
 }
+
+onMounted(() => {
+  useIntervalFn(search, 5000)
+})
 </script>
 
 <template>
@@ -131,11 +135,16 @@ function checkoutQuestion(record: QuestionSubmit) {
             <div i-ri-loader-2-line animate-spin />
             判题中
           </div>
-          <div v-else-if="record.status === 2" text-green>
-            通过
+          <div v-else-if="record.status === 2">
+            <span v-if="checkQuestionAccepted(record)" text-green>
+              通过
+            </span>
+            <span v-else text-red>
+              {{ getOptionsLabel(questionSubmitJugdeOptions, record.judgeInfo?.message) || '解答错误' }}
+            </span>
           </div>
           <div v-else-if="record.status === 3" text-red>
-            解答错误
+            判题失败
           </div>
           <div v-else />
         </div>
@@ -143,7 +152,7 @@ function checkoutQuestion(record: QuestionSubmit) {
       <template #useTime="{ record }">
         <div flex-center gap-1>
           <div i-ri-time-line />
-          <template v-if="record.judgeInfo?.time">
+          <template v-if="checkQuestionAccepted(record) && record.judgeInfo?.time">
             <div mt-0.5>
               {{ record.judgeInfo.time }} ms
             </div>
@@ -158,7 +167,7 @@ function checkoutQuestion(record: QuestionSubmit) {
       <template #useMemory="{ record }">
         <div flex-center gap-1>
           <div i-ri-cpu-line />
-          <template v-if="record.judgeInfo?.memory">
+          <template v-if="checkQuestionAccepted(record) && record.judgeInfo?.memory">
             <div mt-0.5>
               {{ record.judgeInfo.memory }} KB
             </div>
