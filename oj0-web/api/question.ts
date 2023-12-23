@@ -62,7 +62,7 @@ export const QuestionApi = {
   /**
    * 根据 id 获取题目（脱敏）
    */
-  getVo(params: { id: number }) {
+  getVo(params: { id: string | number }) {
     return useRequest.get<Question, Result<Question>>(API_URL_ENUM.GET_VO, { params })
   },
 
