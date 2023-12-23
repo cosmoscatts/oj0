@@ -15,6 +15,7 @@ const selectedRadioValue = ref<string>()
 const paginator = useTablePagination(search)
 
 const tableData = ref<Question[]>()
+const acceptedQuestionIds = ref<number[]>([]) // 已经通过的题号
 const { loading, startLoading, endLoading } = useLoading()
 
 /**
@@ -49,12 +50,23 @@ watch(selectedRadioValue, () => {
   search()
 })
 
+async function fetchAcceptedQuestionIds() {
+  const { data } = await QuestionSubmitApi.listMyAcceptedQuestionIds()
+  acceptedQuestionIds.value = data || []
+}
+fetchAcceptedQuestionIds()
+
 function checkoutQuestion(record: Question) {
   router.push(`/resolve/${record.id}`)
 }
 
-function checkoutRandomQuestion() {
-  router.push('/resolve/1111')
+async function checkoutRandomQuestion() {
+  const { data, message } = await QuestionApi.getRandomQuestionId()
+  if (!data) {
+    Message.error(message || '获取随机题目发生异常')
+    return
+  }
+  router.push(`/resolve/${data}`)
 }
 
 function calculateAcceptPercent(record: Question) {
@@ -64,6 +76,15 @@ function calculateAcceptPercent(record: Question) {
   if (acceptedNum === 0)
     return '0 %'
   return `${(acceptedNum / submitNum * 100).toFixed(2)} %`
+}
+
+/**
+ * 判断题目是否已经通过
+ */
+function checkHasAccepted(record: Question) {
+  if (!record.id)
+    return false
+  return acceptedQuestionIds.value.includes(record.id)
 }
 </script>
 
@@ -96,7 +117,7 @@ function calculateAcceptPercent(record: Question) {
       @page-size-change="paginator.onPageSizeChange"
     >
       <template #state="{ record }">
-        <div v-if="record.state === 1" w-full flex-center text-lg>
+        <div v-if="checkHasAccepted(record)" w-full flex-center text-lg>
           <div i-ri-check-line text-green />
         </div>
       </template>

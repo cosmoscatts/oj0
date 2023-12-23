@@ -1,6 +1,6 @@
 const API_URL_ENUM = {
   LIST: '/question/question_submit/list/page',
-
+  LIST_ACCEPTED_IDS: '/question/question_submit/accepted/my',
 }
 
 export const QuestionSubmitApi = {
@@ -17,16 +17,9 @@ export const QuestionSubmitApi = {
   },
 
   /**
-   * 查询用户某道题目的提交记录
-   */
-  listOfQuestionByUser() {
-
-  },
-
-  /**
    * 查询用户所有通过的题目 id 集合
    */
-  listUserAcceptedQuestionIds() {
-
+  listMyAcceptedQuestionIds() {
+    return useRequest.get<number, Result<number[]>>(API_URL_ENUM.LIST_ACCEPTED_IDS)
   },
 }

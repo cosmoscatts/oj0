@@ -5,6 +5,7 @@ const API_URL_ENUM = {
   DELETE: '/question/delete',
   LIST_VO: '/question/list/page/vo',
   GET_VO: '/question/get/vo',
+  GET_RANDOM: '/question/random',
 }
 
 export const QuestionApi = {
@@ -63,5 +64,12 @@ export const QuestionApi = {
    */
   getVo(params: { id: number }) {
     return useRequest.get<Question, Result<Question>>(API_URL_ENUM.GET_VO, { params })
+  },
+
+  /**
+   * 获取随机题号
+   */
+  getRandomQuestionId() {
+    return useRequest.get<number, Result<number>>(API_URL_ENUM.GET_RANDOM)
   },
 }
