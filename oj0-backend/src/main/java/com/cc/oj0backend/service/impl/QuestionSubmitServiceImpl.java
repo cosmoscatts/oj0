@@ -1,6 +1,8 @@
 package com.cc.oj0backend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cc.oj0backend.common.ErrorCode;
@@ -152,6 +154,20 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         return questionSubmitVOPage;
     }
 
+    @Override
+    public List<Long> getMyAcceptedQuestionIdList(User loginUser) {
+        if (loginUser == null) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "未登录");
+        }
+        long userId = loginUser.getId();
+        LambdaQueryWrapper<QuestionSubmit> queryWrapper = Wrappers.<QuestionSubmit>lambdaQuery()
+                .eq(QuestionSubmit::getUserId, userId)
+                .eq(QuestionSubmit::getStatus, 2);
+        List<Long> list = this.list(queryWrapper).stream()
+                .map(QuestionSubmit::getQuestionId)
+                .collect(Collectors.toList());
+        return list;
+    }
 }
 
 

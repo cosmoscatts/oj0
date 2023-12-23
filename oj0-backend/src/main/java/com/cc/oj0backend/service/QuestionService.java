@@ -2,12 +2,9 @@ package com.cc.oj0backend.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.cc.oj0backend.model.dto.post.PostQueryRequest;
 import com.cc.oj0backend.model.dto.question.QuestionQueryRequest;
-import com.cc.oj0backend.model.entity.Post;
 import com.cc.oj0backend.model.entity.Question;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.cc.oj0backend.model.vo.PostVO;
 import com.cc.oj0backend.model.vo.QuestionVO;
 
 import javax.servlet.http.HttpServletRequest;

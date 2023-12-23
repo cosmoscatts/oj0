@@ -10,6 +10,8 @@ import com.cc.oj0backend.model.entity.User;
 import com.cc.oj0backend.model.vo.QuestionSubmitVO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author cosmoscatts
 * @description 针对表【question_submit(题目提交)】的数据库操作Service
@@ -52,6 +54,14 @@ public interface QuestionSubmitService extends IService<QuestionSubmit> {
      * @return
      */
     Page<QuestionSubmitVO> getQuestionSubmitVOPage(Page<QuestionSubmit> questionSubmitPage, User loginUser);
+
+    /**
+     * 获取当前登录用户完成的所有题目 id
+     *
+     * @param loginUser
+     * @return
+     */
+    List<Long> getMyAcceptedQuestionIdList(User loginUser);
 }
 
 

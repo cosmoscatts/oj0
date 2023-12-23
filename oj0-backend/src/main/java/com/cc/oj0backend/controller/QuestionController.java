@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * 题目接口
@@ -333,5 +335,27 @@ public class QuestionController {
         return ResultUtils.success(questionSubmitService.getQuestionSubmitVOPage(questionSubmitPage, loginUser));
     }
 
+    @GetMapping("/random")
+    public BaseResponse<Long> getRandomQuestionId(HttpServletRequest request) {
+        final User loginUser = userService.getLoginUser(request);
+        List<Long> acceptedQuestionIdList = questionSubmitService.getMyAcceptedQuestionIdList(loginUser);
+        List<Long> allQuestionIdList = questionService.list().stream().map(Question::getId).collect(Collectors.toList());
+        // 找到所有未通过的题目 id
+        List<Long> unAcceptedQuestionIdList = allQuestionIdList.stream()
+                .filter(id -> !acceptedQuestionIdList.contains(id))
+                .collect(Collectors.toList());
+        if (unAcceptedQuestionIdList.isEmpty()) {
+            unAcceptedQuestionIdList = allQuestionIdList;
+        }
+        int index = new Random().nextInt(unAcceptedQuestionIdList.size());
+        return ResultUtils.success(unAcceptedQuestionIdList.get(index));
+    }
+
+    @GetMapping("/question_submit/accepted/my")
+    public BaseResponse<List<Long>> getMyAcceptedQuestionIdList(HttpServletRequest request) {
+        final User loginUser = userService.getLoginUser(request);
+        List<Long> list = questionSubmitService.getMyAcceptedQuestionIdList(loginUser);
+        return ResultUtils.success(list);
+    }
 }
 
