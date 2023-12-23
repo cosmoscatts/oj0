@@ -1,5 +1,11 @@
 <script setup lang="ts">
 const selectedTab = ref(0) // 0 - 测试用例；1 - 测试结果
+
+function changeSelectedTab(tab: number) {
+  selectedTab.value = tab
+}
+
+defineExpose({ changeSelectedTab })
 </script>
 
 <template>
@@ -16,6 +22,7 @@ const selectedTab = ref(0) // 0 - 测试用例；1 - 测试结果
     <div flex="~ 1 col" of-x-hidden of-y-auto>
       <CommonTransition name="layout">
         <ResolveRightRunConfig v-if="selectedTab === 0" :="$attrs" />
+        <ResolveRightRunResult v-else :="$attrs" />
       </CommonTransition>
     </div>
   </div>

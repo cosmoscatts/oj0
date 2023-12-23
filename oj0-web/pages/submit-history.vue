@@ -89,9 +89,12 @@ fetchUserOptions()
       @page-change="paginator.onPageChange"
       @page-size-change="paginator.onPageSizeChange"
     >
+      <template #id="{ rowIndex }">
+        {{ paginator.formatRowIndex(rowIndex) }}
+      </template>
       <template #questionId="{ record }">
         <div hover="underline underline-offset-2 text-primary" cursor-pointer>
-          {{ record.questionId }}. {{ record.questionTitle }}
+          {{ record.questionVO?.title }}
         </div>
       </template>
       <template #language="{ record }">

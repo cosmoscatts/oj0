@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ACCESS_ENUM } from '~/constants'
+import { ACCESS_ENUM, RESOLVE_LANGUAGE_ENUM } from '~/constants'
 
 definePageMeta({
   name: 'ResolveQuestion',
@@ -23,12 +23,38 @@ async function fetchCurrentQuestion() {
 }
 fetchCurrentQuestion()
 
-const currentSubmitId = ref()
+const currentSubmitId = ref<Nullable<string | number>>()
+const refResolveRightRun = ref()
+function submitQuestionCallback(id?: Nullable<string | number>) {
+  currentSubmitId.value = id
+  if (id)
+    refResolveRightRun.value?.changeSelectedTab?.(1)
+}
+
+const refResolveRightCodeEditor = ref()
+function getSubmitData() {
+  const code = refResolveRightCodeEditor.value?.getCode() || ''
+  const language = refResolveRightCodeEditor.value?.getLanguage() || RESOLVE_LANGUAGE_ENUM.JAVA
+  return {
+    code,
+    language,
+    questionId: id.value,
+  }
+}
+async function doSubmit() {
+  const { code, data, message } = await QuestionSubmitApi.submit(getSubmitData())
+  if (code !== 0) {
+    Message.error(message || '提交失败')
+    return
+  }
+  Message.success('提交成功')
+  submitQuestionCallback(data)
+}
 </script>
 
 <template>
   <div h-screen w-screen>
-    <ResolveActionBar />
+    <ResolveActionBar @submit="doSubmit" />
 
     <div :style="{ height: `calc(100vh - 6rem)` }" mb-2 of-hidden px-30px>
       <a-split :style="{ height: '100%', width: '100%', minWidth: '500px' }">
@@ -50,12 +76,12 @@ const currentSubmitId = ref()
             <a-split direction="vertical" :style="{ height: 'calc(100vh - 6rem)', overflow: 'hidden' }">
               <template #first>
                 <div h-full w-full of-hidden border="1 base">
-                  <ResolveRightCodeEditor />
+                  <ResolveRightCodeEditor ref="refResolveRightCodeEditor" />
                 </div>
               </template>
               <template #second>
                 <div h-full w-full of-hidden border="1 base">
-                  <ResolveRightRun :judge-config="currentQuestion?.judgeConfig" />
+                  <ResolveRightRun ref="refResolveRightRun" :judge-config="currentQuestion?.judgeConfig" :submit-id="currentSubmitId" />
                 </div>
               </template>
             </a-split>

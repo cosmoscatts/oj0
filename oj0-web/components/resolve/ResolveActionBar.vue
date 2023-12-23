@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const emit = defineEmits<{
+  (event: 'submit'): void
+}>()
+
 const route = useRoute()
 const router = useRouter()
 
@@ -40,6 +44,10 @@ async function checkoutNextQuestion() {
   }
   router.replace(`/resolve/${data}`)
 }
+
+function doSubmit() {
+  emit('submit')
+}
 </script>
 
 <template>
@@ -61,7 +69,7 @@ async function checkoutNextQuestion() {
     </div>
 
     <div flex-center>
-      <button flex-center btn-solid>
+      <button flex-center btn-solid @click="doSubmit">
         <div i-ri-upload-cloud-fill mr-2 />
         提交
       </button>

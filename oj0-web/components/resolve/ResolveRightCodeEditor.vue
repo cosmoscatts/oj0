@@ -3,7 +3,31 @@ import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
 
 const selectedLanguage = ref(RESOLVE_LANGUAGE_ENUM.JAVA)
 
-const code = ref('hhhhh')
+const code = ref('')
+
+function getCode() {
+  return code.value
+}
+
+function getLanguage() {
+  return selectedLanguage.value
+}
+
+const options = computed(() => {
+  return questionResolveLanguageOptions.map((i) => {
+    if (i.value === RESOLVE_LANGUAGE_ENUM.JAVA)
+      return i
+    return {
+      ...i,
+      disabled: true,
+    }
+  })
+})
+
+defineExpose({
+  getCode,
+  getLanguage,
+})
 </script>
 
 <template>
@@ -14,7 +38,7 @@ const code = ref('hhhhh')
       </button>
 
       <div flex-y-center justify-end gap-3>
-        <a-select v-model="selectedLanguage" :options="questionResolveLanguageOptions" size="mini" allow-clear w-100px rounded />
+        <a-select v-model="selectedLanguage" :options="options" size="mini" allow-clear w-100px rounded />
 
         <CommonTooltip content="还原到默认">
           <button i-carbon-reset mt-1 font-bold filter-saturate-0 />
