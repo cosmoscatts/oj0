@@ -57,6 +57,23 @@ async function fetchUserOptions() {
   })
 }
 fetchUserOptions()
+
+const questionOptions = ref<SelectOptionData[]>([])
+async function fetchQuestionOptions() {
+  const { data: { records = [] } } = await QuestionApi.listVo({})
+  questionOptions.value = records.map((i) => {
+    return {
+      value: i.id,
+      label: i.title,
+    }
+  })
+}
+fetchQuestionOptions()
+
+const router = useRouter()
+function checkoutQuestion(record: QuestionSubmit) {
+  router.push(`/resolve/${record.questionId}`)
+}
 </script>
 
 <template>
@@ -93,9 +110,11 @@ fetchUserOptions()
         {{ paginator.formatRowIndex(rowIndex) }}
       </template>
       <template #questionId="{ record }">
-        <div hover="underline underline-offset-2 text-primary" cursor-pointer>
-          {{ record.questionVO?.title }}
-        </div>
+        <CommonTooltip :content="`${record.questionId}.${getOptionsLabel(questionOptions, record.questionId)}`">
+          <div hover="underline underline-offset-2 text-primary" cursor-pointer @click="checkoutQuestion(record)">
+            {{ getOptionsLabel(questionOptions, record.questionId) }}
+          </div>
+        </CommonTooltip>
       </template>
       <template #language="{ record }">
         <span select-none rounded-lg bg-dm px-3 py-1>

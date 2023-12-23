@@ -3,6 +3,8 @@ const { submitId } = defineProps<{
   submitId?: number | string | null
 }>()
 
+let timer: NodeJS.Timeout | null = null
+
 const submitInfo = ref<QuestionSubmit>()
 async function fetchSubmitInfo() {
   submitInfo.value = undefined
@@ -10,6 +12,15 @@ async function fetchSubmitInfo() {
     return
   const { data } = await QuestionSubmitApi.getById({ id: submitId })
   submitInfo.value = data
+  if (data && [1, 2].includes(data.status) && !timer) {
+    timer = setInterval(fetchSubmitInfo, 3 * 1000)
+  }
+  else {
+    if (timer) {
+      clearInterval(timer)
+      timer = null
+    }
+  }
 }
 fetchSubmitInfo()
 watch(() => submitId, fetchSubmitInfo)
