@@ -9,32 +9,16 @@ definePageMeta({
 })
 
 const refSearchForm = ref()
-
 const columns = getSubmitHistoryTableColumns()
-
 const tableData = ref<QuestionSubmit[]>([])
+const paginator = useTablePagination(search)
 const { loading, startLoading, endLoading } = useLoading()
 
-const paginator = useTablePagination(search)
-
-function search() {
+async function search() {
   startLoading()
-  tableData.value = Array.from({ length: 6 }, (_, idx) => {
-    const questionNames = ['下一个更大元素 IV', '两数之和', '最长回文子串']
-    const questionId = getRandomInteger(3) + 1
-    return {
-      id: idx + 1,
-      questionId,
-      questionTitle: questionNames[questionId - 1],
-      language: 'java',
-      state: getRandomInteger(3),
-      useMemory: Math.random() < 0.6 ? getRandomInteger(100) : undefined,
-      useTime: Math.random() < 0.6 ? getRandomInteger(100) : undefined,
-      userId: 1,
-      createTime: new Date(),
-    }
-  })
-  paginator.setPaginationTotal(6)
+  const { data: { records, total } } = await QuestionSubmitApi.list()
+  tableData.value = records || []
+  paginator.setPaginationTotal(Number(total || 0))
   useTimeoutFn(endLoading, 500)
 }
 onMounted(search)
@@ -69,18 +53,23 @@ onMounted(search)
           {{ getOptionsLabel(questionResolveLanguageOptions, record.language) }}
         </span>
       </template>
-      <template #state="{ record }">
+      <template #status="{ record }">
         <div flex-center>
-          <div v-if="record.state === 1" text-red>
-            解答错误
-          </div>
-          <div v-else-if="record.state === 2" text-green>
-            通过
-          </div>
-          <div v-else flex-center gap-2>
+          <div v-if="record.status === 0" flex-center gap-2>
             <div i-ri-loader-2-line animate-spin />
             等待中
           </div>
+          <div v-if="record.status === 1" flex-center gap-2 text-orange>
+            <div i-ri-loader-2-line animate-spin />
+            判题中
+          </div>
+          <div v-else-if="record.status === 2" text-green>
+            通过
+          </div>
+          <div v-else-if="record.status === 3" text-red>
+            解答错误
+          </div>
+          <div v-else />
         </div>
       </template>
       <template #useTime="{ record }">

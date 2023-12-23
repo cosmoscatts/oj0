@@ -72,10 +72,10 @@ export const questionResolveLanguageOptions = Array.from({ length: 3 }, (_, idx)
 /**
  * 题目提交结果
  */
-export const questionSubmitStateOptions = Array.from({ length: 3 }, (_, idx) => {
+export const questionSubmitStatusOptions = Array.from({ length: 4 }, (_, idx) => {
   return {
     value: idx,
-    label: ['等待中', '解答错误', '通过'][idx],
+    label: ['等待中', '判题中', '通过', '解答错误'][idx],
   }
 })
 

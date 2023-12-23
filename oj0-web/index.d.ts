@@ -121,18 +121,29 @@ declare global {
   }
 
   /**
+   * 判题结果信息
+   */
+  interface JudgeInfo {
+    message?: string // 消息
+    memory?: number // 消耗内存
+    time?: number // 执行耗时
+  }
+
+  /**
    * 题目提交
    */
   interface QuestionSubmit {
     id: number
-    questionId?: number // 题目 id
-    questionTitle: string // 题目标题
     language?: string // 编程语言
-    state?: number // 0 - 等待中；1 - 解答错误；2 - 通过；
-    useMemory?: number // 消耗内存
-    useTime?: number // 用时
+    code?: string // 用户提交的代码
+    judgeInfo?: JudgeInfo // 判题信息
+    status?: number // 判题状态
+    questionId?: number // 题目 id
     userId?: number // 提交人
-    createTime?: Date
+    createTime?: Date // 创建时间
+    updateTime?: Date // 更新时间
+    userVO?: User
+    questionVO?: Question
   }
 }
 

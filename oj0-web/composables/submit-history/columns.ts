@@ -22,8 +22,8 @@ export function getSubmitHistoryTableColumns(): TableColumnData[] {
     },
     {
       title: '判题结果',
-      dataIndex: 'state',
-      slotName: 'state',
+      dataIndex: 'status',
+      slotName: 'status',
       align: 'center',
     },
     {

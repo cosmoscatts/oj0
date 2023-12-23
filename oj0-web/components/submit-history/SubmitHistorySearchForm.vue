@@ -3,10 +3,10 @@ const emit = defineEmits<{
   (event: 'search'): void
 }>()
 
-const { form, reset, getSearchParams } = useTableSearch<Partial<User>>(() => ({
+const { form, reset, getSearchParams } = useTableSearch<Partial<{ title?: string, language?: string, status?: number }>>(() => ({
   title: '',
   language: '',
-  state: undefined,
+  status: undefined,
 }))
 
 function search() {
@@ -29,8 +29,8 @@ defineExpose({ getSearchParams })
       </a-form-item>
     </a-col>
     <a-col :span="8">
-      <a-form-item field="state" label="判题结果">
-        <a-select v-model="form.state" :options="questionSubmitStateOptions" allow-clear />
+      <a-form-item field="status" label="判题结果">
+        <a-select v-model="form.status" :options="questionSubmitStatusOptions" allow-clear />
       </a-form-item>
     </a-col>
   </CommonTableSearchForm>
