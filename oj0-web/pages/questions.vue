@@ -93,7 +93,7 @@ function checkHasAccepted(record: Question) {
     <QuestionsFilterRadioGroup v-model="selectedRadioValue" />
 
     <div grid="~ cols-10" mt-5 gap-4 lt-lg:hidden>
-      <QuestionsSearchForm ref="refSearchForm" col-span-9 />
+      <QuestionsSearchForm ref="refSearchForm" col-span-9 @search="search" />
 
       <div col-span-1 flex justify-end gap-3>
         <div mt-2px h-32px flex-center>

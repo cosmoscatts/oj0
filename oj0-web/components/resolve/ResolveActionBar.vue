@@ -75,6 +75,9 @@ function doSubmit() {
       </button>
     </div>
 
-    <NavAvatar :size="36" />
+    <div flex-y-center justify-end gap-3>
+      <DarkToggle />
+      <NavAvatar :size="36" />
+    </div>
   </div>
 </template>
