@@ -9,34 +9,45 @@ definePageMeta({
 })
 
 const router = useRouter()
-
+const refSearchForm = ref()
 const columns = getQuestionsTableColumns()
-
 const selectedRadioValue = ref<string>()
-
-const { loading, startLoading, endLoading } = useLoading()
-
 const paginator = useTablePagination(search)
 
 const tableData = ref<Question[]>()
-function search() {
+const { loading, startLoading, endLoading } = useLoading()
+
+/**
+ * 获取查询参数
+ */
+function getSerchParams() {
+  const { current, pageSize } = paginator.pagination
+  const searchParams = {
+    current,
+    pageSize,
+    ...refSearchForm.value?.getSearchParams(),
+  }
+  if (selectedRadioValue.value) {
+    const tags = searchParams.tags || []
+    const mergeTags = [...new Set([...tags, selectedRadioValue.value])]
+    searchParams.tags = mergeTags
+  }
+  return searchParams
+}
+
+async function search() {
   startLoading()
-  tableData.value = Array.from({ length: 6 }, (_, idx) => {
-    return {
-      id: idx + 1,
-      state: getRandomInteger(2),
-      title: getRandomStr(6),
-      tags: Array(3).fill('').map(() => {
-        return questionTagOptions[getRandomInteger(questionTagOptions.length)].value as string
-      }),
-      acceptedNum: getRandomInteger(100, 20),
-      difficulty: 'easy',
-      answer: getRandomInteger(2) < 1 ? 'hhh' : '',
-    }
-  })
+  const { data: { records, total } } = await QuestionApi.listVo(getSerchParams())
+  tableData.value = records || []
+  paginator.pagination.total = Number(total || 0)
   useTimeoutFn(endLoading, 500)
 }
 onMounted(search)
+
+watch(selectedRadioValue, () => {
+  refSearchForm.value?.reset?.()
+  search()
+})
 
 function checkoutQuestion(record: Question) {
   router.push(`/resolve/${record.id}`)
@@ -61,7 +72,7 @@ function calculateAcceptPercent(record: Question) {
     <QuestionsFilterRadioGroup v-model="selectedRadioValue" />
 
     <div grid="~ cols-10" mt-5 gap-4 lt-lg:hidden>
-      <QuestionsSearchForm col-span-9 />
+      <QuestionsSearchForm ref="refSearchForm" col-span-9 />
 
       <div col-span-1 flex justify-end gap-3>
         <div mt-2px h-32px flex-center>

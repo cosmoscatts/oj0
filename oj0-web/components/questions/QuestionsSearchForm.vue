@@ -13,7 +13,7 @@ function search() {
   emit('search')
 }
 
-defineExpose({ getSearchParams })
+defineExpose({ getSearchParams, reset })
 </script>
 
 <template>

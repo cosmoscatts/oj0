@@ -3,6 +3,8 @@ const API_URL_ENUM = {
   ADD: '/question/add',
   UPDATE: '/question/update',
   DELETE: '/question/delete',
+  LIST_VO: '/question/list/page/vo',
+  GET_VO: '/question/get/vo',
 }
 
 export const QuestionApi = {
@@ -43,5 +45,23 @@ export const QuestionApi = {
    */
   delete(params: { id?: number }) {
     return useRequest.post<boolean, Result<boolean>>(API_URL_ENUM.DELETE, params)
+  },
+
+  /**
+   * 查询题目（脱敏）列表
+   */
+  listVo(params?: {
+    title?: string
+    difficulty?: string
+    tags?: string[]
+  } & Partial<Pagination>) {
+    return useRequest.post<Question, PageResult<Question>>(API_URL_ENUM.LIST_VO, params)
+  },
+
+  /**
+   * 根据 id 获取题目（脱敏）
+   */
+  getVo(params: { id: number }) {
+    return useRequest.get<Question, Result<Question>>(API_URL_ENUM.GET_VO, { params })
   },
 }
