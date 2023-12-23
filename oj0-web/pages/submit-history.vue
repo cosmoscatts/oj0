@@ -26,6 +26,8 @@ function getSerchParams() {
     current,
     pageSize,
     ...refSearchForm.value?.getSearchParams(),
+    sortField: 'createTime',
+    sortOrder: 'descend',
   }
   if (isOnlyMy.value === true)
     searchParams.userId = authStore.user?.id

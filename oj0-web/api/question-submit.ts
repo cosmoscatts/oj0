@@ -8,10 +8,12 @@ export const QuestionSubmitApi = {
    * 查询题目提交记录
    */
   list(params?: {
-    questionId?: number
+    questionId?: string | number
     language?: string
     status?: number
     userId?: number
+    sortField?: string
+    sortOrder?: string
   } & Partial<Pagination>) {
     return useRequest.post<QuestionSubmit, PageResult<QuestionSubmit>>(API_URL_ENUM.LIST, params)
   },

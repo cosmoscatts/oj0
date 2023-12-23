@@ -9,30 +9,19 @@ definePageMeta({
 })
 
 const route = useRoute()
-
-const id = computed(() => route.params.id) // 题目 id
-
+const id = computed(() => route.params.id as string) // 题目 id
 const selectedLeftTab = ref(0) // 0 - 题目描述；1 - 题解；2 - 提交记录
+const currentQuestion = ref<Question>()
 
-const currentQuestion = ref({
-  title: '两数之和',
-  content: '哈哈哈哈哈哈哈哈',
-  tags: ['二叉树', '动态规划', '递归'],
-  difficulty: 'easy',
-  hasSubmitted: true,
-  hasResolved: false,
-  judgeCase: [
-    {
-      input: '22222',
-      output: '222',
-    },
-    {
-      input: '2222221231c',
-      output: '2222asd22',
-    },
-  ],
-  answer: '# 递归',
-})
+async function fetchCurrentQuestion() {
+  if (!id.value) {
+    Message.error('题目 id 异常')
+    return
+  }
+  const { data } = await QuestionApi.getVo({ id: id.value })
+  currentQuestion.value = data
+}
+fetchCurrentQuestion()
 </script>
 
 <template>
@@ -49,7 +38,7 @@ const currentQuestion = ref({
               <CommonTransition name="layout">
                 <ResolveLeftQuestionInfo v-if="selectedLeftTab === 0" :="currentQuestion" />
                 <ResolveLeftQuestionAnswer v-if="selectedLeftTab === 1" :="currentQuestion" />
-                <ResolveLeftQuestionSubmitList v-if="selectedLeftTab === 2" />
+                <ResolveLeftQuestionSubmitList v-if="selectedLeftTab === 2" :id="id" />
               </CommonTransition>
             </div>
           </div>
@@ -64,7 +53,7 @@ const currentQuestion = ref({
               </template>
               <template #second>
                 <div h-full w-full of-hidden border="1 base">
-                  <ResolveRightTest :judge-case="currentQuestion.judgeCase" />
+                  <ResolveRightRun :judge-config="currentQuestion?.judgeConfig" />
                 </div>
               </template>
             </a-split>

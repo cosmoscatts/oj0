@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { TableColumnData } from '@arco-design/web-vue'
 
+const { id } = defineProps<{ id: string }>()
+
 const columns: TableColumnData[] = [
   {
     title: '状态',
-    dataIndex: 'state',
-    slotName: 'state',
+    dataIndex: 'status',
+    slotName: 'status',
     align: 'center',
   },
   {
@@ -28,24 +30,18 @@ const columns: TableColumnData[] = [
   },
 ]
 
-const tableData = ref<{
-  state: number
-  language: string
-  useTime?: number
-  useMemory?: number
-  createTime?: Date
-}[]>([])
+const authStore = useAuthStore()
+const tableData = ref<QuestionSubmit[]>([])
 
-function fetchData() {
-  tableData.value = Array.from({ length: 3 }, () => {
-    return {
-      state: getRandomInteger(3),
-      language: 'java',
-      useTime: getRandomInteger(2) < 1 ? undefined : getRandomInteger(20, 1),
-      useMemory: getRandomInteger(50, 20),
-      createTime: new Date(),
-    }
-  })
+async function fetchData() {
+  const searchParams = {
+    userId: authStore.user?.id,
+    questionId: id,
+    sortField: 'createTime',
+    sortOrder: 'descend',
+  }
+  const { data: { records } } = await QuestionSubmitApi.list(searchParams)
+  tableData.value = records || []
 }
 fetchData()
 
@@ -57,19 +53,24 @@ function onRowClick() {
 <template>
   <div min-w-400px of-auto py-10px>
     <a-table :columns="columns" :data="tableData" :pagination="false" :bordered="false" row-class="cursor-pointer" @row-click="onRowClick">
-      <template #state="{ record }">
+      <template #status="{ record }">
         <div grid="~ rows-2 gap-1" text-sm>
           <div row-span-1 flex-center>
-            <div v-if="record.state === 1" text-red>
-              解答错误
-            </div>
-            <div v-else-if="record.state === 2" text-green>
-              通过
-            </div>
-            <div v-else flex-center gap-2>
+            <div v-if="record.status === 0" flex-center gap-2>
               <div i-ri-loader-2-line animate-spin />
               等待中
             </div>
+            <div v-if="record.status === 1" flex-center gap-2 text-orange>
+              <div i-ri-loader-2-line animate-spin />
+              判题中
+            </div>
+            <div v-else-if="record.status === 2" text-green>
+              通过
+            </div>
+            <div v-else-if="record.status === 3" text-red>
+              解答错误
+            </div>
+            <div v-else />
           </div>
           <CommonTooltip :content="formatDate(record.createTime, 'YYYY-MM-DD HH:mm:ss')">
             <div row-span-1 flex-center>
@@ -86,9 +87,9 @@ function onRowClick() {
       <template #useTime="{ record }">
         <div flex-center gap-1>
           <div i-ri-time-line />
-          <template v-if="record.useTime">
+          <template v-if="record.judgeInfo?.time">
             <div mt-0.5>
-              {{ record.useTime || 0 }} ms
+              {{ record.judgeInfo.time }} ms
             </div>
           </template>
           <template v-else>
@@ -101,9 +102,9 @@ function onRowClick() {
       <template #useMemory="{ record }">
         <div flex-center gap-1>
           <div i-ri-cpu-line />
-          <template v-if="record.useMemory">
+          <template v-if="record.judgeInfo?.memory">
             <div mt-0.5>
-              {{ record.useMemory || 0 }} MB
+              {{ record.judgeInfo.memory }} MB
             </div>
           </template>
           <template v-else>
