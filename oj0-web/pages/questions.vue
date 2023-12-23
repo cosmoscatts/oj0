@@ -26,7 +26,6 @@ function search() {
       id: idx + 1,
       state: getRandomInteger(2),
       title: getRandomStr(6),
-      solutionNum: getRandomInteger(10),
       tags: Array(3).fill('').map(() => {
         return questionTagOptions[getRandomInteger(questionTagOptions.length)].value as string
       }),
@@ -39,8 +38,21 @@ function search() {
 }
 onMounted(search)
 
-function getRandomQuestion() {
+function checkoutQuestion(record: Question) {
+  router.push(`/resolve/${record.id}`)
+}
+
+function checkoutRandomQuestion() {
   router.push('/resolve/1111')
+}
+
+function calculateAcceptPercent(record: Question) {
+  const { submitNum = 0, acceptedNum = 0 } = record
+  if (submitNum === 0)
+    return ''
+  if (acceptedNum === 0)
+    return '0 %'
+  return `${(acceptedNum / submitNum * 100).toFixed(2)} %`
 }
 </script>
 
@@ -53,7 +65,7 @@ function getRandomQuestion() {
 
       <div col-span-1 flex justify-end gap-3>
         <div mt-2px h-32px flex-center>
-          <div flex-center gap-2 btn-solid @click="getRandomQuestion">
+          <div flex-center gap-2 btn-solid @click="checkoutRandomQuestion">
             <button i-ri-shuffle-line />
             <span lt-xl:hidden>随机一题</span>
           </div>
@@ -88,7 +100,7 @@ function getRandomQuestion() {
         </span>
       </template>
       <template #acceptPercent="{ record }">
-        {{ record.acceptedNum ?? 0 }} %
+        {{ calculateAcceptPercent(record) }}
       </template>
       <template #tags="{ record }">
         <div v-if="record.tags.length" w-250px>
@@ -105,6 +117,13 @@ function getRandomQuestion() {
         <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.EASY" text-green>简单</span>
         <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.MEDIUM" text-orange>中等</span>
         <span v-if="record.difficulty === QUESTION_DIFFICULTY_ENUM.HARD" text-red>困难</span>
+      </template>
+      <template #action="{ record }">
+        <CommonTooltip content="做题">
+          <div w-full flex-center text-lg btn-text @click="checkoutQuestion(record)">
+            <div i-ri-arrow-right-up-line />
+          </div>
+        </CommonTooltip>
       </template>
     </a-table>
   </div>

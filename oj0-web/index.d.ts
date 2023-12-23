@@ -92,8 +92,8 @@ declare global {
     tags?: string // 标签
     difficulty?: string // 题目难度
     answer?: string // 题解
-    submitNum?: number
-    acceptedNum?: number
+    submitNum?: number // 题目提交数
+    acceptedNum?: number // 题目通过数
     judgeCase?: string // 判题用例
     judgeConfig?: string // 判题配置
     userId?: number // 创建用户 id
@@ -102,7 +102,7 @@ declare global {
   }
 
   /**
-   * 题目
+   * 题目（特殊处理 tags/judgeCase/judgeConfig）
    */
   interface Question {
     id: number
@@ -111,8 +111,8 @@ declare global {
     tags?: string[] // 标签
     difficulty?: string // 题目难度
     answer?: string // 题目答案
-    submitNum?: number
-    acceptedNum?: number
+    submitNum?: number // 题目提交数
+    acceptedNum?: number // 题目通过数
     judgeCase?: JudgeCase[] // 判题用例
     judgeConfig?: JudgeConfig // 判题配置
     userId?: number // 创建用户 id

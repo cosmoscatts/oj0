@@ -24,12 +24,8 @@ function back() {
       </CommonTooltip>
     </div>
 
-    <div flex-center gap-3>
-      <button flex-center btn-outline>
-        <div i-ri-play-mini-fill mr-2 />
-        运行
-      </button>
-      <button flex-center btn-outline>
+    <div flex-center>
+      <button flex-center btn-solid>
         <div i-ri-upload-cloud-fill mr-2 />
         提交
       </button>

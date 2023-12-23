@@ -6,12 +6,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cc.oj0backend.common.ErrorCode;
 import com.cc.oj0backend.constant.CommonConstant;
 import com.cc.oj0backend.exception.BusinessException;
+import com.cc.oj0backend.judge.JudgeService;
 import com.cc.oj0backend.model.dto.questionsubmit.QuestionSubmitAddRequest;
 import com.cc.oj0backend.model.dto.questionsubmit.QuestionSubmitQueryRequest;
 import com.cc.oj0backend.model.entity.Question;
 import com.cc.oj0backend.model.entity.QuestionSubmit;
 import com.cc.oj0backend.model.entity.User;
-import com.cc.oj0backend.model.enums.FileUploadBizEnum;
+import com.cc.oj0backend.model.enums.QuestionSubmitLanguageEnum;
 import com.cc.oj0backend.model.enums.QuestionSubmitStatusEnum;
 import com.cc.oj0backend.model.vo.QuestionSubmitVO;
 import com.cc.oj0backend.service.QuestionService;
@@ -27,6 +28,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -45,6 +47,11 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
     @Resource
     private UserService userService;
 
+    @Resource
+    @Lazy
+    private JudgeService judgeService;
+
+
     /**
      * 提交题目
      *
@@ -56,10 +63,10 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
     public long doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser) {
         // 校验编程语言是否合法
         String language = questionSubmitAddRequest.getLanguage();
-//        QuestionSubmitLanguageEnum languageEnum = QuestionSubmitLanguageEnum.getEnumByValue(language);
-//        if (languageEnum == null) {
-//            throw new BusinessException(ErrorCode.PARAMS_ERROR, "编程语言错误");
-//        }
+        QuestionSubmitLanguageEnum languageEnum = QuestionSubmitLanguageEnum.getEnumByValue(language);
+        if (languageEnum == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "编程语言错误");
+        }
         long questionId = questionSubmitAddRequest.getQuestionId();
         // 判断实体是否存在，根据类别获取实体
         Question question = questionService.getById(questionId);
@@ -75,17 +82,17 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         questionSubmit.setCode(questionSubmitAddRequest.getCode());
         questionSubmit.setLanguage(language);
         // 设置初始状态
-//        questionSubmit.setStatus(QuestionSubmitStatusEnum.WAITING.getValue());
+        questionSubmit.setStatus(QuestionSubmitStatusEnum.WAITING.getValue());
         questionSubmit.setJudgeInfo("{}");
         boolean save = this.save(questionSubmit);
         if (!save){
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "数据插入失败");
         }
         Long questionSubmitId = questionSubmit.getId();
-//        // 执行判题服务
-//        CompletableFuture.runAsync(() -> {
-//            judgeService.doJudge(questionSubmitId);
-//        });
+        // 执行判题服务
+        CompletableFuture.runAsync(() -> {
+            judgeService.doJudge(questionSubmitId);
+        });
         return questionSubmitId;
     }
 

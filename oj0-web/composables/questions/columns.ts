@@ -44,5 +44,11 @@ export function getQuestionsTableColumns(): TableColumnData[] {
       slotName: 'difficulty',
       align: 'center',
     },
+    {
+      title: '操作',
+      dataIndex: 'action',
+      slotName: 'action',
+      align: 'center',
+    },
   ]
 }
