@@ -18,6 +18,10 @@ async function checkoutRandomQuestion() {
     Message.error(message || '获取随机题目发生异常')
     return
   }
+  if (String(data) === id.value) {
+    Message.warning('暂时没有其他未做的题目了哦～')
+    return
+  }
   router.replace(`/resolve/${data}`)
 }
 
