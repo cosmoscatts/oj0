@@ -63,7 +63,7 @@ async function submit() {
         >
           <a-input v-model="form.userAccount" allow-clear>
             <template #prefix>
-              <IconLock />
+              <IconUser />
             </template>
           </a-input>
         </a-form-item>

@@ -248,3 +248,17 @@
 .arco-spin-mask { 
   background-color: transparent;
 }
+
+/* Notification */
+
+.arco-notification {
+  background-color: var(--c-bg-base);
+  border-color: var(--c-border);
+}
+
+/* Message */
+
+.arco-message {
+  background-color: var(--c-bg-base);
+  border-color: var(--c-border);
+}
