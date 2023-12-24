@@ -62,7 +62,7 @@ onBeforeUnmount(() => {
           {{ submitInfo.judgeInfo?.message || '系统错误' }}
         </div>
       </div>
-      <div v-else flex="~ col" h-full min-h-270px>
+      <div v-else flex="~ col" h-full min-h-250px>
         <div h-60px flex="~ col" gap-1>
           <div text-lg font-bold>
             <span v-if="checkQuestionAccepted(submitInfo)" text-green> 通过</span>

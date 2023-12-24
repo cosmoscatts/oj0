@@ -37,7 +37,7 @@ defineExpose({
 </script>
 
 <template>
-  <div h-full w-full of-hidden flex="~ col" border="1 base">
+  <div h-full w-full of-hidden flex="~ col">
     <div flex-y-center justify-between gap-3 border-b border-base px-3 py-2>
       <button flex="~ gap-1 center" ws-nowrap>
         <span i-carbon-code text-green /> 代码

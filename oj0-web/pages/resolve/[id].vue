@@ -80,7 +80,7 @@ async function doSubmit() {
                 </div>
               </template>
               <template #second>
-                <div h-full w-full of-hidden border="1 base">
+                <div h-full w-full of-hidden>
                   <ResolveRightRun ref="refResolveRightRun" :judge-config="currentQuestion?.judgeConfig" :submit-id="currentSubmitId" />
                 </div>
               </template>
