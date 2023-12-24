@@ -15,17 +15,17 @@ import org.apache.commons.lang3.StringUtils;
 public class RemoteCodeSandbox implements CodeSandbox {
 
     // 定义鉴权请求头和密钥
-    private static final String AUTH_REQUEST_HEADER = "auth";
+    private static final String AUTH_REQUEST_HEADER = "xxx";
 
-    private static final String AUTH_REQUEST_SECRET = "secretKey";
+    private static final String AUTH_REQUEST_SECRET = "xxx";
 
+    private static final String CODE_SANDBOX_URL = "http://localhost:8090/executeCode";
 
     @Override
     public ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest) {
         System.out.println("远程代码沙箱");
-        String url = "http://localhost:8090/executeCode";
         String json = JSONUtil.toJsonStr(executeCodeRequest);
-        String responseStr = HttpUtil.createPost(url)
+        String responseStr = HttpUtil.createPost(CODE_SANDBOX_URL)
                 .header(AUTH_REQUEST_HEADER, AUTH_REQUEST_SECRET)
                 .body(json)
                 .execute()

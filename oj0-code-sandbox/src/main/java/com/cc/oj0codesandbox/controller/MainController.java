@@ -1,5 +1,6 @@
 package com.cc.oj0codesandbox.controller;
 
+import com.cc.oj0codesandbox.JavaDockerCodeSandbox;
 import com.cc.oj0codesandbox.JavaNativeCodeSandbox;
 import com.cc.oj0codesandbox.model.ExecuteCodeRequest;
 import com.cc.oj0codesandbox.model.ExecuteCodeResponse;
@@ -16,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController {
 
     // 定义鉴权请求头和密钥
-    private static final String AUTH_REQUEST_HEADER = "auth";
+    private static final String AUTH_REQUEST_HEADER = "xxx";
 
-    private static final String AUTH_REQUEST_SECRET = "secretKey";
+    private static final String AUTH_REQUEST_SECRET = "xxx";
 
     @Resource
     private JavaNativeCodeSandbox javaNativeCodeSandbox;
