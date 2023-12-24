@@ -1,25 +1,48 @@
 <script setup lang="ts">
 import { QUESTION_DIFFICULTY_ENUM } from '~/constants'
 
-const { title = '', content = '', tags = [], hasSubmitted = false, hasResolved = false } = defineProps<{
+const { id, title = '', content = '', tags = [] } = defineProps<{
+  id?: number
   title?: string
   content?: string
   tags?: string[]
   difficulty?: string
-  hasSubmitted?: boolean // 是否有提交记录
-  hasResolved?: boolean // 是否解答
 }>()
+
+const acceptedQuestionIds = ref<number[]>([])
+async function fetchAcceptedQuestionIds() {
+  const { data } = await QuestionSubmitApi.listMyAcceptedQuestionIds()
+  acceptedQuestionIds.value = data || []
+}
+fetchAcceptedQuestionIds()
+
+const authStore = useAuthStore()
+const submitQuestionIds = ref<number[]>([])
+async function fetchSubmitData() {
+  const searchParams = {
+    userId: authStore.user?.id,
+    questionId: id,
+    sortField: 'createTime',
+    sortOrder: 'descend',
+  }
+  const { data: { records } } = await QuestionSubmitApi.list(searchParams)
+  submitQuestionIds.value = records?.map(i => i.questionId!) || []
+}
+fetchSubmitData()
+
+const hasSubmitted = computed(() => id && submitQuestionIds.value.includes(id)) // 是否有提交记录
+const hasAccepted = computed(() => id && acceptedQuestionIds.value.includes(id)) // 是否通过该题
 </script>
 
 <template>
-  <div flex="~ col" min-w-200px>
+  <div flex="~ col" min-w-200px pb-5>
     <div h-50px flex-y-center justify-between px-3 py-2>
       <div text-2xl font-bold text-base>
         {{ title }}
       </div>
       <div flex-y-center justify-end>
         <template v-if="hasSubmitted">
-          <div v-if="hasResolved" flex-center gap-2>
+          <div v-if="hasAccepted" flex-center gap-2>
             <div>已解答</div>
             <div i-carbon-checkmark-outline text-green />
           </div>
