@@ -10,6 +10,10 @@
   border-color: var(--c-border);
 }
 
+.arco-divider-vertical {
+  border-color: var(--c-border);
+}
+
 /* Card */
 
 .arco-card {
