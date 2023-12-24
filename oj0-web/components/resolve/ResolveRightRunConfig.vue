@@ -3,9 +3,9 @@ const { judgeConfig = {} } = defineProps<{
   judgeConfig?: JudgeConfig
 }>()
 
-const timeLimit = computed(() => judgeConfig?.timeLimit ? 'NA' : `${judgeConfig.timeLimit}ms`)
-const memoryLimit = computed(() => judgeConfig?.memoryLimit ? 'NA' : `${judgeConfig.memoryLimit}KB`)
-const stackLimit = computed(() => judgeConfig?.stackLimit ? 'NA' : `${judgeConfig.stackLimit}KB`)
+const timeLimit = computed(() => judgeConfig?.timeLimit ? `${judgeConfig.timeLimit}ms` : 'NA')
+const memoryLimit = computed(() => judgeConfig?.memoryLimit ? `${judgeConfig.memoryLimit}KB` : 'NA')
+const stackLimit = computed(() => judgeConfig?.stackLimit ? `${judgeConfig.stackLimit}KB` : 'NA')
 </script>
 
 <template>

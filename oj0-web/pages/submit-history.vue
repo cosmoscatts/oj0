@@ -48,25 +48,25 @@ watch(isOnlyMy, search)
 
 const userOptions = ref<SelectOptionData[]>([])
 async function fetchUserOptions() {
-  const { data: { records = [] } } = await UserApi.list({})
-  userOptions.value = records.map((i) => {
+  const { data: { records } } = await UserApi.list({})
+  userOptions.value = records.map?.((i) => {
     return {
       value: i.id,
       label: i.userName || '匿名用户',
     }
-  })
+  }) || []
 }
 fetchUserOptions()
 
 const questionOptions = ref<SelectOptionData[]>([])
 async function fetchQuestionOptions() {
-  const { data: { records = [] } } = await QuestionApi.listVo({})
-  questionOptions.value = records.map((i) => {
+  const { data: { records } } = await QuestionApi.listVo({})
+  questionOptions.value = records?.map((i) => {
     return {
       value: i.id,
       label: i.title,
     }
-  })
+  }) || []
 }
 fetchQuestionOptions()
 
