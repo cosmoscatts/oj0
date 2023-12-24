@@ -5,6 +5,10 @@
   height: 650px;
 }
 
+.markdown-body {
+  color: var(--c-text-base)!important;
+}
+
 .bytemd-toolbar {
   background-color: transparent;
   border-bottom-color: var(--c-border);
