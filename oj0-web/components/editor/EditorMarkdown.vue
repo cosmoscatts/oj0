@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import gfm from '@bytemd/plugin-gfm'
-import highlight from '@bytemd/plugin-highlight'
 import { Editor } from '@bytemd/vue-next'
 import zhHans from 'bytemd/locales/zh_Hans.json'
+import highlightjs from 'highlight.js'
 
 const { mode = 'split' } = defineProps<{
   mode?: string
@@ -10,22 +10,24 @@ const { mode = 'split' } = defineProps<{
 
 const value = defineModel<string>()
 
+onMounted(() => {
+  useTimeoutFn(highlightjs.highlightAll, 200)
+})
 /**
  * 定义编辑器需要用到的插件
  */
-const plugins = [
-  gfm(),
-  highlight(),
-]
+const plugins = [gfm()]
 
 function handleChange(newValue: string) {
   value.value = newValue
 }
+
+const themeClass = computed(() => isDark.value ? 'hljs-atom-one-dark' : 'hljs-atom-one-light')
 </script>
 
 <template>
   <ClientOnly>
-    <div w-full>
+    <div w-full class="markdown-body" :class="themeClass">
       <Editor
         :value="value"
         :plugins="plugins"

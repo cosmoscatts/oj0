@@ -8,9 +8,6 @@ dependencies:
   '@bytemd/plugin-gfm':
     specifier: ^1.21.0
     version: registry.npmmirror.com/@bytemd/plugin-gfm@1.21.0(bytemd@1.21.0)
-  '@bytemd/plugin-highlight':
-    specifier: ^1.21.0
-    version: registry.npmmirror.com/@bytemd/plugin-highlight@1.21.0(bytemd@1.21.0)
   '@bytemd/vue-next':
     specifier: ^1.21.0
     version: registry.npmmirror.com/@bytemd/vue-next@1.21.0(vue@3.3.9)
@@ -71,6 +68,9 @@ dependencies:
   github-markdown-css:
     specifier: ^5.4.0
     version: registry.npmmirror.com/github-markdown-css@5.4.0
+  highlight.js:
+    specifier: ^11.9.0
+    version: registry.npmmirror.com/highlight.js@11.9.0
   lodash:
     specifier: ^4.17.21
     version: registry.npmmirror.com/lodash@4.17.21
@@ -7292,18 +7292,6 @@ packages:
       remark-gfm: registry.npmmirror.com/remark-gfm@3.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  registry.npmmirror.com/@bytemd/plugin-highlight@1.21.0(bytemd@1.21.0):
-    resolution: {integrity: sha512-JM9rwzj9pFBXVwxmD9mgGIQPO4cTFVHvDhffS93IMK+tqvo0Vw76zDIqJWT3f421j8iNxffGsVQQs6389u3Z9A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@bytemd/plugin-highlight/-/plugin-highlight-1.21.0.tgz}
-    id: registry.npmmirror.com/@bytemd/plugin-highlight/1.21.0
-    name: '@bytemd/plugin-highlight'
-    version: 1.21.0
-    peerDependencies:
-      bytemd: ^1.5.0
-    dependencies:
-      bytemd: registry.npmmirror.com/bytemd@1.21.0
-      highlight.js: registry.npmmirror.com/highlight.js@11.9.0
     dev: false
 
   registry.npmmirror.com/@bytemd/vue-next@1.21.0(vue@3.3.9):

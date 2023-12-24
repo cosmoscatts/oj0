@@ -31,6 +31,10 @@
   background-color: var(--c-bg-active);
 }
 
+.markdown-body blockquote {
+  color: var(--text-base);
+}
+
 .tippy-box[data-theme~='light-border'] { 
   background-color: var(--c-bg-base);
   border-color: var(--c-border);
@@ -111,3 +115,4 @@ ol ol ol, ul ul ul, menu menu menu {
 .language-java.hljs {
   color: var(--c-text-base);
 }
+
