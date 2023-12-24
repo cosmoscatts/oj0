@@ -88,6 +88,17 @@ public class JudgeServiceImpl implements JudgeService {
                 .inputList(inputList)
                 .build();
         ExecuteCodeResponse executeCodeResponse = codeSandbox.executeCode(executeCodeRequest);
+        if (executeCodeResponse.getStatus().equals(3)) { // 沙箱内部错误
+            questionSubmitUpdate = new QuestionSubmit();
+            questionSubmitUpdate.setId(questionSubmitId);
+            questionSubmitUpdate.setStatus(QuestionSubmitStatusEnum.FAILED.getValue());
+            questionSubmitUpdate.setJudgeInfo(JSONUtil.toJsonStr(executeCodeResponse.getJudgeInfo()));
+            update = questionSubmitService.updateById(questionSubmitUpdate);
+            if (!update) {
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目状态更新错误");
+            }
+            return questionSubmitService.getById(questionSubmitId);
+        }
         List<String> outputList = executeCodeResponse.getOutputList();
         // 5）根据沙箱的执行结果，设置题目的判题状态和信息
         JudgeContext judgeContext = new JudgeContext();
@@ -118,7 +129,6 @@ public class JudgeServiceImpl implements JudgeService {
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目通过数更新错误");
             }
         }
-        QuestionSubmit questionSubmitResult = questionSubmitService.getById(questionId);
-        return questionSubmitResult;
+        return questionSubmitService.getById(questionSubmitId);
     }
 }

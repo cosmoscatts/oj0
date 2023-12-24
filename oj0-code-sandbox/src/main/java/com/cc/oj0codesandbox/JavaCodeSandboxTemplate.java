@@ -33,23 +33,47 @@ public abstract class JavaCodeSandboxTemplate implements CodeSandbox {
         String code = executeCodeRequest.getCode();
         String language = executeCodeRequest.getLanguage();
 
-//        1. 把用户的代码保存为文件
-        File userCodeFile = saveCodeToFile(code);
+        File userCodeFile;
+        //        1. 把用户的代码保存为文件
+        try {
+            userCodeFile = saveCodeToFile(code);
+        } catch (Exception e) {
+            return new ExecuteCodeResponse().setStatus(3).setJudgeInfo(new JudgeInfo().setMessage("编译错误"));
+        }
 
-//        2. 编译代码，得到 class 文件
-        ExecuteMessage compileFileExecuteMessage = compileFile(userCodeFile);
-        System.out.println(compileFileExecuteMessage);
+        //        2. 编译代码，得到 class 文件
+        try {
+            ExecuteMessage compileFileExecuteMessage = compileFile(userCodeFile);
+            System.out.println(compileFileExecuteMessage);
+        } catch(Exception e) {
+            return new ExecuteCodeResponse().setStatus(3).setJudgeInfo(new JudgeInfo().setMessage("编译错误"));
+        }
 
-        // 3. 执行代码，得到输出结果
-        List<ExecuteMessage> executeMessageList = runFile(userCodeFile, inputList);
+        //        3. 执行代码，得到输出结果
+        List<ExecuteMessage> executeMessageList;
+        try {
+           executeMessageList  = runFile(userCodeFile, inputList);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ExecuteCodeResponse().setStatus(3).setJudgeInfo(new JudgeInfo().setMessage("运行错误"));
+        }
 
-//        4. 收集整理输出结果
-        ExecuteCodeResponse outputResponse = getOutputResponse(executeMessageList);
+        //        4. 收集整理输出结果
+        ExecuteCodeResponse outputResponse;
+        try {
+           outputResponse = getOutputResponse(executeMessageList);
+        } catch (Exception e) {
+            return new ExecuteCodeResponse().setStatus(3).setJudgeInfo(new JudgeInfo().setMessage("系统错误"));
+        }
 
-//        5. 文件清理
-        boolean b = deleteFile(userCodeFile);
-        if (!b) {
-            log.error("deleteFile error, userCodeFilePath = {}", userCodeFile.getAbsolutePath());
+        //        5. 文件清理
+        try {
+            boolean b = deleteFile(userCodeFile);
+            if (!b) {
+                log.error("deleteFile error, userCodeFilePath = {}", userCodeFile.getAbsolutePath());
+            }
+        } catch (Exception e) {
+            return new ExecuteCodeResponse().setStatus(3).setJudgeInfo(new JudgeInfo().setMessage("系统错误"));
         }
         return outputResponse;
     }
