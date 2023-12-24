@@ -46,6 +46,7 @@ async function search() {
 onMounted(search)
 
 watch(selectedRadioValue, () => {
+  paginator.pagination.current = 1
   refSearchForm.value?.reset?.()
   search()
 })

@@ -46,7 +46,10 @@ async function search(update = false) {
 }
 onMounted(search)
 
-watch(isOnlyMy, search)
+watch(isOnlyMy, () => {
+  paginator.pagination.current = 1
+  search()
+})
 
 const userOptions = ref<SelectOptionData[]>([])
 async function fetchUserOptions() {
