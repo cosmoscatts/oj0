@@ -35,6 +35,10 @@
   color: var(--text-base);
 }
 
+.markdown-body pre {
+  color: var(--text-base);
+}
+
 .tippy-box[data-theme~='light-border'] { 
   background-color: var(--c-bg-base);
   border-color: var(--c-border);
