@@ -1,7 +1,7 @@
 .bytemd {
   background-color: transparent;
   border-color: var(--c-border);
-  color: var(--color-text-2);
+  color: var(--c-text-base);
   height: 650px;
 }
 
