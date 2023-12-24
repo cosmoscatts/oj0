@@ -47,7 +47,7 @@ defineExpose({
         <a-select v-model="selectedLanguage" :options="options" size="mini" allow-clear w-100px rounded />
 
         <CommonTooltip content="还原到默认">
-          <button i-carbon-reset mt-1 font-bold filter-saturate-0 />
+          <button i-carbon-reset mt-1 font-bold filter-saturate-0 @click="code = DEFAULT_CODE" />
         </CommonTooltip>
       </div>
     </div>

@@ -36,6 +36,7 @@ function submit() {
       title: '登录成功',
       content,
       duration: 3000,
+      closable: true,
     })
     const path = route.query?.redirect as string || '/'
     router.push(path)

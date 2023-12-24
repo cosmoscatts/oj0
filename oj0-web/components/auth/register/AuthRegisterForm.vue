@@ -28,7 +28,12 @@ async function submit() {
     Message.error(result.message ?? '注册失败')
     return
   }
-  ANotification.success('注册成功，快去登录吧！')
+  ANotification.success({
+    title: '注册成功',
+    content: '快去登录吧～',
+    closable: true,
+    duration: 3000,
+  })
   gotoLogin()
 }
 </script>
