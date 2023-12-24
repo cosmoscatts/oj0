@@ -35,12 +35,14 @@ function getSerchParams() {
   return searchParams
 }
 
-async function search() {
-  startLoading()
+async function search(update = false) {
+  if (!update)
+    startLoading()
   const { data: { records, total } } = await QuestionSubmitApi.list(getSerchParams())
   tableData.value = records || []
   paginator.setPaginationTotal(Number(total || 0))
-  useTimeoutFn(endLoading, 500)
+  if (!update)
+    useTimeoutFn(endLoading, 500)
 }
 onMounted(search)
 
@@ -76,7 +78,7 @@ function checkoutQuestion(record: QuestionSubmit) {
 }
 
 onMounted(() => {
-  useIntervalFn(search, 5000)
+  useIntervalFn(() => search(true), 5000)
 })
 </script>
 

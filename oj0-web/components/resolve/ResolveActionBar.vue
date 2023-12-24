@@ -19,7 +19,7 @@ async function checkoutRandomQuestion() {
     return
   }
   if (String(data) === id.value) {
-    Message.warning('暂时没有其他未做的题目了哦～')
+    Message.warning('\\(o_o)/ 真是不巧，又刷到这题了呢～')
     return
   }
   router.replace(`/resolve/${data}`)
