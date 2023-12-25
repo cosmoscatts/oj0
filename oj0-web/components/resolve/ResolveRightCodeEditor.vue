@@ -41,6 +41,13 @@ function reset() {
   })
 }
 
+const { copy: _copy, copied } = useClipboard()
+
+function copy() {
+  _copy((code.value || '').trim())
+  Message.success('复制成功')
+}
+
 defineExpose({
   getCode,
   getLanguage,
@@ -55,10 +62,14 @@ defineExpose({
       </button>
 
       <div flex-y-center justify-end gap-3>
-        <a-select v-model="selectedLanguage" :options="options" size="mini" allow-clear w-100px rounded />
+        <a-select v-model="selectedLanguage" :options="options" size="mini" w-100px rounded />
 
-        <CommonTooltip content="还原到默认">
-          <button i-carbon-reset mt-1 font-bold filter-saturate-0 @click="reset" />
+        <CommonTooltip content="还原到默认" flex items-center>
+          <button i-carbon-reset op50 hover:op100 @click="reset" />
+        </CommonTooltip>
+
+        <CommonTooltip content="复制代码" flex items-center>
+          <button title="Copy" op50 transition hover:op100 :class="copied ? 'i-carbon-checkmark text-green' : 'i-carbon-copy'" @click="copy" />
         </CommonTooltip>
       </div>
     </div>
