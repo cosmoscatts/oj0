@@ -82,7 +82,7 @@ export const questionSubmitStatusOptions = Array.from({ length: 4 }, (_, idx) =>
 /**
  * 提交成功后的判题结果
  */
-export const questionSubmitJugdeOptions = Array.from({ length: 11 }, (_, idx) => {
+export const questionSubmitJudgeOptions = Array.from({ length: 11 }, (_, idx) => {
   const values = ['Accepted', '答案错误', '编译错误', '内存溢出', '超时', '展示错误', '等待中', '输出溢出', '危险操作', '运行错误', '系统错误']
   return {
     value: values[idx],

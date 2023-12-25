@@ -72,7 +72,7 @@ function onRowClick() {
                 通过
               </span>
               <span v-else text-red>
-                {{ getOptionsLabel(questionSubmitJugdeOptions, record.judgeInfo?.message) || '解答错误' }}
+                {{ getOptionsLabel(questionSubmitJudgeOptions, record.judgeInfo?.message) || '解答错误' }}
               </span>
             </div>
             <div v-else-if="record.status === 3" text-red>

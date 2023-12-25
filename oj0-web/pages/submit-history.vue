@@ -20,7 +20,7 @@ const { loading, startLoading, endLoading } = useLoading()
 /**
  * 获取查询参数
  */
-function getSerchParams() {
+function getSearchParams() {
   const { current, pageSize } = paginator.pagination
   const searchParams = {
     current,
@@ -38,7 +38,7 @@ function getSerchParams() {
 async function search(update = false) {
   if (!update)
     startLoading()
-  const { data: { records, total } } = await QuestionSubmitApi.list(getSerchParams())
+  const { data: { records, total } } = await QuestionSubmitApi.list(getSearchParams())
   tableData.value = records || []
   paginator.setPaginationTotal(Number(total || 0))
   if (!update)
@@ -51,17 +51,25 @@ watch(isOnlyMy, () => {
   search()
 })
 
-const userOptions = ref<SelectOptionData[]>([])
-async function fetchUserOptions() {
-  const { data: { records } } = await UserApi.list({})
-  userOptions.value = records.map?.((i) => {
-    return {
-      value: i.id,
-      label: i.userName || '匿名用户',
+const userMap = ref<Record<number, User>>({})
+async function fetchUserMap() {
+  const { data: { records } } = await UserApi.listVo()
+  userMap.value = records?.reduce((prev, cur) => {
+    prev[cur.id] = {
+      id: cur.id,
+      userName: cur.userName?.trim(),
+      userAvatar: cur.userAvatar,
     }
-  }) || []
+    return prev
+  }, {} as Record<number, User>)
 }
-fetchUserOptions()
+fetchUserMap()
+
+function getUser(record: QuestionSubmit) {
+  if (!record.userId)
+    return undefined
+  return userMap.value[record.userId]
+}
 
 const questionOptions = ref<SelectOptionData[]>([])
 async function fetchQuestionOptions() {
@@ -145,7 +153,7 @@ onMounted(() => {
               通过
             </span>
             <span v-else text-red>
-              {{ getOptionsLabel(questionSubmitJugdeOptions, record.judgeInfo?.message) || '解答错误' }}
+              {{ getOptionsLabel(questionSubmitJudgeOptions, record.judgeInfo?.message) || '解答错误' }}
             </span>
           </div>
           <div v-else-if="record.status === 3" text-red>
@@ -185,7 +193,21 @@ onMounted(() => {
         </div>
       </template>
       <template #userId="{ record }">
-        {{ getOptionsLabel(userOptions, record.userId) }}
+        <div flex-center gap-2>
+          <div flex-center select-none>
+            <a-avatar :size="16">
+              <img
+                v-if="getUser(record)?.userAvatar"
+                alt="头像"
+                :src="getUser(record)!.userAvatar"
+              >
+              <span v-else>
+                {{ getTextAvatar(getUser(record)) }}
+              </span>
+            </a-avatar>
+          </div>
+          <span flex-y-center>{{ getUser(record)?.userName || '匿名用户' }}</span>
+        </div>
       </template>
       <template #createTime="{ record }">
         <div>

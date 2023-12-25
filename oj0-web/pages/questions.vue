@@ -21,7 +21,7 @@ const { loading, startLoading, endLoading } = useLoading()
 /**
  * 获取查询参数
  */
-function getSerchParams() {
+function getSearchParams() {
   const { current, pageSize } = paginator.pagination
   const searchParams = {
     current,
@@ -38,7 +38,7 @@ function getSerchParams() {
 
 async function search() {
   startLoading()
-  const { data: { records, total } } = await QuestionApi.listVo(getSerchParams())
+  const { data: { records, total } } = await QuestionApi.listVo(getSearchParams())
   tableData.value = records || []
   paginator.pagination.total = Number(total || 0)
   useTimeoutFn(endLoading, 500)

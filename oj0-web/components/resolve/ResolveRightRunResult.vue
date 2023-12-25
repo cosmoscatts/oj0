@@ -67,7 +67,7 @@ onBeforeUnmount(() => {
           <div text-lg font-bold>
             <span v-if="checkQuestionAccepted(submitInfo)" text-green> 通过</span>
             <span v-else text-red>
-              {{ getOptionsLabel(questionSubmitJugdeOptions, submitInfo.judgeInfo?.message) || '解答错误' }}
+              {{ getOptionsLabel(questionSubmitJudgeOptions, submitInfo.judgeInfo?.message) || '解答错误' }}
             </span>
           </div>
           <div flex-y-center gap-2 text-sm>

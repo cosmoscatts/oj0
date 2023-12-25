@@ -4,14 +4,8 @@ const { size = 50 } = defineProps<{
 }>()
 
 const authStore = useAuthStore()
-const currentUser = computed(() => authStore.user)
-
-const textAvatar = computed(() => {
-  const userName = currentUser.value?.userName ?? ''
-  if (userName === '')
-    return 'X'
-  return userName.substring(0, 1)
-})
+const currentUser = computed(() => authStore.user!)
+const textAvatar = computed(() => getTextAvatar(currentUser.value))
 </script>
 
 <template>

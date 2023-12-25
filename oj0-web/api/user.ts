@@ -3,17 +3,25 @@ const API_URL_ENUM = {
   ADD: '/user/add',
   UPDATE: '/user/update',
   DELETE: '/user/delete',
+  LIST_VO: '/user/list/page/vo',
 }
 
 export const UserApi = {
   /**
-   * 查询用户列表
+   * 查询用户列表 (管理员)
    */
   list(params?: {
     userName?: string
     userRole?: string
   } & Partial<Pagination>) {
     return useRequest.post<User, PageResult<User>>(API_URL_ENUM.LIST, params)
+  },
+
+  /**
+   * 查询用户
+   */
+  listVo() {
+    return useRequest.post<User, PageResult<User>>(API_URL_ENUM.LIST_VO, {})
   },
 
   /**
