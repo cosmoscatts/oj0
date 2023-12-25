@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TableColumnData } from '@arco-design/web-vue'
+import type { TableColumnData, TableData } from '@arco-design/web-vue'
 
 const { id } = defineProps<{ id: string }>()
 
@@ -34,8 +34,9 @@ const authStore = useAuthStore()
 const tableData = ref<QuestionSubmit[]>([])
 const { loading, startLoading, endLoading } = useLoading()
 
-async function fetchData() {
-  startLoading()
+async function fetchData(update = false) {
+  if (!update)
+    startLoading()
   const searchParams = {
     userId: authStore.user?.id,
     questionId: id,
@@ -44,13 +45,28 @@ async function fetchData() {
   }
   const { data: { records } } = await QuestionSubmitApi.list(searchParams)
   tableData.value = records || []
-  useTimeoutFn(endLoading, 500)
+  if (!update)
+    useTimeoutFn(endLoading, 500)
 }
 fetchData()
+useIntervalFn(() => fetchData(true), 10 * 1000)
 
-function onRowClick() {
+const router = useRouter()
 
+/**
+ * 点击提交记录查看相应代码
+ */
+function onRowClick(record: TableData) {
+  if (!record.questionId || !record.id)
+    return
+  router.replace(`/resolve/${record.questionId}/${record.id}`)
 }
+
+defineExpose({
+  update() {
+    fetchData(true)
+  },
+})
 </script>
 
 <template>

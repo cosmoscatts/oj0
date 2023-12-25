@@ -7,7 +7,7 @@ const route = useRoute()
 const router = useRouter()
 
 function back() {
-  router.push('/questions')
+  router.go(-1)
 }
 
 const id = computed(() => route.params?.id as string)

@@ -2,7 +2,7 @@
 import { QUESTION_DIFFICULTY_ENUM } from '~/constants'
 
 const { id, title = '', content = '', tags = [] } = defineProps<{
-  id?: number
+  id?: number | string
   title?: string
   content?: string
   tags?: string[]
@@ -30,8 +30,8 @@ async function fetchSubmitData() {
 }
 fetchSubmitData()
 
-const hasSubmitted = computed(() => id && submitQuestionIds.value.includes(id)) // 是否有提交记录
-const hasAccepted = computed(() => id && acceptedQuestionIds.value.includes(id)) // 是否通过该题
+const hasSubmitted = computed(() => id && submitQuestionIds.value.includes(Number(id))) // 是否有提交记录
+const hasAccepted = computed(() => id && acceptedQuestionIds.value.includes(Number(id))) // 是否通过该题
 </script>
 
 <template>

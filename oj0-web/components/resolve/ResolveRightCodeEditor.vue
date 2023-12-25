@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
 
+const { submitId } = defineProps<{ submitId?: string }>()
+
 const selectedLanguage = ref(RESOLVE_LANGUAGE_ENUM.JAVA)
 
 const DEFAULT_CODE = `public class Main {
@@ -10,6 +12,14 @@ const DEFAULT_CODE = `public class Main {
 }`
 
 const code = ref(DEFAULT_CODE)
+
+async function fetchSubmitCode() {
+  if (!submitId)
+    return
+  const { data } = await QuestionSubmitApi.getById({ id: submitId })
+  code.value = data.code || ''
+}
+onMounted(fetchSubmitCode)
 
 function getCode() {
   return code.value

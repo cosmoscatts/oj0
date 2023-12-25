@@ -85,7 +85,12 @@ fetchQuestionOptions()
 
 const router = useRouter()
 function checkoutQuestion(record: QuestionSubmit) {
-  router.push(`/resolve/${record.questionId}`)
+  if (checkMySubmitRecord(record)) { // 自己提交的题目，可以查看代码
+    router.push(`/resolve/${record.questionId}/${record.id}`)
+  }
+  else {
+    router.push(`/resolve/${record.questionId}`)
+  }
 }
 
 onMounted(() => {
