@@ -4,6 +4,7 @@ const API_URL_ENUM = {
   UPDATE: '/user/update',
   DELETE: '/user/delete',
   LIST_VO: '/user/list/page/vo',
+  GET_VO: '/user/get/vo',
 }
 
 export const UserApi = {
@@ -22,6 +23,13 @@ export const UserApi = {
    */
   listVo() {
     return useRequest.post<User, PageResult<User>>(API_URL_ENUM.LIST_VO, {})
+  },
+
+  /**
+   * 根据 id 获取用户信息
+   */
+  getVo(id?: string | number) {
+    return useRequest.get<User, Result<User>>(API_URL_ENUM.GET_VO, { params: { id } })
   },
 
   /**

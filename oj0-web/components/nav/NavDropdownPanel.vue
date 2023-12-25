@@ -20,6 +20,9 @@ const router = useRouter()
 function checkProfile() {
   router.push('/user-profile')
 }
+function checkSummary() {
+  router.push('/summary')
+}
 
 const authStore = useAuthStore()
 function logout() {
@@ -72,6 +75,12 @@ const userProfile = computed(() => hasLogin.value ? authStore.user?.userProfile 
             <div flex-y-center gap-4>
               <div i-ri-profile-line />
               个人中心
+            </div>
+          </a-doption>
+          <a-doption @click="checkSummary">
+            <div flex-y-center gap-4>
+              <div i-ri-bar-chart-2-line />
+              做题统计
             </div>
           </a-doption>
           <a-doption @click="logout">

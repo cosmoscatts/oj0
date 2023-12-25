@@ -14,6 +14,9 @@ const router = useRouter()
 function checkProfile() {
   router.push('/user-profile')
 }
+function checkSummary() {
+  router.push('/summary')
+}
 
 const authStore = useAuthStore()
 function logout() {
@@ -25,7 +28,7 @@ const userProfile = computed(() => authStore.user?.userProfile || '还未添加�
 </script>
 
 <template>
-  <a-dropdown v-model:popup-visible="visible" trigger="click">
+  <a-dropdown v-model:popup-visible="visible" trigger="click" :popup-max-height="false">
     <NavAvatar :key="getRandomStr(10)" cursor-pointer :size="28" />
     <template #content>
       <div w-250px p-4>
@@ -49,6 +52,12 @@ const userProfile = computed(() => authStore.user?.userProfile || '还未添加�
             <div flex-y-center gap-4>
               <div i-ri-profile-line />
               个人中心
+            </div>
+          </a-doption>
+          <a-doption @click="checkSummary">
+            <div flex-y-center gap-4>
+              <div i-ri-bar-chart-2-line />
+              做题统计
             </div>
           </a-doption>
           <a-doption @click="logout">

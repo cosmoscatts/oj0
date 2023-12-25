@@ -1,24 +1,13 @@
 <script setup lang="ts">
-const { size = 50 } = defineProps<{
+const { size = 50, shape = 'circle' } = defineProps<{
   size?: number
+  shape?: 'circle' | 'square'
 }>()
 
 const authStore = useAuthStore()
 const currentUser = computed(() => authStore.user!)
-const textAvatar = computed(() => getTextAvatar(currentUser.value))
 </script>
 
 <template>
-  <div select-none>
-    <a-avatar :size="size">
-      <img
-        v-if="currentUser?.userAvatar"
-        alt="头像"
-        :src="currentUser.userAvatar"
-      >
-      <span v-else>
-        {{ textAvatar }}
-      </span>
-    </a-avatar>
-  </div>
+  <common-avatar :size="size" :shape="shape" :user="currentUser" />
 </template>
