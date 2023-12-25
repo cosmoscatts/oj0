@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import gfm from '@bytemd/plugin-gfm'
+import gemoji from '@bytemd/plugin-gemoji'
+import math from '@bytemd/plugin-math'
+import mermaid from '@bytemd/plugin-mermaid'
 import { Editor } from '@bytemd/vue-next'
 import zhHans from 'bytemd/locales/zh_Hans.json'
 import highlightjs from 'highlight.js'
@@ -16,7 +19,12 @@ onMounted(() => {
 /**
  * 定义编辑器需要用到的插件
  */
-const plugins = [gfm()]
+const plugins = [
+  gfm(),
+  gemoji(),
+  math(),
+  mermaid(),
+]
 
 function handleChange(newValue: string) {
   value.value = newValue
