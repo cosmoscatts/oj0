@@ -8,7 +8,6 @@ let timer: NodeJS.Timeout | null = null
 const submitInfo = ref<QuestionSubmit>()
 
 async function fetchSubmitInfo() {
-  submitInfo.value = undefined
   if (!submitId)
     return
   const { data } = await QuestionSubmitApi.getById({ id: submitId })
