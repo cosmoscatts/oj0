@@ -4,9 +4,9 @@ import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
 const selectedLanguage = ref(RESOLVE_LANGUAGE_ENUM.JAVA)
 
 const DEFAULT_CODE = `public class Main {
-  public static void main(String[] args) {
+    public static void main(String[] args) {
     
-  }
+    }
 }`
 
 const code = ref(DEFAULT_CODE)
@@ -30,6 +30,17 @@ const options = computed(() => {
   })
 })
 
+function reset() {
+  useConfirm({
+    title: '还原确认',
+    content: '确定要将代码还原到默认状态吗？',
+    ok: () => {
+      code.value = DEFAULT_CODE
+      Message.success('还原成功')
+    },
+  })
+}
+
 defineExpose({
   getCode,
   getLanguage,
@@ -47,7 +58,7 @@ defineExpose({
         <a-select v-model="selectedLanguage" :options="options" size="mini" allow-clear w-100px rounded />
 
         <CommonTooltip content="还原到默认">
-          <button i-carbon-reset mt-1 font-bold filter-saturate-0 @click="code = DEFAULT_CODE" />
+          <button i-carbon-reset mt-1 font-bold filter-saturate-0 @click="reset" />
         </CommonTooltip>
       </div>
     </div>
