@@ -30,10 +30,33 @@ const columns: TableColumnData[] = [
   },
 ]
 
+let timer: NodeJS.Timeout | null = null
+
 const authStore = useAuthStore()
 const tableData = ref<QuestionSubmit[]>([])
 const { loading, startLoading, endLoading } = useLoading()
 
+/**
+ * 判断是否存在【等待中】、【判题中】的提交记录
+ */
+function checkStatusAllFinished(data?: QuestionSubmit[]) {
+  if (!data?.length)
+    return
+  if (data.some(i => i.status && [0, 1].includes(i.status))) {
+    if (!timer)
+      timer = setInterval(() => fetchData(true), 3 * 1000)
+  }
+  else {
+    if (timer) {
+      clearInterval(timer)
+      timer = null
+    }
+  }
+}
+
+/**
+ * 如果存在【等待中】、【判题中】，需要开启定时查询，直到判题状态确定
+ */
 async function fetchData(update = false) {
   if (!update)
     startLoading()
@@ -45,11 +68,11 @@ async function fetchData(update = false) {
   }
   const { data: { records } } = await QuestionSubmitApi.list(searchParams)
   tableData.value = records || []
+  checkStatusAllFinished(records)
   if (!update)
     useTimeoutFn(endLoading, 500)
 }
 fetchData()
-useIntervalFn(() => fetchData(true), 10 * 1000)
 
 const router = useRouter()
 
@@ -61,6 +84,13 @@ function onRowClick(record: TableData) {
     return
   router.replace(`/resolve/${record.questionId}/${record.id}`)
 }
+
+onBeforeUnmount(() => {
+  if (timer) {
+    clearInterval(timer)
+    timer = null
+  }
+})
 
 defineExpose({
   update() {

@@ -11,7 +11,7 @@ definePageMeta({
 const route = useRoute()
 const id = computed(() => route.params.id as string) // 题目 id
 const submitId = computed(() => route.params.submitId as string) // 题目提交记录 id
-const selectedLeftTab = ref(0) // 0 - 题目描述；1 - 题解；2 - 提交记录
+const selectedLeftTab = ref(submitId.value ? 2 : 0) // 0 - 题目描述；1 - 题解；2 - 提交记录
 const currentQuestion = ref<Question>()
 
 async function fetchCurrentQuestion() {
