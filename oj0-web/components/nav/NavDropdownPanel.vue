@@ -38,7 +38,7 @@ const userProfile = computed(() => hasLogin.value ? authStore.user?.userProfile 
     <template #content>
       <div w-250px p-4>
         <div h-50px flex-y-center shrink-0 gap-3>
-          <NavAvatar />
+          <NavAvatar :key="getRandomStr(10)" />
 
           <div pl-3>
             <div text-xl font-bold>

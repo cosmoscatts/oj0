@@ -81,7 +81,7 @@ function doSubmit() {
 
     <div flex-y-center justify-end gap-3>
       <DarkToggle />
-      <NavAvatar :size="36" />
+      <NavAvatar :key="getRandomStr(10)" :size="36" />
     </div>
   </div>
 </template>

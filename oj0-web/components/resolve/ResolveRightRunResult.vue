@@ -46,7 +46,7 @@ onBeforeUnmount(() => {
     <template v-else>
       <div v-if="submitInfo.status === 0" h-full flex="~ col">
         <div flex-y-center gap-2 text-sm>
-          <NavAvatar :size="16" />
+          <NavAvatar :key="getRandomStr(10)" :size="16" />
           <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
         </div>
         <div flex="1 center" gap-2>
@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
       </div>
       <div v-else-if="submitInfo.status === 1" h-full flex="~ col">
         <div flex-y-center gap-2 text-sm>
-          <NavAvatar :size="16" />
+          <NavAvatar :key="getRandomStr(10)" :size="16" />
           <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
         </div>
         <div flex="1 center" gap-2 text-orange>
@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
           判题失败
         </div>
         <div flex-y-center gap-2 text-sm>
-          <NavAvatar :size="16" />
+          <NavAvatar :key="getRandomStr(10)" :size="16" />
           <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
         </div>
         <div w-full gap-2 rounded-10px bg-code p-3>
@@ -86,7 +86,7 @@ onBeforeUnmount(() => {
             </span>
           </div>
           <div flex-y-center gap-2 text-sm>
-            <NavAvatar :size="16" />
+            <NavAvatar :key="getRandomStr(10)" :size="16" />
             <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
           </div>
         </div>

@@ -26,11 +26,11 @@ const userProfile = computed(() => authStore.user?.userProfile || '还未添加�
 
 <template>
   <a-dropdown v-model:popup-visible="visible" trigger="click">
-    <NavAvatar cursor-pointer :size="28" />
+    <NavAvatar :key="getRandomStr(10)" cursor-pointer :size="28" />
     <template #content>
       <div w-250px p-4>
         <div h-50px flex-y-center shrink-0 gap-3>
-          <NavAvatar />
+          <NavAvatar :key="getRandomStr(10)" />
 
           <div pl-3>
             <div text-xl font-bold>

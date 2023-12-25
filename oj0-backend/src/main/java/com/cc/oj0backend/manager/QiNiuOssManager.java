@@ -28,7 +28,6 @@ public class QiNiuOssManager {
     @Resource
     private  QiNiuClientConfig qiNiuClientConfig;
     private  UploadManager uploadManager;
-    private  String token;
     private  Auth auth;
     private  BucketManager bucketManager;
 
@@ -37,7 +36,6 @@ public class QiNiuOssManager {
         uploadManager = new UploadManager(new Configuration(Zone.zone0()));
         auth = Auth.create(qiNiuClientConfig.getAccessKey(), qiNiuClientConfig.getSecretKey());
         bucketManager = new BucketManager(auth, new Configuration(Zone.zone2()));
-        token = auth.uploadToken(qiNiuClientConfig.getBucketName());
     }
 
     /**
@@ -49,6 +47,7 @@ public class QiNiuOssManager {
             assert originalFileName != null;
             String fileName = getFileRandomName(originalFileName);
             FileInputStream inputStream = (FileInputStream) file.getInputStream();
+            String token = auth.uploadToken(qiNiuClientConfig.getBucketName());
             Response result = uploadManager.put(inputStream, fileName, token, null, null);
             if (!result.isOK()) {
                 throw new BusinessException(ErrorCode.OPERATION_ERROR, "上传文件至七牛云出错");
