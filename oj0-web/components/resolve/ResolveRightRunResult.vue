@@ -44,18 +44,34 @@ onBeforeUnmount(() => {
       请先提交题目代码
     </div>
     <template v-else>
-      <div v-if="submitInfo.status === 0" h-full flex-center gap-2>
-        <div i-ri-loader-2-line animate-spin />
-        等待中
+      <div v-if="submitInfo.status === 0" h-full flex="~ col">
+        <div flex-y-center gap-2 text-sm>
+          <NavAvatar :size="16" />
+          <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
+        </div>
+        <div flex="1 center" gap-2>
+          <div i-ri-loader-2-line animate-spin />
+          等待中
+        </div>
       </div>
-      <div v-else-if="submitInfo.status === 1" h-full flex-center gap-2 text-orange>
-        <div i-ri-loader-2-line animate-spin />
-        判题中
+      <div v-else-if="submitInfo.status === 1" h-full flex="~ col">
+        <div flex-y-center gap-2 text-sm>
+          <NavAvatar :size="16" />
+          <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
+        </div>
+        <div flex="1 center" gap-2 text-orange>
+          <div i-ri-loader-2-line animate-spin />
+          判题中
+        </div>
       </div>
       <div v-else-if="submitInfo.status === 3" h-full flex="~ col" gap-3>
         <div flex-y-center gap-2 text-red>
           <div i-ri-error-warning-line />
           判题失败
+        </div>
+        <div flex-y-center gap-2 text-sm>
+          <NavAvatar :size="16" />
+          <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
         </div>
         <div w-full gap-2 rounded-10px bg-code p-3>
           {{ submitInfo.judgeInfo?.message || '系统错误' }}
