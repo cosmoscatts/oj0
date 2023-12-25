@@ -13,7 +13,7 @@ export const QuestionSubmitApi = {
     questionId?: string | number
     language?: string
     status?: number
-    userId?: number
+    userId?: string | number
     sortField?: string
     sortOrder?: string
   } & Partial<Pagination>) {
