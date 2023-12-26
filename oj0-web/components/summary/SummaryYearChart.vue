@@ -70,7 +70,7 @@ const option = computed(() => {
       min: 0,
       max: 100,
       inRange: {
-        color: ['#f1e8e6', '#22c55e', '#16a34a', '#14532d'],
+        color: [isDark.value ? '#222' : '#eee', '#22c55e', '#16a34a', '#14532d'],
       },
     },
     calendar: {
@@ -96,12 +96,19 @@ const option = computed(() => {
     },
     tooltip: {
       show: true,
+      borderColor: isDark.value ? '#222' : '#eee',
       backgroundColor: isDark.value ? 'rgb(17, 17, 17)' : 'rgb(250, 250, 250)',
+      formatter(params: any) {
+        return `<b>${params.data[0]}:</b> <b style="margin-left: 5px;">${params.data[1]} 次</b>`
+      },
     },
     series: {
       type: 'heatmap',
       coordinateSystem: 'calendar',
       data: chartData.value,
+      itemStyle: {
+        // borderRadius: [4, 4, 4, 4],
+      },
     },
   }
 })
