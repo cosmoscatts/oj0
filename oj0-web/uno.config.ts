@@ -121,5 +121,8 @@ export default defineConfig({
       return res
     }],
     ['box-shadow-outline', { 'box-shadow': '0 0 0 1px var(--c-primary)' }],
+    [/^slide-enter-(\d+)$/, ([_, n]) => ({
+      '--enter-stage': n,
+    })],
   ],
 })
