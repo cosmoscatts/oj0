@@ -87,6 +87,10 @@ function checkoutQuestion(record: QuestionSubmit) {
 
 const refEl = ref(null)
 const visible = useElementVisibility(refEl)
+
+const authStore = useAuthStore()
+// 是否是本人
+const isSelf = computed(() => userId === authStore.user?.id)
 </script>
 
 <template>
@@ -113,7 +117,7 @@ const visible = useElementVisibility(refEl)
       </template>
     </div>
     <div v-else h-150px flex-center>
-      您最近没有提交记录
+      {{ isSelf ? '您最近没有提交记录~' : 'ta 最近还没有任何提交哦~' }}
     </div>
   </div>
 </template>
