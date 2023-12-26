@@ -125,12 +125,16 @@ onBeforeMount(() => {
   if (chart)
     chart.dispose()
 })
+
+// 是否是本人
+const authStore = useAuthStore()
+const isSelf = computed(() => userId === authStore.user?.id)
 </script>
 
 <template>
   <div ha w-full flex="col center" of-x-auto of-y-hidden border border-base rounded py-4 pb-0>
     <div w-full flex-y-center justify-between px-4 text-lg font-bold>
-      <span>过去一年共提交 {{ yearSubmitNum }} 次</span>
+      <span><span>{{ isSelf ? '您' : 'TA' }}</span>过去一年共提交 {{ yearSubmitNum }} 次</span>
       <a-select v-model="year" :options="yearOptions" size="mini" w-100px rounded />
     </div>
     <div min-w-48rem flex-center lt-sm="min-w-740px ml-340px">

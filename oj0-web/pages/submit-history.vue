@@ -93,6 +93,12 @@ function checkoutQuestion(record: QuestionSubmit) {
   }
 }
 
+function checkoutUserQuestionSummary(record: QuestionSubmit) {
+  if (!record.userId)
+    return
+  router.push(`/summary/${record.userId}`)
+}
+
 onMounted(() => {
   useIntervalFn(() => search(true), 5000)
 })
@@ -198,21 +204,23 @@ onMounted(() => {
         </div>
       </template>
       <template #userId="{ record }">
-        <div flex-center gap-2>
-          <div flex-center select-none>
-            <a-avatar :size="16">
-              <img
-                v-if="getUser(record)?.userAvatar"
-                alt="头像"
-                :src="getUser(record)!.userAvatar"
-              >
-              <span v-else>
-                {{ getTextAvatar(getUser(record)) }}
-              </span>
-            </a-avatar>
+        <CommonTooltip content="点击查看用户主页">
+          <div flex-center cursor-pointer gap-2 @click="checkoutUserQuestionSummary(record)">
+            <div flex-center select-none>
+              <a-avatar :size="16">
+                <img
+                  v-if="getUser(record)?.userAvatar"
+                  alt="头像"
+                  :src="getUser(record)!.userAvatar"
+                >
+                <span v-else>
+                  {{ getTextAvatar(getUser(record)) }}
+                </span>
+              </a-avatar>
+            </div>
+            <span flex-y-center>{{ getUser(record)?.userName || '匿名用户' }}</span>
           </div>
-          <span flex-y-center>{{ getUser(record)?.userName || '匿名用户' }}</span>
-        </div>
+        </CommonTooltip>
       </template>
       <template #createTime="{ record }">
         <div>

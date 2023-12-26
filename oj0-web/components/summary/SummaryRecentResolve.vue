@@ -118,7 +118,7 @@ const isSelf = computed(() => userId === authStore.user?.id)
       </template>
     </div>
     <div v-else h-150px flex-center>
-      {{ isSelf ? '您最近没有提交记录~' : 'ta 最近还没有任何提交哦~' }}
+      {{ isSelf ? '您最近没有提交记录~' : 'TA最近还没有任何提交哦~' }}
     </div>
   </div>
 </template>
