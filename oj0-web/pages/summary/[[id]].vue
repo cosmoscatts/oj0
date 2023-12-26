@@ -13,7 +13,12 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 const id = computed(() => route.params?.id ? route.params.id : undefined)
-const userId = computed(() => id.value ? id.value as string : String(authStore.user?.id))
+const userId = computed(() => id.value
+  ? id.value as string
+  : authStore.user?.id
+    ? String(authStore.user?.id)
+    : undefined,
+)
 
 const userInfo = ref<User>()
 
