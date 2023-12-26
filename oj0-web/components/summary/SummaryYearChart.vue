@@ -70,7 +70,7 @@ const option = computed(() => {
       min: 0,
       max: 100,
       inRange: {
-        color: [isDark.value ? '#222' : '#eee', '#22c55e', '#16a34a', '#14532d'],
+        color: [isDark.value ? '#171717' : '#F4F4F4', '#22c55e', '#16a34a', '#14532d'],
       },
     },
     calendar: {
@@ -106,9 +106,6 @@ const option = computed(() => {
       type: 'heatmap',
       coordinateSystem: 'calendar',
       data: chartData.value,
-      itemStyle: {
-        // borderRadius: [4, 4, 4, 4],
-      },
     },
   }
 })
