@@ -94,7 +94,7 @@ const visible = useElementVisibility(refEl)
     <div text-lg font-bold>
       最近通过
     </div>
-    <div v-if="acceptedData.length" ref="refEl" flex="~ col" mt-4 min-h-200px gap-3>
+    <div v-if="acceptedData.length" ref="refEl" flex="~ col" mt-4 min-h-120px gap-3>
       <template v-if="visible">
         <div
           v-for="item, idx in acceptedData" :key="item.id"
