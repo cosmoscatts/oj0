@@ -7,6 +7,14 @@ const { userId } = defineProps<{
 }>()
 
 const acceptedData = ref<QuestionSubmit[]>([]) // 题目通过的提交信息，包含重复题目
+const questionTagMap = ref<Record<string, string[]>>({}) // 题目 id 和 标签数组的映射
+const chartData = ref<number[]>([])
+
+async function getChartData() {
+  const data = await getQuestionClassification()
+  questionTagMap.value = data
+}
+getChartData()
 
 /**
  * 查询所有判题成功的提交信息并过滤出通过的信息
@@ -22,6 +30,7 @@ async function fetchAcceptedData() {
     pageSize: -1,
   })
   acceptedData.value = records?.filter(i => i.judgeInfo && i.judgeInfo?.message === 'Accepted') || []
+  createChartData()
 }
 fetchAcceptedData()
 watch(() => userId, fetchAcceptedData)
@@ -50,6 +59,35 @@ const goAcceptedNum = computed(() => {
   const ids = [...new Set(javaDataIds)]
   return ids.length
 })
+
+function createChartData() {
+  const result = Array(6).fill(0)
+  const idSet = [...new Set(acceptedData.value?.map(i => i.questionId) || [])]
+  if (!idSet.length || !questionTagMap.value || !Object.keys(questionTagMap.value).length)
+    return result
+  idSet.forEach((id) => {
+    const tags = questionTagMap.value[String(id!)] || []
+    if (tags.length) {
+      for (const tag of tags) {
+        if (tag === '基本')
+          result[0]++
+        else if (tag === '算法')
+          result[1]++
+        else if (tag === '数据结构')
+          result[2]++
+        else if (tag === '技巧')
+          result[3]++
+        else if (tag === '数学')
+          result[4]++
+        else if (tag === '其他')
+          result[5]++
+      }
+    }
+  })
+  chartData.value = result.map(i => i > 0 ? Number((i / idSet.length).toFixed(2)) : 0)
+}
+
+watch(questionTagMap, createChartData)
 
 const option = computed(() => {
   return {
@@ -94,7 +132,7 @@ const option = computed(() => {
         type: 'radar',
         data: [
           {
-            value: [0.6, 0.4, 0, 0],
+            value: chartData.value,
           },
         ],
         symbol: 'none',
@@ -119,7 +157,7 @@ function create() {
   option.value && chart.setOption(option.value)
 }
 
-watch(option, () => {
+watch([chartData, isDark], () => {
   if (chart)
     chart.setOption(option.value)
 })
