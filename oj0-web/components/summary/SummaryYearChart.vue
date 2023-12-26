@@ -22,6 +22,9 @@ const option = computed(() => {
       show: false,
       min: 0,
       max: 10000,
+      inRange: {
+        color: ['#f1e8e6', '#22c55e', '#16a34a', '#14532d'],
+      },
     },
     calendar: {
       range: '2023',
@@ -44,10 +47,19 @@ const option = computed(() => {
         show: false,
       },
     },
+    tooltip: {
+      show: true,
+      backgroundColor: isDark.value ? 'rgb(17, 17, 17)' : 'rgb(250, 250, 250)',
+    },
     series: {
       type: 'heatmap',
       coordinateSystem: 'calendar',
       data: getVirtualData('2023'),
+      markArea: {
+        itemStyle: {
+          color: 'red',
+        },
+      },
     },
   }
 })
@@ -62,7 +74,7 @@ function create() {
   option.value && chart.setOption(option.value)
 }
 
-watch(option, () => {
+watch(isDark, () => {
   if (chart)
     chart.setOption(option.value)
 })
