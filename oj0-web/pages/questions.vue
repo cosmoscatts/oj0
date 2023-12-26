@@ -87,6 +87,12 @@ function checkHasAccepted(record: Question) {
     return false
   return acceptedQuestionIds.value.includes(record.id)
 }
+
+function formatAcceptPercentTooltip(record: Question) {
+  const acceptedNum = record.acceptedNum || 0
+  const submitNum = record.submitNum || 0
+  return `通过数 / 提交数：${acceptedNum} / ${submitNum}`
+}
 </script>
 
 <template>
@@ -138,7 +144,9 @@ function checkHasAccepted(record: Question) {
         </span>
       </template>
       <template #acceptPercent="{ record }">
-        {{ calculateAcceptPercent(record) }}
+        <CommonTooltip :content="formatAcceptPercentTooltip(record)">
+          <div>{{ calculateAcceptPercent(record) }}</div>
+        </CommonTooltip>
       </template>
       <template #tags="{ record }">
         <div v-if="record.tags.length" w-250px>

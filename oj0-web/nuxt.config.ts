@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   ssr: false,
   app: {
+    baseURL: './',
     pageTransition: {
       name: 'page',
       mode: 'out-in',
