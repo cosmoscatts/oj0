@@ -60,8 +60,8 @@ function back() {
         </div>
       </div>
       <div grid="~ cols-2" gap-3>
-        <SummaryResolveQuestionInfo col-span-1 lt-sm:col-span-2 />
-        <SummaryUserInfo col-span-1 lt-sm:col-span-2 />
+        <SummaryResolveQuestionInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
+        <SummaryUserInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
       </div>
       <SummaryYearChart />
       <SummaryRecentResolve :user-id="userId" />

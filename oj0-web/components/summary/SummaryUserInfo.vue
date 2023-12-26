@@ -1,5 +1,54 @@
 <script setup lang="ts">
 import * as echarts from 'echarts'
+import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
+
+const { userId } = defineProps<{
+  userId?: string | number
+}>()
+
+const acceptedData = ref<QuestionSubmit[]>([]) // 题目通过的提交信息，包含重复题目
+
+/**
+ * 查询所有判题成功的提交信息并过滤出通过的信息
+ */
+async function fetchAcceptedData() {
+  if (!userId)
+    return
+  const { data: { records } } = await QuestionSubmitApi.list({
+    userId,
+    status: 2,
+    sortField: 'createTime',
+    sortOrder: 'descend',
+  })
+  acceptedData.value = records?.filter(i => i.judgeInfo && i.judgeInfo?.message === 'Accepted') || []
+}
+fetchAcceptedData()
+watch(() => userId, fetchAcceptedData)
+
+const javaAcceptedNum = computed(() => {
+  if (!acceptedData.value?.length)
+    return 0
+  const javaDataIds = acceptedData.value.filter(i => i.language === RESOLVE_LANGUAGE_ENUM.JAVA)
+    .map(i => i.questionId)
+  const ids = [...new Set(javaDataIds)]
+  return ids.length
+})
+const cppAcceptedNum = computed(() => {
+  if (!acceptedData.value?.length)
+    return 0
+  const javaDataIds = acceptedData.value.filter(i => i.language === RESOLVE_LANGUAGE_ENUM.CPP)
+    .map(i => i.questionId)
+  const ids = [...new Set(javaDataIds)]
+  return ids.length
+})
+const goAcceptedNum = computed(() => {
+  if (!acceptedData.value?.length)
+    return 0
+  const javaDataIds = acceptedData.value.filter(i => i.language === RESOLVE_LANGUAGE_ENUM.GO)
+    .map(i => i.questionId)
+  const ids = [...new Set(javaDataIds)]
+  return ids.length
+})
 
 const option = computed(() => {
   return {
@@ -105,7 +154,7 @@ onBeforeMount(() => {
               Java
             </div>
             <div>
-              解题数 <span ml-1 font-bold>1</span>
+              解题数 <span ml-1 font-bold>{{ javaAcceptedNum }}</span>
             </div>
           </div>
           <div row-span-1 flex-y-center justify-between>
@@ -113,15 +162,15 @@ onBeforeMount(() => {
               C++
             </div>
             <div>
-              解题数 <span ml-1 font-bold>1</span>
+              解题数 <span ml-1 font-bold>{{ cppAcceptedNum }}</span>
             </div>
           </div>
           <div row-span-1 flex-y-center justify-between>
             <div select-none rounded-3 bg-border px-2.5 py-1>
-              Python
+              Go
             </div>
             <div>
-              解题数 <span ml-1 font-bold>1</span>
+              解题数 <span ml-1 font-bold>{{ goAcceptedNum }}</span>
             </div>
           </div>
         </div>
