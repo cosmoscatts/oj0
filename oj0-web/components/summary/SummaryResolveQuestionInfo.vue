@@ -6,7 +6,7 @@ const { userId } = defineProps<{
 }>()
 
 const questions = ref<Question[]>([])
-const acceptedData = ref<QuestionSubmit[]>([])
+const acceptedData = ref<QuestionSubmit[]>([]) // 题目通过的提交信息，包含重复题目
 
 /**
  * 查询所有的题目信息，初始化时查询一次即可
@@ -29,7 +29,7 @@ async function fetchAcceptedData() {
     sortField: 'createTime',
     sortOrder: 'descend',
   })
-  acceptedData.value = records?.filter(i => i.judgeInfo && i.judgeInfo?.message === 'Accepted').slice(0, 10) || []
+  acceptedData.value = records?.filter(i => i.judgeInfo && i.judgeInfo?.message === 'Accepted') || []
 }
 fetchAcceptedData()
 watch(() => userId, fetchAcceptedData)
@@ -62,7 +62,12 @@ const hardQuestionNum = computed(() => {
   return questions.value.filter(i => i.difficulty === QUESTION_DIFFICULTY_ENUM.HARD).length
 })
 
-const acceptedTotalNum = computed(() => acceptedData.value?.length)
+const acceptedTotalNum = computed(() => {
+  if (!acceptedData.value?.length)
+    return 0
+  const ids = acceptedData.value.map(i => i.questionId)
+  return [...new Set(ids)].length
+})
 const acceptedTotalPercent = computed(() => {
   const len = totalQuestionNum.value
   if (len <= 0)
@@ -72,7 +77,11 @@ const acceptedTotalPercent = computed(() => {
   return Number((acceptedTotalNum.value / len).toFixed(2))
 })
 const acceptedEasyNum = computed(() => {
-  return acceptedData.value?.filter(i => i.questionId && questionDifficultyMap.value[i.questionId] === QUESTION_DIFFICULTY_ENUM.EASY).length || 0
+  const easyIds = acceptedData.value?.filter(i => i.questionId && questionDifficultyMap.value[i.questionId] === QUESTION_DIFFICULTY_ENUM.EASY)
+    .map(i => i.questionId) || []
+  if (!easyIds?.length)
+    return 0
+  return [...new Set(easyIds)].length
 })
 const acceptedEasyPercent = computed(() => {
   const len = easyQuestionNum.value
@@ -83,7 +92,11 @@ const acceptedEasyPercent = computed(() => {
   return Number((acceptedEasyNum.value / len).toFixed(2))
 })
 const acceptedMediumNum = computed(() => {
-  return acceptedData.value?.filter(i => i.questionId && questionDifficultyMap.value[i.questionId] === QUESTION_DIFFICULTY_ENUM.MEDIUM).length || 0
+  const mediumIds = acceptedData.value?.filter(i => i.questionId && questionDifficultyMap.value[i.questionId] === QUESTION_DIFFICULTY_ENUM.MEDIUM)
+    .map(i => i.questionId) || []
+  if (!mediumIds.length)
+    return 0
+  return [...new Set(mediumIds)].length
 })
 const acceptedMediumPercent = computed(() => {
   const len = mediumQuestionNum.value
@@ -94,7 +107,11 @@ const acceptedMediumPercent = computed(() => {
   return Number((acceptedMediumNum.value / len).toFixed(2))
 })
 const acceptedHardNum = computed(() => {
-  return acceptedData.value?.filter(i => i.questionId && questionDifficultyMap.value[i.questionId] === QUESTION_DIFFICULTY_ENUM.HARD).length || 0
+  const hardIds = acceptedData.value?.filter(i => i.questionId && questionDifficultyMap.value[i.questionId] === QUESTION_DIFFICULTY_ENUM.HARD)
+    .map(i => i.questionId) || []
+  if (!hardIds.length)
+    return 0
+  return [...new Set(hardIds)].length
 })
 const acceptedHardPercent = computed(() => {
   const len = hardQuestionNum.value
