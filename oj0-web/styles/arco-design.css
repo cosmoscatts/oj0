@@ -266,3 +266,13 @@
   background-color: var(--c-bg-base);
   border-color: var(--c-border);
 }
+
+/* Progress */
+
+.arco-progress-circle-text {
+  color: var(--c-text-base);
+}
+
+.arco-progress-line-text {
+  color: var(--c-text-base);
+}
