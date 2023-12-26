@@ -116,6 +116,8 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         Long userId = questionSubmitQueryRequest.getUserId();
         String sortField = questionSubmitQueryRequest.getSortField();
         String sortOrder = questionSubmitQueryRequest.getSortOrder();
+        String createTimeMin = questionSubmitQueryRequest.getCreateTimeMin();
+        String createTimeMax = questionSubmitQueryRequest.getCreateTimeMax();
 
         // 拼接查询条件
         queryWrapper.eq(StringUtils.isNotBlank(language), "language", language);
@@ -123,6 +125,8 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         queryWrapper.eq(ObjectUtils.isNotEmpty(questionId), "questionId", questionId);
         queryWrapper.eq(QuestionSubmitStatusEnum.getEnumByValue(status) != null, "status", status);
         queryWrapper.eq("isDelete", false);
+        queryWrapper.ge(StringUtils.isNotBlank(createTimeMin), "createTime", createTimeMin);
+        queryWrapper.le(StringUtils.isNotBlank(createTimeMax), "createTime", createTimeMax);
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
                 sortField);
         return queryWrapper;

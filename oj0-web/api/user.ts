@@ -22,7 +22,7 @@ export const UserApi = {
    * 查询用户
    */
   listVo() {
-    return useRequest.post<User, PageResult<User>>(API_URL_ENUM.LIST_VO, {})
+    return useRequest.post<User, PageResult<User>>(API_URL_ENUM.LIST_VO, { pageSize: -1 })
   },
 
   /**

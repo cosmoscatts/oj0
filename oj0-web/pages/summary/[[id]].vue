@@ -63,7 +63,7 @@ function back() {
         <SummaryResolveQuestionInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
         <SummaryUserInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
       </div>
-      <SummaryYearChart />
+      <SummaryYearChart :user-id="userId" />
       <SummaryRecentResolve :user-id="userId" />
     </div>
   </div>

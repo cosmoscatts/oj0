@@ -24,6 +24,7 @@ async function fetchSubmitData() {
     questionId: id,
     sortField: 'createTime',
     sortOrder: 'descend',
+    pageSize: -1,
   }
   const { data: { records } } = await QuestionSubmitApi.list(searchParams)
   submitQuestionIds.value = records?.map(i => i.questionId!) || []

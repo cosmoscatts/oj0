@@ -65,6 +65,7 @@ async function fetchData(update = false) {
     questionId: id,
     sortField: 'createTime',
     sortOrder: 'descend',
+    pageSize: -1,
   }
   const { data: { records } } = await QuestionSubmitApi.list(searchParams)
   tableData.value = records || []

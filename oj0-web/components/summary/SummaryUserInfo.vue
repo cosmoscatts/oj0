@@ -19,6 +19,7 @@ async function fetchAcceptedData() {
     status: 2,
     sortField: 'createTime',
     sortOrder: 'descend',
+    pageSize: -1,
   })
   acceptedData.value = records?.filter(i => i.judgeInfo && i.judgeInfo?.message === 'Accepted') || []
 }
@@ -62,10 +63,12 @@ const option = computed(() => {
       shape: 'circle',
       radius: '60%',
       indicator: [
-        { name: '数据结构', max: 1 },
+        { name: '基本', max: 1 },
         { name: '算法', max: 1 },
-        { name: '基础架构', max: 1 },
-        { name: '设计', max: 1 },
+        { name: '数据结构', max: 1 },
+        { name: '技巧', max: 1 },
+        { name: '数学', max: 1 },
+        { name: '其他', max: 1 },
       ],
       axisName: {
         color: isDark.value ? '#f3f3f3' : '#232323',

@@ -34,6 +34,16 @@ public class QuestionSubmitQueryRequest extends PageRequest implements Serializa
      */
     private Long userId;
 
+    /**
+     * 创建时间最小值
+     */
+    private String createTimeMin;
+
+    /**
+     * 创建时间最小值
+     */
+    private String createTimeMax;
+
     private static final long serialVersionUID = 1L;
 }
 

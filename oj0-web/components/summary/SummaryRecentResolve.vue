@@ -15,6 +15,7 @@ async function fetchAcceptedData() {
     status: 2,
     sortField: 'createTime',
     sortOrder: 'descend',
+    pageSize: -1,
   })
   acceptedData.value = records?.filter(i => i.judgeInfo && i.judgeInfo?.message === 'Accepted').slice(0, 10) || []
 }
@@ -65,7 +66,7 @@ function formatDate(record: QuestionSubmit) {
 
 const questionOptions = ref<SelectOptionData[]>([])
 async function fetchQuestionOptions() {
-  const { data: { records } } = await QuestionApi.listVo({})
+  const { data: { records } } = await QuestionApi.listVo({ pageSize: -1 })
   questionOptions.value = records?.map((i) => {
     return {
       value: i.id,

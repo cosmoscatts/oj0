@@ -12,7 +12,7 @@ const acceptedData = ref<QuestionSubmit[]>([]) // 题目通过的提交信息，
  * 查询所有的题目信息，初始化时查询一次即可
  */
 async function fetchQuestionData() {
-  const { data: { records } } = await QuestionApi.listVo({})
+  const { data: { records } } = await QuestionApi.listVo({ pageSize: -1 })
   questions.value = records || []
 }
 fetchQuestionData()
@@ -28,6 +28,7 @@ async function fetchAcceptedData() {
     status: 2,
     sortField: 'createTime',
     sortOrder: 'descend',
+    pageSize: -1,
   })
   acceptedData.value = records?.filter(i => i.judgeInfo && i.judgeInfo?.message === 'Accepted') || []
 }

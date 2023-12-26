@@ -14,6 +14,8 @@ export const QuestionSubmitApi = {
     language?: string
     status?: number
     userId?: string | number
+    createTimeMin?: string
+    createTimeMax?: string
     sortField?: string
     sortOrder?: string
   } & Partial<Pagination>) {

@@ -73,7 +73,7 @@ function getUser(record: QuestionSubmit) {
 
 const questionOptions = ref<SelectOptionData[]>([])
 async function fetchQuestionOptions() {
-  const { data: { records } } = await QuestionApi.listVo({})
+  const { data: { records } } = await QuestionApi.listVo({ pageSize: -1 })
   questionOptions.value = records?.map((i) => {
     return {
       value: i.id,
