@@ -103,7 +103,7 @@ const isSelf = computed(() => userId === authStore.user?.id)
       <template v-if="visible">
         <div
           v-for="item, idx in acceptedData" :key="item.id"
-          :class="(idx & 1) === 0 ? 'bg-code' : ''" :style="{
+          :class="(idx & 1) === 0 ? 'bg-code hover:bg-primary-fade' : 'hover:bg-primary-fade'" :style="{
             '--enter-stage': idx + 1,
             '--enter-step': '120ms',
           }"
