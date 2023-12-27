@@ -76,6 +76,9 @@ export default defineNuxtConfig({
     },
   ],
   content: {
+    api: {
+      baseURL: '/_content',
+    },
     experimental: {
       clientDB: true,
     },
