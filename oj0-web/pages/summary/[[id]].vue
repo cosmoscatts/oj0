@@ -48,17 +48,26 @@ function back() {
     </div>
 
     <div flex="~ col" mxa mt-4 max-w-50rem gap-3>
-      <div my-20px h-50px flex-y-center gap-5>
-        <CommonAvatar :key="getRandomStr(10)" :user="userInfo" :size="64" shape="square" />
-        <div flex="~ col" shrink-0 gap-2>
-          <div text-2xl font-bold>
-            {{ userInfo?.userName || '匿名用户' }}
-          </div>
-          <div mt-1 text-sm text-primary>
-            {{ userInfo?.userProfile || '还未添加任何简介～' }}
+      <div my-20px h-50px flex justify-between>
+        <div h-full flex-y-center gap-5>
+          <CommonAvatar :key="getRandomStr(10)" :user="userInfo" :size="64" shape="square" />
+          <div flex="~ col" shrink-0 gap-2>
+            <div text-2xl font-bold>
+              {{ userInfo?.userName || '匿名用户' }}
+            </div>
+            <div mt-1 text-sm text-primary>
+              {{ userInfo?.userProfile || '还未添加任何简介～' }}
+            </div>
           </div>
         </div>
+
+        <div h-57px flex items-end text-right text-sm text-base>
+          <span mb-2px>{{ `${id ? 'TA' : '您'}在` }}</span>
+          <span mx-1 mb-2px font-bold>{{ `${formatDateAgo(userInfo?.createTime)}` }}</span>
+          <span mb-2px>加入了OJ0</span>
+        </div>
       </div>
+
       <div grid="~ cols-2" gap-3>
         <SummaryResolveQuestionInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
         <SummaryUserInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
