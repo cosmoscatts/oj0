@@ -1,8 +1,5 @@
 export default defineAppConfig({
   prose: {
-    h1: {
-      icon: 'ph:link',
-    },
     h2: {
       icon: 'ph:link',
     },
