@@ -27,6 +27,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
+    '@nuxt/content',
     ['unplugin-icons/nuxt', {
       autoInstall: true,
       scale: 1,
@@ -73,4 +74,9 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  content: {
+    experimental: {
+      clientDB: true,
+    },
+  },
 })

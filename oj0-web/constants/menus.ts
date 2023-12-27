@@ -4,6 +4,7 @@ import IconUserManage from '~icons/ri/user-2-line'
 import IconQuestions from '~icons/ri/file-list-line'
 import IconQuestionManage from '~icons/ri/crop-line'
 import IconSubmitHistory from '~icons/ri/history-line'
+import IconUpdateLog from '~icons/ri/bug-line'
 
 export const MENUS: Menu[] = [
   {
@@ -40,5 +41,12 @@ export const MENUS: Menu[] = [
     path: '/submit-history',
     access: ACCESS_ENUM.USER,
     icon: IconSubmitHistory,
+  },
+  {
+    id: 106,
+    name: '更新日志',
+    path: '/update-log',
+    access: ACCESS_ENUM.NOT_LOGIN,
+    icon: IconUpdateLog,
   },
 ]
