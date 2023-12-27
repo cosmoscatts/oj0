@@ -4,7 +4,7 @@
   border-top: 1px solid var(--c-border)!important;
 }
 
-.prose a, a {
+.prose a {
   border-bottom: none;
   text-decoration-line: underline;
   text-underline-offset: 2px;
@@ -14,10 +14,6 @@
 .prose a:hover {
   color: var(--c-text-base)!important;
   opacity: 0.7;
-}
-
-button:focus {
-  box-shadow: 0 0 0 2px var(--c-bg-dm)!important;
 }
 
 .prose {
