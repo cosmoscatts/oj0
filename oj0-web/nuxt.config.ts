@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
+  extends: '@nuxt-themes/typography',
   ssr: false,
   app: {
-    baseURL: './',
     pageTransition: {
       name: 'page',
       mode: 'out-in',

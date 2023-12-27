@@ -14,11 +14,13 @@ const route = useRoute()
 watch(() => route.path, () => {
   const title = (route.meta.title ?? 'OJ0') as string
   useHead({ title })
+  scrollTop('wrapper')
 }, { immediate: true })
 
 onMounted(() => {
   createArcoTheme()
   setThemeColor()
+  scrollTop('wrapper')
 })
 </script>
 

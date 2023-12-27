@@ -23,7 +23,7 @@
 }
 
 .prose blockquote {
-  border-left: 0.25rem var(--c-border-code) solid;
+  border-left: 0.25rem rgb(var(--oj-primary-6)) solid!important;
   quotes: '\201C' '\201D' '\2018' '\2019';
   margin-top: 1.6em;
   margin-bottom: 1.6em;
