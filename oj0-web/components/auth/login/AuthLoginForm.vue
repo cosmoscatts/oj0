@@ -37,6 +37,8 @@ function submit() {
     toast.success(`登录成功, ${content}`)
     const path = route.query?.redirect as string || '/'
     router.push(path)
+    // 新题目提醒
+    useTimeoutFn(() => doNewQuestionNotification(result.data.id), 5 * 1000)
   })
 }
 </script>

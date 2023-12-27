@@ -1,7 +1,7 @@
 import { useToast } from 'vue-toastification'
 
 /**
- * 当今天有新题目发布，且该用户没有新题目的提交记录，
+ * 当今天有新题目发布，且该用户没有所有新题目的提交记录，
  * 且用户当前不在【题库】或者【做题】页面时，提示用户有新题目
  */
 export async function doNewQuestionNotification(userId: number) {
@@ -21,12 +21,17 @@ export async function doNewQuestionNotification(userId: number) {
   })
 
   if (submitRecords?.length) {
-    // 判断今天的提交记录里是否有新题目
+    // 判断今天的提交记录里是否有所有的新题目
     const submitQuestionIds = submitRecords.map(i => i.questionId)
-    for (const id of submitQuestionIds) {
-      if (id && newQuestionIds.includes(id))
-        return
+    let flag = true
+    for (const id of newQuestionIds) {
+      if (!submitQuestionIds.includes(id)) {
+        flag = false
+        break
+      }
     }
+    if (flag)
+      return
   }
 
   const route = useRoute()
