@@ -68,7 +68,7 @@ const option = computed(() => {
     visualMap: {
       show: false,
       min: 0,
-      max: 100,
+      max: 30,
       inRange: {
         color: [isDark.value ? '#171717' : '#F4F4F4', '#22c55e', '#16a34a', '#14532d'],
       },
@@ -82,7 +82,8 @@ const option = computed(() => {
         show: false,
       },
       itemStyle: {
-        borderWidth: 0,
+        borderWidth: 1,
+        borderColor: isDark.value ? '#545251' : '#dccfcf',
       },
       dayLabel: {
         color: textColor,
