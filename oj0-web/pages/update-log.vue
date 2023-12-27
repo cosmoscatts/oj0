@@ -10,7 +10,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="prose" mx-a h-full max-w-70rem min-h-600px lt-md:max-w-40rem>
+  <div class="prose" mx-a h-full max-w-50rem min-h-600px lt-md:max-w-40rem>
     <ContentDoc path="/logs" />
   </div>
 </template>
