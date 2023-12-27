@@ -37,6 +37,9 @@ getUserInfo()
 function back() {
   router.go(-1)
 }
+
+// 是否是本人
+const isSelf = computed(() => userId.value === authStore.user?.id)
 </script>
 
 <template>
@@ -62,7 +65,7 @@ function back() {
         </div>
 
         <div h-57px flex items-end text-right text-sm text-base>
-          <span mb-2px>{{ `${id ? 'TA' : '您'}在` }}</span>
+          <span mb-2px>{{ `${isSelf ? '您' : 'TA'}在` }}</span>
           <span mx-1 mb-2px font-bold>{{ `${formatDateAgo(userInfo?.createTime)}` }}</span>
           <span mb-2px>加入了OJ0</span>
         </div>
