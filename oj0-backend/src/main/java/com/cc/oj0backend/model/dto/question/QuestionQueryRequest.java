@@ -45,6 +45,16 @@ public class QuestionQueryRequest extends PageRequest implements Serializable {
     private String answer;
 
     /**
+     * 创建时间最小值
+     */
+    private String createTimeMin;
+
+    /**
+     * 创建时间最小值
+     */
+    private String createTimeMax;
+
+    /**
      * 创建用户 id
      */
     private Long userId;

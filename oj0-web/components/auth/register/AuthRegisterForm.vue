@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useToast } from 'vue-toastification'
 import { AUTH_ACTION_ENUM } from '~/constants'
+
+const toast = useToast()
 
 const form = reactive({
   userAccount: '',
@@ -28,12 +31,7 @@ async function submit() {
     Message.error(result.message ?? '注册失败')
     return
   }
-  ANotification.success({
-    title: '注册成功',
-    content: '快去登录吧～',
-    closable: true,
-    duration: 3000,
-  })
+  toast.success('注册成功, 快去登录吧～')
   gotoLogin()
 }
 </script>

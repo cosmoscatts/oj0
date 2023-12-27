@@ -41,6 +41,7 @@ export default defineNuxtConfig({
     '@arco-design/web-vue/es/message/style/css.js',
     '@arco-design/web-vue/es/modal/style/css.js',
     '@arco-design/web-vue/es/notification/style/css.js',
+    'vue-toastification/dist/index.css',
     '@unocss/reset/tailwind.css',
     'floating-vue/dist/style.css',
     '~/styles/default-theme.css',

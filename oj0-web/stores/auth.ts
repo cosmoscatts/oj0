@@ -1,4 +1,5 @@
 import type { StoreDefinition } from 'pinia'
+import { useToast } from 'vue-toastification'
 import { ACCESS_ENUM } from '~/constants'
 
 export const useAuthStore = defineStore('authStore', () => {
@@ -27,10 +28,11 @@ export const useAuthStore = defineStore('authStore', () => {
    * 退出登录
    */
   async function logout(message = true) {
+    const toast = useToast()
     const result = await AuthApi.logout()
     if (result.data === true) {
       if (message)
-        Message.success('退出成功')
+        toast.error('退出成功')
       updateUser(null)
       const route = useRoute()
       const router = useRouter()
@@ -41,7 +43,7 @@ export const useAuthStore = defineStore('authStore', () => {
       return
     }
     if (message)
-      Message.error('退出失败，请重试！')
+      toast.error('退出失败，请重试！')
   }
 
   return {

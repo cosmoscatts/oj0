@@ -19,6 +19,8 @@ export const QuestionApi = {
     content?: string
     difficulty?: string
     tags?: string[]
+    createTimeMin?: string
+    createTimeMax?: string
   } & Partial<Pagination>) {
     return useRequest.post<QuestionDO, PageResult<QuestionDO>>(API_URL_ENUM.LIST, params)
   },
@@ -57,6 +59,8 @@ export const QuestionApi = {
     title?: string
     difficulty?: string
     tags?: string[]
+    createTimeMin?: string
+    createTimeMax?: string
   } & Partial<Pagination>) {
     return useRequest.post<Question, PageResult<Question>>(API_URL_ENUM.LIST_VO, params)
   },

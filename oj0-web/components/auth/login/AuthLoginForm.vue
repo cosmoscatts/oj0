@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { useToast } from 'vue-toastification'
 import { AUTH_ACTION_ENUM } from '~/constants'
 
+const toast = useToast()
 const authStore = useAuthStore()
 const closeAuthModal = inject<() => void>('closeAuthModal')
 
@@ -32,12 +34,7 @@ function submit() {
     const content = userName === ''
       ? '欢迎回来！'
       : `${userName}, 欢迎回来！`
-    ANotification.success({
-      title: '登录成功',
-      content,
-      duration: 3000,
-      closable: true,
-    })
+    toast.success(`登录成功, ${content}`)
     const path = route.query?.redirect as string || '/'
     router.push(path)
   })

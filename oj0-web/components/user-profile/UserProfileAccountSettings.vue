@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
+
 const refForm = ref()
 const form = reactive({
   id: undefined,
@@ -25,10 +29,7 @@ async function submit() {
     Message.error(message || '提交失败')
     return
   }
-  ANotification.success({
-    title: '提交成功',
-    content: '请重新登录！',
-  })
+  toast.warning('提交成功，请重新登录！')
   refForm.value?.resetFields?.()
   useTimeoutFn(() => authStore.logout(false), 500)
 }
