@@ -50,6 +50,7 @@ export default defineNuxtConfig({
     '~/styles/bytemd.css',
     '~/styles/codemirror.css',
     '~/styles/arco-design.css',
+    '~/styles/prose.css',
     '~/styles/transition.css',
     '~/styles/scrollbars.css',
     '~/styles/dropdown.css',
