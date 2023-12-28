@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { GITHUB_CLIENT_ID } from '~/config/github'
+
 function onClick() {
   Message.warning('功能开发中，暂不支持此操作！')
+}
+
+function openGitHubAuth() {
+  const url = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`
+  useOpenWindow(url)
 }
 </script>
 
@@ -19,7 +26,7 @@ function onClick() {
     </CommonTooltip>
 
     <CommonTooltip content="使用 GitHub 登录">
-      <div group bg-active btn-action-icon hover:bg-purple @click="onClick">
+      <div group bg-active btn-action-icon hover:bg-purple @click="openGitHubAuth">
         <div i-ri-github-fill text-purple group-hover:text-white />
       </div>
     </CommonTooltip>

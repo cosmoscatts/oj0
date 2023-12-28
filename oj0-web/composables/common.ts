@@ -58,4 +58,25 @@ export function formatDate(date?: Date | string, partten = 'YY-MM-DD HH:mm:ss') 
   return dayjs(date).format(partten)
 }
 
+type TargetContext = '_self' | '_parent' | '_blank' | '_top'
+export function useOpenWindow(
+  url: string,
+  opts?: {
+    target?: TargetContext
+    [key: string]: any
+  },
+): void {
+  const { target = '_blank', ...others } = opts || {}
+  window.open(
+    url,
+    target,
+    Object.entries(others)
+      .reduce((preValue: string[], curValue) => {
+        const [key, value] = curValue
+        return [...preValue, `${key}=${value}`]
+      }, [])
+      .join(','),
+  )
+}
+
 export { dayjs, ANotification, Message, Modal }

@@ -43,6 +43,11 @@ public class User implements Serializable {
     private String mpOpenId;
 
     /**
+     * githubId
+     */
+    private String githubId;
+
+    /**
      * 用户昵称
      */
     private String userName;

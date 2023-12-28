@@ -115,6 +115,14 @@ public class UserController {
     }
 
     /**
+     * 用户登录（GitHub）
+     */
+    @GetMapping("/login/github")
+    public BaseResponse<LoginUserVO> userLoginByGithub(HttpServletRequest request, @RequestParam("code") String code) {
+        return null;
+    }
+
+    /**
      * 用户注销
      *
      * @param request
