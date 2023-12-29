@@ -14,21 +14,27 @@ import com.cc.oj0backend.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
-import me.chanjar.weixin.mp.config.impl.WxMpDefaultConfigImpl;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import static com.cc.oj0backend.constant.UserConstant.USER_LOGIN_STATE;
 
+@Slf4j
 @Service
 public class GithubServiceImpl implements GithubService {
 
@@ -37,7 +43,7 @@ public class GithubServiceImpl implements GithubService {
 
     private OkHttpClient okHttpClient;
 
-    public OkHttpClient getOkHttpClient() {
+    public OkHttpClient getOkHttpClient() throws KeyManagementException, NoSuchAlgorithmException {
         if (okHttpClient != null) {
             return okHttpClient;
         }
@@ -45,7 +51,12 @@ public class GithubServiceImpl implements GithubService {
             if (okHttpClient != null) {
                 return okHttpClient;
             }
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            final X509TrustManager trustManager = new MyTrustManager();
+            final SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[]{trustManager}, null);
+            OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                    .hostnameVerifier((host, session) -> true)
+                    .sslSocketFactory(sslContext.getSocketFactory(), trustManager);
             OkHttpClient client = builder.connectTimeout(600, TimeUnit.SECONDS)
                     .readTimeout(600, TimeUnit.SECONDS)
                     .writeTimeout(600, TimeUnit.SECONDS)
@@ -59,6 +70,7 @@ public class GithubServiceImpl implements GithubService {
     public GithubAccessToken getAccessToken(GithubAccessTokenDTO gitHubAccessTokenDTO) {
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // 忽略不存在的字段
         RequestBody body;
         try {
             body = RequestBody.create(mediaType,
@@ -71,32 +83,35 @@ public class GithubServiceImpl implements GithubService {
                 .header("Accept","application/json")
                 .post(body)
                 .build();
-        OkHttpClient okHttpClient = getOkHttpClient();
-        try (Response response = okHttpClient.newCall(request).execute()) {
+        try {
+            OkHttpClient okHttpClient = getOkHttpClient();
+            Response response = okHttpClient.newCall(request).execute();
             String result = response.body().string();
             return objectMapper.readValue(result, GithubAccessToken.class);
-        } catch (IOException e) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "获取Github token 失败");
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "获取 Github token 失败");
         }
     }
 
     @Override
     public GithubUserInfo getUser(GithubAccessToken githubAccessToken) {
-        String accessToken = githubAccessToken.getAccessToken();
-        String tokenType = githubAccessToken.getTokenType();
+        String accessToken = githubAccessToken.getAccess_token();
+        String tokenType = githubAccessToken.getToken_type();
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         Request request = new Request.Builder()
                 .url("https://api.github.com/user")
                 .addHeader("Authorization",tokenType + " " + accessToken)
                 .build();
-        OkHttpClient okHttpClient = getOkHttpClient();
         try {
+            OkHttpClient okHttpClient = getOkHttpClient();
             Response response = okHttpClient.newCall(request).execute();
             String string = response.body().string();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             return objectMapper.readValue(string, GithubUserInfo.class);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败");
         }
     }
@@ -118,6 +133,7 @@ public class GithubServiceImpl implements GithubService {
             if (user == null) {
                 user = new User();
                 user.setGithubId(githubId);
+                user.setUserAccount(UUID.randomUUID().toString().substring(0, 9));
                 user.setUserAvatar(githubUserInfo.getAvatar_url());
                 user.setUserName(githubUserInfo.getName());
                 user.setUserProfile(githubUserInfo.getBio());
@@ -129,6 +145,23 @@ public class GithubServiceImpl implements GithubService {
             // 记录用户的登录态
             request.getSession().setAttribute(USER_LOGIN_STATE, user);
             return userService.getLoginUserVO(user);
+        }
+    }
+
+    private static class MyTrustManager implements X509TrustManager {
+        @Override
+        public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
+
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
+
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
         }
     }
 }

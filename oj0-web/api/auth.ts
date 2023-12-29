@@ -1,5 +1,6 @@
 const API_URL_ENUM = {
   LOGIN: '/user/login',
+  LOGIN_BY_GITHUB: '/user/login/github',
   REGISTER: '/user/register',
   LOGOUT: '/user/logout',
   GET_LOGIN_USER: '/user/get/login',
@@ -18,6 +19,13 @@ export const AuthApi = {
     userPassword?: string
   }) {
     return useRequest.post<User, Result<User>>(API_URL_ENUM.LOGIN, params)
+  },
+
+  /**
+   * Github 登录
+   */
+  loginByGithub(params: { code: string, redirectUri?: string }) {
+    return useRequest.get<User, Result<User>>(API_URL_ENUM.LOGIN_BY_GITHUB, { params })
   },
 
   /**

@@ -6,10 +6,15 @@ import com.cc.oj0backend.common.BaseResponse;
 import com.cc.oj0backend.common.DeleteRequest;
 import com.cc.oj0backend.common.ErrorCode;
 import com.cc.oj0backend.common.ResultUtils;
+import com.cc.oj0backend.config.GithubConfig;
 import com.cc.oj0backend.config.WxOpenConfig;
 import com.cc.oj0backend.constant.UserConstant;
 import com.cc.oj0backend.exception.BusinessException;
 import com.cc.oj0backend.exception.ThrowUtils;
+import com.cc.oj0backend.github.model.GithubAccessToken;
+import com.cc.oj0backend.github.model.GithubAccessTokenDTO;
+import com.cc.oj0backend.github.model.GithubUserInfo;
+import com.cc.oj0backend.github.service.GithubService;
 import com.cc.oj0backend.model.dto.user.*;
 import com.cc.oj0backend.model.entity.User;
 import com.cc.oj0backend.model.vo.LoginUserVO;
@@ -46,6 +51,12 @@ public class UserController {
 
     @Resource
     private WxOpenConfig wxOpenConfig;
+
+    @Resource
+    private GithubService githubService;
+
+    @Resource
+    private GithubConfig githubConfig;
 
     // region 登录相关
 
@@ -118,8 +129,26 @@ public class UserController {
      * 用户登录（GitHub）
      */
     @GetMapping("/login/github")
-    public BaseResponse<LoginUserVO> userLoginByGithub(HttpServletRequest request, @RequestParam("code") String code) {
-        return null;
+    public BaseResponse<LoginUserVO> userLoginByGithub(HttpServletRequest request, @RequestParam("code") String code,
+                                                       @RequestParam(value = "redirectUri", required = false) String redirectUri) {
+        GithubAccessToken accessToken;
+        GithubAccessTokenDTO githubAccessTokenDTO = new GithubAccessTokenDTO()
+                .setClient_id(githubConfig.getClient_id())
+                .setClient_secret(githubConfig.getClient_secret())
+                .setCode(code)
+                .setRedirect_uri(redirectUri);
+        try {
+            accessToken = githubService.getAccessToken(githubAccessTokenDTO);
+            GithubUserInfo userInfo = githubService.getUser(accessToken);
+            String githubId = userInfo.getId();
+            if (StringUtils.isBlank(githubId)) {
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
+            }
+            return ResultUtils.success(githubService.userLoginByGithub(userInfo, request));
+        } catch (Exception e) {
+            log.error("userLoginByGithub error", e);
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
+        }
     }
 
     /**
