@@ -11,33 +11,41 @@ definePageMeta({
 })
 
 const toast = useToast()
+const route = useRoute()
+const code = computed(() => route.params.code as string)
 
-const params = useUrlSearchParams('history')
 onMounted(() => {
-  console.log(params)
-  if (params?.code)
-    handleGithubLogin(params.code as string)
+  if (code.value)
+    handleGithubLogin(code.value)
 })
 
 const router = useRouter()
 const authStore = useAuthStore()
 async function handleGithubLogin(code: string) {
-  const result = await AuthApi.loginByGithub({ code })
-
-  if (result.code !== 0) {
-    Message.error(result.message ?? '登录失败')
-    return
+  try {
+    const result = await AuthApi.loginByGithub({ code })
+    if (result.code !== 0) {
+      Message.error(result.message ?? '登录失败')
+      clearWindowUrlParams()
+      router.push('/')
+      return
+    }
+    authStore.updateUser(result.data)
+    const userName = result.data.userName ?? ''
+    const content = userName === ''
+      ? '欢迎回来！'
+      : `${userName}, 欢迎回来！`
+    toast.success(`登录成功, ${content}`)
+    clearWindowUrlParams()
+    router.push('/')
+    // 新题目提醒
+    useTimeoutFn(() => doNewQuestionNotification(result.data.id), 5 * 1000)
   }
-  authStore.updateUser(result.data)
-  const userName = result.data.userName ?? ''
-  const content = userName === ''
-    ? '欢迎回来！'
-    : `${userName}, 欢迎回来！`
-  toast.success(`登录成功, ${content}`)
-  const path = '/'
-  router.replace(path)
-  // 新题目提醒
-  useTimeoutFn(() => doNewQuestionNotification(result.data.id), 5 * 1000)
+  catch {
+    Message.error('登录失败')
+    clearWindowUrlParams()
+    router.push('/')
+  }
 }
 
 onMounted(() => useLottie({

@@ -21,7 +21,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost/oj0
     username: root
-    password:
+    password: Yungam123
   # Redis 配置
   # todo 需替换配置，然后取消注释
 #  redis:
@@ -43,7 +43,7 @@ spring:
       max-file-size: 10MB
 server:
   address: 0.0.0.0
-  port: 3101
+  port: 8101
   servlet:
     context-path: /api
     # cookie 30 天过期
@@ -91,11 +91,15 @@ cos:
 # 七牛云对象存储
 oss:
   qiniu:
-    url:
-    accessKey:
-    secretKey:
-    bucketName:
+    url: https://cdn.hilyc.cn
+    accessKey: Y31FJpqL0ViywxCz_Qk_Kt376RvaE2Aj-_IfLqmf
+    secretKey: xM3s24NSIoE_3oMWc2NF3MHoyZ1-vDqtuBpzOH62
+    bucketName: cosmoscatts
     dir: oj0/
 # 代码沙箱配置
 codesandbox:
   type: remote
+# Github
+github:
+  client_id: Iv1.ae8e2b69c9b6941b
+  client_secret: d74a6d0dd1142be933dcb1d8fdbef0aa1528f471

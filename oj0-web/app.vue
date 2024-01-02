@@ -17,9 +17,18 @@ watch(() => route.path, () => {
   scrollTop('wrapper')
 }, { immediate: true })
 
+const router = useRouter()
+function checkExtraLoginCallBackUrl() {
+  const params = useUrlSearchParams('history')
+  const code = params?.code
+  if (code)
+    router.push(`/check-auth/${code}`)
+}
+
 onMounted(() => {
   createArcoTheme()
   setThemeColor()
+  checkExtraLoginCallBackUrl()
   scrollTop('wrapper')
 })
 </script>
