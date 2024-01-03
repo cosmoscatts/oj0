@@ -24,12 +24,10 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.servlet.http.HttpServletRequest;
 
-import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import static com.cc.oj0backend.constant.UserConstant.USER_LOGIN_STATE;
@@ -133,7 +131,6 @@ public class GithubServiceImpl implements GithubService {
             if (user == null) {
                 user = new User();
                 user.setGithubId(githubId);
-                user.setUserAccount(UUID.randomUUID().toString().substring(0, 9));
                 user.setUserAvatar(githubUserInfo.getAvatar_url());
                 user.setUserName(githubUserInfo.getName());
                 user.setUserProfile(githubUserInfo.getBio());
