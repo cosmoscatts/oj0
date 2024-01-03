@@ -7,6 +7,7 @@ export async function handleGithubLogin(code: string) {
 
   try {
     const result = await AuthApi.loginByGithub({ code })
+    toast.clear()
     if (result.code !== 0) {
       Message.error(result.message ?? '登录失败')
       router.push('/')
@@ -33,6 +34,7 @@ export async function handleGithubBound(code: string) {
   const router = useRouter()
   try {
     const result = await AuthApi.bindExtraAuth('github', { code })
+    toast.clear()
     if (result.code !== 0 || result.data !== true) {
       Message.error(result.message ?? '绑定失败')
       router.push('/user-profile/account')
