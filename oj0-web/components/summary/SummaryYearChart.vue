@@ -5,18 +5,14 @@ const { userId } = defineProps<{
   userId?: string | number
 }>()
 
-const year = ref('2023')
+const yearInfo = getSummaryYearOptionData()
+
+const year = ref(yearInfo.year)
 const yearSubmitDataDateMap = ref<Record<string, number>>({})
 const chartData = ref<(string | number)[][]>([])
 const yearSubmitNum = ref(0)
 
-const yearData = ['2023']
-const yearOptions = Array.from({ length: yearData.length }, (_, idx) => {
-  return {
-    value: yearData[idx],
-    label: yearData[idx],
-  }
-})
+const yearOptions = [...yearInfo.yearOptions]
 
 /**
  * 查询用户某年年的所有提交记录
