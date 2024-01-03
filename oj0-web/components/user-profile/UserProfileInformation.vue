@@ -1,13 +1,16 @@
 <script setup lang="ts">
 const refForm = ref()
-const form = reactive<Partial<User>>({
+const form = reactive<Partial<User> & { checkPassword?: string }>({
   id: undefined,
   userAccount: '', // 用户账号
   userName: '', // 用户昵称
   userAvatar: '', // 用户头像
   userProfile: '', // 用户简介
+  userPassword: '', // 初始密码（第三方登录）
+  checkPassword: '', // 验证密码（第三方登录）
 })
 
+const needSetAccount = ref(false)
 async function fetchMy() {
   const { data } = await AuthApi.getMy()
   form.id = data.id
@@ -15,6 +18,7 @@ async function fetchMy() {
   form.userName = data.userName
   form.userAvatar = data.userAvatar
   form.userProfile = data.userProfile
+  needSetAccount.value = (data.userAccount ?? '') === ''
 }
 fetchMy()
 
@@ -29,6 +33,12 @@ async function save() {
   }
   Message.success('提交成功')
   authStore.autoLogin()
+  fetchMy()
+}
+
+function validatePasswordSame(value: string, callback: (error?: string) => void) {
+  if (value !== form.userPassword)
+    callback('两次输入的密码不一致')
 }
 </script>
 
@@ -43,10 +53,36 @@ async function save() {
       <a-form-item
         field="userAccount" label="用户账号" :rules="[
           { required: true, message: '用户账号是必须的' },
-          { minLength: 5, message: '用户账号长度必须大于5' },
+          { minLength: 4, message: '用户账号长度必须大于4' },
         ]" hide-asterisk
       >
-        <a-input v-model="form.userAccount" allow-clear :disabled="!!form.userAccount" />
+        <a-input v-model="form.userAccount" allow-clear :disabled="!needSetAccount" />
+      </a-form-item>
+      <a-form-item
+        v-if="needSetAccount"
+        field="userPassword" label="初始密码" hide-asterisk :rules="[
+          { required: true, message: '初始密码是必须的' },
+          { minLength: 8, message: '初始密码不能少于8位' },
+        ]"
+      >
+        <a-input-password v-model="form.userPassword" allow-clear>
+          <template #prefix>
+            <IconLock />
+          </template>
+        </a-input-password>
+      </a-form-item>
+      <a-form-item
+        v-if="needSetAccount"
+        field="checkPassword" hide-asterisk label="确认密码" :rules="[
+          { required: true, message: '确认密码是必须的' },
+          { validator: validatePasswordSame },
+        ]" validate-trigger="input"
+      >
+        <a-input-password v-model="form.checkPassword" allow-clear>
+          <template #prefix>
+            <IconLock />
+          </template>
+        </a-input-password>
       </a-form-item>
       <a-form-item field="userName" label="用户昵称">
         <a-input v-model="form.userName" allow-clear />

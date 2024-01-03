@@ -13,20 +13,25 @@ import javax.servlet.http.HttpServletRequest;
 public interface GithubService {
     /**
      * 获取 token
-     * @param gitHubAccessTokenDTO
+     * @param githubAccessTokenDTO
      * @return
      */
-    GithubAccessToken getAccessToken(GithubAccessTokenDTO gitHubAccessTokenDTO);
+    GithubAccessToken getAccessToken(GithubAccessTokenDTO githubAccessTokenDTO);
 
     /**
      * 获取 GitHub 返回的用户信息
-     * @param gitHubAccessToken
+     * @param githubAccessToken
      * @return
      */
-    GithubUserInfo getUser(GithubAccessToken gitHubAccessToken);
+    GithubUserInfo getUser(GithubAccessToken githubAccessToken);
 
     /**
      * GitHub 登录
      */
-    LoginUserVO userLoginByGithub(GithubUserInfo gitHubUserInfo, HttpServletRequest request);
+    LoginUserVO userLoginByGithub(GithubUserInfo githubUserInfo, HttpServletRequest request);
+
+    /**
+     * 用户绑定 github
+     */
+    Boolean userBindGithub(GithubUserInfo githubUserInfo, HttpServletRequest request);
 }

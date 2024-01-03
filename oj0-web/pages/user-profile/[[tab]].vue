@@ -8,7 +8,10 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const selectedTab = ref('info')
+const route = useRoute()
+const tab = computed(() => route.params?.tab as string || 'info')
+
+const selectedTab = ref(tab.value)
 
 const router = useRouter()
 function back() {

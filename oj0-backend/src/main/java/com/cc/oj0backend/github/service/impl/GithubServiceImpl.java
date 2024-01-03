@@ -3,6 +3,7 @@ package com.cc.oj0backend.github.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.cc.oj0backend.common.ErrorCode;
 import com.cc.oj0backend.exception.BusinessException;
+import com.cc.oj0backend.exception.ThrowUtils;
 import com.cc.oj0backend.github.model.GithubAccessToken;
 import com.cc.oj0backend.github.model.GithubAccessTokenDTO;
 import com.cc.oj0backend.github.model.GithubUserInfo;
@@ -65,16 +66,16 @@ public class GithubServiceImpl implements GithubService {
     }
 
     @Override
-    public GithubAccessToken getAccessToken(GithubAccessTokenDTO gitHubAccessTokenDTO) {
+    public GithubAccessToken getAccessToken(GithubAccessTokenDTO githubAccessTokenDTO) {
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // 忽略不存在的字段
         RequestBody body;
         try {
             body = RequestBody.create(mediaType,
-                    objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(gitHubAccessTokenDTO));
+                    objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(githubAccessTokenDTO));
         } catch (JsonProcessingException e) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败");
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "获取 Github token 失败");
         }
         Request request = new Request.Builder()
                 .url("https://github.com/login/oauth/access_token")
@@ -110,7 +111,7 @@ public class GithubServiceImpl implements GithubService {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             return objectMapper.readValue(string, GithubUserInfo.class);
         } catch (Exception e) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败");
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "获取 Github 用户信息失败");
         }
     }
 
@@ -142,6 +143,29 @@ public class GithubServiceImpl implements GithubService {
             // 记录用户的登录态
             request.getSession().setAttribute(USER_LOGIN_STATE, user);
             return userService.getLoginUserVO(user);
+        }
+    }
+
+    @Override
+    public Boolean userBindGithub(GithubUserInfo githubUserInfo, HttpServletRequest request) {
+        String githubId = githubUserInfo.getId();
+        // 单机锁
+        synchronized (githubId.intern()) {
+            // 查询该 Github 账号是否已经绑定用户
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("githubId", githubId);
+            User user = userService.getOne(queryWrapper);
+            // 已绑定
+            if (user != null) {
+                throw new BusinessException(ErrorCode.OPERATION_ERROR, "该Github账户已经绑定用户");
+            }
+            User loginUser = userService.getLoginUser(request);
+            User bindUser = new User();
+            bindUser.setId(loginUser.getId());
+            bindUser.setGithubId(githubId);
+            boolean result = userService.updateById(bindUser);
+            ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+            return true;
         }
     }
 

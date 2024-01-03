@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useToast } from 'vue-toastification'
 import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
@@ -8,19 +7,6 @@ definePageMeta({
   access: ACCESS_ENUM.NOT_LOGIN,
   middleware: 'auth',
 })
-
-const toast = useToast()
-const router = useRouter()
-function checkExtraLoginCallBackUrl() {
-  const params = useUrlSearchParams('history')
-  const code = params?.code
-  if (code) {
-    toast.success('授权成功，正在校验···')
-    clearWindowUrlParams()
-    router.push(`/check-auth/${code}`)
-  }
-}
-checkExtraLoginCallBackUrl()
 
 const emojiArray = [
   '\\(o_o)/',

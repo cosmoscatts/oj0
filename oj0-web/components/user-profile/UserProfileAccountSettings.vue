@@ -11,11 +11,6 @@ const form = reactive({
   checkNewPassword: '', // 确认新密码
 })
 
-function onExtraBtnClick(e: MouseEvent) {
-  e.preventDefault()
-  Message.warning('功能开发中，暂不支持此操作！')
-}
-
 function validatePasswordSame(value: string, callback: (error?: string) => void) {
   if (value !== form.userNewPassword)
     callback('两次输入的密码不一致')
@@ -82,90 +77,7 @@ async function submit() {
 
       <a-divider />
 
-      <!-- <a-form-item mt-4>
-        <template #label>
-          <div flex-center gap-2>
-            <div i-ri-smartphone-line />
-            手机号
-          </div>
-        </template>
-        <div w-full flex-y-center justify-between>
-          <div flex="1 center">
-            未绑定
-          </div>
-          <button btn-text @click="onExtraBtnClick">
-            绑定
-          </button>
-        </div>
-      </a-form-item>
-
-      <a-form-item>
-        <template #label>
-          <div flex-center gap-2>
-            <div i-ri-mail-line />
-            邮箱
-          </div>
-        </template>
-        <div w-full flex-y-center justify-between>
-          <div flex="1 center">
-            未绑定
-          </div>
-          <button btn-text @click="onExtraBtnClick">
-            绑定
-          </button>
-        </div>
-      </a-form-item> -->
-
-      <a-form-item>
-        <template #label>
-          <div flex-center gap-2>
-            <div i-ri-github-line />
-            GitHub
-          </div>
-        </template>
-        <div w-full flex-y-center justify-between>
-          <div flex="1 center">
-            未绑定
-          </div>
-          <button btn-text @click="onExtraBtnClick">
-            绑定
-          </button>
-        </div>
-      </a-form-item>
-
-      <a-form-item>
-        <template #label>
-          <div flex-center gap-2>
-            <div i-ri-qq-line />
-            QQ
-          </div>
-        </template>
-        <div w-full flex-y-center justify-between>
-          <div flex="1 center">
-            未绑定
-          </div>
-          <button btn-text @click="onExtraBtnClick">
-            绑定
-          </button>
-        </div>
-      </a-form-item>
-
-      <a-form-item>
-        <template #label>
-          <div flex-center gap-2>
-            <div i-ri-wechat-line />
-            微信
-          </div>
-        </template>
-        <div w-full flex-y-center justify-between>
-          <div flex="1 center">
-            未绑定
-          </div>
-          <button btn-text @click="onExtraBtnClick">
-            绑定
-          </button>
-        </div>
-      </a-form-item>
+      <UserProfileAccountSettingsListExtraAuth />
     </a-form>
   </div>
 </template>

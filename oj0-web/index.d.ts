@@ -151,6 +151,15 @@ declare global {
     userVO?: User
     questionVO?: Question
   }
+
+  /**
+   * 第三方平台登录绑定信息
+   */
+  interface ExtraAuthBound {
+    github?: boolean
+    qq?: boolean
+    wechat?: boolean
+  }
 }
 
 declare module '#app' {
