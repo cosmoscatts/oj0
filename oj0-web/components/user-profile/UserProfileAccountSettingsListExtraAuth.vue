@@ -6,6 +6,7 @@ const toast = useToast()
 
 function getDefaultBoundInfo() {
   return {
+    canUnbound: false,
     github: false,
     qq: false,
     wechat: false,
@@ -19,6 +20,10 @@ async function fetchExtraAuth() {
 fetchExtraAuth()
 
 async function unbind(type: string) {
+  if (!boundInfo.value.canUnbound) {
+    Message.error('请先设置初始账号')
+    return
+  }
   const { code, message } = await AuthApi.unbindExtraAuth({ type })
   if (code !== 0) {
     toast.error(message || '提交失败')

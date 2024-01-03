@@ -52,6 +52,7 @@ public class ExtraAuthBoundController {
         extraAuthBoundVO.setGithub(user.getGithubId() != null);
         extraAuthBoundVO.setQq(user.getGithubId() != null);
         extraAuthBoundVO.setWechat(user.getUnionId() != null);
+        extraAuthBoundVO.setCanUnbound(user.getUserAccount() != null);
         return ResultUtils.success(extraAuthBoundVO);
     }
 

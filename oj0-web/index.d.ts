@@ -156,6 +156,7 @@ declare global {
    * 第三方平台登录绑定信息
    */
   interface ExtraAuthBound {
+    canUnbound?: boolean
     github?: boolean
     qq?: boolean
     wechat?: boolean
