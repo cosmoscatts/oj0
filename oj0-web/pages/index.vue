@@ -8,6 +8,15 @@ definePageMeta({
   middleware: 'auth',
 })
 
+const router = useRouter()
+function checkExtraLoginCallBackUrl() {
+  const params = useUrlSearchParams('history')
+  const code = params?.code
+  if (code)
+    router.push(`/check-auth/${code}`)
+}
+checkExtraLoginCallBackUrl()
+
 const emojiArray = [
   '\\(o_o)/',
   '(o^^)o',
