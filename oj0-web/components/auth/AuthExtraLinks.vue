@@ -7,7 +7,7 @@ function onClick() {
 
 function openGitHubAuth() {
   const url = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`
-  useOpenWindow(url)
+  useOpenWindow(url, { target: '_self' })
 }
 </script>
 

@@ -70,7 +70,7 @@ const option = computed(() => {
       },
     },
     calendar: {
-      range: '2023',
+      range: year.value,
       left: 26,
       top: 40,
       cellSize: [13, 13],
