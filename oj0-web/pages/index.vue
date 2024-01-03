@@ -15,7 +15,7 @@ function checkExtraLoginCallBackUrl() {
   const params = useUrlSearchParams('history')
   const code = params?.code
   if (code) {
-    toast.success('授权成功吗，正在校验···')
+    toast.success('授权成功，正在校验···')
     clearWindowUrlParams()
     router.push(`/check-auth/${code}`)
   }
