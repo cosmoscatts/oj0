@@ -158,6 +158,7 @@ declare global {
   interface ExtraAuthBound {
     canUnbound?: boolean
     github?: boolean
+    gitee?: boolean
     qq?: boolean
     wechat?: boolean
   }

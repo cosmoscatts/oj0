@@ -4,9 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.cc.oj0backend.common.BaseResponse;
 import com.cc.oj0backend.common.ErrorCode;
 import com.cc.oj0backend.common.ResultUtils;
+import com.cc.oj0backend.config.GiteeConfig;
 import com.cc.oj0backend.config.GithubConfig;
 import com.cc.oj0backend.exception.BusinessException;
 import com.cc.oj0backend.exception.ThrowUtils;
+import com.cc.oj0backend.gitee.model.GiteeAccessToken;
+import com.cc.oj0backend.gitee.model.GiteeAccessTokenDTO;
+import com.cc.oj0backend.gitee.model.GiteeUserInfo;
+import com.cc.oj0backend.gitee.service.GiteeService;
 import com.cc.oj0backend.github.model.GithubAccessToken;
 import com.cc.oj0backend.github.model.GithubAccessTokenDTO;
 import com.cc.oj0backend.github.model.GithubUserInfo;
@@ -38,7 +43,13 @@ public class ExtraAuthBoundController {
     private GithubService githubService;
 
     @Resource
+    private GiteeService giteeService;
+
+    @Resource
     private GithubConfig githubConfig;
+
+    @Resource
+    private GiteeConfig giteeConfig;
 
     /**
      * 获取自己的第三方登录绑定情况
@@ -50,6 +61,7 @@ public class ExtraAuthBoundController {
         User user = userService.getLoginUser(request);
         ExtraAuthBoundVO extraAuthBoundVO = new ExtraAuthBoundVO();
         extraAuthBoundVO.setGithub(user.getGithubId() != null);
+        extraAuthBoundVO.setGitee(user.getGiteeId() != null);
         extraAuthBoundVO.setQq(user.getQqId() != null);
         extraAuthBoundVO.setWechat(user.getUnionId() != null);
         extraAuthBoundVO.setCanUnbound(user.getUserAccount() != null);
@@ -57,7 +69,7 @@ public class ExtraAuthBoundController {
     }
 
     @PostMapping("/bind/github")
-    public BaseResponse<Boolean> bindMy(@RequestBody BindExtraAuthRequest bindExtraAuthRequest, HttpServletRequest request) {
+    public BaseResponse<Boolean> bindMyGithub(@RequestBody BindExtraAuthRequest bindExtraAuthRequest, HttpServletRequest request) {
         String code = bindExtraAuthRequest.getCode();
         String redirectUri = bindExtraAuthRequest.getRedirectUri();
         GithubAccessToken accessToken;
@@ -80,16 +92,40 @@ public class ExtraAuthBoundController {
         }
     }
 
+    @PostMapping("/bind/gitee")
+    public BaseResponse<Boolean> bindMyGitee(@RequestBody BindExtraAuthRequest bindExtraAuthRequest, HttpServletRequest request) {
+        String code = bindExtraAuthRequest.getCode();
+        GiteeAccessToken accessToken;
+        GiteeAccessTokenDTO giteeAccessTokenDTO = new GiteeAccessTokenDTO()
+                .setClient_id(giteeConfig.getClient_id())
+                .setClient_secret(giteeConfig.getClient_secret())
+                .setCode(code);
+        try {
+            accessToken = giteeService.getAccessToken(giteeAccessTokenDTO);
+            GiteeUserInfo userInfo = giteeService.getUser(accessToken);
+            String githubId = userInfo.getId();
+            if (StringUtils.isBlank(githubId)) {
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "绑定失败，系统错误");
+            }
+            return ResultUtils.success(giteeService.userBindGitee(userInfo, request));
+        } catch (Exception e) {
+            log.error("userBindGithub error", e);
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "绑定失败，系统错误");
+        }
+    }
+
     @PostMapping("/unbind/my")
     public BaseResponse<Boolean> unbindMy(@RequestBody UnBindExtraAuthRequest unBindExtraAuthRequest, HttpServletRequest request) {
         String type = unBindExtraAuthRequest.getType();
-        if (type == null || !StringUtils.equalsAny(type, "github", "qq", "wechat")) {
+        if (type == null || !StringUtils.equalsAny(type, "github", "gitee", "qq", "wechat")) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数错误");
         }
         User loginUser = userService.getLoginUser(request);
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<User>().eq("id", loginUser.getId());
         if ("github".equals(type)) {
             updateWrapper.set("githubId", null);
+        } else if ("gitee".equals(type)) {
+            updateWrapper.set("giteeId", null);
         } else if ("wechat".equals(type)) {
             updateWrapper.set("unionId", null);
             updateWrapper.set("mpOpenId", null);

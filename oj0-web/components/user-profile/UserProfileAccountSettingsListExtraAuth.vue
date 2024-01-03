@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useToast } from 'vue-toastification'
 import { GITHUB_CLIENT_ID } from '~/config/github'
+import { GITEE_CLIENT_ID, GITEE_REDIRECT_URI } from '~/config/gitee'
 
 const toast = useToast()
 
@@ -10,6 +11,7 @@ function getDefaultBoundInfo() {
     github: false,
     qq: false,
     wechat: false,
+    gitee: false,
   }
 }
 const boundInfo = ref<ExtraAuthBound>(getDefaultBoundInfo())
@@ -41,6 +43,7 @@ function onExtraBtnClick(e: MouseEvent) {
 function bind(type: string) {
   const urlMap = {
     github: `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`,
+    gitee: `https://gitee.com/oauth/authorize?client_id=${GITEE_CLIENT_ID}&redirect_uri=${GITEE_REDIRECT_URI}&response_type=code`,
     qq: '',
     wechat: '',
   } as Record<string, string>
@@ -76,6 +79,26 @@ function bind(type: string) {
   <a-form-item>
     <template #label>
       <div flex-center gap-2>
+        <div i-simple-icons-gitee />
+        Gitee
+      </div>
+    </template>
+    <div w-full flex-y-center justify-between>
+      <div flex="1 center">
+        {{ boundInfo.gitee ? '已绑定' : '未绑定' }}
+      </div>
+      <button v-if="boundInfo.gitee" btn-text @click.prevent="unbind('gitee')">
+        解绑
+      </button>
+      <button v-else btn-text @click.prevent="bind('gitee')">
+        绑定
+      </button>
+    </div>
+  </a-form-item>
+
+  <a-form-item>
+    <template #label>
+      <div flex-center gap-2>
         <div i-ri-qq-line />
         QQ
       </div>
@@ -84,7 +107,7 @@ function bind(type: string) {
       <div flex="1 center">
         {{ boundInfo.qq ? '已绑定' : '未绑定' }}
       </div>
-      <button v-if="boundInfo.qq" btn-text @click.prevent="unbind('qq')">
+      <button v-if="boundInfo.qq" btn-text @click.prevent="onExtraBtnClick">
         解绑
       </button>
       <button v-else btn-text @click.prevent="onExtraBtnClick">
@@ -93,7 +116,7 @@ function bind(type: string) {
     </div>
   </a-form-item>
 
-  <a-form-item>
+  <!-- <a-form-item>
     <template #label>
       <div flex-center gap-2>
         <div i-ri-wechat-line />
@@ -111,7 +134,7 @@ function bind(type: string) {
         绑定
       </button>
     </div>
-  </a-form-item>
+  </a-form-item> -->
 
   <!-- <a-form-item mt-4>
         <template #label>

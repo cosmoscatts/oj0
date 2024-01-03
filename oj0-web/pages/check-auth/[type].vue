@@ -23,7 +23,7 @@ async function checkAuth() {
   const params = useUrlSearchParams('history')
   const code = params?.code as string
 
-  if (!code || !type.value || !['github', 'qq', 'wechat'].includes(type.value)) {
+  if (!code || !type.value || !['github', 'gitee', 'qq', 'wechat'].includes(type.value)) {
     toast.error('参数错误，请重试！')
     router.push('/')
     return
@@ -39,6 +39,12 @@ async function checkAuth() {
       handleGithubLogin(code)
     else
       handleGithubBound(code)
+  }
+  else if (type.value === 'gitee') {
+    if (action.value === 0)
+      handleGiteeLogin(code)
+    else
+      handleGiteeBound(code)
   }
   // else if (type.value === 'qq') {
 
@@ -60,8 +66,9 @@ onMounted(() => useLottie({
   <div h-screen w-screen flex="center col">
     <div id="lottie" mt--100px h-300px w-400px />
     <div mt-30px flex-center gap-2 text-3xl font-bold>
-      <div i-ri-loader-2-line animate-spin text-3xl />
-      正在验证中···
+      <div i-svg-spinners-bars-rotate-fade text-3xl />
+      正在验证中
+      <div i-svg-spinners-3-dots-scale-middle text-3xl />
     </div>
   </div>
 </template>

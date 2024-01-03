@@ -152,11 +152,11 @@ onMounted(() => {
       <template #status="{ record }">
         <div flex-center>
           <div v-if="record.status === 0" flex-center gap-2>
-            <div i-ri-loader-2-line animate-spin />
+            <div i-svg-spinners-bars-rotate-fade />
             等待中
           </div>
           <div v-if="record.status === 1" flex-center gap-2 text-orange>
-            <div i-ri-loader-2-line animate-spin />
+            <div i-svg-spinners-bars-rotate-fade />
             判题中
           </div>
           <div v-else-if="record.status === 2">

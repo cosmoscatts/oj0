@@ -9,6 +9,7 @@ import lombok.Data;
 public class ExtraAuthBoundVO {
     private boolean canUnbound; // 是否可以解绑
     private boolean github;
+    private boolean gitee;
     private boolean qq;
     private boolean wechat;
 }

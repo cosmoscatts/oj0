@@ -6,11 +6,16 @@ import com.cc.oj0backend.common.BaseResponse;
 import com.cc.oj0backend.common.DeleteRequest;
 import com.cc.oj0backend.common.ErrorCode;
 import com.cc.oj0backend.common.ResultUtils;
+import com.cc.oj0backend.config.GiteeConfig;
 import com.cc.oj0backend.config.GithubConfig;
 import com.cc.oj0backend.config.WxOpenConfig;
 import com.cc.oj0backend.constant.UserConstant;
 import com.cc.oj0backend.exception.BusinessException;
 import com.cc.oj0backend.exception.ThrowUtils;
+import com.cc.oj0backend.gitee.model.GiteeAccessToken;
+import com.cc.oj0backend.gitee.model.GiteeAccessTokenDTO;
+import com.cc.oj0backend.gitee.model.GiteeUserInfo;
+import com.cc.oj0backend.gitee.service.GiteeService;
 import com.cc.oj0backend.github.model.GithubAccessToken;
 import com.cc.oj0backend.github.model.GithubAccessTokenDTO;
 import com.cc.oj0backend.github.model.GithubUserInfo;
@@ -56,7 +61,13 @@ public class UserController {
     private GithubService githubService;
 
     @Resource
+    private GiteeService giteeService;
+
+    @Resource
     private GithubConfig githubConfig;
+
+    @Resource
+    private GiteeConfig giteeConfig;
 
     // region 登录相关
 
@@ -147,6 +158,30 @@ public class UserController {
             return ResultUtils.success(githubService.userLoginByGithub(userInfo, request));
         } catch (Exception e) {
             log.error("userLoginByGithub error", e);
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
+        }
+    }
+
+    /**
+     * 用户登录（Gitee）
+     */
+    @GetMapping("/login/gitee")
+    public BaseResponse<LoginUserVO> userLoginByGitee(HttpServletRequest request, @RequestParam("code") String code) {
+        GiteeAccessToken accessToken;
+        GiteeAccessTokenDTO giteeAccessTokenDTO = new GiteeAccessTokenDTO()
+                .setClient_id(giteeConfig.getClient_id())
+                .setClient_secret(giteeConfig.getClient_secret())
+                .setCode(code);
+        try {
+            accessToken = giteeService.getAccessToken(giteeAccessTokenDTO);
+            GiteeUserInfo userInfo = giteeService.getUser(accessToken);
+            String giteeId = userInfo.getId();
+            if (StringUtils.isBlank(giteeId)) {
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
+            }
+            return ResultUtils.success(giteeService.userLoginByGitee(userInfo, request));
+        } catch (Exception e) {
+            log.error("userLoginByGitee error", e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
         }
     }

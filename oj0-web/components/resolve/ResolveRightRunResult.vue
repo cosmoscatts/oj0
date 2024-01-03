@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
           <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
         </div>
         <div flex="1 center" gap-2>
-          <div i-ri-loader-2-line animate-spin />
+          <div i-svg-spinners-bars-rotate-fade />
           等待中
         </div>
       </div>
@@ -60,7 +60,7 @@ onBeforeUnmount(() => {
           <span font-bold>{{ userName }}</span>提交于 <span>{{ formatDate(submitInfo.createTime, 'YYYY-MM-DD HH:mm') }}</span>
         </div>
         <div flex="1 center" gap-2 text-orange>
-          <div i-ri-loader-2-line animate-spin />
+          <div i-svg-spinners-bars-rotate-fade />
           判题中
         </div>
       </div>
