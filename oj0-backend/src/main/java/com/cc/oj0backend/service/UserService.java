@@ -123,6 +123,19 @@ public interface UserService extends IService<User> {
      */
     QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
 
+    /**
+     * 更新我的密码
+     * @param userId
+     * @param userAccount
+     * @param userOldPassword
+     * @param userNewPassword
+     * @param checkNewPassword
+     * @return
+     */
     boolean updateMyPassword(Long userId, String userAccount, String userOldPassword, String userNewPassword, String checkNewPassword);
 
+    /**
+     * 第三方登录设置初始账号密码
+     */
+    User initAccountInfo(String userAccount, String userPassword, String checkPassword);
 }

@@ -342,7 +342,18 @@ public class UserController {
         }
         User loginUser = userService.getLoginUser(request);
         User user = new User();
-        BeanUtils.copyProperties(userUpdateMyRequest, user);
+        if (loginUser.getUserAccount() == null) { // 设置初始账号和密码
+            String userAccount = userUpdateMyRequest.getUserAccount();
+            String userPassword = userUpdateMyRequest.getUserPassword();
+            String checkPassword = userUpdateMyRequest.getCheckPassword();
+            if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
+                throw new BusinessException(ErrorCode.PARAMS_ERROR, "初始账号和密码不能为空");
+            }
+            user = userService.initAccountInfo(userAccount, userPassword, checkPassword);
+        }
+        user.setUserName(userUpdateMyRequest.getUserName());
+        user.setUserAvatar(userUpdateMyRequest.getUserAvatar());
+        user.setUserProfile(userUpdateMyRequest.getUserProfile());
         user.setId(loginUser.getId());
         boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
