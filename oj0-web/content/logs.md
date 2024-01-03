@@ -20,8 +20,8 @@ title: 更新日志 - OJ0
 
 ## 🚀 新特性
 
-- GitHub 登录（网络问题，需要尝试多次才能调通 api）
-- Gitee 登录
+- 未注册用户可以使用 Github 或者 Gitee 登录（PS: 由于网络问题，GitHub 登录需要尝试多次才会成功） 
+- 已注册用户可以去【个人中心】页面绑定 Github 或者 Gitee
 
 --- 
 
