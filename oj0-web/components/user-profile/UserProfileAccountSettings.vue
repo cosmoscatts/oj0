@@ -82,7 +82,7 @@ async function submit() {
 
       <a-divider />
 
-      <a-form-item mt-4>
+      <!-- <a-form-item mt-4>
         <template #label>
           <div flex-center gap-2>
             <div i-ri-smartphone-line />
@@ -114,7 +114,7 @@ async function submit() {
             绑定
           </button>
         </div>
-      </a-form-item>
+      </a-form-item> -->
 
       <a-form-item>
         <template #label>

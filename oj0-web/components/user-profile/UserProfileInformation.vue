@@ -46,7 +46,7 @@ async function save() {
           { minLength: 5, message: '用户账号长度必须大于5' },
         ]" hide-asterisk
       >
-        <a-input v-model="form.userAccount" allow-clear disabled />
+        <a-input v-model="form.userAccount" allow-clear :disabled="!!form.userAccount" />
       </a-form-item>
       <a-form-item field="userName" label="用户昵称">
         <a-input v-model="form.userName" allow-clear />
