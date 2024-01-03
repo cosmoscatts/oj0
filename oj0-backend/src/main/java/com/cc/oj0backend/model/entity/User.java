@@ -48,6 +48,11 @@ public class User implements Serializable {
     private String githubId;
 
     /**
+     * githubId
+     */
+    private String qqId;
+
+    /**
      * 用户昵称
      */
     private String userName;

@@ -50,7 +50,7 @@ public class ExtraAuthBoundController {
         User user = userService.getLoginUser(request);
         ExtraAuthBoundVO extraAuthBoundVO = new ExtraAuthBoundVO();
         extraAuthBoundVO.setGithub(user.getGithubId() != null);
-        extraAuthBoundVO.setQq(user.getGithubId() != null);
+        extraAuthBoundVO.setQq(user.getQqId() != null);
         extraAuthBoundVO.setWechat(user.getUnionId() != null);
         extraAuthBoundVO.setCanUnbound(user.getUserAccount() != null);
         return ResultUtils.success(extraAuthBoundVO);

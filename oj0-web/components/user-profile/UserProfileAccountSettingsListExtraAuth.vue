@@ -42,7 +42,7 @@ function bind(type: string) {
   const urlMap = {
     github: `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`,
     qq: '',
-    wechart: '',
+    wechat: '',
   } as Record<string, string>
 
   const url = urlMap[type]
@@ -64,10 +64,10 @@ function bind(type: string) {
       <div flex="1 center">
         {{ boundInfo.github ? '已绑定' : '未绑定' }}
       </div>
-      <button v-if="boundInfo.github" btn-text @click="unbind('github')">
+      <button v-if="boundInfo.github" btn-text @click.prevent="unbind('github')">
         解绑
       </button>
-      <button v-else btn-text @click="bind('github')">
+      <button v-else btn-text @click.prevent="bind('github')">
         绑定
       </button>
     </div>
@@ -84,10 +84,10 @@ function bind(type: string) {
       <div flex="1 center">
         {{ boundInfo.qq ? '已绑定' : '未绑定' }}
       </div>
-      <button v-if="boundInfo.qq" btn-text @click="unbind('qq')">
+      <button v-if="boundInfo.qq" btn-text @click.prevent="unbind('qq')">
         解绑
       </button>
-      <button v-else btn-text @click="onExtraBtnClick">
+      <button v-else btn-text @click.prevent="onExtraBtnClick">
         绑定
       </button>
     </div>
@@ -104,10 +104,10 @@ function bind(type: string) {
       <div flex="1 center">
         {{ boundInfo.wechat ? '已绑定' : '未绑定' }}
       </div>
-      <button v-if="boundInfo.wechat" btn-text @click="unbind('wechat')">
+      <button v-if="boundInfo.wechat" btn-text @click.prevent="unbind('wechat')">
         解绑
       </button>
-      <button v-else btn-text @click="onExtraBtnClick">
+      <button v-else btn-text @click.prevent="onExtraBtnClick">
         绑定
       </button>
     </div>
@@ -124,7 +124,7 @@ function bind(type: string) {
           <div flex="1 center">
             未绑定
           </div>
-          <button btn-text @click="onExtraBtnClick">
+          <button btn-text @click.prevent="onExtraBtnClick">
             绑定
           </button>
         </div>
@@ -141,7 +141,7 @@ function bind(type: string) {
           <div flex="1 center">
             未绑定
           </div>
-          <button btn-text @click="onExtraBtnClick">
+          <button btn-text @click.prevent="onExtraBtnClick">
             绑定
           </button>
         </div>
