@@ -19,7 +19,7 @@ const type = computed(() => route.params.type as string) // 第三方类型
 const hasLogin = authStore.getHasLogin()
 const action = computed(() => hasLogin.value ? 1 : 0) // 0 - 注册登录；1 - 绑定；
 
-function checkAuth() {
+async function checkAuth() {
   const params = useUrlSearchParams('history')
   const code = params?.code as string
 
@@ -30,6 +30,9 @@ function checkAuth() {
   }
 
   toast.success('授权成功，正在校验···')
+
+  if (!hasLogin.value)
+    await authStore.autoLogin()
 
   if (type.value === 'github') {
     if (action.value === 0)
@@ -44,7 +47,8 @@ function checkAuth() {
 
   // }
 }
-checkAuth()
+
+onMounted(checkAuth)
 
 onMounted(() => useLottie({
   containerId: '#lottie',

@@ -57,7 +57,7 @@ public class ExtraAuthBoundController {
     }
 
     @PostMapping("/bind/github")
-    public BaseResponse<Boolean> bindMy(BindExtraAuthRequest bindExtraAuthRequest, HttpServletRequest request) {
+    public BaseResponse<Boolean> bindMy(@RequestBody BindExtraAuthRequest bindExtraAuthRequest, HttpServletRequest request) {
         String code = bindExtraAuthRequest.getCode();
         String redirectUri = bindExtraAuthRequest.getRedirectUri();
         GithubAccessToken accessToken;
@@ -81,7 +81,7 @@ public class ExtraAuthBoundController {
     }
 
     @PostMapping("/unbind/my")
-    public BaseResponse<Boolean> unbindMy(UnBindExtraAuthRequest unBindExtraAuthRequest, HttpServletRequest request) {
+    public BaseResponse<Boolean> unbindMy(@RequestBody UnBindExtraAuthRequest unBindExtraAuthRequest, HttpServletRequest request) {
         String type = unBindExtraAuthRequest.getType();
         if (type == null || !StringUtils.equalsAny(type, "github", "qq", "wechat")) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数错误");
