@@ -132,7 +132,7 @@ function removeJudgeCase(index: number) {
       </a-form-item>
       <a-form-item field="judgeCase" label="判题用例" :content-flex="false">
         <template v-for="(item, idx) in form.judgeCase" :key="idx">
-          <CommonTransition name="bounce">
+          <CommonTransition name="fade">
             <div grid="~ cols-13 gap-2">
               <a-form-item field="judgeConfig.timeLimit" label="输入用例" col-span-6>
                 <a-input v-model="item.input" allow-clear />

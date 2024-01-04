@@ -6,6 +6,10 @@ definePageMeta({
   access: ACCESS_ENUM.USER, // 需要用户权限
   layout: 'none',
   middleware: 'auth',
+  pageTransition: {
+    name: 'layout',
+    mode: 'out-in',
+  },
 })
 
 const route = useRoute()
