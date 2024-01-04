@@ -26,8 +26,8 @@ function openGiteeAuth() {
     </CommonTooltip>
 
     <CommonTooltip content="使用 Gitee 登录">
-      <div group bg-active btn-action-icon hover:bg-red @click="openGiteeAuth">
-        <div i-simple-icons-gitee text-red group-hover:text-white />
+      <div group bg-active btn-action-icon hover:bg-hex-b7312d @click="openGiteeAuth">
+        <div i-simple-icons-gitee text-hex-b7312d group-hover:text-white />
       </div>
     </CommonTooltip>
 

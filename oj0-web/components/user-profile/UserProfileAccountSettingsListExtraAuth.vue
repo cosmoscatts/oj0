@@ -21,18 +21,30 @@ async function fetchExtraAuth() {
 }
 fetchExtraAuth()
 
-async function unbind(type: string) {
+function unbind(type: string) {
   if (!boundInfo.value.canUnbound) {
     Message.error('请先设置初始账号')
     return
   }
-  const { code, message } = await AuthApi.unbindExtraAuth({ type })
-  if (code !== 0) {
-    toast.error(message || '提交失败')
-    return
-  }
-  toast.success('解绑成功')
-  fetchExtraAuth()
+  const map = {
+    github: 'Github',
+    gitee: 'Gitee',
+    qq: 'QQ',
+    wechat: '微信',
+  } as Record<string, string>
+  useConfirm({
+    title: '解绑确认',
+    content: `确定要解绑${map[type]}吗？`,
+    ok: async () => {
+      const { code, message } = await AuthApi.unbindExtraAuth({ type })
+      if (code !== 0) {
+        toast.error(message || '提交失败')
+        return
+      }
+      toast.success('解绑成功')
+      fetchExtraAuth()
+    },
+  })
 }
 
 function onExtraBtnClick(e: MouseEvent) {
