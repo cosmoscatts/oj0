@@ -5,6 +5,9 @@
   --c-danger: #FF3C1B;
   --c-danger-active: #B50900;
 
+  --c-scrollbar: #c1c1c1;
+  --c-scrollbar-hover: #7d7d7d;
+
   --rgb-bg-base: 250, 250, 250;
 
   --c-bg-base: rgb(var(--rgb-bg-base));
@@ -95,6 +98,9 @@
   --c-border: #222;
   --c-border-code: #333;
   --c-border-dark: #545251;
+
+  --c-scrollbar: rgba(255, 255, 255, .1);
+  --c-scrollbar-hover: rgba(255, 255, 255, .2);
 
   --rgb-bg-base: 17, 17, 17;
 
