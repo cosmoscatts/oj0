@@ -79,7 +79,7 @@ defineExpose({
         </CommonTooltip>
 
         <CommonTooltip content="复制代码" flex items-center>
-          <button title="Copy" op50 transition hover:op100 :class="copied ? 'i-carbon-checkmark text-green' : 'i-carbon-copy'" @click="copy" />
+          <button title="Copy" op50 transition hover:op100 :disabled="copied" :class="copied ? 'i-carbon-checkmark text-green' : 'i-carbon-copy'" @click="copy" />
         </CommonTooltip>
       </div>
     </div>
