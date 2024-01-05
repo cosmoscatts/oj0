@@ -49,14 +49,33 @@ function getSubmitData() {
     questionId: id.value,
   }
 }
-async function doSubmit() {
-  const { code, data, message } = await QuestionSubmitApi.submit(getSubmitData())
-  if (code !== 0) {
-    Message.error(message || '提交失败')
-    return
+
+const clickSubmitCnt = ref(0)
+const doSubmit = useThrottleFn(async () => {
+  try {
+    const { code, data, message } = await QuestionSubmitApi.submit(getSubmitData())
+    if (code !== 0) {
+      Message.error(message || '提交失败')
+      clickSubmitCnt.value = 0
+      return
+    }
+    Message.success('提交成功')
+    submitQuestionCallback(data)
+    clickSubmitCnt.value = 0
   }
-  Message.success('提交成功')
-  submitQuestionCallback(data)
+  catch {
+    Message.error('提交失败')
+    clickSubmitCnt.value = 0
+  }
+}, 1000)
+
+function onClickSubmit() {
+  clickSubmitCnt.value += 1
+
+  if (clickSubmitCnt.value > 1)
+    Message.warning('短时间内不要点击太多次哦～')
+
+  doSubmit()
 }
 
 /**
@@ -70,7 +89,7 @@ onMounted(checkFormSubmitHistory)
 
 <template>
   <div h-screen w-screen>
-    <ResolveActionBar @submit="doSubmit" />
+    <ResolveActionBar @submit="onClickSubmit" />
 
     <div :style="{ height: `calc(100vh - 6rem)` }" mb-2 of-hidden px-30px>
       <a-split :style="{ height: '100%', width: '100%', minWidth: '500px' }">

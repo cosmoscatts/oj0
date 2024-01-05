@@ -61,13 +61,31 @@ function checkoutQuestion(record: Question) {
   router.push(`/resolve/${record.id}`)
 }
 
-async function checkoutRandomQuestion() {
-  const { data, message } = await QuestionApi.getRandomQuestionId()
-  if (!data) {
-    Message.error(message || '获取随机题目发生异常')
-    return
+const clickRandomQuestionCnt = ref(0)
+const checkoutRandomQuestion = useThrottleFn(async () => {
+  try {
+    const { data, message } = await QuestionApi.getRandomQuestionId()
+    if (!data) {
+      Message.error(message || '获取随机题目发生异常')
+      clickRandomQuestionCnt.value = 0
+      return
+    }
+    clickRandomQuestionCnt.value = 0
+    router.push(`/resolve/${data}`)
   }
-  router.push(`/resolve/${data}`)
+  catch {
+    Message.error('获取随机题目发生异常')
+    clickRandomQuestionCnt.value = 0
+  }
+}, 1000)
+
+function onClickRandomQuestion() {
+  clickRandomQuestionCnt.value += 1
+
+  if (clickRandomQuestionCnt.value > 1)
+    Message.warning('短时间内不要点击太多次哦～')
+
+  checkoutRandomQuestion()
 }
 
 function calculateAcceptPercent(record: Question) {
@@ -104,7 +122,7 @@ function formatAcceptPercentTooltip(record: Question) {
 
       <div col-span-1 flex justify-end gap-3>
         <div mt-2px h-32px flex-center>
-          <div flex-center gap-2 btn-solid @click="checkoutRandomQuestion">
+          <div flex-center gap-2 btn-solid @click="onClickRandomQuestion">
             <button i-ri-shuffle-line />
             <span lt-xl:hidden>随机一题</span>
           </div>
