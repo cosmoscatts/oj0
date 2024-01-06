@@ -49,7 +49,6 @@ export default defineNuxtConfig({
     '~/styles/hljs-atom-one-light.css',
     '~/styles/hljs-atom-one-dark.css',
     '~/styles/bytemd.css',
-    '~/styles/codemirror.css',
     '~/styles/arco-design.css',
     '~/styles/prose.css',
     '~/styles/transition.css',

@@ -29,6 +29,7 @@ export default defineConfig({
       'bg-card': 'bg-$c-bg-card',
       'bg-code': 'bg-$c-bg-code',
       'bg-dm': 'bg-$c-bg-dm',
+      'bg-darker': 'bg-white dark:bg-hex-121212',
 
       // text colors
       'text-base': 'text-$c-text-base',

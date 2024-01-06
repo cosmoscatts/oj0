@@ -88,7 +88,7 @@ onMounted(checkFormSubmitHistory)
 </script>
 
 <template>
-  <div h-screen w-screen>
+  <div bg-darker h-screen w-screen>
     <ResolveActionBar @submit="onClickSubmit" />
 
     <div :style="{ height: `calc(100vh - 6rem)` }" mb-2 of-hidden px-30px>

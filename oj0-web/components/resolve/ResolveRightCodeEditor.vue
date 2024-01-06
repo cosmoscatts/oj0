@@ -40,6 +40,12 @@ const options = computed(() => {
   })
 })
 
+const submitCode = computed(() => {
+  if (submitId)
+    return code.value
+  return undefined
+})
+
 function reset() {
   useConfirm({
     title: '还原确认',
@@ -67,7 +73,7 @@ defineExpose({
 <template>
   <div h-full w-full of-hidden flex="~ col">
     <div flex-y-center justify-between gap-3 border-b border-base px-3 py-2>
-      <button flex="~ gap-1 center" ws-nowrap>
+      <button flex="~ gap-1 center" mt-1.5px ws-nowrap px-2 py-1>
         <span i-carbon-code text-green /> 代码
       </button>
 
@@ -84,8 +90,8 @@ defineExpose({
       </div>
     </div>
 
-    <div flex="~ 1 col" of-auto p-3>
-      <EditorCode v-model="code" :language="selectedLanguage" />
+    <div flex="~ 1 col" of-auto>
+      <EditorCode v-model="code" :language="selectedLanguage" :submit-code="submitCode" />
     </div>
   </div>
 </template>
