@@ -57,6 +57,29 @@ async function getCodeHtml() {
 }
 getCodeHtml()
 watch(isDark, getCodeHtml)
+
+const data = [
+  {
+    icon: 'i-ph-signpost-duotone',
+    title: '技术栈',
+    content: '基于 SpringCloud 微服务, Docker, MQ, Vue3, Vite, Nuxt, Arco Design',
+  },
+  {
+    icon: 'i-ph-stack-duotone',
+    title: '基础功能',
+    content: '管理员管理用户，发布题目；用户可以浏览题库，答题，查看题目答案等',
+  },
+  {
+    icon: 'i-ph-trophy-duotone',
+    title: '拓展点',
+    content: '实现了第三方登录及绑定，个人中心页面，做题统计等；着力美化页面，用户体验好',
+  },
+  {
+    icon: 'i-ph-brackets-curly-bold',
+    title: '代码',
+    content: '代码规范简洁，使用多种设计模式，可维护性高',
+  },
+]
 </script>
 
 <template>
@@ -221,7 +244,7 @@ watch(isDark, getCodeHtml)
             </div>
 
             <div grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4>
-              1
+              <HomeWrapperItem v-for="item in data" :key="item.title" :="item" />
             </div>
           </div>
         </div>
