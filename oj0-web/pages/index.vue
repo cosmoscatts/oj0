@@ -80,6 +80,43 @@ const data = [
     content: '代码规范简洁，使用多种设计模式，可维护性高',
   },
 ]
+
+const refEl = ref(null)
+const refEl2 = ref(null)
+const refEl3 = ref(null)
+const refEl4 = ref(null)
+const refEl5 = ref(null)
+const init = ref(false)
+const init2 = ref(false)
+const init3 = ref(false)
+const init4 = ref(false)
+const init5 = ref(false)
+const elVisible = useElementVisibility(refEl)
+const elVisible2 = useElementVisibility(refEl2)
+const elVisible3 = useElementVisibility(refEl3)
+const elVisible4 = useElementVisibility(refEl4)
+const elVisible5 = useElementVisibility(refEl5)
+
+watchOnce(elVisible, (n) => {
+  if (n)
+    init.value = true
+})
+watchOnce(elVisible2, (n) => {
+  if (n)
+    init2.value = true
+})
+watchOnce(elVisible3, (n) => {
+  if (n)
+    init3.value = true
+})
+watchOnce(elVisible4, (n) => {
+  if (n)
+    init4.value = true
+})
+watchOnce(elVisible5, (n) => {
+  if (n)
+    init5.value = true
+})
 </script>
 
 <template>
@@ -113,9 +150,9 @@ const data = [
           简约并不简单
         </div>
 
-        <div mt-32 flex flex-col py-24 sm:py-32>
+        <div ref="refEl" mt-32 flex flex-col py-24 sm:py-32>
           <div
-            text-3xl font-bold lg:text-5xl sm:text-4xl class="slide-enter" :style="{
+            text-3xl font-bold lg:text-5xl sm:text-4xl :class="init ? 'slide-enter' : ''" :style="{
               '--enter-stage': 2,
               '--enter-step': '200ms',
             }"
@@ -125,27 +162,53 @@ const data = [
           <div grid grid-cols-6 mx-auto mt-10 w-full gap-8 lt-lg:grid-cols-4 lt-md:grid-cols-2>
             <div
               v-for="tag, idx in popularQuestionTags" :key="tag" col-span-1 border border-base rounded-10px bg-code
-              px-5 py-3 text-center text-6 :class="idx > 3 ? 'lt-lg:hidden' : ''"
+              px-5 py-3 text-center text-6
+              :class="init
+                ? idx > 3
+                  ? 'lt-lg:hidden slide-enter'
+                  : 'slide-enter'
+                : idx > 3
+                  ? 'lt-lg:hidden'
+                  : ''"
+              :style="{
+                '--enter-stage': 2 + 1 * idx,
+                '--enter-step': '200ms',
+              }"
             >
               {{ tag }}
             </div>
           </div>
         </div>
 
-        <div flex flex-col py-24 sm:py-32>
+        <div ref="refEl2" flex flex-col py-24 sm:py-32>
           <div grid mx-auto max-w-7xl gap-16 px-4 lg:grid-cols-2 lg:items-center sm:gap-y-24 lg:px-8 sm:px-6>
             <div>
-              <h2 text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl sm:text-4xl dark:text-white>
+              <h2
+                text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl sm:text-4xl dark:text-white :class="init2 ? 'slide-enter' : ''" :style="{
+                  '--enter-stage': 2,
+                  '--enter-step': '200ms',
+                }"
+              >
                 <span>注意<br><span text-primary>答题规范</span></span>
               </h2>
 
-              <p class="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
+              <p
+                class="mt-6 text-lg/8 text-gray-600 dark:text-gray-300" :class="init2 ? 'slide-enter' : ''" :style="{
+                  '--enter-stage': 4,
+                  '--enter-step': '200ms',
+                }"
+              >
                 <span>
                   OJ 系统中，对用户输入的代码做出了一定的限制。这样做的好处是便于系统进行统一处理和判题。因此，OJ 系统将用户输入代码的类名限制为
                   Main.java，这样一来，减少了编译代码时类名不一致的风险；同时，也省去了从用户代码中获取了类名的麻烦，极大地简化了开发。
                 </span>
               </p>
-              <div mt-8 flex flex-wrap gap-x-3 gap-y-1.5>
+              <div
+                mt-8 flex flex-wrap gap-x-3 gap-y-1.5 :class="init2 ? 'slide-enter' : ''" :style="{
+                  '--enter-stage': 6,
+                  '--enter-step': '200ms',
+                }"
+              >
                 <a
                   class="focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex flex-shrink-0 cursor-pointer items-center gap-x-2 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white shadow-sm disabled:cursor-not-allowed dark:bg-white disabled:bg-gray-900 hover:bg-gray-800 dark:text-gray-900 disabled:opacity-75 focus-visible:outline-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset dark:disabled:bg-white dark:hover:bg-gray-100"
                   @click="checkMoreQuestionInfo"
@@ -163,7 +226,12 @@ const data = [
               </div>
             </div>
 
-            <pre max-w-none prose prose-primary dark:prose-invert>
+            <pre
+              max-w-none prose prose-primary dark:prose-invert :class="init2 ? 'slide-enter' : ''" :style="{
+                '--enter-stage': 8,
+                '--enter-step': '200ms',
+              }"
+            >
               <div class="relative my-5 [&>pre]:!my-0 [&>pre]:!rounded-t-none">
                 <div class="not-prose relative flex items-center gap-1.5 border border-b-0 border-gray-200 rounded-t-md bg-code px-4 py-3 dark:border-dark-700 dark:bg-dark-900">
                   <span class="text-sm/6 text-gray-700 dark:text-gray-200">Main.java</span>
@@ -174,11 +242,14 @@ const data = [
           </div>
         </div>
 
-        <div flex flex-col py-24 sm:py-32>
+        <div ref="refEl3" flex flex-col py-24 sm:py-32>
           <div grid mx-auto max-w-7xl gap-16 px-4 lg:grid-cols-2 lg:items-center sm:gap-y-24 lg:px-8 sm:px-6>
             <div
               relative overflow-hidden rounded-xl bg-white shadow ring-1 ring-gray-200 divide-y divide-gray-200
-              dark:bg-dark-900 dark:ring-dark-800 dark:divide-dark-800
+              dark:bg-dark-900 dark:ring-dark-800 dark:divide-dark-800 :class="init3 ? 'slide-enter' : ''" :style="{
+                '--enter-stage': 8,
+                '--enter-step': '200ms',
+              }"
             >
               <div flex flex-col px-4 py-5 sm:p-6>
                 <div>
@@ -204,16 +275,31 @@ const data = [
             </div>
 
             <div>
-              <h2 text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl sm:text-4xl dark:text-white>
+              <h2
+                text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl sm:text-4xl dark:text-white :class="init3 ? 'slide-enter' : ''" :style="{
+                  '--enter-stage': 2,
+                  '--enter-step': '200ms',
+                }"
+              >
                 <span>多策略 多语言<br><span text-primary>丰富的其他功能</span></span>
               </h2>
 
-              <p class="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
+              <p
+                class="mt-6 text-lg/8 text-gray-600 dark:text-gray-300" :class="init3 ? 'slide-enter' : ''" :style="{
+                  '--enter-stage': 4,
+                  '--enter-step': '200ms',
+                }"
+              >
                 <span>
                   不同的题型，不同的判题策略，应有尽有。目前只支持 Java 语言，未来会支持其他多种语言。实现了第三方登录，如 Github 或者 Gitee 等等；实现了个人中心及做题统计功能，更好地分析，查漏补缺。
                 </span>
               </p>
-              <div mt-8 flex flex-wrap gap-x-3 gap-y-1.5>
+              <div
+                mt-8 flex flex-wrap gap-x-3 gap-y-1.5 :class="init3 ? 'slide-enter' : ''" :style="{
+                  '--enter-stage': 6,
+                  '--enter-step': '200ms',
+                }"
+              >
                 <a
                   class="focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex flex-shrink-0 cursor-pointer items-center gap-x-2 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white shadow-sm disabled:cursor-not-allowed dark:bg-white disabled:bg-gray-900 hover:bg-gray-800 dark:text-gray-900 disabled:opacity-75 focus-visible:outline-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset dark:disabled:bg-white dark:hover:bg-gray-100"
                   @click="router.push('/user-profile')"
@@ -233,10 +319,15 @@ const data = [
           </div>
         </div>
 
-        <div py-24 sm:py-32>
+        <div ref="refEl4" py-24 sm:py-32>
           <div mx-auto max-w-7xl flex flex-col gap-16 px-4 sm:gap-y-24 lg:px-8 sm:px-6>
             <div flex flex-col items-center text-center>
-              <h2 text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl sm:text-4xl dark:text-white>
+              <h2
+                text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl sm:text-4xl dark:text-white :class="init4 ? 'slide-enter' : ''" :style="{
+                  '--enter-stage': 2,
+                  '--enter-step': '200ms',
+                }"
+              >
                 <span>
                   架构合理<br><span text-primary>体验更如意</span>
                 </span>
@@ -244,14 +335,24 @@ const data = [
             </div>
 
             <div grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4>
-              <HomeWrapperItem v-for="item in data" :key="item.title" :="item" />
+              <HomeWrapperItem
+                v-for="item, idx in data" :key="item.title" :="item" :class="init4 ? 'slide-enter' : ''" :style="{
+                  '--enter-stage': 4 + idx * 2,
+                  '--enter-step': '200ms',
+                }"
+              />
             </div>
           </div>
         </div>
 
-        <div pt-24 sm:pt-32>
+        <div ref="refEl5" pt-24 sm:pt-32>
           <div mx-auto max-w-7xl flex flex-col gap-16 px-4 sm:gap-y-24 lg:px-8 sm:px-6>
-            <div flex flex-col items-center text-center>
+            <div
+              flex flex-col items-center text-center :class="init5 ? 'slide-enter' : ''" :style="{
+                '--enter-stage': 2,
+                '--enter-step': '200ms',
+              }"
+            >
               <h2 text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl sm:text-4xl dark:text-white>
                 <span>
                   纵有疾风起，<br><span text-primary>人生不言弃。共勉！</span>
