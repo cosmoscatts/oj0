@@ -1,39 +1,51 @@
 <script setup lang="ts">
-import gfm from '@bytemd/plugin-gfm'
-import gemoji from '@bytemd/plugin-gemoji'
-import math from '@bytemd/plugin-math'
-import mermaid from '@bytemd/plugin-mermaid'
-import { Viewer } from '@bytemd/vue-next'
-import highlightjs from 'highlight.js'
+import MarkdownIt from 'markdown-it'
+import Shikiji from 'markdown-it-shikiji'
 
 const { value = '' } = defineProps<{
   value?: string
 }>()
 
-onMounted(() => {
-  useTimeoutFn(highlightjs.highlightAll, 200)
-})
+const html = ref('')
 
-/**
- * 定义编辑器需要用到的插件
- */
-const plugins = [
-  gfm(),
-  gemoji(),
-  math(),
-  mermaid(),
-]
+let mdLight: MarkdownIt
+let mdDark: MarkdownIt
 
-const themeClass = computed(() => isDark.value ? 'hljs-atom-one-dark' : 'hljs-atom-one-light')
+async function init() {
+  const _md = MarkdownIt()
+  mdLight = _md.use(await Shikiji({
+    theme: 'vitesse-light',
+  }))
+  const _md2 = MarkdownIt()
+  mdDark = _md2.use(await Shikiji({
+    theme: 'vitesse-dark',
+  }))
+}
+
+async function tranfrom(val: string) {
+  if (!mdLight || !mdDark)
+    await init()
+
+  const md = isDark.value ? mdDark : mdLight
+  let renderStr = md.render(val)
+  if (isDark.value)
+    renderStr = renderStr.replaceAll('background-color:#121212;', 'background-color:#ffffff06;')
+
+  else
+    renderStr = renderStr.replaceAll('background-color:#ffffff;', 'background-color:#00000006;')
+
+  html.value = renderStr
+}
+tranfrom(value)
+
+watch(() => value, () => tranfrom(value))
+watch(isDark, () => tranfrom(value))
 </script>
 
 <template>
   <ClientOnly>
-    <div w-full class="markdown-body" :class="themeClass">
-      <Viewer
-        :value="value"
-        :plugins="plugins"
-      />
+    <div w-full class="markdown-body">
+      <div v-html="html" />
     </div>
   </ClientOnly>
 </template>
