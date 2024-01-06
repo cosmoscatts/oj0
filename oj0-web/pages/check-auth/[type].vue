@@ -58,7 +58,7 @@ onMounted(checkAuth)
 
 onMounted(() => useLottie({
   containerId: '#lottie',
-  path: 'https://lottie.host/1039c80e-7aa0-40df-9155-5a552cfd6d11/0bh8uqYidp.json',
+  path: 'https://lottie.host/87e660f6-9b48-43fe-878e-daa18eab5ebb/7uuyUSkDbI.json',
 }))
 </script>
 
