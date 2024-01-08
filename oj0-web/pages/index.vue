@@ -122,12 +122,8 @@ watchOnce(elVisible5, (n) => {
 <template>
   <div flex="col center" ha w-full>
     <div relative w-full bg-base md:py-40 sm:py-32 min-h="[calc(100vh-100px)]">
-      <img
-        :src="lines" absolute inset-x-0 top--100px hidden w-full lg:block class="slide-enter" :style="{
-          '--enter-stage': 4,
-          '--enter-step': '200ms',
-        }"
-      >
+      <HomeHeroBackground absolute inset-x-0 top--150px hidden w-full lg:block />
+
       <div mx-auto mt-50px max-w-7xl flex flex-col gap-16 px-4 lt-sm:mt-200px sm:gap-y-32 lg:px-8 sm:px-6>
         <div
           relative z-1 text-center class="slide-enter" :style="{
