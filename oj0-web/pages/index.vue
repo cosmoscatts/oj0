@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { codeToHtml } from 'shikiji'
 import { ACCESS_ENUM } from '~/constants'
-import lines from '~/public/lines.svg'
 import { popularQuestionTags } from '~/config/question'
 import avatar from '~/public/avatar.jpg'
 
