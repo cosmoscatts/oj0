@@ -50,7 +50,7 @@ async function getCodeHtml() {
   }
 }`
   htmlCode.value = await codeToHtml(code, {
-    lang: 'javascript',
+    lang: 'java',
     theme: isDark.value ? 'vitesse-dark' : 'vitesse-light',
   })
 }
