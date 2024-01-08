@@ -261,7 +261,7 @@ watchOnce(elVisible5, (n) => {
                         赤径
                       </p>
                       <p text-sm text-gray-500 dark:text-gray-400>
-                        Creater of oj0
+                        Creator of oj0
                       </p>
                     </div>
                   </div>
