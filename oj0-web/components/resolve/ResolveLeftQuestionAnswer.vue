@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import empty from '~/public/empty.svg'
+
 const { answer = '' } = defineProps<{
   answer?: string
 }>()
@@ -9,11 +11,11 @@ const hasAnswer = computed(() => answer !== '')
 <template>
   <div h-full of-y-auto px-3 py-10px>
     <ViewerMarkdown v-if="hasAnswer" :value="answer" />
-    <div v-else h-full flex="center col">
-      <div flex-center text-8rem op-10>
-        <div i-ri-forbid-line />
+    <div v-else flex="center col" h-full min-h-420px min-w-300px py-50px>
+      <div h-300px flex-center>
+        <img :src="empty" h-300px select-none>
       </div>
-      <div mt-4 text-center text-xl>
+      <div mt-5 text-center text-xl>
         Sorry, 题解还未发布
       </div>
     </div>
