@@ -32,7 +32,7 @@ async function tranfrom(val: string) {
 
   const md = isDark.value ? mdDark : mdLight
   let renderStr = md.render(val)
-  if (renderStr.includes('<pre>') && renderStr.includes('<code>')) {
+  if (renderStr.includes('<pre') && renderStr.includes('<code')) {
     if (isDark.value)
       renderStr = renderStr.replaceAll('background-color:#121212;', 'background-color:#ffffff06;')
 

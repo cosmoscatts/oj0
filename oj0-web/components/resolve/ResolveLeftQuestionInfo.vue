@@ -36,7 +36,7 @@ const hasAccepted = computed(() => id && acceptedQuestionIds.value.includes(Numb
 </script>
 
 <template>
-  <div flex="~ col" min-w-200px>
+  <div flex="~ col" min-w-200px of-y-auto>
     <div h-50px flex-y-center justify-between px-3 py-2>
       <div text-2xl font-bold text-base>
         {{ title }}
@@ -74,7 +74,7 @@ const hasAccepted = computed(() => id && acceptedQuestionIds.value.includes(Numb
       </template>
     </div>
 
-    <div flex="1 ~ justify-center" mt-5 of-y-auto px-3 pb-5>
+    <div flex="1 ~ justify-center" mt-2 px-3 pb-5>
       <ViewerMarkdown :value="content" />
     </div>
   </div>
