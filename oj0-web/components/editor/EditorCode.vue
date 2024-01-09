@@ -86,5 +86,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div id="code-editor" ref="refCodeEditor" h-full w-full />
+  <div id="code-editor" ref="refCodeEditor" relative h-full w-full>
+    <div v-if="!hasInitShikiji" absolute left-0 top-0 z-100 h-full w-full flex-center>
+      <div i-svg-spinners-3-dots-fade bg="$c-text-base" text-3xl />
+    </div>
+  </div>
 </template>

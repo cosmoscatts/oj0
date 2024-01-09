@@ -10,6 +10,7 @@ const html = ref('')
 
 let mdLight: MarkdownIt
 let mdDark: MarkdownIt
+const hasRender = ref(false)
 
 async function init() {
   const _md = MarkdownIt()
@@ -23,28 +24,36 @@ async function init() {
 }
 
 async function tranfrom(val: string) {
+  if (!val)
+    return
+
   if (!mdLight || !mdDark)
     await init()
 
   const md = isDark.value ? mdDark : mdLight
   let renderStr = md.render(val)
-  if (isDark.value)
-    renderStr = renderStr.replaceAll('background-color:#121212;', 'background-color:#ffffff06;')
+  if (renderStr.includes('<pre>') && renderStr.includes('<code>')) {
+    if (isDark.value)
+      renderStr = renderStr.replaceAll('background-color:#121212;', 'background-color:#ffffff06;')
 
-  else
-    renderStr = renderStr.replaceAll('background-color:#ffffff;', 'background-color:#00000006;')
-
+    else
+      renderStr = renderStr.replaceAll('background-color:#ffffff;', 'background-color:#00000006;')
+  }
   html.value = renderStr
+  if (!hasRender.value)
+    hasRender.value = true
 }
-tranfrom(value)
-
+onMounted(() => tranfrom(value))
 watch(() => value, () => tranfrom(value))
 watch(isDark, () => tranfrom(value))
 </script>
 
 <template>
   <ClientOnly>
-    <div w-full class="markdown-body">
+    <div v-show="!hasRender" h-full w-full flex-center>
+      <div i-svg-spinners-3-dots-fade bg="$c-text-base" text-3xl />
+    </div>
+    <div v-show="hasRender" class="markdown-body" relative w-full>
       <div v-html="html" />
     </div>
   </ClientOnly>

@@ -74,7 +74,7 @@ const hasAccepted = computed(() => id && acceptedQuestionIds.value.includes(Numb
       </template>
     </div>
 
-    <div flex="1 center" mt-5 of-y-auto px-3>
+    <div flex="1 ~ justify-center" mt-5 of-y-auto px-3>
       <ViewerMarkdown :value="content" />
     </div>
   </div>

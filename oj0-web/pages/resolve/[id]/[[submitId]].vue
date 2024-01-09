@@ -88,7 +88,7 @@ onMounted(checkFormSubmitHistory)
 </script>
 
 <template>
-  <div bg-darker h-screen w-screen>
+  <div h-screen w-screen bg-darker>
     <ResolveActionBar @submit="onClickSubmit" />
 
     <div :style="{ height: `calc(100vh - 6rem)` }" mb-2 of-hidden px-30px>
@@ -99,7 +99,7 @@ onMounted(checkFormSubmitHistory)
 
             <div flex="~ 1 col" of-auto>
               <CommonTransition name="layout">
-                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 0" :="currentQuestion" />
+                <ResolveLeftQuestionInfo v-if="selectedLeftTab === 0" :="currentQuestion" h-full />
                 <ResolveLeftQuestionAnswer v-if="selectedLeftTab === 1" :="currentQuestion" />
                 <ResolveLeftQuestionSubmitList v-if="selectedLeftTab === 2" :id="id" ref="refResolveQuestionSubmitList" />
               </CommonTransition>
