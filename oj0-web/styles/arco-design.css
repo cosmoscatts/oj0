@@ -28,11 +28,11 @@
 /* Table */
 
 .arco-table-th {
-  background-color: var(--c-bg-base);
+  background-color: transparent;
 }
 
 .arco-table-td {
-  background-color: var(--c-bg-base);
+  background-color: transparent;
   border-bottom-color: var(--c-border);
 }
 

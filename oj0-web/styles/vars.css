@@ -17,6 +17,7 @@
   --c-bg-code: #00000006;
   --c-bg-selection: #8885;
   --c-bg-dm: #f1e8e6;
+  --c-bg-darker: #ffffff;
 
   --c-text-base: #232323;
   --c-text-code: #63470c;
@@ -108,6 +109,7 @@
   --c-bg-card: #ffffff06;
   --c-bg-code: #ffffff06;
   --c-bg-dm: #0a2f35;
+  --c-bg-darker: #121212;
 
   --c-text-base: #f3f3f3;
   --c-text-code: #ecd88e;
