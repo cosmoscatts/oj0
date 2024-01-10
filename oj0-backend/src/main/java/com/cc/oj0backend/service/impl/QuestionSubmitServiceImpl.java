@@ -29,7 +29,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -166,11 +168,12 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         long userId = loginUser.getId();
         LambdaQueryWrapper<QuestionSubmit> queryWrapper = Wrappers.<QuestionSubmit>lambdaQuery()
                 .eq(QuestionSubmit::getUserId, userId)
-                .eq(QuestionSubmit::getStatus, 2);
-        List<Long> list = this.list(queryWrapper).stream()
+                .eq(QuestionSubmit::getStatus, 2)
+                .like(QuestionSubmit::getJudgeInfo, "Accepted");
+        Set<Long> set = this.list(queryWrapper).stream()
                 .map(QuestionSubmit::getQuestionId)
-                .collect(Collectors.toList());
-        return list;
+                .collect(Collectors.toSet());
+        return new ArrayList<>(set);
     }
 }
 

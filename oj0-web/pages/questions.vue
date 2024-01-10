@@ -171,7 +171,7 @@ function formatAcceptPercentTooltip(record: Question) {
       <template #state="{ record }">
         <div v-if="checkHasAccepted(record)" w-full flex-center text-lg>
           <CommonTooltip content="已通过">
-            <div i-bi-check-circle-fill cursor-pointer text-green />
+            <div i-bi-check-circle cursor-pointer text-green />
           </CommonTooltip>
         </div>
         <div v-else-if="checkHasSubmitted(record)" w-full flex-center text-lg>
