@@ -2,44 +2,46 @@ import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
 import vite from './vite.config'
 
+const INTRODUCTIONS: DefaultTheme.NavItemWithLink[] = [
+  { text: '项目简介', link: '/introductions/' },
+  { text: '主流实现方案', link: '/introductions/implements' },
+  { text: '核心业务流程', link: '/introductions/business' },
+  { text: '功能', link: '/introductions/function' },
+  { text: '技术选型', link: '/introductions/technology' },
+  { text: '架构设计', link: '/introductions/architecture' },
+  { text: '可扩展点', link: '/introductions/extend' },
+]
+
 const GUIDES: DefaultTheme.NavItemWithLink[] = [
-  { text: 'Getting Started', link: '/guide/' },
-  { text: 'Installation', link: '/guide/install' },
-  { text: 'Bundles', link: '/guide/bundles' },
-  { text: 'Dual Themes', link: '/guide/dual-themes' },
-  { text: 'Transformers', link: '/guide/transformers' },
-  { text: 'Theme Colors Manipulation', link: '/guide/theme-colors' },
-  { text: 'Compatibly Build', link: '/guide/compat' },
-  { text: 'Custom Themes', link: '/guide/load-theme' },
-  { text: 'Custom Languages', link: '/guide/load-lang' },
+  { text: '开始', link: '/guides/' },
+  { text: '准备环境', link: '/guides/prepare' },
+  { text: '下载运行', link: '/guides/run' },
+  { text: '部署', link: '/guides/deploy' },
+  { text: '注意事项', link: '/guides/notes' },
 ]
 
 const REFERENCES: DefaultTheme.NavItemWithLink[] = [
-  { text: 'Themes', link: '/themes' },
-  { text: 'Languages', link: '/languages' },
+  { text: 'Nuxt', link: '/references/nuxt' },
+  { text: 'Bytemd', link: '/references/bytemd' },
+  { text: 'Monaco Editor', link: '/references/monaco' },
+  { text: '第三方登录', link: '/references/login' },
+  { text: '图床', link: '/references/picture' },
 ]
 
-const INTEGRATIONS: DefaultTheme.NavItemWithLink[] = [
-  { text: 'TypeScript TwoSlash', link: '/packages/twoslash' },
-  { text: 'Markdown It', link: '/packages/markdown-it' },
-  { text: 'Rehype', link: '/packages/rehype' },
-  { text: 'Monaco Editor', link: '/packages/monaco' },
-  { text: 'VitePress', link: '/packages/vitepress' },
-  { text: 'Astro', link: '/packages/astro' },
-  { text: 'Common Transformers', link: '/packages/transformers' },
-  { text: 'CLI', link: '/packages/cli' },
+const ABOUTS: DefaultTheme.NavItemWithLink[] = [
+  { text: '项目更新', link: '/abouts/update' },
+  { text: '作者', link: '/abouts/me' },
 ]
 
 const VERSIONS: DefaultTheme.NavItemWithLink[] = [
-  { text: `v1 (current)`, link: '/' },
-  { text: `Release Notes`, link: 'https://github.com/antfu/shikiji/releases' },
-  { text: `Contributing`, link: 'https://github.com/antfu/shikiji/blob/main/CONTRIBUTING.md' },
+  { text: 'v1.0.0 (当前)', link: '/' },
+  { text: '更新日志', link: '/update-log' }
 ]
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  lang: 'zh-CN',
-  title: 'Shikiji',
+  lang: 'zh-Hans',
+  title: 'OJ0',
   description: 'A beautiful and powerful syntax highlighter',
   markdown: {
     theme: {
@@ -95,7 +97,15 @@ export default defineConfig({
     logo: '/logo.svg',
     nav: [
       {
-        text: 'Guide',
+        text: '项目介绍',
+        items: [
+          {
+            items: INTRODUCTIONS,
+          },
+        ],
+      },
+      {
+        text: '部署指南',
         items: [
           {
             items: GUIDES,
@@ -103,15 +113,19 @@ export default defineConfig({
         ],
       },
       {
-        text: 'Integrations',
-        items: INTEGRATIONS,
+        text: '参考',
+        items: [
+          {
+            items: REFERENCES,
+          },
+        ],
       },
       {
-        text: 'References',
-        items: REFERENCES,
+        text: '关于',
+        items: ABOUTS,
       },
       {
-        text: `v1`,
+        text: 'v1.0.0',
         items: VERSIONS,
       },
     ],
@@ -121,23 +135,27 @@ export default defineConfig({
       {
         '/': [
           {
-            text: 'Guide',
+            text: '项目介绍',
+            items: INTRODUCTIONS,
+          },
+          {
+            text: '部署指南',
             items: GUIDES,
           },
           {
-            text: 'Integrations',
-            items: INTEGRATIONS,
+            text: '参考',
+            items: REFERENCES,
           },
           {
-            text: 'References',
-            items: REFERENCES,
+            text: '关于',
+            items: ABOUTS,
           },
         ],
       },
     ),
 
     editLink: {
-      pattern: 'https://github.com/antfu/shikiji/edit/main/docs/:path',
+      pattern: 'https://github.com/cosmoscatts/oj0/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页面',
     },
     search: {
@@ -175,14 +193,14 @@ export default defineConfig({
     sidebarMenuLabel: '菜单',
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',
-    darkModeSwitchTitle: '切换到深色模式'
+    darkModeSwitchTitle: '切换到深色模式',
   },
 
   head: [
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Pine Wu, Anthony Fu' }],
-    ['meta', { property: 'og:title', content: 'Shikiji' }],
+    ['meta', { property: 'og:title', content: 'OJ0' }],
     ['meta', { property: 'og:image', content: 'https://shikiji.netlify.app/og.png' }],
     ['meta', { property: 'og:description', content: 'A beautiful and powerful syntax highlighter' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],

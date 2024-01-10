@@ -1,25 +1,32 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
-  name: "OJ0"
-  text: "OJ0 项目文档"
-  tagline: My great project tagline
+  name: "在线判题 OJ0"
+  text: "简约而不简单"
+  tagline: An Elegant Online Judge System
+  image:
+    src: /logo.svg
+    alt: OJ0 Logo
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: 项目介绍
+      link: /introductions/
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: 项目部署
+      link: /guides/
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Accurate & Beautiful
+    icon: 🌈
+    details: TextMate grammar powered, as accurate as your Text Editor. Improves as your Text Editor improves.
+  - title: Zero Runtime
+    icon: ⏱️
+    details: Runs ahead of time, ship zero JavaScript and get the perfect syntax highlight.
+  - title: Customizable
+    icon: 🧩
+    details: HAST based. Addons, transformations, highly customizable.
+  - title: ESM & Universal
+    icon: 🎄
+    details: Fully tree-shakable ESM, runs on any JavaScript runtime, including Browser, Node.js, Cloudflare Workers, etc.
 ---
-
