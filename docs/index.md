@@ -17,16 +17,16 @@ hero:
       link: /guides/
 
 features:
-  - title: Accurate & Beautiful
+  - title: 简约 & 优雅
     icon: 🌈
-    details: TextMate grammar powered, as accurate as your Text Editor. Improves as your Text Editor improves.
-  - title: Zero Runtime
+    details: 清晰简练的界面搭配精心雕琢的细节，使整体呈现出一种让人陶醉的美感。
+  - title: 前沿技术栈
     icon: ⏱️
-    details: Runs ahead of time, ship zero JavaScript and get the perfect syntax highlight.
-  - title: Customizable
+    details: 项目中使用了最新的技术栈，尤其是前端，非常适合刚入门的同学练练手。
+  - title: 多种设计模式
     icon: 🧩
-    details: HAST based. Addons, transformations, highly customizable.
-  - title: ESM & Universal
+    details: 后端代码中运用了多种设计模式，极大地简化了代码，更易于后期扩展。
+  - title: 代码简洁规范
     icon: 🎄
-    details: Fully tree-shakable ESM, runs on any JavaScript runtime, including Browser, Node.js, Cloudflare Workers, etc.
+    details: 代码风格注重简洁规范，结构清晰有序的，语法精简，代码具有很高的可读性和可维护性。
 ---
