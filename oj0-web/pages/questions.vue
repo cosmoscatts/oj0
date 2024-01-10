@@ -8,6 +8,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
+const authStore = useAuthStore()
 const router = useRouter()
 const refSearchForm = ref()
 const columns = getQuestionsTableColumns()
@@ -16,6 +17,7 @@ const paginator = useTablePagination(search)
 
 const tableData = ref<Question[]>()
 const acceptedQuestionIds = ref<number[]>([]) // 已经通过的题号
+const submittedQuestionIds = ref<number[]>([]) // 所有提交过题号
 const { loading, startLoading, endLoading } = useLoading()
 
 /**
@@ -56,6 +58,20 @@ async function fetchAcceptedQuestionIds() {
   acceptedQuestionIds.value = data || []
 }
 fetchAcceptedQuestionIds()
+
+async function fetchSubmittedQuestionIds() {
+  const { data: { records } } = await QuestionSubmitApi.list({
+    userId: authStore.user?.id,
+    pageSize: -1,
+  })
+  submittedQuestionIds.value = records?.reduce((prev, cur) => {
+    if (!!cur.questionId && !prev.includes(cur.questionId))
+      prev.push(cur.questionId)
+
+    return prev
+  }, [] as number[]) || []
+}
+fetchSubmittedQuestionIds()
 
 function checkoutQuestion(record: Question) {
   router.push(`/resolve/${record.id}`)
@@ -106,6 +122,17 @@ function checkHasAccepted(record: Question) {
   return acceptedQuestionIds.value.includes(record.id)
 }
 
+/**
+ * 判断题目是否已经提交
+ */
+function checkHasSubmitted(record: Question) {
+  if (!record.id)
+    return false
+  if (checkHasAccepted(record))
+    return false
+  return submittedQuestionIds.value.includes(record.id)
+}
+
 function formatAcceptPercentTooltip(record: Question) {
   const acceptedNum = record.acceptedNum || 0
   const submitNum = record.submitNum || 0
@@ -143,7 +170,14 @@ function formatAcceptPercentTooltip(record: Question) {
     >
       <template #state="{ record }">
         <div v-if="checkHasAccepted(record)" w-full flex-center text-lg>
-          <div i-ri-check-line text-green />
+          <CommonTooltip content="已通过">
+            <div i-bi-check-circle-fill cursor-pointer text-green />
+          </CommonTooltip>
+        </div>
+        <div v-else-if="checkHasSubmitted(record)" w-full flex-center text-lg>
+          <CommonTooltip content="尝试过">
+            <div i-bi-dash-circle cursor-pointer text-orange />
+          </CommonTooltip>
         </div>
       </template>
       <template #id="{ record }">
