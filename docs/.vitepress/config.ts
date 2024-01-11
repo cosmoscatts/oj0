@@ -21,7 +21,6 @@ const GUIDES: DefaultTheme.NavItemWithLink[] = [
 ]
 
 const REFERENCES: DefaultTheme.NavItemWithLink[] = [
-  { text: 'Nuxt', link: '/references/nuxt' },
   { text: 'Bytemd', link: '/references/bytemd' },
   { text: 'Monaco Editor', link: '/references/monaco' },
   { text: '第三方登录', link: '/references/login' },

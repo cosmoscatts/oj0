@@ -64,9 +64,27 @@ pnpm install @bytemd/@bytemd/plugin-gfm
 ```
 :::
 
+**`Markdown` 样式**
+
+::: code-group
+```sh [npm]
+npm install github-markdown-css
+```
+
+```sh [yarn]
+yarn add github-markdown-css
+```
+
+```sh [pnpm]
+pnpm install github-markdown-css
+```
+:::
+
 **代码高亮**
 
-高亮的第三方插件是 [highlighgt.js](https://github.com/highlightjs/highlight.js)
+:::info
+高亮的第三方插件是 [highlighgt.js](https://github.com/highlightjs/highlight.js)。
+:::
 
 ::: code-group
 ```sh [npm]
