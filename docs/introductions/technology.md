@@ -15,6 +15,8 @@ outline: deep
 - **后端**
   - `Springboot`
   - `SpringCloud`
+  - `Redis`
+  - `MybatisPlus`
   - `Docker` (代码沙箱)
   - `Java` 安全管理器
   - `Java` 进程控制
