@@ -14,10 +14,8 @@ const INTRODUCTIONS: DefaultTheme.NavItemWithLink[] = [
 
 const GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '开始', link: '/guides/' },
-  { text: '准备环境', link: '/guides/prepare' },
-  { text: '下载运行', link: '/guides/run' },
-  { text: '部署', link: '/guides/deploy' },
-  { text: '注意事项', link: '/guides/notes' },
+  { text: '准备工作', link: '/guides/prepare' },
+  { text: '环境', link: '/guides/env' },
 ]
 
 const REFERENCES: DefaultTheme.NavItemWithLink[] = [
@@ -108,7 +106,7 @@ export default defineConfig({
         ],
       },
       {
-        text: '部署指南',
+        text: '使用指南',
         items: [
           {
             items: GUIDES,
@@ -142,7 +140,7 @@ export default defineConfig({
             items: INTRODUCTIONS,
           },
           {
-            text: '部署指南',
+            text: '使用指南',
             items: GUIDES,
           },
           {
