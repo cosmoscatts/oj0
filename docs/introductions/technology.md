@@ -11,7 +11,7 @@ outline: deep
   - [Nuxt](https://nuxt.com/)
   - [Arco Design](https://arco.design/vue/docs/start)
   - [Monaco Editor 在线代码编辑器](https://github.com/microsoft/monaco-editor)
-  - [Bytemd 在线文档编辑器](https://github.com/bytedance/bytemd)
+  - [ByteMD 在线文档编辑器](https://github.com/bytedance/bytemd)
 - **后端**
   - `Springboot`
   - `SpringCloud`
