@@ -40,6 +40,7 @@ const VERSIONS: DefaultTheme.NavItemWithLink[] = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/oj/',
   lang: 'zh-Hans',
   title: 'OJ0',
   description: 'A beautiful and powerful syntax highlighter',
