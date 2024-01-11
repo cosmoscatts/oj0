@@ -19,19 +19,19 @@ outline: deep
 
 [项目地址 https://oj.hilyc.cn](https://oj.hilyc.cn)
 
-![首页](/public/pages/page1.png)
+![首页](/public/intros/index/page1.png)
 
-![用户管理](/public/pages/page2.png)
+![用户管理](/public/intros/index/page2.png)
 
-![题目管理](/public/pages/page3.png)
+![题目管理](/public/intros/index/page3.png)
 
-![题库](/public/pages/page4.png)
+![题库](/public/intros/index/page4.png)
 
-![历史提交](/public/pages/page5.png)
+![历史提交](/public/intros/index/page5.png)
 
-![个人中心](/public/pages/page6.png)
+![个人中心](/public/intros/index/page6.png)
 
-![做题统计](/public/pages/page7.png)
+![做题统计](/public/intros/index/page7.png)
 
 ## 基本概念
 
@@ -70,7 +70,7 @@ outline: deep
 
 - 异步化
 
-::: tip
+:::tip
 试想一下，如果用户提交答案后，需要一直等待判题结果而干不了任何事，这样的体验是非常糟糕的。
 :::
 
@@ -80,4 +80,10 @@ outline: deep
 
 用户提交的代码会在我们的服务器上运行，因此，需要限制代码的运行时间和消耗内存。
 
+## 项目收获
 
+- 从 0 到 1 开发一个完整的系统
+- 使用 Docker 隔离程序
+- 如何保护用户执行代码的安全
+- 使用消息队列解耦程序
+- 使用设计模式优化代码

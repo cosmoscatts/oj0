@@ -4,8 +4,8 @@ import vite from './vite.config'
 
 const INTRODUCTIONS: DefaultTheme.NavItemWithLink[] = [
   { text: '项目简介', link: '/introductions/' },
-  { text: '主流实现方案', link: '/introductions/implements' },
   { text: '核心业务流程', link: '/introductions/business' },
+  { text: '主流实现方案', link: '/introductions/implements' },
   { text: '功能', link: '/introductions/function' },
   { text: '技术选型', link: '/introductions/technology' },
   { text: '架构设计', link: '/introductions/architecture' },
@@ -202,7 +202,7 @@ export default defineConfig({
 
   head: [
     ['meta', { name: 'theme-color', content: '#ffffff' }],
-    ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/logo.svg' }],
     ['meta', { name: 'author', content: 'Cosmoscatts' }],
     ['meta', { property: 'og:title', content: 'OJ0' }],
     ['meta', { property: 'og:description', content: 'An Elegant Online Judge System' }],
