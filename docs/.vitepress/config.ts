@@ -37,7 +37,7 @@ const VERSIONS: DefaultTheme.NavItemWithLink[] = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/oj/',
+  // base: '/oj/',
   lang: 'zh-Hans',
   title: 'OJ0',
   description: 'An Elegant Online Judge System',
@@ -199,7 +199,7 @@ export default defineConfig({
 
   head: [
     ['meta', { name: 'theme-color', content: '#ffffff' }],
-    ['link', { rel: 'icon', href: '/oj/logo.svg' }],
+    ['link', { rel: 'icon', href: '/logo.svg' }],
     ['meta', { name: 'author', content: 'Cosmoscatts' }],
     ['meta', { property: 'og:title', content: 'OJ0' }],
     ['meta', { property: 'og:description', content: 'An Elegant Online Judge System' }],
