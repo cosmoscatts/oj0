@@ -136,6 +136,12 @@ VITE_BASE_API_URL = 'https://oj.hilyc.cn'
 
 ## 后端配置文件
 
+**前置条件：**
+
+- 七牛云存储空间
+- Github 应用
+- Gitee 应用
+
 ::: details application.yml
 ```yml [application.yml]
 spring:

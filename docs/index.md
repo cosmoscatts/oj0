@@ -13,7 +13,7 @@ hero:
       text: 项目介绍
       link: /introductions/
     - theme: alt
-      text: 项目部署
+      text: 使用指南
       link: /guides/
 
 features:

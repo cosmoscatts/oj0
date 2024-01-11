@@ -26,7 +26,7 @@ const REFERENCES: DefaultTheme.NavItemWithLink[] = [
 ]
 
 const ABOUTS: DefaultTheme.NavItemWithLink[] = [
-  { text: '项目更新', link: '/abouts/update' },
+  { text: '项目', link: '/abouts/project' },
   { text: '作者', link: '/abouts/me' },
 ]
 

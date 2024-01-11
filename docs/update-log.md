@@ -2,48 +2,69 @@
 outline: deep
 ---
 
-# Runtime API Examples
+# 项目更新日志
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+## 💎 v0.1.8
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
+构建于 2024/1/6 晚上
 
-```md
-<script setup>
-import { useData } from 'vitepress'
+### 🤪 优化
 
-const { theme, page, frontmatter } = useData()
-</script>
+- 优化了【代码编辑器】和【富文本编辑器】样式
+- 主页优化
 
-## Results
+## 💎 v0.1.7
 
-### Theme Data
-<pre>{{ theme }}</pre>
+构建于 2024/1/3 晚上
 
-### Page Data
-<pre>{{ page }}</pre>
+### 🚀 新特性
 
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
-```
+- 未注册用户可以使用 Github 或者 Gitee 登录（PS: 由于网络问题，GitHub 登录需要尝试多次才会成功） 
+- 已注册用户可以去【个人中心】页面绑定 Github 或者 Gitee
 
-<script setup>
-import { useData } from 'vitepress'
 
-const { site, theme, page, frontmatter } = useData()
-</script>
+## 💎 v0.1.6
 
-## Results
+构建于 2023/12/27 晚上
 
-### Theme Data
-<pre>{{ theme }}</pre>
+### 🚀 新特性
 
-### Page Data
-<pre>{{ page }}</pre>
+- 新增【更新日志】页面
+- 当发布新题目时，登录时提醒用户
+  > 仔细想想，提醒的条件限制也有点多。当今天有新题目发布，且该用户没有所有新题目的提交记录，且用户当前不在【题库】或者【做题】页面时，提示用户有新题目。 
 
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
+## 💎 v0.1.5
 
-## More
+构建于 2023/12/26 晚上
 
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+### 🚀 新特性
+
+- 新增【做题统计】功能
+
+  ![做题统计](https://cdn.hilyc.cn/oj0/oj0-logs-summary.png)
+
+  - 可点击头像下拉框进入统计页面
+
+  - 在【历史提交】页面，可以点击提交人去查看他的做题统计 
+
+### 🐞 BUG 修复
+
+- 后端分页查询：临时不分页只查出 10 条记录的问题
+
+
+## 💎 v0.1.4
+
+构建于 2023/12/25 晚上
+
+### 🚀 新特性
+
+- 【历史提交】页面新增跳转功能，可跳转至做题页面
+  - 点击的是自己的提交记录，可查看提交的代码和判题信息
+
+  - 点击的是其他人的提交记录，则等同于做题功能
+
+- 【做题】页面子菜单【提交记录】新增点击可查看代码、判题信息功能   
+
+### 🐞 BUG 修复
+
+- 修复上传头像报错的问题
