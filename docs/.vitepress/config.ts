@@ -43,8 +43,11 @@ export default defineConfig({
   base: '/oj/',
   lang: 'zh-Hans',
   title: 'OJ0',
-  description: 'A beautiful and powerful syntax highlighter',
+  description: 'An Elegant Online Judge System',
   markdown: {
+    image: {
+      lazyLoading: true,
+    },
     theme: {
       light: 'vitesse-light',
       dark: 'vitesse-dark',
@@ -200,12 +203,10 @@ export default defineConfig({
   head: [
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
-    ['meta', { name: 'author', content: 'Pine Wu, Anthony Fu' }],
+    ['meta', { name: 'author', content: 'Cosmoscatts' }],
     ['meta', { property: 'og:title', content: 'OJ0' }],
-    ['meta', { property: 'og:image', content: 'https://shikiji.netlify.app/og.png' }],
-    ['meta', { property: 'og:description', content: 'A beautiful and powerful syntax highlighter' }],
+    ['meta', { property: 'og:description', content: 'An Elegant Online Judge System' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:image', content: 'https://shikiji.netlify.app/og.png' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
   ],
 })
