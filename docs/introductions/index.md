@@ -17,7 +17,7 @@ outline: deep
 
 ## 关键页面展示
 
-[项目地址 https://oj.hilyc.cn](https://oj.hilyc.cn)
+[项目地址：https://oj.hilyc.cn](https://oj.hilyc.cn)
 
 ![首页](/public/intros/index/page1.png)
 
@@ -83,7 +83,7 @@ outline: deep
 ## 项目收获
 
 - 从 0 到 1 开发一个完整的系统
-- 使用 Docker 隔离程序
+- 使用 `Docker` 隔离程序
 - 如何保护用户执行代码的安全
 - 使用消息队列解耦程序
 - 使用设计模式优化代码
