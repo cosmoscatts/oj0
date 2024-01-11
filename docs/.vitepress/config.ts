@@ -199,7 +199,7 @@ export default defineConfig({
 
   head: [
     ['meta', { name: 'theme-color', content: '#ffffff' }],
-    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'icon', href: '/oj/logo.svg' }],
     ['meta', { name: 'author', content: 'Cosmoscatts' }],
     ['meta', { property: 'og:title', content: 'OJ0' }],
     ['meta', { property: 'og:description', content: 'An Elegant Online Judge System' }],
