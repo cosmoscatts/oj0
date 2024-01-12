@@ -37,7 +37,6 @@ const VERSIONS: DefaultTheme.NavItemWithLink[] = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  // base: '/oj/',
   lang: 'zh-Hans',
   title: 'OJ0',
   description: 'An Elegant Online Judge System',
@@ -93,7 +92,7 @@ export default defineConfig({
     ],
   },
   vite,
-  cleanUrls: true,
+  cleanUrls: false,
   themeConfig: {
     logo: '/logo.svg',
     nav: [
