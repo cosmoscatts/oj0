@@ -13,7 +13,7 @@ const router = useRouter()
 const refSearchForm = ref()
 const columns = getQuestionsTableColumns()
 const selectedRadioValue = ref<string>()
-const paginator = useTablePagination(search)
+const paginator = useTablePagination(search, { current: 1, pageSize: 50 })
 
 const tableData = ref<Question[]>()
 const acceptedQuestionIds = ref<number[]>([]) // 已经通过的题号
@@ -158,8 +158,8 @@ function formatAcceptPercentTooltip(record: Question) {
     </div>
 
     <a-table
-      mt-4
       row-key="id"
+      stripe mt-4
       :columns="columns"
       :data="tableData"
       :loading="loading"

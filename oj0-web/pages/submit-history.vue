@@ -13,7 +13,7 @@ const authStore = useAuthStore()
 const refSearchForm = ref()
 const columns = getSubmitHistoryTableColumns()
 const tableData = ref<QuestionSubmit[]>([])
-const paginator = useTablePagination(search)
+const paginator = useTablePagination(search, { current: 1, pageSize: 50 })
 const isOnlyMy = ref(false) // 仅查看自己的提交
 const { loading, startLoading, endLoading } = useLoading()
 

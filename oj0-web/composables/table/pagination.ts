@@ -2,7 +2,7 @@ import type { PaginationProps } from '@arco-design/web-vue'
 
 const basePagination: Pagination = {
   current: 1,
-  pageSize: 10,
+  pageSize: 20,
   total: 0,
 }
 
@@ -18,6 +18,7 @@ export function useTablePagination(fetch = () => {}, opts = basePagination) {
       showTotal: true,
       showJumper: true,
       showPageSize: true,
+      pageSizeOptions: [10, 20, 50],
     }
   })
   const onPageChange = (current: number) => {
