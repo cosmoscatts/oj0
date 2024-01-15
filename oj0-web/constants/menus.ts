@@ -34,11 +34,11 @@ export const MENUS: Menu[] = [
     access: ACCESS_ENUM.USER,
     icon: IconSubmitHistory,
   },
-  {
-    id: 105,
-    name: '更新日志',
-    path: '/update-log',
-    access: ACCESS_ENUM.NOT_LOGIN,
-    icon: IconUpdateLog,
-  },
+  // {
+  //   id: 105,
+  //   name: '更新日志',
+  //   path: '/update-log',
+  //   access: ACCESS_ENUM.NOT_LOGIN,
+  //   icon: IconUpdateLog,
+  // },
 ]
