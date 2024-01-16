@@ -14,6 +14,7 @@ const API_URL_ENUM = {
   BIND_EXTRA_AUTH_GITEE: '/extra/auth/bind/gitee',
   BIND_EXTRA_AUTH_QQ: '',
   BIND_EXTRA_AUTH_WECHAT: '',
+  CHECK_ACCOUNT: '/user/check/account',
 }
 
 export const AuthApi = {
@@ -131,5 +132,12 @@ export const AuthApi = {
    */
   unbindExtraAuth(params: { type: string }) {
     return useRequest.post<boolean, Result<boolean>>(API_URL_ENUM.UNBIND_EXTRA_AUTH, params)
+  },
+
+  /**
+   * 检查是否设置了账号密码（第三方登录）
+   */
+  checkAccount() {
+    return useRequest.get<boolean, Result<boolean>>(API_URL_ENUM.CHECK_ACCOUNT)
   },
 }

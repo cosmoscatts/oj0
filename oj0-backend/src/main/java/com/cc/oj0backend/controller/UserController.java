@@ -114,6 +114,23 @@ public class UserController {
     }
 
     /**
+     * （第三方登录）检查是否设置账号密码
+     * @param request
+     * @return
+     */
+    @GetMapping("/check/account")
+    public BaseResponse<Boolean> checkAccount(HttpServletRequest request) {
+        User user = userService.getLoginUser(request);
+        if (user == null) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "未登录");
+        }
+        if (user.getUserAccount() == null || user.getUserPassword() == null) {
+            return ResultUtils.success(false);
+        }
+        return ResultUtils.success(true);
+    }
+
+    /**
      * 用户登录（微信开放平台）
      */
     @GetMapping("/login/wx_open")

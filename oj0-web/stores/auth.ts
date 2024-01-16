@@ -7,6 +7,26 @@ export const useAuthStore = defineStore('authStore', () => {
 
   function updateUser(loginUser: Nullable<User>) {
     user.value = loginUser
+    useTimeoutFn(checkUserInfoCompletely, 500)
+  }
+
+  async function checkUserInfoCompletely() {
+    const route = useRoute()
+    if (route.fullPath === '/user-profile')
+      return
+    const { data } = await AuthApi.checkAccount()
+    if (data === false) {
+      useConfirm({
+        title: '完善账号信息',
+        content: '您的账号信息还未完善哦～',
+        ok: () => {
+          const router = useRouter()
+          router.push('/user-profile')
+        },
+        okText: '去完善',
+        cancelText: '以后再说',
+      })
+    }
   }
 
   function getHasLogin() {
