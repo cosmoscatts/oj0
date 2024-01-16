@@ -33,7 +33,7 @@ const userProfile = computed(() => authStore.user?.userProfile || '还未添加�
     <template #content>
       <div w-250px p-4>
         <div h-50px flex-y-center shrink-0 gap-3>
-          <NavAvatar :key="getRandomStr(10)" />
+          <NavAvatar :key="getRandomStr(10)" cursor-pointer @click="checkSummary" />
 
           <div pl-3>
             <div text-xl font-bold>
