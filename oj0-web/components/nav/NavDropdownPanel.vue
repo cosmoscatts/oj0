@@ -74,13 +74,13 @@ const userProfile = computed(() => hasLogin.value ? authStore.user?.userProfile 
           <a-doption @click="checkProfile">
             <div flex-y-center gap-4>
               <div i-ri-profile-line />
-              个人中心
+              账号设置
             </div>
           </a-doption>
           <a-doption @click="checkSummary">
             <div flex-y-center gap-4>
               <div i-ri-bar-chart-2-line />
-              做题统计
+              个人统计
             </div>
           </a-doption>
           <a-doption @click="logout">

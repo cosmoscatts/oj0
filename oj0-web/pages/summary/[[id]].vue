@@ -3,7 +3,7 @@ import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
   name: 'Summary',
-  title: '做题统计 - OJ0',
+  title: '个人统计 - OJ0',
   access: ACCESS_ENUM.USER,
   middleware: 'auth',
 })

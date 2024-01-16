@@ -35,7 +35,7 @@ function handleClick(value: string) {
               <div i-ri-user-settings-line text-xl md:text-size-inherit />
             </div>
             <div flex="~ col gap-0.5">
-              <p><span>账号设置</span></p>
+              <p><span>账号安全</span></p>
             </div>
           </div>
           <div i-ri:arrow-right-s-line text-xl text-secondary-light />
@@ -49,7 +49,7 @@ function handleClick(value: string) {
     </button>
 
     <button  flex="~ gap-1 center" border="~ base rounded" :class="modelValue === 'account' ? '' : 'filter-saturate-0'" flex-1 ws-nowrap bg-base p4 btn-text @click="handleClick('account')">
-      <span i-ri-user-settings-line /> 账号设置
+      <span i-ri-user-settings-line /> 账号安全
     </button>
     </div>
   </div>

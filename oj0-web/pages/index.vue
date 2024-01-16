@@ -71,7 +71,7 @@ const data = [
   {
     icon: 'i-ph-trophy-duotone',
     title: '拓展点',
-    content: '实现了第三方登录及绑定，个人中心页面，做题统计等；着力美化页面，用户体验好',
+    content: '实现了第三方登录及绑定，账号设置页面，个人统计等；着力美化页面，用户体验好',
   },
   {
     icon: 'i-ph-brackets-curly-bold',
@@ -286,7 +286,7 @@ watchOnce(elVisible5, (n) => {
                 }"
               >
                 <span>
-                  不同的题型，不同的判题策略，应有尽有。目前只支持 Java 语言，未来会支持其他多种语言。实现了第三方登录，如 Github 或者 Gitee 等等；实现了个人中心及做题统计功能，更好地分析，查漏补缺。
+                  不同的题型，不同的判题策略，应有尽有。目前只支持 Java 语言，未来会支持其他多种语言。实现了第三方登录，如 Github 或者 Gitee 等等；实现了账号设置及个人统计功能，更好地分析，查漏补缺。
                 </span>
               </p>
               <div
@@ -307,7 +307,7 @@ watchOnce(elVisible5, (n) => {
                   @click="router.push('/summary')"
                 >
                   <span class="i-ph-app-window-duotone h-5 w-5 flex-shrink-0" aria-hidden="true" />
-                  <span>查看做题统计</span>
+                  <span>查看个人统计</span>
                 </a>
               </div>
             </div>
