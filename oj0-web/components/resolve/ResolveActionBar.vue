@@ -55,12 +55,12 @@ function doSubmit() {
 </script>
 
 <template>
-  <div mb-5 me-8 h-14 w-full flex-y-center justify-between border-b border-base px-30px>
+  <div me-8 h-14 w-full flex-y-center justify-between p-10px>
     <div flex-center gap-1>
       <CommonTooltip content="回退">
         <div i-ri:arrow-left-line text-xl btn-text @click="back" />
       </CommonTooltip>
-      <a-divider direction="vertical" />
+      <a-divider direction="vertical" :size="2" />
       <CommonTooltip content="上一题">
         <div i-ri-arrow-left-s-line text-xl filter-saturate-0 btn-text @click="checkoutPrevQuestion" />
       </CommonTooltip>
@@ -73,7 +73,7 @@ function doSubmit() {
     </div>
 
     <div flex-center>
-      <button flex-center btn-solid @click="doSubmit">
+      <button flex-center py-1 btn-outline @click="doSubmit">
         <div i-ri-upload-cloud-fill mr-2 />
         提交
       </button>
@@ -81,7 +81,7 @@ function doSubmit() {
 
     <div flex-y-center justify-end gap-3>
       <DarkToggle />
-      <NavAvatar :key="getRandomStr(10)" :size="36" />
+      <NavAvatar :key="getRandomStr(10)" :size="24" />
     </div>
   </div>
 </template>

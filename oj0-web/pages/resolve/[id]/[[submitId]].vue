@@ -85,13 +85,13 @@ onMounted(checkFormSubmitHistory)
 </script>
 
 <template>
-  <div h-screen w-screen bg-darker>
+  <div h-screen w-screen bg-base>
     <ResolveActionBar @submit="onClickSubmit" />
 
-    <div :style="{ height: `calc(100vh - 6rem)` }" mb-2 of-hidden px-30px>
+    <div :style="{ height: `calc(100vh - 4.3rem)` }" of-hidden px-10px bg-darker>
       <a-split :style="{ height: '100%', width: '100%', minWidth: '500px' }">
         <template #first>
-          <div h-full w-full of-hidden flex="~ col" border="1 base">
+          <div h-full w-full of-hidden flex="~ col" border="1 base" rounded-l-8px>
             <ResolveLeftSelectTabs v-model="selectedLeftTab" />
 
             <div flex="~ 1 col" of-auto>
@@ -105,9 +105,9 @@ onMounted(checkFormSubmitHistory)
         </template>
         <template #second>
           <div lt-md:w-full>
-            <a-split direction="vertical" :style="{ height: 'calc(100vh - 6rem)', overflow: 'hidden' }">
+            <a-split direction="vertical" :style="{ height: 'calc(100vh - 4.3rem)', overflow: 'hidden' }">
               <template #first>
-                <div h-full w-full of-hidden border="1 base">
+                <div h-full w-full of-hidden border="1 base" rounded-tr-8px>
                   <ResolveRightCodeEditor ref="refResolveRightCodeEditor" :submit-id="submitId" />
                 </div>
               </template>
