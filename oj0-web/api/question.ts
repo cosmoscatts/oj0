@@ -21,6 +21,8 @@ export const QuestionApi = {
     tags?: string[]
     createTimeMin?: string
     createTimeMax?: string
+    sortField?: string
+    sortOrder?: string
   } & Partial<Pagination>) {
     return useRequest.post<QuestionDO, PageResult<QuestionDO>>(API_URL_ENUM.LIST, params)
   },
@@ -61,6 +63,8 @@ export const QuestionApi = {
     tags?: string[]
     createTimeMin?: string
     createTimeMax?: string
+    sortField?: string
+    sortOrder?: string
   } & Partial<Pagination>) {
     return useRequest.post<Question, PageResult<Question>>(API_URL_ENUM.LIST_VO, params)
   },

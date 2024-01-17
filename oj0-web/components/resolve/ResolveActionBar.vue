@@ -52,15 +52,24 @@ async function checkoutNextQuestion() {
 function doSubmit() {
   emit('submit')
 }
+
+const questionsPanelVisible = ref(false)
 </script>
 
 <template>
-  <div me-8 h-14 w-full flex-y-center justify-between p-10px>
+  <div me-8 h-14 w-full flex-y-center justify-between px-15px py-10px pl-20px>
     <div flex-center gap-1>
+      <NavLogo short mr-4 h-20px />
       <CommonTooltip content="回退">
         <div i-ri:arrow-left-line text-xl btn-text @click="back" />
       </CommonTooltip>
       <a-divider direction="vertical" :size="2" />
+      <CommonTooltip content="展开面板">
+        <div flex items-center gap-2 rounded-2 hover:bg-active py-1 font-bold filter-saturate-0 btn-text @click="questionsPanelVisible = true">
+          <div i-ri-play-list-2-fill mt-0.5 />
+          题库
+        </div>
+      </CommonTooltip>
       <CommonTooltip content="上一题">
         <div i-ri-arrow-left-s-line text-xl filter-saturate-0 btn-text @click="checkoutPrevQuestion" />
       </CommonTooltip>
@@ -83,5 +92,7 @@ function doSubmit() {
       <DarkToggle />
       <NavAvatar :key="getRandomStr(10)" :size="24" />
     </div>
+
+    <ResolveActionBarQuestionsPanel v-model="questionsPanelVisible" />
   </div>
 </template>
