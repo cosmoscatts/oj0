@@ -132,6 +132,7 @@ const currentQuestionId = computed(() => route.params?.id as string)
                 showTags,
                 currentQuestionId,
               }"
+              @click="router.push(`/resolve/${item.id}`)"
             />
           </div>
         </div>

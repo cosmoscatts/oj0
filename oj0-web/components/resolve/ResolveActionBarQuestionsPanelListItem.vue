@@ -29,7 +29,7 @@ const isCurrent = computed(() => {
         <div w-0 flex flex-1 items-center space-x-2>
           <div class="max-w-[75%] font-bold text-base">
             <CommonTooltip :content="`${id}.${title}`">
-              <div truncate :class="isCurrent ? 'text-primary' : ''">
+              <div truncate :class="isCurrent ? 'text-info' : ''">
                 {{ title }}
               </div>
             </CommonTooltip>

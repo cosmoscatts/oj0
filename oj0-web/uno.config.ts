@@ -107,6 +107,9 @@ export default defineConfig({
       warning: {
         DEFAULT: 'var(--c-warning)',
       },
+      info: {
+        DEFAULT: 'var(--c-info)',
+      },
     },
   },
   rules: [
