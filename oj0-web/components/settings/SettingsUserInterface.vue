@@ -36,7 +36,7 @@ const modes = [
 </script>
 
 <template>
-  <div flex="~ col" max-w-650px gap-6 lt-md:w-full>
+  <div flex="~ col" max-w-650px gap-6 p3 lt-md:w-full>
     <div space-y-2>
       <p font-medium>
         颜色

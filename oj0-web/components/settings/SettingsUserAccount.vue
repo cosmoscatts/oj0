@@ -31,7 +31,7 @@ async function submit() {
 </script>
 
 <template>
-  <div max-w-650px lt-md:w-full>
+  <div max-w-650px pl3 lt-md:w-full>
     <a-form ref="refForm" :model="form" auto-label-width size="large" mt-4>
       <a-form-item
         field="userOldPassword" label="原密码" :rules="[
