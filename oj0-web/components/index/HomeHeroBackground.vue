@@ -15,12 +15,12 @@
         y2="550.717"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.203125" stop-color="#cc7d24" />
-        <stop offset="0.333238" stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.66715" stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.757084" stop-color="#cc7d24" />
-        <stop offset="0.994792" stop-color="#cc7d24" stop-opacity="0" />
+        <stop stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.203125" stop-color="var(--c-primary)" />
+        <stop offset="0.333238" stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.66715" stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.757084" stop-color="var(--c-primary)" />
+        <stop offset="0.994792" stop-color="var(--c-primary)" stop-opacity="0" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_184_92145"
@@ -30,12 +30,12 @@
         y2="537.487"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.203125" stop-color="#cc7d24" />
-        <stop offset="0.333238" stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.66715" stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.757084" stop-color="#cc7d24" />
-        <stop offset="0.994792" stop-color="#cc7d24" stop-opacity="0" />
+        <stop stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.203125" stop-color="var(--c-primary)" />
+        <stop offset="0.333238" stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.66715" stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.757084" stop-color="var(--c-primary)" />
+        <stop offset="0.994792" stop-color="var(--c-primary)" stop-opacity="0" />
       </linearGradient>
       <linearGradient
         id="paint2_linear_184_92145"
@@ -45,12 +45,12 @@
         y2="510.046"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.203125" stop-color="#cc7d24" />
-        <stop offset="0.333238" stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.66715" stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.757084" stop-color="#cc7d24" />
-        <stop offset="0.994792" stop-color="#cc7d24" stop-opacity="0" />
+        <stop stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.203125" stop-color="var(--c-primary)" />
+        <stop offset="0.333238" stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.66715" stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.757084" stop-color="var(--c-primary)" />
+        <stop offset="0.994792" stop-color="var(--c-primary)" stop-opacity="0" />
       </linearGradient>
       <linearGradient
         id="paint3_linear_184_92145"
@@ -60,12 +60,12 @@
         y2="489.046"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.203125" stop-color="#cc7d24" />
-        <stop offset="0.333238" stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.66715" stop-color="#cc7d24" stop-opacity="0" />
-        <stop offset="0.757084" stop-color="#cc7d24" />
-        <stop offset="0.994792" stop-color="#cc7d24" stop-opacity="0" />
+        <stop stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.203125" stop-color="var(--c-primary)" />
+        <stop offset="0.333238" stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.66715" stop-color="var(--c-primary)" stop-opacity="0" />
+        <stop offset="0.757084" stop-color="var(--c-primary)" />
+        <stop offset="0.994792" stop-color="var(--c-primary)" stop-opacity="0" />
       </linearGradient>
       <clipPath id="clip0_184_92145">
         <rect width="1491" height="732" fill="white" transform="translate(-73 144) rotate(-8)" class="svg-elem-5" />
