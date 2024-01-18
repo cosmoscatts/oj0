@@ -8,6 +8,7 @@ const currentTheme = computed(() => settings.value.themeColors?.['--theme-color-
 
 function updateTheme(theme: ThemeColors) {
   settings.value.themeColors = theme
+  setThemeColor()
 }
 
 const colorMode = useColorMode()

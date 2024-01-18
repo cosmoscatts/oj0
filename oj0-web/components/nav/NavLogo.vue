@@ -1,12 +1,4 @@
 <script setup lang="ts">
-import logo from '~/public/logo.svg'
-import logoDark from '~/public/logo-dark.svg'
-import logoShort from '~/public/logo-short.svg'
-
-const currentLogo = computed(() => {
-  return isDark.value ? logoDark : logo
-})
-
 const router = useRouter()
 function goHome() {
   router.push('/')
@@ -15,7 +7,8 @@ function goHome() {
 
 <template>
   <div flex-center cursor-pointer @click="goHome">
-    <img :src="currentLogo" hidden h-full md:block>
-    <img h-full :src="logoShort" md:hidden>
+    <LogoDarkSvg v-if="isDark" hidden h-full wa md:block />
+    <LogoSvg v-else hidden h-full wa md:block />
+    <LogoShortSvg h-full wa md:hidden />
   </div>
 </template>
