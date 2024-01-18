@@ -2,8 +2,8 @@
 import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
-  name: 'Summary',
-  title: '个人统计 - OJ0',
+  name: 'Profile',
+  title: '个人主页 - OJ0',
   access: ACCESS_ENUM.USER,
   middleware: 'auth',
 })
@@ -72,11 +72,11 @@ const isSelf = computed(() => userId.value === authStore.user?.id)
       </div>
 
       <div grid="~ cols-2" gap-3>
-        <SummaryResolveQuestionInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
-        <SummaryUserInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
+        <ProfileResolveQuestionInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
+        <ProfileUserInfo col-span-1 lt-sm:col-span-2 :user-id="userId" />
       </div>
-      <SummaryYearChart :user-id="userId" />
-      <SummaryRecentResolve :user-id="userId" />
+      <ProfileYearChart :user-id="userId" />
+      <ProfileRecentResolve :user-id="userId" />
     </div>
   </div>
 </template>

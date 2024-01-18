@@ -1,4 +1,4 @@
-export function getSummaryYearOptionData() {
+export function getProfileYearOptionData() {
   const now = dayjs()
   const year = now.format('YYYY')
   const yearData = [] as string[]

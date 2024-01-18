@@ -93,10 +93,10 @@ function checkoutQuestion(record: QuestionSubmit) {
   }
 }
 
-function checkoutUserQuestionSummary(record: QuestionSubmit) {
+function checkoutUserProfile(record: QuestionSubmit) {
   if (!record.userId)
     return
-  router.push(`/summary/${record.userId}`)
+  router.push(`/profile/${record.userId}`)
 }
 
 onMounted(() => {
@@ -205,7 +205,7 @@ onMounted(() => {
       </template>
       <template #userId="{ record }">
         <CommonTooltip content="点击查看用户主页">
-          <div flex-center cursor-pointer gap-2 @click="checkoutUserQuestionSummary(record)">
+          <div flex-center cursor-pointer gap-2 @click="checkoutUserProfile(record)">
             <div flex-center select-none>
               <a-avatar :size="16">
                 <img

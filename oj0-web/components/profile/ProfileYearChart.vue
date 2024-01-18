@@ -5,7 +5,7 @@ const { userId } = defineProps<{
   userId?: string | number
 }>()
 
-const yearInfo = getSummaryYearOptionData()
+const yearInfo = getProfileYearOptionData()
 
 const year = ref(yearInfo.year)
 const yearSubmitDataDateMap = ref<Record<string, number>>({})
