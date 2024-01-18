@@ -71,7 +71,7 @@ const data = [
   {
     icon: 'i-ph-trophy-duotone',
     title: '拓展点',
-    content: '实现了第三方登录及绑定，账号设置页面，个人统计等；着力美化页面，用户体验好',
+    content: '实现了第三方登录及绑定，设置中心页面，个人统计等；着力美化页面，用户体验好',
   },
   {
     icon: 'i-ph-brackets-curly-bold',
@@ -286,7 +286,7 @@ watchOnce(elVisible5, (n) => {
                 }"
               >
                 <span>
-                  不同的题型，不同的判题策略，应有尽有。目前只支持 Java 语言，未来会支持其他多种语言。实现了第三方登录，如 Github 或者 Gitee 等等；实现了账号设置及个人统计功能，更好地分析，查漏补缺。
+                  不同的题型，不同的判题策略，应有尽有。目前只支持 Java 语言，未来会支持其他多种语言。实现了第三方登录，如 Github 或者 Gitee 等等；实现了设置中心及个人统计功能，更好地分析，查漏补缺。
                 </span>
               </p>
               <div
@@ -297,18 +297,18 @@ watchOnce(elVisible5, (n) => {
               >
                 <a
                   class="focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex flex-shrink-0 cursor-pointer items-center gap-x-2 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white shadow-sm disabled:cursor-not-allowed dark:bg-white disabled:bg-gray-900 hover:bg-gray-800 dark:text-gray-900 disabled:opacity-75 focus-visible:outline-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset dark:disabled:bg-white dark:hover:bg-gray-100"
-                  @click="router.push('/user-profile')"
+                  @click="router.push('/settings')"
                 >
                   <span i-ph-layout-duotone h-5 w-5 flex-shrink-0 />
-                  <span>编辑个人信息</span>
+                  <span>编辑设置</span>
                 </a>
                 <a
                   class="focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex flex-shrink-0 cursor-pointer items-center gap-x-2 rounded-md bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-gray-300 ring-inset disabled:cursor-not-allowed dark:bg-gray-800 disabled:bg-gray-50 hover:bg-gray-100 dark:text-gray-200 disabled:opacity-75 focus-visible:outline-0 focus:outline-none focus-visible:ring-2 dark:ring-gray-700 dark:disabled:bg-gray-800 dark:hover:bg-gray-700/50"
                   @click="router.push('/summary')"
                 >
                   <span class="i-ph-app-window-duotone h-5 w-5 flex-shrink-0" aria-hidden="true" />
-                  <span>查看个人统计</span>
-                </a>
+                  <span>查看主页
+                  </span></a>
               </div>
             </div>
           </div>

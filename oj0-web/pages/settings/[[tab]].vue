@@ -2,8 +2,8 @@
 import { ACCESS_ENUM } from '~/constants'
 
 definePageMeta({
-  name: 'UserProfile',
-  title: '账号设置 - OJ0',
+  name: 'Settings',
+  title: '设置中心 - OJ0',
   access: ACCESS_ENUM.USER,
   middleware: 'auth',
 })
@@ -29,23 +29,23 @@ function back() {
 
     <div grid="cols-4 gap-3" mt-4 hidden w-full md:grid>
       <div col-span-1>
-        <UserProfileTabs v-model="selectedTab" />
+        <SettingsTabs v-model="selectedTab" />
       </div>
 
       <div col-span-3>
         <CommonTransition>
-          <UserProfileInformation v-if="selectedTab === 'info'" />
-          <UserProfileAccountSettings v-if="selectedTab === 'account'" />
+          <SettingsUserInformation v-if="selectedTab === 'info'" />
+          <SettingsUserAccount v-if="selectedTab === 'account'" />
         </CommonTransition>
       </div>
     </div>
 
     <div flex="~ col gap-4" mt-4 w-full md:hidden>
-      <UserProfileTabs v-model="selectedTab" />
+      <SettingsTabs v-model="selectedTab" />
 
       <CommonTransition>
-        <UserProfileInformation v-if="selectedTab === 'info'" />
-        <UserProfileAccountSettings v-if="selectedTab === 'account'" />
+        <SettingsUserInformation v-if="selectedTab === 'info'" />
+        <SettingsUserAccount v-if="selectedTab === 'account'" />
       </CommonTransition>
     </div>
   </div>

@@ -37,14 +37,14 @@ export async function handleGiteeBound(code: string) {
     toast.clear()
     if (result.code !== 0 || result.data !== true) {
       Message.error(result.message ?? '绑定失败')
-      router.push('/user-profile/account')
+      router.push('/settings/account')
       return
     }
     toast.success('绑定成功')
-    router.push('/user-profile/account')
+    router.push('/settings/account')
   }
   catch {
     toast.error('绑定失败')
-    router.push('/user-profile/account')
+    router.push('/settings/account')
   }
 }

@@ -11,8 +11,8 @@ watch(width, () => {
 })
 
 const router = useRouter()
-function checkProfile() {
-  router.push('/user-profile')
+function checkSettings() {
+  router.push('/settings')
 }
 function checkSummary() {
   router.push('/summary')
@@ -48,10 +48,10 @@ const userProfile = computed(() => authStore.user?.userProfile || '还未添加�
         <a-divider />
 
         <div>
-          <a-doption @click="checkProfile">
+          <a-doption @click="checkSettings">
             <div flex-y-center gap-4>
               <div i-ri-profile-line />
-              账号设置
+              设置中心
             </div>
           </a-doption>
           <a-doption @click="checkSummary">

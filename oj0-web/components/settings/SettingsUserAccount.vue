@@ -77,7 +77,7 @@ async function submit() {
 
       <a-divider />
 
-      <UserProfileAccountSettingsListExtraAuth />
+      <SettingsUserAccountListExtraAuth />
     </a-form>
   </div>
 </template>

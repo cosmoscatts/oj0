@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
   async function checkUserInfoCompletely() {
     const route = useRoute()
-    if (route.fullPath === '/user-profile')
+    if (route.fullPath === '/settings')
       return
     const { data } = await AuthApi.checkAccount()
     if (data === false) {
@@ -21,7 +21,7 @@ export const useAuthStore = defineStore('authStore', () => {
         content: '您的账号信息还未完善哦～',
         ok: () => {
           const router = useRouter()
-          router.push('/user-profile')
+          router.push('/settings')
         },
         okText: '去完善',
         cancelText: '以后再说',
