@@ -34,9 +34,14 @@ function back() {
 
       <div col-span-3>
         <CommonTransition>
+          <SettingsUserInterface v-if="selectedTab === 'interface'" />
+
+          <SettingsUserFavorites v-if="selectedTab === 'favorites'" />
+          <SettingsUserSolutions v-if="selectedTab === 'solutions'" />
+          <SettingsUserResolveAnalysis v-if="selectedTab === 'resolve-analysis'" />
+
           <SettingsUserInformation v-if="selectedTab === 'info'" />
           <SettingsUserAccount v-if="selectedTab === 'account'" />
-          <SettingsUserInterface v-if="selectedTab === 'interface'" />
         </CommonTransition>
       </div>
     </div>
@@ -45,9 +50,14 @@ function back() {
       <SettingsTabs v-model="selectedTab" />
 
       <CommonTransition>
+        <SettingsUserInterface v-if="selectedTab === 'interface'" />
+
+        <SettingsUserFavorites v-if="selectedTab === 'favorites'" />
+        <SettingsUserSolutions v-if="selectedTab === 'solutions'" />
+        <SettingsUserResolveAnalysis v-if="selectedTab === 'resolve-analysis'" />
+
         <SettingsUserInformation v-if="selectedTab === 'info'" />
         <SettingsUserAccount v-if="selectedTab === 'account'" />
-        <SettingsUserInterface v-if="selectedTab === 'interface'" />
       </CommonTransition>
     </div>
   </div>
