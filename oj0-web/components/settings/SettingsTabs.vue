@@ -41,6 +41,22 @@ function handleClick(value: string) {
           <div i-ri:arrow-right-s-line text-xl text-secondary-light />
         </div>
       </a>
+      <a group block w-full focus:outline-none cursor-pointer :class="modelValue === 'interface' ? 'text-primary' : ''" @click="handleClick('interface')">
+        <div
+          w-full flex w-fit px5 py3 md:gap2 gap4 items-center transition-250
+          group-hover:bg-active group-focus-visible:ring="2 current"
+        >
+          <div flex-1 flex items-center md:gap2 gap4>
+            <div flex items-center justify-center flex-shrink-0 class>
+              <div i-ri-compasses-2-line text-xl md:text-size-inherit />
+            </div>
+            <div flex="~ col gap-0.5">
+              <p><span>外观</span></p>
+            </div>
+          </div>
+          <div i-ri:arrow-right-s-line text-xl text-secondary-light />
+        </div>
+      </a>
     </div>
 
     <div w-full flex="~ gap4 wrap" gap-4 md:hidden>
@@ -50,6 +66,10 @@ function handleClick(value: string) {
 
     <button  flex="~ gap-1 center" border="~ base rounded" :class="modelValue === 'account' ? '' : 'filter-saturate-0'" flex-1 ws-nowrap bg-base p4 btn-text @click="handleClick('account')">
       <span i-ri-user-settings-line /> 账号安全
+    </button>
+
+    <button  flex="~ gap-1 center" border="~ base rounded" :class="modelValue === 'interface' ? '' : 'filter-saturate-0'" flex-1 ws-nowrap bg-base p4 btn-text @click="handleClick('interface')">
+      <span i-ri-compasses-2-line /> 外观
     </button>
     </div>
   </div>

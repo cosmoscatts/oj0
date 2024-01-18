@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxt/content',
+    '@nuxtjs/color-mode',
     ['unplugin-icons/nuxt', {
       autoInstall: true,
       scale: 1,
@@ -83,4 +84,5 @@ export default defineNuxtConfig({
       clientDB: true,
     },
   },
+  colorMode: { classSuffix: '' },
 })

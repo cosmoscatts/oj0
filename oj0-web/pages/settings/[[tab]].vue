@@ -36,6 +36,7 @@ function back() {
         <CommonTransition>
           <SettingsUserInformation v-if="selectedTab === 'info'" />
           <SettingsUserAccount v-if="selectedTab === 'account'" />
+          <SettingsUserInterface v-if="selectedTab === 'interface'" />
         </CommonTransition>
       </div>
     </div>
@@ -46,6 +47,7 @@ function back() {
       <CommonTransition>
         <SettingsUserInformation v-if="selectedTab === 'info'" />
         <SettingsUserAccount v-if="selectedTab === 'account'" />
+        <SettingsUserInterface v-if="selectedTab === 'interface'" />
       </CommonTransition>
     </div>
   </div>
