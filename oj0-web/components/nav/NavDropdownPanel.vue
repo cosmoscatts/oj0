@@ -23,6 +23,18 @@ function checkSettings() {
 function checkProfile() {
   router.push('/profile')
 }
+function checkFavorites() {
+  router.push('/settings/favorites')
+  visible.value = false
+}
+function checkSolutions() {
+  router.push('/settings/solutions')
+  visible.value = false
+}
+function checkResolveAnalysis() {
+  router.push('/settings/resolve-analysis')
+  visible.value = false
+}
 
 const authStore = useAuthStore()
 function logout() {
@@ -39,7 +51,7 @@ const userProfile = computed(() => hasLogin.value ? authStore.user?.userProfile 
     <div v-if="!visible" i-ri-menu-line text-xl filter-saturate-0 btn-text />
     <div v-else i-ri-close-line text-xl filter-saturate-0 btn-text />
     <template #content>
-      <div w-250px p-4>
+      <div max-h-500px w-280px of-x-hidden of-y-auto p-4>
         <div h-50px flex-y-center shrink-0 gap-3>
           <NavAvatar :key="getRandomStr(10)" cursor-pointer @click="checkProfile" />
 
@@ -49,6 +61,33 @@ const userProfile = computed(() => hasLogin.value ? authStore.user?.userProfile 
             </div>
             <div mt-1 text-primary>
               {{ userProfile }}
+            </div>
+          </div>
+        </div>
+
+        <div mt-5 flex shrink-0 justify-between overflow-x-auto pb-3 md:grid md:grid-cols-3 md:gap-3 space-x-2 md:px-0 md:pb-0 md:space-x-0>
+          <div h-20 w-20 flex shrink-0 flex-col cursor-pointer items-center justify-center rounded-13px bg-active hover:bg-border @click="checkFavorites">
+            <div relative mb-1 h-9 w-10>
+              <img src="https://static.leetcode.cn/cn-mono-assets/production/assets/starred.2e4c5ddc.png" w-full object-cover>
+            </div>
+            <div mb-2 text-xs text-secondary>
+              收藏夹
+            </div>
+          </div>
+          <div h-20 w-20 flex shrink-0 flex-col cursor-pointer items-center justify-center rounded-13px bg-active hover:bg-border @click="checkSolutions">
+            <div relative mb-1 h-9 w-10>
+              <img src="https://static.leetcode.cn/cn-mono-assets/production/assets/answer.9dab99b2.png" w-full object-cover>
+            </div>
+            <div mb-2 text-xs text-secondary>
+              我的题解
+            </div>
+          </div>
+          <div h-20 w-20 flex shrink-0 flex-col cursor-pointer items-center justify-center rounded-13px bg-active hover:bg-border @click="checkResolveAnalysis">
+            <div relative mb-1 h-9 w-10>
+              <img src="https://static.leetcode.cn/cn-mono-assets/production/assets/progress.106c8d89.png" w-full object-cover>
+            </div>
+            <div mb-2 text-xs text-secondary>
+              做题分析
             </div>
           </div>
         </div>
