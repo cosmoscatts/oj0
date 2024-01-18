@@ -159,7 +159,7 @@ function formatAcceptPercentTooltip(record: Question) {
 
     <a-table
       row-key="id"
-      stripe mt-4
+      mt-4
       :columns="columns"
       :data="tableData"
       :loading="loading"
