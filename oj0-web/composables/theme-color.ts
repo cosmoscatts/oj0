@@ -18,3 +18,9 @@ export async function setPrimaryColor() {
   const html = document.documentElement
   primaryColors.forEach((i, idx) => html.style.setProperty(`--oj-primary-${idx + 1}`, i))
 }
+
+export function createArcoTheme() {
+  if (isDark.value)
+    document.body.setAttribute('arco-theme', 'dark')
+  else document.body.removeAttribute('arco-theme')
+}

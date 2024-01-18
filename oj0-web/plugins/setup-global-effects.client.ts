@@ -3,5 +3,7 @@ export default defineNuxtPlugin(() => {
   const html = document.documentElement
   watchEffect(() => {
     Object.entries(userSettings.value.themeColors || {}).forEach(([k, v]) => html.style.setProperty(k, v))
+    createArcoTheme()
+    setThemeColor()
   })
 })
