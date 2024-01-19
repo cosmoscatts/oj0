@@ -16,6 +16,7 @@ function checkSettings() {
 }
 function checkProfile() {
   router.push('/profile')
+  visible.value = false
 }
 function checkInterface() {
   router.push('/settings/interface')

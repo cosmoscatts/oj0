@@ -22,6 +22,7 @@ function checkSettings() {
 }
 function checkProfile() {
   router.push('/profile')
+  visible.value = false
 }
 function checkFavorites() {
   router.push('/settings/favorites')
