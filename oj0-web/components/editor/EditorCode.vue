@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import * as monaco from 'monaco-editor'
-import { getHighlighter } from 'shikiji'
-import { shikijiToMonaco } from 'shikiji-monaco'
+import { getHighlighter } from 'shiki'
+import { shikiToMonaco } from '@shikijs/monaco'
 import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
 
 const { language = RESOLVE_LANGUAGE_ENUM.JAVA, submitCode } = defineProps<{
@@ -29,7 +29,7 @@ async function initShikiji() {
   monaco.languages.register({ id: 'cpp' })
   monaco.languages.register({ id: 'go' })
 
-  shikijiToMonaco(highlighter, monaco)
+  shikiToMonaco(highlighter, monaco)
   hasInitShikiji.value = true
 }
 initShikiji()

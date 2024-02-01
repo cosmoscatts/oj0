@@ -97,6 +97,12 @@ devDependencies:
   '@nuxt/devtools':
     specifier: latest
     version: registry.npmmirror.com/@nuxt/devtools@1.0.4(nuxt@3.8.2)(rollup@3.29.4)(vite@5.0.4)
+  '@shikijs/markdown-it':
+    specifier: 1.0.0-beta.2
+    version: registry.npmmirror.com/@shikijs/markdown-it@1.0.0-beta.2
+  '@shikijs/monaco':
+    specifier: 1.0.0-beta.2
+    version: registry.npmmirror.com/@shikijs/monaco@1.0.0-beta.2
   '@types/markdown-it':
     specifier: ^13.0.7
     version: registry.npmmirror.com/@types/markdown-it@13.0.7
@@ -109,21 +115,15 @@ devDependencies:
   markdown-it:
     specifier: ^14.0.0
     version: registry.npmmirror.com/markdown-it@14.0.0
-  markdown-it-shikiji:
-    specifier: ^0.9.17
-    version: registry.npmmirror.com/markdown-it-shikiji@0.9.17
   nuxt:
     specifier: ^3.8.2
     version: 3.8.2(eslint@8.55.0)(rollup@3.29.4)(typescript@5.3.2)(vite@5.0.4)
   openapi-typescript-codegen:
     specifier: ^0.25.0
     version: 0.25.0
-  shikiji:
-    specifier: ^0.9.17
-    version: registry.npmmirror.com/shikiji@0.9.17
-  shikiji-monaco:
-    specifier: ^0.9.17
-    version: registry.npmmirror.com/shikiji-monaco@0.9.17
+  shiki:
+    specifier: 1.0.0-beta.2
+    version: registry.npmmirror.com/shiki@1.0.0-beta.2
   typescript:
     specifier: ^5.3.2
     version: 5.3.2
@@ -7232,6 +7232,38 @@ packages:
     requiresBuild: true
     optional: true
 
+  registry.npmmirror.com/@shikijs/core@1.0.0-beta.2:
+    resolution: {integrity: sha512-H0r+V4/47hXZzFW2qXRqjLwNtiUE5bQankMw2m2RE1hLgHSjp/skyBZYDXjhG9y7ei3sIZAj8s4vx31EzxxrhQ==, tarball: https://registry.npmmirror.com/@shikijs/core/-/core-1.0.0-beta.2.tgz}
+    name: '@shikijs/core'
+    version: 1.0.0-beta.2
+    dev: true
+
+  registry.npmmirror.com/@shikijs/markdown-it@1.0.0-beta.2:
+    resolution: {integrity: sha512-0Wad+E5ZiRaVmsK6Ce3dAbZyCTOBfHmb92BCv9GZyirksrpCHKryp9P2bj7Whww01xESOLrD90uFrPjS6Hossg==, tarball: https://registry.npmmirror.com/@shikijs/markdown-it/-/markdown-it-1.0.0-beta.2.tgz}
+    name: '@shikijs/markdown-it'
+    version: 1.0.0-beta.2
+    dependencies:
+      '@shikijs/transformers': registry.npmmirror.com/@shikijs/transformers@1.0.0-beta.2
+      markdown-it: registry.npmmirror.com/markdown-it@14.0.0
+      shiki: registry.npmmirror.com/shiki@1.0.0-beta.2
+    dev: true
+
+  registry.npmmirror.com/@shikijs/monaco@1.0.0-beta.2:
+    resolution: {integrity: sha512-htJ0rgDEdtQHUSFibLimge1C+oOiZhHUY7jvdz1942rtgMhqiufpeNkA51OMgapFtc9CYLyVUSzx/EBdarxGjg==, tarball: https://registry.npmmirror.com/@shikijs/monaco/-/monaco-1.0.0-beta.2.tgz}
+    name: '@shikijs/monaco'
+    version: 1.0.0-beta.2
+    dependencies:
+      '@shikijs/core': registry.npmmirror.com/@shikijs/core@1.0.0-beta.2
+    dev: true
+
+  registry.npmmirror.com/@shikijs/transformers@1.0.0-beta.2:
+    resolution: {integrity: sha512-8SbhI7BDUc+rHX0UtZYxidTGfmdoTRK1FtPspu0Zd3shFy5wvHbmb1xvtpmZ1vdXzsO8WUb6RRE3SGvHCpQGrg==, tarball: https://registry.npmmirror.com/@shikijs/transformers/-/transformers-1.0.0-beta.2.tgz}
+    name: '@shikijs/transformers'
+    version: 1.0.0-beta.2
+    dependencies:
+      shiki: registry.npmmirror.com/shiki@1.0.0-beta.2
+    dev: true
+
   registry.npmmirror.com/@sigstore/bundle@2.1.0:
     resolution: {integrity: sha512-89uOo6yh/oxaU8AeOUnVrTdVMcGk9Q1hJa7Hkvalc6G3Z3CupWk4Xe9djSgJm9fMkH69s0P0cVHUoKSOemLdng==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@sigstore/bundle/-/bundle-2.1.0.tgz}
     name: '@sigstore/bundle'
@@ -11720,15 +11752,6 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/markdown-it-shikiji@0.9.17:
-    resolution: {integrity: sha512-F7gw+2XcYMGn295GhTE+WUFu/wNJEAVQLgnK9+9mpjpddgj3TiZSy1m40nkC3I/8fFPUl3O9RfYfjuZFDQwtQw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/markdown-it-shikiji/-/markdown-it-shikiji-0.9.17.tgz}
-    name: markdown-it-shikiji
-    version: 0.9.17
-    dependencies:
-      markdown-it: registry.npmmirror.com/markdown-it@14.0.0
-      shikiji: registry.npmmirror.com/shikiji@0.9.17
-    dev: true
-
   registry.npmmirror.com/markdown-it@14.0.0:
     resolution: {integrity: sha512-seFjF0FIcPt4P9U39Bq1JYblX0KZCjDLFFQPHpL5AzHpqPEKtosxmdq/LTVZnjfH7tjt9BxStm+wXcDBNuYmzw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/markdown-it/-/markdown-it-14.0.0.tgz}
     name: markdown-it
@@ -14986,6 +15009,14 @@ packages:
     version: 0.14.0
     dev: false
 
+  registry.npmmirror.com/shiki@1.0.0-beta.2:
+    resolution: {integrity: sha512-hPJcD6F5BRp2yfeBcERqQIVeEPjE2g+r5MVq/tonz2SxT6o79e84Y9iW+a5TyGXWtXAKiW5jd4lGevJ4yIUixA==, tarball: https://registry.npmmirror.com/shiki/-/shiki-1.0.0-beta.2.tgz}
+    name: shiki
+    version: 1.0.0-beta.2
+    dependencies:
+      '@shikijs/core': registry.npmmirror.com/@shikijs/core@1.0.0-beta.2
+    dev: true
+
   registry.npmmirror.com/shikiji-core@0.9.12:
     resolution: {integrity: sha512-AYsAtsbZuq0FPT3mdskNMa+yxD5VwXrFC2sH7R2ELmncVGNYvSzR6Zlfq8iEzINq7/kKL5prtt81UFzFWTTbxQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/shikiji-core/-/shikiji-core-0.9.12.tgz}
     name: shikiji-core
@@ -14996,14 +15027,7 @@ packages:
     resolution: {integrity: sha512-r1FWTXk6SO2aYqfWgcsJ11MuVQ1ymPSdXzJjK7q8EXuyqu8yc2N5qrQy5+BL6gTVOaF4yLjbxFjF+KTRM1Sp8Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/shikiji-core/-/shikiji-core-0.9.17.tgz}
     name: shikiji-core
     version: 0.9.17
-
-  registry.npmmirror.com/shikiji-monaco@0.9.17:
-    resolution: {integrity: sha512-5HLHQSLtg8QdOU+dkLxIiWovkqqKacYLuuJtVMYBayviZKTTBdY9IxvUSFq0Maj/LDC2OI0HEEs51DqwPSCRow==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/shikiji-monaco/-/shikiji-monaco-0.9.17.tgz}
-    name: shikiji-monaco
-    version: 0.9.17
-    dependencies:
-      shikiji-core: registry.npmmirror.com/shikiji-core@0.9.17
-    dev: true
+    dev: false
 
   registry.npmmirror.com/shikiji-transformers@0.9.12:
     resolution: {integrity: sha512-ge+47j4MLTbKAnTnhTTolD9DKGW2Fhp80MV7Tb2E+p4HsJixu4slq2SDV/eFR34iH/egtyi/cjGMD8vJbNLBUA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/shikiji-transformers/-/shikiji-transformers-0.9.12.tgz}
@@ -15027,6 +15051,7 @@ packages:
     version: 0.9.17
     dependencies:
       shikiji-core: registry.npmmirror.com/shikiji-core@0.9.17
+    dev: false
 
   registry.npmmirror.com/siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/siginfo/-/siginfo-2.0.0.tgz}

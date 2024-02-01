@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MarkdownIt from 'markdown-it'
-import Shikiji from 'markdown-it-shikiji'
+import Shiki from '@shikijs/markdown-it'
 
 const { value = '' } = defineProps<{
   value?: string
@@ -14,11 +14,11 @@ const hasRender = ref(false)
 
 async function init() {
   const _md = MarkdownIt()
-  mdLight = _md.use(await Shikiji({
+  mdLight = _md.use(await Shiki({
     theme: 'vitesse-light',
   }))
   const _md2 = MarkdownIt()
-  mdDark = _md2.use(await Shikiji({
+  mdDark = _md2.use(await Shiki({
     theme: 'vitesse-dark',
   }))
 }

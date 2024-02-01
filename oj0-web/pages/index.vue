@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { codeToHtml } from 'shikiji'
+import { codeToHtml } from 'shiki'
 import { ACCESS_ENUM } from '~/constants'
 import { popularQuestionTags } from '~/config/question'
 import avatar from '~/public/avatar.jpg'
