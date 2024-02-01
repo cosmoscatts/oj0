@@ -112,7 +112,7 @@ const option = computed(() => {
         color: isDark.value ? '#f3f3f3' : '#232323',
         fontSize: 10,
       },
-      nameGap: 8,
+      axisNameGap: 8,
       axisLabel: {
         show: false,
       },
