@@ -88,8 +88,8 @@ onMounted(checkFormSubmitHistory)
   <div h-screen w-screen bg-base>
     <ResolveActionBar @submit="onClickSubmit" />
 
-    <div :style="{ height: `calc(100vh - 4.3rem)` }" of-hidden px-10px bg-darker>
-      <a-split :style="{ height: '100%', width: '100%', minWidth: '500px' }">
+    <div :style="{ height: `calc(100vh - 4.3rem)` }" of-hidden px-10px>
+      <a-split :style="{ height: '100%', width: '100%', minWidth: '500px' }" rounded-8px bg-darker>
         <template #first>
           <div h-full w-full of-hidden flex="~ col" border="1 base" rounded-l-8px>
             <ResolveLeftSelectTabs v-model="selectedLeftTab" />
