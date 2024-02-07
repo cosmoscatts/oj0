@@ -20,7 +20,6 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: false },
   vue: {
-    defineModel: true,
     propsDestructure: true,
   },
   modules: [
