@@ -10,11 +10,6 @@ const statusOptions = Array.from({ length: 3 }, (_, idx) => {
 const selectedStatus = ref(0) // 0: 已通过题目；1：提交未通过；2：未开始题目
 const searchContent = ref('')
 
-const expandable = reactive({
-  title: '',
-  width: 60,
-})
-
 const columns = [
   {
     title: '最近提交时间',
@@ -42,47 +37,7 @@ const columns = [
   },
 ] as TableColumnData[]
 
-const data = reactive([
-  {
-    key: '1',
-    name: 'Jane Doe',
-    salary: 23000,
-    address: '32 Park Road, London',
-    email: 'jane.doe@example.com',
-    expand: 'Expand Data',
-  },
-  {
-    key: '2',
-    name: 'Alisa Ross',
-    salary: 25000,
-    address: '35 Park Road, London',
-    email: 'alisa.ross@example.com',
-  },
-  {
-    key: '3',
-    name: 'Kevin Sandra',
-    salary: 22000,
-    address: '31 Park Road, London',
-    email: 'kevin.sandra@example.com',
-  },
-  {
-    key: '4',
-    name: 'Ed Hellen',
-    salary: 17000,
-    address: '42 Park Road, London',
-    email: 'ed.hellen@example.com',
-  },
-  {
-    key: '5',
-    name: 'William Smith',
-    salary: 27000,
-    address: '62 Park Road, London',
-    email: 'william.smith@example.com',
-  },
-])
-
-const expandColumns: TableColumnData[] = []
-const expandTableData = []
+const tableData = ref([])
 
 function search() {
 
@@ -97,18 +52,10 @@ function search() {
         <a-input-search v-model="searchContent" placeholder="搜索题目" allow-clear w-210px @search="search" />
       </div>
 
-      <a-table :columns="columns" size="small" :data="data" :bordered="{ wrapper: true, cell: true }" :expandable="expandable" mt-3>
-        <template #expand-row="{ record }">
-          <a-table :columns="expandColumns" size="small" :data="expandTableData" />
-        </template>
-        <template #count="{ record }">
-          {{ record.email }}
-          <div />
-        </template>
-      </a-table>
+      <a-table :columns="columns" size="small" :data="tableData" :bordered="{ wrapper: true, cell: true }" mt-3 />
     </div>
     <div col-span-1>
-      11
+      WIP 完善中···
     </div>
   </div>
 </template>
