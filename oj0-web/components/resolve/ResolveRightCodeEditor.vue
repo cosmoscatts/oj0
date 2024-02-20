@@ -7,7 +7,7 @@ const selectedLanguage = ref(RESOLVE_LANGUAGE_ENUM.JAVA)
 
 const DEFAULT_CODE = `public class Main {
     public static void main(String[] args) {
-
+        
     }
 }
 `
@@ -39,6 +39,12 @@ const options = computed(() => {
       disabled: true,
     }
   })
+})
+
+const submitCode = computed(() => {
+  if (submitId)
+    return code.value
+  return undefined
 })
 
 function reset() {
@@ -86,7 +92,7 @@ defineExpose({
     </div>
 
     <div flex="~ 1 col" of-auto>
-      <EditorCode v-model="code" :language="selectedLanguage" />
+      <EditorCode v-model="code" :language="selectedLanguage" :submit-code="submitCode" />
     </div>
   </div>
 </template>

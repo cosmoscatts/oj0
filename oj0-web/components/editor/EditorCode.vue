@@ -4,7 +4,7 @@ import { getHighlighter } from 'shiki'
 import { shikiToMonaco } from '@shikijs/monaco'
 import { RESOLVE_LANGUAGE_ENUM } from '~/constants'
 
-const { language = RESOLVE_LANGUAGE_ENUM.JAVA } = defineProps<{
+const { language = RESOLVE_LANGUAGE_ENUM.JAVA, submitCode } = defineProps<{
   language?: string
   submitCode?: string
 }>()
@@ -44,6 +44,11 @@ watch(() => language, () => {
       language,
     )
   }
+})
+
+watchOnce(() => submitCode, (n) => {
+  if (editor && !!n)
+    editor.setValue(modelValue.value || '')
 })
 
 watch(isDark, (n) => {
