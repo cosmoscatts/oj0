@@ -28,10 +28,13 @@ fetchCurrentQuestion()
 const currentSubmitId = ref<Nullable<string | number>>()
 const refResolveQuestionSubmitList = ref()
 const refResolveRightRun = ref()
+const resolveRightSplitDefaultSize = ref(0.92)
 function submitQuestionCallback(id?: Nullable<string | number>) {
   currentSubmitId.value = id
-  if (id)
+  if (id) {
     refResolveRightRun.value?.changeSelectedTab?.(1)
+    resolveRightSplitDefaultSize.value = 0.5
+  }
   if (selectedLeftTab.value === 2)
     refResolveQuestionSubmitList.value?.update()
 }
@@ -105,7 +108,7 @@ onMounted(checkFormSubmitHistory)
         </template>
         <template #second>
           <div lt-md:w-full>
-            <a-split direction="vertical" :style="{ height: 'calc(100vh - 4.3rem)', overflow: 'hidden' }" :default-size="0.92">
+            <a-split direction="vertical" :style="{ height: 'calc(100vh - 4.3rem)', overflow: 'hidden' }" :size="resolveRightSplitDefaultSize">
               <template #first>
                 <div h-full w-full of-hidden border="1 base" rounded-tr-8px>
                   <ResolveRightCodeEditor ref="refResolveRightCodeEditor" :submit-id="submitId" />
