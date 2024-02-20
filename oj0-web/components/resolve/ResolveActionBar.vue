@@ -90,7 +90,7 @@ const questionsPanelVisible = ref(false)
 
     <div flex-y-center justify-end gap-3>
       <DarkToggle />
-      <NavAvatar :key="getRandomStr(10)" :size="24" />
+      <NavAvatarDropdown :avatar-size="24" />
     </div>
 
     <ResolveActionBarQuestionsPanel v-model="questionsPanelVisible" />

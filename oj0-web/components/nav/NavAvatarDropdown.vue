@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { avatarSize = 28 } = defineProps<{ avatarSize?: number }>()
+
 const visible = ref(false)
 
 /**
@@ -45,7 +47,7 @@ const userProfile = computed(() => authStore.user?.userProfile || '还未添加�
 
 <template>
   <a-dropdown v-model:popup-visible="visible" trigger="click" :popup-max-height="false">
-    <NavAvatar :key="getRandomStr(10)" cursor-pointer :size="28" />
+    <NavAvatar :key="getRandomStr(10)" cursor-pointer :size="avatarSize" />
     <template #content>
       <div w-280px p-4>
         <div h-50px flex-y-center shrink-0 gap-3>
