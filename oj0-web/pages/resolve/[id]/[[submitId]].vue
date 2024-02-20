@@ -108,7 +108,7 @@ onMounted(checkFormSubmitHistory)
         </template>
         <template #second>
           <div lt-md:w-full>
-            <a-split direction="vertical" :style="{ height: 'calc(100vh - 4.3rem)', overflow: 'hidden' }" :size="resolveRightSplitDefaultSize">
+            <a-split v-model:size="resolveRightSplitDefaultSize" direction="vertical" :style="{ height: 'calc(100vh - 4.3rem)', overflow: 'hidden' }">
               <template #first>
                 <div h-full w-full of-hidden border="1 base" rounded-tr-8px>
                   <ResolveRightCodeEditor ref="refResolveRightCodeEditor" :submit-id="submitId" />
