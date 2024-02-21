@@ -36,6 +36,11 @@
   border-bottom-color: var(--c-border);
 }
 
+.arco-table-border-cell .arco-table-th,
+.arco-table-border-cell .arco-table-td:not(.arco-table-tr-expand) {
+  border-right-color: var(--c-border);
+}
+
 .arco-table-border .arco-table-tr .arco-table-th {
   border-bottom-color: var(--c-border);
 }
