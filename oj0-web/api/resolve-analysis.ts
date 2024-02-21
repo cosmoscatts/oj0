@@ -2,6 +2,7 @@ const API_URL_ENUM = {
   LIST: '/resolve-analysis/list/page/vo',
   LIST_DETAIL: '/resolve-analysis/list/detail/vo',
   GET_SUMMARY: '/resolve-analysis/summary',
+  GET_CHART: '/resolve-analysis/chart',
 }
 
 export const ResolveAnalysisApi = {
@@ -21,5 +22,9 @@ export const ResolveAnalysisApi = {
 
   getSummary() {
     return useRequest.get<ResolveAnalysisSummary, Result<ResolveAnalysisSummary>>(API_URL_ENUM.GET_SUMMARY)
+  },
+
+  getChart() {
+    return useRequest.get<ResolveAnalysisChartData, Result<ResolveAnalysisChartData>>(API_URL_ENUM.GET_CHART)
   },
 }
