@@ -1,12 +1,16 @@
 package com.cc.oj0backend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cc.oj0backend.model.dto.resloveanalysis.ResolveAnalysisQueryRequest;
 import com.cc.oj0backend.model.entity.Question;
 import com.cc.oj0backend.model.entity.QuestionSubmit;
+import com.cc.oj0backend.model.entity.User;
+import com.cc.oj0backend.model.vo.QuestionSubmitVO;
 import com.cc.oj0backend.model.vo.ResolveAnalysisItemVO;
+import com.cc.oj0backend.model.vo.ResolveAnalysisSummaryVO;
 import com.cc.oj0backend.service.QuestionService;
 import com.cc.oj0backend.service.QuestionSubmitService;
 import com.cc.oj0backend.service.ResolveAnalysisService;
@@ -55,6 +59,64 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
         questionSubmitQueryWrapper.select("questionId", "count(questionId) count", "max(createTime) lastSubmitTime").groupBy("questionId");
         Page<Map<String, Object>> page = questionSubmitService.pageMaps(new Page<>(current, size), questionSubmitQueryWrapper);
         return fromQuestionSubmitPage(page);
+    }
+
+    @Override
+    public List<QuestionSubmitVO> getDetailList(User loginUser, Long questionId, Integer status) {
+        LambdaQueryWrapper<QuestionSubmit> queryWrapper = Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getQuestionId, questionId)
+                .eq(QuestionSubmit::getUserId, loginUser.getId()).orderByDesc(QuestionSubmit::getCreateTime);
+        if (status == 0) { // 已经通过
+            queryWrapper.eq(QuestionSubmit::getStatus, 2).like(QuestionSubmit::getJudgeInfo, "Accepted");
+        } else if (status == 1) { // 提交未通过
+            queryWrapper.ne(QuestionSubmit::getStatus, 2).or().notLike(QuestionSubmit::getJudgeInfo, "Accepted");
+        }
+        List<QuestionSubmit> submitList = questionSubmitService.list(queryWrapper);
+        List<QuestionSubmitVO> result = submitList.stream()
+                .map(questionSubmit -> questionSubmitService.getQuestionSubmitVO(questionSubmit, loginUser))
+                .collect(Collectors.toList());
+        return result;
+    }
+
+    @Override
+    public ResolveAnalysisSummaryVO getSummaryData(Long userId) {
+        // 已通过题目
+        List<Long> acceptedQuestionIds = questionSubmitService.listMaps(
+                        Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId)
+                                .eq(QuestionSubmit::getStatus, 2)
+                                .like(QuestionSubmit::getJudgeInfo, "Accepted")
+                                .select(QuestionSubmit::getQuestionId)
+                                .groupBy(QuestionSubmit::getQuestionId))
+                .stream().map(i -> (Long)i.get("questionId")).collect(Collectors.toList());
+        long acceptedQuestionNum = acceptedQuestionIds.size();
+        // 提交未通过的题目
+        long unacceptedQuestionNum = questionSubmitService.listMaps(
+                Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId)
+                        .notIn(QuestionSubmit::getQuestionId, acceptedQuestionIds)
+                        .and(qw -> qw.ne(QuestionSubmit::getStatus, 2).or()
+                                .notLike(QuestionSubmit::getJudgeInfo, "Accepted"))
+                        .select(QuestionSubmit::getQuestionId)
+                        .groupBy(QuestionSubmit::getQuestionId)).size();
+        // 未开始题目
+        Set<Long> questionIds = questionSubmitService.list().stream().map(QuestionSubmit::getQuestionId)
+                .collect(Collectors.toSet());
+        long unStartedQuestionNum = questionService.count(Wrappers.<Question>lambdaQuery().notIn(Question::getId, questionIds));
+        // 提交总数
+        long submitTotalNum = questionSubmitService.count(
+                Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId));
+        // 通过的提交
+        long acceptedSubmitNum = questionSubmitService.count(
+                Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId)
+                        .eq(QuestionSubmit::getStatus, 2)
+                        .like(QuestionSubmit::getJudgeInfo, "Accepted"));
+        // 提交通过率
+        double submitAcceptPercent = submitTotalNum > 0
+                ? (double) acceptedSubmitNum / submitTotalNum
+                : 0d;
+        ResolveAnalysisSummaryVO result = new ResolveAnalysisSummaryVO().setAcceptedQuestionNum(acceptedQuestionNum)
+                .setUnacceptedQuestionNum(unacceptedQuestionNum).setUnStartedQuestionNum(unStartedQuestionNum)
+                .setSubmitTotalNum(submitTotalNum).setAcceptedSubmitNum(acceptedSubmitNum)
+                .setSubmitAcceptPercent(submitAcceptPercent);
+        return result;
     }
 
     private Page<ResolveAnalysisItemVO> fromQuestionPage(Page<Question> page) {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TableColumnData } from '@arco-design/web-vue'
+import { isInteger } from 'lodash'
 import { QUESTION_DIFFICULTY_ENUM } from '~/constants'
 
 const statusOptions = Array.from({ length: 3 }, (_, idx) => {
@@ -74,6 +75,28 @@ function checkoutQuestion(record: ResolveAnalysisItem) {
 }
 
 const { visible, data, show } = useVisible<ResolveAnalysisItem>()
+
+const summaryData = ref<ResolveAnalysisSummary>({
+  acceptedQuestionNum: 0,
+  unacceptedQuestionNum: 0,
+  unStartedQuestionNum: 0,
+  submitTotalNum: 0,
+  acceptedSubmitNum: 0,
+  submitAcceptPercent: 0,
+})
+
+async function fetchSummaryData() {
+  const { data } = await ResolveAnalysisApi.getSummary()
+  summaryData.value = data
+}
+fetchSummaryData()
+
+const submitAcceptPercent = computed(() => {
+  const percent = (summaryData.value.submitAcceptPercent || 0) * 100
+  return isInteger(percent)
+    ? percent
+    : Number(percent.toFixed(2))
+})
 </script>
 
 <template>
@@ -122,7 +145,49 @@ const { visible, data, show } = useVisible<ResolveAnalysisItem>()
       <SettingsUserResolveAnalysisDetailModal v-model="visible" :status="selectedStatus" :question-id="data?.questionId" />
     </div>
     <div col-span-1>
-      WIP 完善中···
+      <SettingsUserResolveAnalysisChart />
+
+      <div flex="~ col" mt-2 gap-5 px-40px>
+        <div flex-y-center justify-between text-sm>
+          <div flex-y-center>
+            <div i-ri-square-fill mr-2 text-green />
+            已通过题目
+          </div>
+          <div>{{ summaryData.acceptedQuestionNum || 0 }}</div>
+        </div>
+        <div flex-y-center justify-between text-sm>
+          <div flex-y-center>
+            <div i-ri-square-fill mr-2 text-red />
+            提交未通过题目
+          </div>
+          <div>{{ summaryData.unacceptedQuestionNum || 0 }}</div>
+        </div>
+        <div flex-y-center justify-between text-sm>
+          <div flex-y-center>
+            <div i-ri-square-fill mr-2 text-secondary />
+            未开始题目
+          </div>
+          <div>{{ summaryData.unStartedQuestionNum || 0 }}</div>
+        </div>
+        <div flex-y-center justify-between text-sm text-secondary-light>
+          <div>
+            提交总数
+          </div>
+          <div>{{ summaryData.submitTotalNum || 0 }}</div>
+        </div>
+        <div flex-y-center justify-between text-sm text-secondary-light>
+          <div>
+            通过的提交
+          </div>
+          <div>{{ summaryData.acceptedSubmitNum || 0 }}</div>
+        </div>
+        <div flex-y-center justify-between text-sm text-secondary-light>
+          <div>
+            提交通过率
+          </div>
+          <div>{{ submitAcceptPercent }} %</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

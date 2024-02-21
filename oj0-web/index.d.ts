@@ -173,6 +173,18 @@ declare global {
     count?: number
     lastSubmitTime?: Date
   }
+
+  /**
+   * 做题分析总结
+   */
+  interface ResolveAnalysisSummary {
+    acceptedQuestionNum?: number
+    unacceptedQuestionNum?: number
+    unStartedQuestionNum?: number
+    submitTotalNum?: number
+    acceptedSubmitNum?: number
+    submitAcceptPercent?: number
+  }
 }
 
 declare module '#app' {

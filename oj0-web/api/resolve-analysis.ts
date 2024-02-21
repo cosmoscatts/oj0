@@ -1,6 +1,7 @@
 const API_URL_ENUM = {
   LIST: '/resolve-analysis/list/page/vo',
   LIST_DETAIL: '/resolve-analysis/list/detail/vo',
+  GET_SUMMARY: '/resolve-analysis/summary',
 }
 
 export const ResolveAnalysisApi = {
@@ -16,5 +17,9 @@ export const ResolveAnalysisApi = {
     questionId?: number | string
   }) {
     return useRequest.post<QuestionSubmit, Result<QuestionSubmit[]>>(API_URL_ENUM.LIST_DETAIL, params)
+  },
+
+  getSummary() {
+    return useRequest.get<ResolveAnalysisSummary, Result<ResolveAnalysisSummary>>(API_URL_ENUM.GET_SUMMARY)
   },
 }
