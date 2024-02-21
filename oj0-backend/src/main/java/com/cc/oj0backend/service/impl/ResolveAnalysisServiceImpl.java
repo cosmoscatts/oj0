@@ -54,10 +54,11 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
             questionSubmitQueryWrapper.eq("status", 2)
                     .like("judgeInfo", "Accepted");
         } else if (searchStatus == 1) { // 提交未通过
-            questionSubmitQueryWrapper.ne("status", 2)
-                    .or().notLike("judgeInfo", "Accepted");
+            questionSubmitQueryWrapper.and(qw -> qw.ne("status", 2).or()
+                    .notLike("judgeInfo", "Accepted"));
         }
-        questionSubmitQueryWrapper.select("questionId", "count(questionId) count", "max(createTime) lastSubmitTime").groupBy("questionId");
+        questionSubmitQueryWrapper.select("questionId", "count(questionId) count", "max(createTime) lastSubmitTime")
+                .groupBy("questionId").orderByDesc("lastSubmitTime");
         Page<Map<String, Object>> page = questionSubmitService.pageMaps(new Page<>(current, size), questionSubmitQueryWrapper);
         return fromQuestionSubmitPage(page);
     }
@@ -69,7 +70,8 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
         if (status == 0) { // 已经通过
             queryWrapper.eq(QuestionSubmit::getStatus, 2).like(QuestionSubmit::getJudgeInfo, "Accepted");
         } else if (status == 1) { // 提交未通过
-            queryWrapper.ne(QuestionSubmit::getStatus, 2).or().notLike(QuestionSubmit::getJudgeInfo, "Accepted");
+            queryWrapper.and(qw -> qw.ne(QuestionSubmit::getStatus, 2).or()
+                    .notLike(QuestionSubmit::getJudgeInfo, "Accepted"));
         }
         List<QuestionSubmit> submitList = questionSubmitService.list(queryWrapper);
         List<QuestionSubmitVO> result = submitList.stream()
