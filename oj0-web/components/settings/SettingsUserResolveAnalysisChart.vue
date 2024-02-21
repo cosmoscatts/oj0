@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import * as echarts from 'echarts'
 
-const data = ref<ResolveAnalysisChartData>({
-  accepted: [0, 0, 0],
-  unaccepted: [0, 0, 0],
-  unStarted: [0, 0, 0],
-})
+const acceptedData = ref([0, 0, 0])
+const unacceptedData = ref([0, 0, 0])
+const unStartedData = ref([0, 0, 0])
 
 const chartData = computed(() => {
   return [
@@ -14,21 +12,21 @@ const chartData = computed(() => {
       children: [
         {
           name: '已通过题目-简单',
-          value: data.value.accepted?.[0] || 0,
+          value: acceptedData.value?.[0] || 0,
           itemStyle: {
             color: '#86efac',
           },
         },
         {
           name: '已通过题目-中等',
-          value: data.value.accepted?.[1] || 0,
+          value: acceptedData.value?.[1] || 0,
           itemStyle: {
             color: '#4ade80',
           },
         },
         {
           name: '已通过题目-困难',
-          value: data.value.accepted?.[2] || 0,
+          value: acceptedData.value?.[2] || 0,
           itemStyle: {
             color: '#16a34a',
           },
@@ -43,21 +41,21 @@ const chartData = computed(() => {
       children: [
         {
           name: '提交未通过题目-简单',
-          value: data.value.unaccepted?.[0] || 0,
+          value: unacceptedData.value?.[0] || 0,
           itemStyle: {
             color: '#fca5a5',
           },
         },
         {
           name: '提交未通过题目-中等',
-          value: data.value.unaccepted?.[1] || 0,
+          value: unacceptedData.value?.[1] || 0,
           itemStyle: {
             color: '#f87171',
           },
         },
         {
           name: '提交未通过题目-困难',
-          value: data.value.unaccepted?.[2] || 0,
+          value: unacceptedData.value?.[2] || 0,
           itemStyle: {
             color: '#dc2626',
           },
@@ -72,21 +70,21 @@ const chartData = computed(() => {
       children: [
         {
           name: '未开始题目-简单',
-          value: data.value.unStarted?.[0] || 0,
+          value: unStartedData.value?.[0] || 0,
           itemStyle: {
             color: isDark.value ? '#d6d3d1' : '#d4d4d4',
           },
         },
         {
           name: '未开始题目-中等',
-          value: data.value.unStarted?.[1] || 0,
+          value: unStartedData.value?.[1] || 0,
           itemStyle: {
             color: isDark.value ? '#a8a29e' : '#a3a3a3',
           },
         },
         {
           name: '未开始题目-困难',
-          value: data.value.unStarted?.[2] || 0,
+          value: unStartedData.value?.[2] || 0,
           itemStyle: {
             color: isDark.value ? '#57534e' : '#525252',
           },
