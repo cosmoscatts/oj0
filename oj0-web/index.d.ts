@@ -185,6 +185,15 @@ declare global {
     acceptedSubmitNum?: number
     submitAcceptPercent?: number
   }
+
+  /**
+   * 做题分析图标数据
+   */
+  interface ResolveAnalysisChartData {
+    accepted?: [number, number, number]
+    unaccepted?: [number, number, number]
+    unStarted?: [number, number, number]
+  }
 }
 
 declare module '#app' {

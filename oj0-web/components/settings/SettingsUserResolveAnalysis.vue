@@ -164,7 +164,7 @@ const submitAcceptPercent = computed(() => {
         </div>
         <div flex-y-center justify-between text-sm>
           <div flex-y-center>
-            <div i-ri-square-fill mr-2 text-secondary />
+            <div i-ri-square-fill mr-2 text-neutral dark:text-warmgray />
             未开始题目
           </div>
           <div>{{ summaryData.unStartedQuestionNum || 0 }}</div>
