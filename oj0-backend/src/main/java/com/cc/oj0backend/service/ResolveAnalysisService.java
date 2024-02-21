@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cc.oj0backend.model.dto.resloveanalysis.ResolveAnalysisQueryRequest;
 import com.cc.oj0backend.model.entity.User;
 import com.cc.oj0backend.model.vo.QuestionSubmitVO;
+import com.cc.oj0backend.model.vo.ResolveAnalysisChartVO;
 import com.cc.oj0backend.model.vo.ResolveAnalysisItemVO;
 import com.cc.oj0backend.model.vo.ResolveAnalysisSummaryVO;
 
@@ -15,4 +16,6 @@ public interface ResolveAnalysisService {
     List<QuestionSubmitVO> getDetailList(User loginUser, Long questionId, Integer status);
 
     ResolveAnalysisSummaryVO getSummaryData(Long userId);
+
+    ResolveAnalysisChartVO getChartData(Long userId);
 }

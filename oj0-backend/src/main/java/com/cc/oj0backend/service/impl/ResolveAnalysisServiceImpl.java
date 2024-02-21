@@ -9,6 +9,7 @@ import com.cc.oj0backend.model.entity.Question;
 import com.cc.oj0backend.model.entity.QuestionSubmit;
 import com.cc.oj0backend.model.entity.User;
 import com.cc.oj0backend.model.vo.QuestionSubmitVO;
+import com.cc.oj0backend.model.vo.ResolveAnalysisChartVO;
 import com.cc.oj0backend.model.vo.ResolveAnalysisItemVO;
 import com.cc.oj0backend.model.vo.ResolveAnalysisSummaryVO;
 import com.cc.oj0backend.service.QuestionService;
@@ -97,8 +98,8 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
                         .select(QuestionSubmit::getQuestionId)
                         .groupBy(QuestionSubmit::getQuestionId)).size();
         // 未开始题目
-        Set<Long> questionIds = questionSubmitService.list().stream().map(QuestionSubmit::getQuestionId)
-                .collect(Collectors.toSet());
+        Set<Long> questionIds = questionSubmitService.list(Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId))
+                .stream().map(QuestionSubmit::getQuestionId).collect(Collectors.toSet());
         long unStartedQuestionNum = questionService.count(Wrappers.<Question>lambdaQuery().notIn(Question::getId, questionIds));
         // 提交总数
         long submitTotalNum = questionSubmitService.count(
@@ -117,6 +118,29 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
                 .setSubmitTotalNum(submitTotalNum).setAcceptedSubmitNum(acceptedSubmitNum)
                 .setSubmitAcceptPercent(submitAcceptPercent);
         return result;
+    }
+
+    @Override
+    public ResolveAnalysisChartVO getChartData(Long userId) {
+        List<Long> accepted = new ArrayList<>(), unaccepted = new ArrayList<>(), unStarted = new ArrayList<>();
+        long easy = 0L, medium = 0L, hard = 0L;
+        // 所有已经提交过的题目 id
+        Set<Long> submittedIds = questionSubmitService.list(Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId))
+                .stream().map(QuestionSubmit::getQuestionId).collect(Collectors.toSet());
+        // 已通过题目 id
+        List<Long> acceptedIds = questionSubmitService.listMaps(
+                        Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId)
+                                .eq(QuestionSubmit::getStatus, 2)
+                                .like(QuestionSubmit::getJudgeInfo, "Accepted")
+                                .select(QuestionSubmit::getQuestionId)
+                                .groupBy(QuestionSubmit::getQuestionId))
+                .stream().map(i -> (Long)i.get("questionId")).collect(Collectors.toList());
+        List<Question> acceptedQuestions = questionService.list(Wrappers.<Question>lambdaQuery().in(Question::getId, acceptedIds));
+        for (Question question : acceptedQuestions) {
+            
+        }
+
+        return null;
     }
 
     private Page<ResolveAnalysisItemVO> fromQuestionPage(Page<Question> page) {

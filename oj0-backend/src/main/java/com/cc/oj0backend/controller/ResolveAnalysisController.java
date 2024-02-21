@@ -12,6 +12,7 @@ import com.cc.oj0backend.model.dto.resloveanalysis.ResolveAnalysisQueryRequest;
 import com.cc.oj0backend.model.entity.QuestionSubmit;
 import com.cc.oj0backend.model.entity.User;
 import com.cc.oj0backend.model.vo.QuestionSubmitVO;
+import com.cc.oj0backend.model.vo.ResolveAnalysisChartVO;
 import com.cc.oj0backend.model.vo.ResolveAnalysisItemVO;
 import com.cc.oj0backend.model.vo.ResolveAnalysisSummaryVO;
 import com.cc.oj0backend.service.QuestionSubmitService;
@@ -68,4 +69,11 @@ public class ResolveAnalysisController {
         User loginUser = userService.getLoginUser(request);
         return ResultUtils.success(resolveAnalysisService.getSummaryData(loginUser.getId()));
     }
+
+    @GetMapping("/chart")
+    public BaseResponse<ResolveAnalysisChartVO> getChartData(HttpServletRequest request) {
+        User loginUser = userService.getLoginUser(request);
+        return ResultUtils.success(resolveAnalysisService.getChartData(loginUser.getId()));
+    }
+
 }
