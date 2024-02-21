@@ -162,6 +162,17 @@ declare global {
     qq?: boolean
     wechat?: boolean
   }
+
+  /**
+   * 做题分析
+   */
+  interface ResolveAnalysisItem {
+    questionId?: number
+    title?: string
+    difficulty?: string
+    count?: number
+    lastSubmitTime?: Date
+  }
 }
 
 declare module '#app' {
