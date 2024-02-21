@@ -7,9 +7,9 @@ const unStartedData = ref([0, 0, 0])
 
 async function fetchChartData() {
   const { data } = await ResolveAnalysisApi.getChart()
-  acceptedData.value = data.accepted || [0, 0, 0]
-  unacceptedData.value = data.unaccepted || [0, 0, 0]
-  unStartedData.value = data.unStarted || [0, 0, 0]
+  acceptedData.value = data.accepted?.map(i => Number(i)) || [0, 0, 0]
+  unacceptedData.value = data.unaccepted?.map(i => Number(i)) || [0, 0, 0]
+  unStartedData.value = data.unStarted?.map(i => Number(i)) || [0, 0, 0]
 }
 fetchChartData()
 
