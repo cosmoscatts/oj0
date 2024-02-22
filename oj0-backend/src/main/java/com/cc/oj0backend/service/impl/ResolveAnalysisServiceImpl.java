@@ -124,7 +124,7 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
 
     @Override
     public ResolveAnalysisChartVO getChartData(Long userId) {
-        List<Long> accepted = new ArrayList<>(), unaccepted = new ArrayList<>(), unStarted = new ArrayList<>();
+        List<Long> accepted, unaccepted, unStarted;
         long easy = 0L, medium = 0L, hard = 0L;
         // 所有已经提交过的题目 id
         Set<Long> submittedIds = questionSubmitService.list(Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId))
@@ -138,14 +138,7 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
                                 .groupBy(QuestionSubmit::getQuestionId))
                 .stream().map(i -> (Long)i.get("questionId")).collect(Collectors.toList());
         List<Question> acceptedQuestions = questionService.list(Wrappers.<Question>lambdaQuery().in(Question::getId, acceptedIds));
-        for (Question question : acceptedQuestions) {
-            if ("easy".equals(question.getDifficulty())) easy++;
-            else if ("medium".equals(question.getDifficulty())) medium++;
-            else if ("hard".equals(question.getDifficulty())) hard++;
-        }
-        accepted.add(easy);
-        accepted.add(medium);
-        accepted.add(hard);
+        accepted = count(acceptedQuestions);
         // 提交未通过题目 id
         List<Long> unacceptedIds = questionSubmitService.listMaps(
                 Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId)
@@ -156,27 +149,25 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
                         .groupBy(QuestionSubmit::getQuestionId)
         ).stream().map(i -> (Long) i.get("questionId")).collect(Collectors.toList());
         List<Question> unacceptedQuestions = questionService.list(Wrappers.<Question>lambdaQuery().in(Question::getId, unacceptedIds));
-        easy = 0L; medium = 0L; hard = 0L;
-        for (Question question : unacceptedQuestions) {
-            if ("easy".equals(question.getDifficulty())) easy++;
-            else if ("medium".equals(question.getDifficulty())) medium++;
-            else if ("hard".equals(question.getDifficulty())) hard++;
-        }
-        unaccepted.add(easy);
-        unaccepted.add(medium);
-        unaccepted.add(hard);
+        unaccepted = count(unacceptedQuestions);
         // 未开始题目
         List<Question> unStartedQuestions = questionService.list(Wrappers.<Question>lambdaQuery().notIn(Question::getId, submittedIds));
-        easy = 0L; medium = 0L; hard = 0L;
-        for (Question question : unStartedQuestions) {
+        unStarted = count(unStartedQuestions);
+        return new ResolveAnalysisChartVO().setAccepted(accepted).setUnaccepted(unaccepted).setUnStarted(unStarted);
+    }
+
+    private List<Long> count(List<Question> questions) {
+        List<Long> list = new ArrayList<>();
+        long easy = 0L, medium = 0L, hard = 0L;
+        for (Question question : questions) {
             if ("easy".equals(question.getDifficulty())) easy++;
             else if ("medium".equals(question.getDifficulty())) medium++;
             else if ("hard".equals(question.getDifficulty())) hard++;
         }
-        unStarted.add(easy);
-        unStarted.add(medium);
-        unStarted.add(hard);
-        return new ResolveAnalysisChartVO().setAccepted(accepted).setUnaccepted(unaccepted).setUnStarted(unStarted);
+        list.add(easy);
+        list.add(medium);
+        list.add(hard);
+        return list;
     }
 
     private Page<ResolveAnalysisItemVO> fromQuestionPage(Page<Question> page) {
