@@ -125,7 +125,6 @@ public class ResolveAnalysisServiceImpl implements ResolveAnalysisService {
     @Override
     public ResolveAnalysisChartVO getChartData(Long userId) {
         List<Long> accepted, unaccepted, unStarted;
-        long easy = 0L, medium = 0L, hard = 0L;
         // 所有已经提交过的题目 id
         Set<Long> submittedIds = questionSubmitService.list(Wrappers.<QuestionSubmit>lambdaQuery().eq(QuestionSubmit::getUserId, userId))
                 .stream().map(QuestionSubmit::getQuestionId).collect(Collectors.toSet());
