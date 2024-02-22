@@ -6,9 +6,7 @@ import com.cc.oj0backend.exception.BusinessException;
 import com.cc.oj0backend.judge.codesandbox.CodeSandbox;
 import com.cc.oj0backend.judge.codesandbox.CodeSandboxFactory;
 import com.cc.oj0backend.judge.codesandbox.CodeSandboxProxy;
-import com.cc.oj0backend.judge.codesandbox.model.ExecuteCodeRequest;
-import com.cc.oj0backend.judge.codesandbox.model.ExecuteCodeResponse;
-import com.cc.oj0backend.judge.codesandbox.model.JudgeInfo;
+import com.cc.oj0backend.judge.codesandbox.model.*;
 import com.cc.oj0backend.judge.strategy.JudgeContext;
 import com.cc.oj0backend.model.dto.question.JudgeCase;
 import com.cc.oj0backend.model.entity.Question;
@@ -38,7 +36,6 @@ public class JudgeServiceImpl implements JudgeService {
 
     @Value("${codesandbox.type:example}")
     private String type;
-
 
     @Override
     public QuestionSubmit doJudge(long questionSubmitId) {
@@ -130,5 +127,45 @@ public class JudgeServiceImpl implements JudgeService {
             }
         }
         return questionSubmitService.getById(questionSubmitId);
+    }
+
+    @Override
+    public TestCasesResponse doTestCases(TestCasesRequest testCasesRequest) {
+        Long questionId = testCasesRequest.getQuestionId();
+        Question question = questionService.getById(questionId);
+        if (question == null) {
+            return new TestCasesResponse().setStatus(QuestionSubmitStatusEnum.FAILED.getValue())
+                    .setMessage("题目不存在");
+        }
+
+        String code = testCasesRequest.getCode();
+        String language = testCasesRequest.getLanguage();
+        List<String> inputList = testCasesRequest.getJudgeCaseList().stream()
+                .map(JudgeCase::getInput).collect(Collectors.toList());
+
+        CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(type);
+        codeSandbox = new CodeSandboxProxy(codeSandbox);
+        ExecuteCodeRequest executeCodeRequest = ExecuteCodeRequest.builder()
+                .code(code)
+                .language(language)
+                .inputList(inputList)
+                .build();
+        ExecuteCodeResponse executeCodeResponse = codeSandbox.executeCode(executeCodeRequest);
+        if (executeCodeResponse.getStatus().equals(3)) { // 沙箱内部错误
+            return new TestCasesResponse().setStatus(QuestionSubmitStatusEnum.FAILED.getValue())
+                    .setJudgeInfo(executeCodeResponse.getJudgeInfo());
+        }
+        List<String> outputList = executeCodeResponse.getOutputList();
+        // 根据沙箱的执行结果，设置题目的判题状态和信息
+        JudgeContext judgeContext = new JudgeContext();
+        judgeContext.setJudgeInfo(executeCodeResponse.getJudgeInfo());
+        judgeContext.setInputList(inputList);
+        judgeContext.setOutputList(outputList);
+        judgeContext.setJudgeCaseList(testCasesRequest.getJudgeCaseList());
+        judgeContext.setQuestion(question);
+        JudgeInfo judgeInfo = judgeManager.doJudge(judgeContext);
+        // 修改数据库中的判题结果
+        return new TestCasesResponse().setStatus(QuestionSubmitStatusEnum.SUCCEED.getValue())
+                .setJudgeInfo(judgeInfo);
     }
 }
