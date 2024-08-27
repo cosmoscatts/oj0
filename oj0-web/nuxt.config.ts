@@ -1,3 +1,5 @@
+import compression from 'vite-plugin-compression'
+
 export default defineNuxtConfig({
   extends: '@nuxt-themes/typography',
   ssr: false,
@@ -84,4 +86,15 @@ export default defineNuxtConfig({
     },
   },
   colorMode: { classSuffix: '' },
+  vite: {
+    plugins: [
+      compression({
+        verbose: true,
+        disable: false,
+        threshold: 10240,
+        algorithm: 'gzip',
+        ext: '.gz',
+      }),
+    ],
+  },
 })
